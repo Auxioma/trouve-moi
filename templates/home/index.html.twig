@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <section class="hero p-4 p-md-5 mb-4 mb-md-5">
+      <div class="row align-items-center g-4 g-lg-3">
+        <div class="col-12 col-lg-7">
+          <h1>Rejoignez TrouveMoi.com<br>et trouvez de nouveaux clients.</h1>
+          <p class="mb-4">Inscription <strong>100% GRATUITE</strong> pour artisans et prestataires.<br>Gagnez en visibilité immédiate.</p>
+          <a href="#" class="btn btn-orange hero-cta px-4 px-md-5 py-3 mb-3">Lancer Mon Activité &nbsp;›</a>
+          <div class="subtext">Obtenez vos premiers clients rapidement<br>et développez votre notoriété.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="mb-4 mb-md-5">
+      <h2 class="section-title">Pourquoi s’inscrire sur TrouveMoi.com ?</h2>
+      <div class="row g-3 g-md-4 row-cols-2 row-cols-md-4">
+        <div class="col">
+          <div class="feature-card p-3 p-md-4">
+            <div class="feature-icon">
+                <img src="{{ asset('images/home/demande-client.png') }}" class="img-fluid">
+            </div>
+            <h3>Recevez des demandes de clients</h3>
+          </div>
+        </div>
+        <div class="col">
+          <div class="feature-card p-3 p-md-4">
+            <div class="feature-icon">
+                <img src="{{ asset('images/home/visible.png') }}" class="img-fluid">
+            </div>
+            <h3>Soyez visible dans votre ville</h3>
+          </div>
+        </div>
+        <div class="col">
+          <div class="feature-card p-3 p-md-4">
+            <div class="feature-icon">
+                <img src="{{ asset('images/home/avis.png') }}" class="img-fluid">
+            </div>
+            <h3>Obtenez des avis clients</h3>
+          </div>
+        </div>
+        <div class="col">
+          <div class="feature-card p-3 p-md-4">
+            <div class="feature-icon">
+                <img src="{{ asset('images/home/developper.png') }}" class="img-fluid">
+            </div>
+            <h3>Développez vos services<br>et réputation</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-4 mb-md-5">
+      <h2 class="divider-title">Un système de labels pour valoriser votre travail</h2>
+      <div class="labels-band p-3 p-md-4">
+        <div class="row g-2 g-md-3 row-cols-2 row-cols-md-5">
+          <div class="col"><div class="badge-rank rank-yellow"><span class="n">+ 1</span><span class="t1">Débutant</span></div></div>
+          <div class="col"><div class="badge-rank rank-green"><span class="n">+ 2</span><span class="t1">Confirmé</span></div></div>
+          <div class="col"><div class="badge-rank rank-blue"><span class="n">+ 3</span><span class="t1">Professionnel</span></div></div>
+          <div class="col"><div class="badge-rank rank-purple"><span class="n">+ 4</span><span class="t1">Expert</span></div></div>
+          <div class="col"><div class="badge-rank rank-orange"><span class="n">+ 5</span><span class="t1">Expert Excellence</span><span class="t2">Premium</span></div></div>
+        </div>
+        <p class="sub-note mb-0">Évoluez du label Débutant au niveau <strong>Expert Excellence Premium</strong> pour prouver votre expertise.</p>
+      </div>
+    </section>
+
+    <section class="mb-4 mb-md-5">
+      <h2 class="divider-title">Fonctionnalités Premium</h2>
+      <div class="row g-3 g-md-4 row-cols-2 row-cols-md-4">
+        <div class="col">
+          <div class="premium-card p-3 p-md-4">
+            <div class="premium-icon icon-indigo">📄</div>
+            <h3>Création de devis</h3>
+          </div>
+        </div>
+        <div class="col">
+          <div class="premium-card p-3 p-md-4">
+            <div class="premium-icon icon-blue">🔎</div>
+            <h3>Visibilité maximale</h3>
+          </div>
+        </div>
+        <div class="col">
+          <div class="premium-card p-3 p-md-4">
+            <div class="premium-icon icon-orange">🧑‍💼</div>
+            <h3>Gestion des clients</h3>
+          </div>
+        </div>
+        <div class="col">
+          <div class="premium-card p-3 p-md-4">
+            <div class="premium-icon icon-green">📋</div>
+            <h3>Plus de missions</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="split-box rounded-3 overflow-hidden mb-4 mb-md-5">
+      <div class="row g-0">
+        <div class="col-12 col-md-6 split-col">
+          <div class="document-card border-0 shadow-none rounded-0 p-4 p-lg-4">
+            <div class="row align-items-center g-3">
+              <div class="col-auto">
+                <div class="document-icon icon-blue">📘</div>
+              </div>
+              <div class="col">
+                <h3 class="text-start mt-0">Mes Documents Validés</h3>
+                <p class="text-start"><strong>Mes Certifications</strong><br>Certifications certifiées TrouveMoi.com - Validez vos compétences.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 split-col">
+          <div class="document-card border-0 shadow-none rounded-0 p-4 p-lg-4">
+            <div class="row align-items-center g-3">
+              <div class="col-auto">
+                <div class="document-icon icon-orange">🧾</div>
+              </div>
+              <div class="col">
+                <h3 class="text-start mt-0">Espace Recrutement / CV</h3>
+                <p class="text-start"><strong>Espace Recrutement</strong><br>Déposez votre CV / Portfolio - Attirez plus de clients qualifiés.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner position-relative p-4 p-md-5 mb-4 mb-md-5 text-center overflow-hidden">
+      <div class="star-shape" style="top: 14px; left: 18px;"></div>
+      <div class="star-shape" style="top: 18px; right: 24px; width: 30px; height: 30px;"></div>
+      <div class="star-shape" style="bottom: 20px; right: 74px; width: 40px; height: 40px;"></div>
+      <div class="star-shape" style="bottom: 24px; left: 90px; width: 28px; height: 28px;"></div>
+      <h2 class="fw-bold mb-3" style="font-size: clamp(1.6rem, 3vw, 2.35rem);">Inscrivez-vous gratuitement dès maintenant !</h2>
+      <a href="#" class="btn btn-orange px-4 px-md-5 py-3 fw-bold fs-5">Créer mon profil gratuitement</a>
+    </section>
+
+{% endblock %}
