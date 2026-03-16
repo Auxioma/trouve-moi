@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -107,6 +108,7 @@ class RegistrationFormType extends AbstractType
                     'maxlength' => 9
                 ]
             ])
+            ->add('siren', HiddenType::class)
             ->add('compagny', TextType::class, [
                 'label' => 'Nom de l’entreprise',
                 'label_attr' => [

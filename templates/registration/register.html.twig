@@ -4,145 +4,105 @@
 {% endblock %}
 
 {% block body %}
-
 	<section class="hero-section register mb-5 d-flex align-items-start">
 		<div class="container px-4 px-lg-5 pt-5 position-relative" style="z-index:2">
 			<div class="row">
 				<div class="col-lg-7">
 					<h1 class="hero-title mb-4">Créer mon compte artisan</h1>
 					<p class="hero-text mb-0">
-						Inscrivez votre entreprise pour obtenir plus de clients
-						                    près de chez vous.
+						Inscrivez votre entreprise pour obtenir plus de clients près de chez vous.
 					</p>
 				</div>
 			</div>
 		</div>
 	</section>
-
 	<section class="container-fluid login_form_section">
-
 		<div class="container">
-
-			<div class="row mb-4">
-
-				<div class="col-12">
-
-					<h2 class="login_form_title">
-						Informations personnelles
-					</h2>
-
-					<p class="login_form_subtitle">
-						Commencez par créer votre compte artisan en fournissant
-						                    vos informations de contact.
-					</p>
-
-				</div>
-
-			</div>
-
-        {{ form_start(registrationPro) }}
-			<div class="row g-4">
-				<div class="col-lg-6">
-					<div class="card login_card shadow-sm border-0">
-						<div class="card-body p-4">
-                            {{ form_row(registrationPro.firstName) }}
-                            {{ form_row(registrationPro.lastName) }}
-
-
-                            {{ form_row(registrationPro.email) }}
-                            {{ form_row(registrationPro.phoneNumber) }}
-
-                            {{ form_row(registrationPro.plainPassword) }}
-
-							<button class="btn login_btn_continue w-100">
-								Continuer
-							</button>
-
+			{{ form_start(registrationPro) }}
+			<div data-controller="siren" data-siren-url-value="{{ path('ajax_company_by_siren') }}">
+				<div class="row g-4">
+					<div class="col-lg-6">
+						<div class="card login_card shadow-sm border-0">
+							<div class="card-body p-4">
+								<h2 class="login_form_title">
+									Informations personnelles
+								</h2>
+								<p class="login_form_subtitle">
+									Commencez par créer votre compte artisan en fournissant
+									vos informations de contact.
+								</p>
+								{{ form_row(registrationPro.siret, {
+                                    attr: {
+                                        'data-siren-target': 'siren',
+                                        'data-action': 'input->siren#search'
+                                    }
+                                }) }}
+								{{ form_row(registrationPro.email) }}
+								{{ form_row(registrationPro.phoneNumber) }}
+								{{ form_row(registrationPro.plainPassword) }}
+								<button class="btn login_btn_continue w-100">
+									Continuer
+								</button>
+							</div>
 						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="card login_card shadow-sm border-0">
+							<div class="card-body p-4">
+								<h3 class="login_card_title">
+									Informations sur votre activité
+								</h3>
+								<p class="login_card_text">
+									Complétez votre compte artisan.
+								</p>
+{{ form_row(registrationPro.compagny, {
+    attr: {
+        'data-siren-target': 'companyName'
+    }
+}) }}
 
+    {{ form_row(registrationPro.lastName, {
+        attr: {
+            'data-siren-target': 'lastName'
+        }
+    }) }}
+
+    {{ form_row(registrationPro.firstName, {
+        attr: {
+            'data-siren-target': 'firstName'
+        }
+    }) }}
+
+{{ form_row(registrationPro.address, {
+    attr: {
+        'data-siren-target': 'address'
+    }
+}) }}
+
+{{ form_row(registrationPro.postalCode, {
+    attr: {
+        'data-siren-target': 'postalCode'
+    }
+}) }}
+
+{{ form_row(registrationPro.siren, {
+    attr: {
+        'data-siren-target': 'siren'
+    }
+}) }}
+
+{{ form_row(registrationPro.city, {
+    attr: {
+        'data-siren-target': 'city'
+    }
+}) }}
+
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="col-lg-6">
-
-					<div class="card login_card shadow-sm border-0">
-
-						<div class="card-body p-4">
-
-							<h3 class="login_card_title">
-								Informations sur votre activité
-							</h3>
-
-							<p class="login_card_text">
-								Complétez votre compte artisan.
-							</p>
-<div
-    data-controller="siren"
-    data-siren-url-value="{{ path('ajax_company_by_siren') }}"
->
-    <div class="mb-3">
-        {{ form_label(registrationPro.siret) }}
-        {{ form_widget(registrationPro.siret, {
-            attr: {
-                'data-siren-target': 'siren',
-                'data-action': 'input->siren#search'
-            }
-        }) }}
-        {{ form_errors(registrationPro.siret) }}
-    </div>
-
-    <div class="mb-3">
-        {{ form_label(registrationPro.compagny) }}
-        {{ form_widget(registrationPro.compagny, {
-            attr: {
-                'data-siren-target': 'companyName'
-            }
-        }) }}
-        {{ form_errors(registrationPro.compagny) }}
-    </div>
-
-    <div class="mb-3">
-        {{ form_label(registrationPro.address) }}
-        {{ form_widget(registrationPro.address, {
-            attr: {
-                'data-siren-target': 'address'
-            }
-        }) }}
-        {{ form_errors(registrationPro.address) }}
-    </div>
-
-    <div class="mb-3">
-        {{ form_label(registrationPro.postalCode) }}
-        {{ form_widget(registrationPro.postalCode, {
-            attr: {
-                'data-siren-target': 'postalCode'
-            }
-        }) }}
-        {{ form_errors(registrationPro.postalCode) }}
-    </div>
-
-    <div class="mb-3">
-        {{ form_label(registrationPro.city) }}
-        {{ form_widget(registrationPro.city, {
-            attr: {
-                'data-siren-target': 'city'
-            }
-        }) }}
-        {{ form_errors(registrationPro.city) }}
-    </div>
-</div>
-
-
-						</div>
-
-					</div>
-
-				</div>
-
 			</div>
-        {{ form_end(registrationPro) }}
+			{{ form_end(registrationPro) }}
 		</div>
-
 	</section>
-
 {% endblock %}
-

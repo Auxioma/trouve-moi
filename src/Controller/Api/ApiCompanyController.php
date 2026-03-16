@@ -38,7 +38,7 @@ final class ApiCompanyController extends AbstractController
                 ]
             );
 
-            if (200 !== $response->getStatusCode()) {
+            if ($response->getStatusCode() !== 200) {
                 return $this->json([
                     'success' => false,
                     'message' => 'Impossible de récupérer les informations de l’entreprise.',
@@ -65,16 +65,35 @@ final class ApiCompanyController extends AbstractController
             }
 
             $company ??= $results[0];
+
             $siege = $company['siege'] ?? [];
+
+            /*
+             * Cas personne morale :
+             * - nom_complet / nom_raison_sociale / nom_entreprise
+             *
+             * Cas entrepreneur individuel :
+             * - prenom
+             * - nom
+             */
+            $firstName = $company['prenom'] ?? '';
+            $lastName = $company['nom'] ?? '';
+
+            $companyName = $company['nom_complet']
+                ?? $company['nom_raison_sociale']
+                ?? $company['nom_entreprise']
+                ?? trim($firstName . ' ' . $lastName);
 
             return $this->json([
                 'success' => true,
                 'data' => [
                     'siren' => $company['siren'] ?? '',
-                    'name' => $company['nom_complet'] ?? '',
                     'siret' => $siege['siret'] ?? '',
+                    'companyName' => $companyName,
+                    'firstName' => $firstName,
+                    'lastName' => $lastName,
                     'address' => $siege['adresse'] ?? '',
-                    'postal_code' => $siege['code_postal'] ?? '',
+                    'postalCode' => $siege['code_postal'] ?? '',
                     'city' => $siege['libelle_commune'] ?? '',
                 ],
             ]);
@@ -87,6 +106,7 @@ final class ApiCompanyController extends AbstractController
             return $this->json([
                 'success' => false,
                 'message' => 'Erreur serveur interne.',
+                'error' => $e->getMessage(), // à retirer en prod si tu veux
             ], 500);
         }
     }

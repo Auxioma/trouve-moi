@@ -1,31 +1,27 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-    static targets = ['siren', 'companyName', 'address', 'postalCode', 'city'];
     static values = {
         url: String
     };
 
-    connect() {
-        this.timeout = null;
-    }
+    static targets = [
+        'siren',
+        'companyName',
+        'firstName',
+        'lastName',
+        'address',
+        'postalCode',
+        'city'
+    ];
 
-    search() {
-        clearTimeout(this.timeout);
-
+    async search() {
         const siren = this.sirenTarget.value.trim();
 
-        if (!/^\d{9}$/.test(siren)) {
-            this.clearFields();
+        if (siren.length !== 9) {
             return;
         }
 
-        this.timeout = setTimeout(() => {
-            this.fetchCompany(siren);
-        }, 400);
-    }
-
-    async fetchCompany(siren) {
         try {
             const response = await fetch(`${this.urlValue}?siren=${encodeURIComponent(siren)}`, {
                 headers: {
@@ -34,52 +30,47 @@ export default class extends Controller {
                 }
             });
 
-            const result = await response.json();
-
-            if (!response.ok || !result.success) {
-                console.warn(result.message || 'Entreprise introuvable');
-                this.clearFields();
+            if (!response.ok) {
+                const text = await response.text();
+                console.error('Réponse serveur invalide :', response.status, text);
                 return;
             }
 
-            const data = result.data ?? {};
+            const data = await response.json();
+
+            if (!data.success) {
+                console.error(data.message || 'Erreur inconnue');
+                return;
+            }
+
+            const company = data.data ?? {};
 
             if (this.hasCompanyNameTarget) {
-                this.companyNameTarget.value = data.name ?? '';
+                this.companyNameTarget.value = company.companyName ?? '';
+            }
+
+            if (this.hasFirstNameTarget) {
+                this.firstNameTarget.value = company.firstName ?? '';
+            }
+
+            if (this.hasLastNameTarget) {
+                this.lastNameTarget.value = company.lastName ?? '';
             }
 
             if (this.hasAddressTarget) {
-                this.addressTarget.value = data.address ?? '';
+                this.addressTarget.value = company.address ?? '';
             }
 
             if (this.hasPostalCodeTarget) {
-                this.postalCodeTarget.value = data.postal_code ?? '';
+                this.postalCodeTarget.value = company.postalCode ?? '';
             }
 
             if (this.hasCityTarget) {
-                this.cityTarget.value = data.city ?? '';
+                this.cityTarget.value = company.city ?? '';
             }
+
         } catch (error) {
-            console.error('Erreur lors de la recherche SIREN :', error);
-            this.clearFields();
-        }
-    }
-
-    clearFields() {
-        if (this.hasCompanyNameTarget) {
-            this.companyNameTarget.value = '';
-        }
-
-        if (this.hasAddressTarget) {
-            this.addressTarget.value = '';
-        }
-
-        if (this.hasPostalCodeTarget) {
-            this.postalCodeTarget.value = '';
-        }
-
-        if (this.hasCityTarget) {
-            this.cityTarget.value = '';
+            console.error('Erreur fetch SIREN :', error);
         }
     }
 }
