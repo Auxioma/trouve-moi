@@ -1,147 +1,148 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Log in!
+{% endblock %}
 
 {% block body %}
 
-        <section class="hero-section register mb-5 d-flex align-items-start">
-            <div class="container px-4 px-lg-5 pt-5 position-relative" style="z-index:2">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <h1 class="hero-title mb-4">Créer mon compte artisan</h1>
-                        <p class="hero-text mb-0">
-                             Inscrivez votre entreprise pour obtenir plus de clients
-                    près de chez vous.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+	<section class="hero-section register mb-5 d-flex align-items-start">
+		<div class="container px-4 px-lg-5 pt-5 position-relative" style="z-index:2">
+			<div class="row">
+				<div class="col-lg-7">
+					<h1 class="hero-title mb-4">Créer mon compte artisan</h1>
+					<p class="hero-text mb-0">
+						Inscrivez votre entreprise pour obtenir plus de clients
+						                    près de chez vous.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<section class="container-fluid login_form_section">
+	<section class="container-fluid login_form_section">
 
-    <div class="container">
+		<div class="container">
 
-        <div class="row mb-4">
+			<div class="row mb-4">
 
-            <div class="col-12">
+				<div class="col-12">
 
-                <h2 class="login_form_title">
-                    Informations personnelles
-                </h2>
+					<h2 class="login_form_title">
+						Informations personnelles
+					</h2>
 
-                <p class="login_form_subtitle">
-                    Commencez par créer votre compte artisan en fournissant
-                    vos informations de contact.
-                </p>
+					<p class="login_form_subtitle">
+						Commencez par créer votre compte artisan en fournissant
+						                    vos informations de contact.
+					</p>
 
-            </div>
+				</div>
 
-        </div>
+			</div>
 
-
-        <div class="row g-4">
-
-            <!-- FORMULAIRE GAUCHE -->
-            <div class="col-lg-6">
-
-                <div class="card login_card shadow-sm border-0">
-
-                    <div class="card-body p-4">
-
-                        <label class="form-label">Prénom</label>
-
-                        <input type="text"
-                               class="form-control mb-3"
-                               placeholder="Prénom">
-
-                        <input type="text"
-                               class="form-control mb-4"
-                               placeholder="Nom">
+        {{ form_start(registrationPro) }}
+			<div class="row g-4">
+				<div class="col-lg-6">
+					<div class="card login_card shadow-sm border-0">
+						<div class="card-body p-4">
+                            {{ form_row(registrationPro.firstName) }}
+                            {{ form_row(registrationPro.lastName) }}
 
 
-                        <label class="form-label">Email</label>
+                            {{ form_row(registrationPro.email) }}
+                            {{ form_row(registrationPro.phoneNumber) }}
 
-                        <input type="email"
-                               class="form-control mb-4"
-                               placeholder="email@exemple.fr">
+                            {{ form_row(registrationPro.plainPassword) }}
 
+							<button class="btn login_btn_continue w-100">
+								Continuer
+							</button>
 
-                        <label class="form-label">Téléphone</label>
+						</div>
 
-                        <input type="text"
-                               class="form-control mb-4"
-                               placeholder="06...">
+					</div>
+				</div>
+				<div class="col-lg-6">
 
+					<div class="card login_card shadow-sm border-0">
 
-                        <label class="form-label">Mot de passe</label>
+						<div class="card-body p-4">
 
-                        <input type="password"
-                               class="form-control mb-4">
+							<h3 class="login_card_title">
+								Informations sur votre activité
+							</h3>
 
-
-                        <button class="btn login_btn_continue w-100">
-                            Continuer
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- FORMULAIRE DROIT -->
-            <div class="col-lg-6">
-
-                <div class="card login_card shadow-sm border-0">
-
-                    <div class="card-body p-4">
-
-                        <h3 class="login_card_title">
-                            Informations sur votre activité
-                        </h3>
-
-                        <p class="login_card_text">
-                            Complétez votre compte artisan.
-                        </p>
-
-
-                        <label class="form-label">Email</label>
-
-                        <input type="email"
-                               class="form-control mb-4"
-                               placeholder="email@exemple.fr">
-
-
-                        <label class="form-label">Téléphone</label>
-
-                        <input type="text"
-                               class="form-control mb-4"
-                               placeholder="06...">
-
-
-                        <label class="form-label">Mot de passe</label>
-
-                        <input type="password"
-                               class="form-control mb-4">
-
-
-                        <label class="form-label">Confirmer le mot de passe</label>
-
-                        <input type="password"
-                               class="form-control">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
+							<p class="login_card_text">
+								Complétez votre compte artisan.
+							</p>
+<div
+    data-controller="siren"
+    data-siren-url-value="{{ path('ajax_company_by_siren') }}"
+>
+    <div class="mb-3">
+        {{ form_label(registrationPro.siret) }}
+        {{ form_widget(registrationPro.siret, {
+            attr: {
+                'data-siren-target': 'siren',
+                'data-action': 'input->siren#search'
+            }
+        }) }}
+        {{ form_errors(registrationPro.siret) }}
     </div>
 
-</section>
+    <div class="mb-3">
+        {{ form_label(registrationPro.compagny) }}
+        {{ form_widget(registrationPro.compagny, {
+            attr: {
+                'data-siren-target': 'companyName'
+            }
+        }) }}
+        {{ form_errors(registrationPro.compagny) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(registrationPro.address) }}
+        {{ form_widget(registrationPro.address, {
+            attr: {
+                'data-siren-target': 'address'
+            }
+        }) }}
+        {{ form_errors(registrationPro.address) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(registrationPro.postalCode) }}
+        {{ form_widget(registrationPro.postalCode, {
+            attr: {
+                'data-siren-target': 'postalCode'
+            }
+        }) }}
+        {{ form_errors(registrationPro.postalCode) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(registrationPro.city) }}
+        {{ form_widget(registrationPro.city, {
+            attr: {
+                'data-siren-target': 'city'
+            }
+        }) }}
+        {{ form_errors(registrationPro.city) }}
+    </div>
+</div>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+        {{ form_end(registrationPro) }}
+		</div>
+
+	</section>
 
 {% endblock %}
+
