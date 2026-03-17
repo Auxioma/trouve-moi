@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Activity;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -53,6 +54,11 @@ class UserFixtures extends Fixture
         $user->setLatitude('49.4944');
 
         $user->setLongitude('0.1079');
+
+        /** @var Activity $activity */
+        $activity = $this->getReference('user_activity', Activity::class);
+
+        $user->setActivity($activity);
 
         $manager->persist($user);
 

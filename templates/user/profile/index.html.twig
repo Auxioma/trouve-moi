@@ -8,12 +8,10 @@
             <div class="row align-items-center">
                 <div class="col-lg-5">
                     <div class="user_profile_hero_content">
-                        <h1 class="user_profile_hero_title">Créer ma fiche artisan</h1>
+                        <h1 class="user_profile_hero_title">{{ showUser.firstName }} {{ showUser.lastName }}</h1>
                         <p class="user_profile_hero_text">
-                            Créez et personnalisez votre profil
-                            pour attirer plus de clients.
+                            Créez et personnalisez votre profil pour attirer plus de clients.
                         </p>
-                        <button class="btn user_profile_btn_cta">Créer ma profil gratuitement</button>
                         <div class="user_profile_hero_note">
                             Déjà plus de 5,000 artisans et prestataires inscrits !
                         </div>
@@ -22,7 +20,7 @@
 
                 <div class="col-lg-7">
                     <div class="user_profile_hero_image_box">
-                        <img src="zozo.jpeg" alt="Artisan">
+                        <img src="https://placehold.co/150x150" alt="Artisan">
                     </div>
                 </div>
             </div>
@@ -32,12 +30,14 @@
     </section>
 
     <!-- MAIN -->
+ {{ form_start(form) }}   
     <section class="container-fluid user_profile_main_section px-0">
         <div class="container">
             <h2 class="user_profile_main_title">
                 Remplissez les champs ci-dessous <span>pour créer votre fiche artisan.</span>
             </h2>
 
+            
             <div class="row g-4">
                 <!-- LEFT COLUMN -->
                 <div class="col-lg-7">
@@ -45,28 +45,73 @@
                         <h3 class="user_profile_card_title">Informations Générales</h3>
 
                         <div class="d-flex flex-column flex-md-row gap-3 align-items-start mb-3">
-                            <div class="user_profile_upload_box">
-                                <div class="user_profile_upload_preview">
-                                    <img src="zozo.jpeg" alt="Photo artisan">
-                                </div>
-                                <div class="user_profile_upload_label">Ajouter une photo</div>
-                            </div>
+{% set imagePath = vich_uploader_asset(showUser, 'imageFile') %}
+{% set defaultImage = 'https://placehold.co/150x150?text=Photo' %}
+
+<div
+    class="user_profile_upload_wrapper"
+    data-controller="image-preview"
+    data-image-preview-default-image-value="{{ defaultImage }}"
+>
+    {{ form_label(form.imageFile, 'Photo artisan', {
+        label_attr: {
+            class: 'form-label user_profile_main_label'
+        }
+    }) }}
+
+    <div class="user_profile_upload_container">
+        <div
+            class="user_profile_upload_box"
+            data-action="click->image-preview#openFileDialog"
+        >
+            <div class="user_profile_upload_preview">
+                <img
+                    src="{{ imagePath ?: defaultImage }}"
+                    alt="Photo artisan"
+                    class="user_profile_upload_image"
+                    data-image-preview-target="preview"
+                >
+            </div>
+
+            <div class="user_profile_upload_label">
+                Ajouter une photo
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="btn btn-sm btn-outline-danger mt-2"
+            data-action="click->image-preview#removePreview"
+        >
+            Supprimer l’aperçu
+        </button>
+    </div>
+
+    <div class="user_profile_hidden_input">
+        {{ form_widget(form.imageFile, {
+            attr: {
+                'data-image-preview-target': 'input',
+                'data-action': 'change->image-preview#previewFile'
+            }
+        }) }}
+    </div>
+
+    {{ form_errors(form.imageFile) }}
+</div>
+
+
 
                             <div class="flex-grow-1 w-100">
-                                <input type="text" class="form-control user_profile_form_control mb-3" value="Martin Plomberie">
-                                <select class="form-select user_profile_form_select mb-3">
-                                    <option selected>Plombier</option>
-                                    <option>Électricien</option>
-                                    <option>Peintre</option>
-                                </select>
-                                <input type="text" class="form-control user_profile_form_control mb-3" value="Lyon">
+                                {{ form_widget(form.compagny) }}
+                                {{ form_widget(form.activity) }}
+                                {{ form_widget(form.address) }}
 
                                 <div class="row g-3">
                                     <div class="col-md-5">
-                                        <input type="text" class="form-control user_profile_form_control" value="06 12 34 56 78">
+                                        {{ form_widget(form.phoneNumber) }}
                                     </div>
                                     <div class="col-md-7">
-                                        <input type="email" class="form-control user_profile_form_control" value="martin@example.com">
+                                        {{ form_widget(form.email) }}
                                     </div>
                                 </div>
                             </div>
@@ -79,19 +124,7 @@
                                 Description de vos services <span class="user_profile_inline_note">(minimum 300 caractères)</span>
                             </h4>
 
-                            <textarea class="form-control user_profile_textarea">Martin Plomberie est une entreprise familiale spécialisée dans les travaux de plomberie à Lyon. Nous intervenons rapidement pour vos dépannages, installations et rénovations. Avec plus de 10 ans d'expérience, nous sommes à votre service pour assurer la qualité de nos interventions.</textarea>
-                        </div>
-
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control user_profile_form_control" placeholder="Mots-clés (séparés par des virgules)">
-                            </div>
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <span class="input-group-text user_profile_input_group_text">99+</span>
-                                    <input type="text" class="form-control user_profile_form_control" value="par heure">
-                                </div>
-                            </div>
+                            {{ form_widget(form.description) }}
                         </div>
 
                         <h4 class="user_profile_card_title">Labels et Disponibilité</h4>
@@ -125,14 +158,10 @@
 
                         <div class="user_profile_section_divider"></div>
 
-                        <div class="user_profile_info_row">
-                            <div class="user_profile_info_label">Adresse complète<br><span class="fw-normal">[Exemple.] Teaablature</span></div>
-                            <input type="text" class="user_profile_info_input" value="123 rue de la Plomberie, 69007 Lyon">
-                        </div>
 
                         <div class="user_profile_info_row">
                             <div class="user_profile_info_label">Lien de votre site</div>
-                            <input type="text" class="user_profile_info_input" value="https://www.martin-plomberie-lyon.com">
+                            {{ form_widget(form.website) }}
                         </div>
 
                         <div class="user_profile_info_row mb-0">
@@ -211,6 +240,6 @@
             </div>
         </div>
     </section>
-
+{{ form_end(form) }}
     
 {% endblock %}

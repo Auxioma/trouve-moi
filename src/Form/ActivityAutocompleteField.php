@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Activity;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Autocomplete\Form\AsEntityAutocompleteField;
+use Symfony\UX\Autocomplete\Form\BaseEntityAutocompleteType;
+
+#[AsEntityAutocompleteField]
+class ActivityAutocompleteField extends AbstractType
+{
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'class' => Activity::class,
+            'choice_label' => 'name',
+            'placeholder' => 'Choisissez une activité',
+            'searchable_fields' => ['name'],
+            'tom_select_options' => [
+                'create' => false,
+                'maxOptions' => 10,
+            ],
+        ]);
+    }
+
+    public function getParent(): string
+    {
+        return BaseEntityAutocompleteType::class;
+    }
+}
