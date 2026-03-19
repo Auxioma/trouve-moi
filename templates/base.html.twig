@@ -5,25 +5,21 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('media/favicon-dark.png') }}">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor/sal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% block stylesheets %}{% endblock %}
 
-    {% block javascripts %}
-        {% block importmap %}{{ importmap('app') }}{% endblock %}
-    {% endblock %}
 </head>
 
 <body class="ui-smooth-scroll">
+    <div id="main-wrapper" class="main-wrapper overflow-hidden">
+        <div id="scroll-container">
 
     {% include ('_partials/preloader.html.twig') %}
 
@@ -40,9 +36,22 @@
     <script src="{{ asset('js/vendor/jquery-appear.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery-validator.js') }}"></script>
     <script src="{{ asset('js/vendor/smooth-scrollbar.js') }}"></script>
-
-    <!-- App JS -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+    if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+        console.log("Latitude: " + position.coords.latitude);
+        console.log("Longitude: " + position.coords.longitude);
+        },
+        function(error) {
+        console.log("Erreur : " + error.message);
+        }
+    );
+    } else {
+    console.log("La géolocalisation n'est pas supportée.");
+    }
+    </script>
 
 </body>
 </html>
