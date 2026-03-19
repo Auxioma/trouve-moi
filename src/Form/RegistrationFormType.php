@@ -35,9 +35,15 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'attr' => [
+                    'style' => 'margin: 20px 0;',
+                ],
+                    'row_attr' => [
+                    'style' => 'margin: 0px 10px;',
+                ],
                 'constraints' => [
                     new IsTrue(
-                        message: 'You should agree to our terms.',
+                        message: 'You should agree to our terms.  ',
                     ),
                 ],
             ])
@@ -82,68 +88,8 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Nom'
                 ]
             ])
-            ->add('phoneNumber', TelType::class, [
-                'label' => 'Numéro de téléphone <span class="text-danger">*</span>',
-                'label_html' => true,
-                'required' => true,
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'attr' => [
-                    'class' => 'form-control mb-3',
-                    'placeholder' => 'Numéro de téléphone'
-                ]
-            ])
-            ->add('siret', TextType::class, [
-                'label' => 'Numéro SIREN <span class="text-danger">*</span>',
-                'label_html' => true,
-                'required' => false,
-                'mapped' => false,
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Ex : 552100554',
-                    'maxlength' => 9
-                ]
-            ])
-            ->add('siren', HiddenType::class)
-            ->add('compagny', TextType::class, [
-                'label' => 'Nom de l’entreprise',
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'required' => false,
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
-
-            ->add('address', TextType::class, [
-                'label' => 'Adresse',
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'required' => false,
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
-
-            ->add('postalCode', TextType::class, [
-                'label' => 'Code postal',
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'required' => false,
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
-
-            ->add('city', TextType::class, [
-                'label' => 'Ville',
+            ->add('siren', TextType::class, [
+                'label' => 'Votre numéro de SIREN',
                 'label_attr' => [
                     'class' => 'form-label'
                 ],
