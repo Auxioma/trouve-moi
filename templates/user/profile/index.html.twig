@@ -1,181 +1,360 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!
-{% endblock %}
+{% block title %}Hello ProfileController!{% endblock %}
 
 {% block body %}
-	<section class="container-fluid user_profile_hero_section px-0">
+	<section class="inner-banner">
 		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-5">
-					<div class="user_profile_hero_content">
-						<h1 class="user_profile_hero_title">{{ showUser.firstName }}
-							{{ showUser.lastName }}</h1>
-						<p class="user_profile_hero_text">
-							Créez et personnalisez votre profil pour attirer plus de clients.
-						</p>
-						<div class="user_profile_hero_note">
-							Déjà plus de 5,000 artisans et prestataires inscrits !
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-7">
-					<div class="user_profile_hero_image_box">
-						<img src="https://placehold.co/150x150" alt="Artisan">
-					</div>
-				</div>
-			</div>
+			<h2>Property Details</h2>
 		</div>
-
-		<div class="user_profile_hero_curve"></div>
 	</section>
 
-	<!-- MAIN -->
-	{{ form_start(form) }}
-	<section class="container-fluid user_profile_main_section px-0">
+	<section class="properties-detail bg-white p-100">
 		<div class="container">
-			<h2 class="user_profile_main_title">
-				Remplissez les champs ci-dessous
-				<span>pour créer votre fiche artisan.</span>
-			</h2>
-			<div
-				class="row g-4">
-				<!-- LEFT COLUMN -->
-				<div class="col-lg-7">
-					<div class="user_profile_card">
-						<h3 class="user_profile_card_title">Informations Générales</h3>
-						<div class="d-flex flex-column flex-md-row gap-3 align-items-start mb-3">
-							{% set imagePath = vich_uploader_asset(showUser, 'imageFile') %}
-							{% set defaultImage = 'https://placehold.co/150x150?text=Photo' %}
+			<h2 class="fw-6 fs-40 ls-1 color-dark-2 text-uppercase mb-32">Votre profile</h2>
 
-							<div class="user_profile_upload_wrapper" data-controller="image-preview" data-image-preview-default-image-value="{{ defaultImage }}">
-								{{ form_label(form.imageFile, 'Photo artisan', {
-                                    label_attr: {
-                                        class: 'form-label user_profile_main_label'
-                                    }
-                                }) }}
+			<div class="row g-4">
+				<div class="col-xl-4">
+					<aside class="artisan-panel card border-0 shadow-sm rounded-4 overflow-hidden">
+						<div class="artisan-panel__top position-relative">
+							<div class="artisan-panel__cover"></div>
 
-								<div class="user_profile_upload_container">
-									<div class="user_profile_upload_box" data-action="click->image-preview#openFileDialog">
-										<div class="user_profile_upload_preview">
-											<img src="{{ imagePath ?: defaultImage }}" alt="Photo artisan" class="user_profile_upload_image" data-image-preview-target="preview">
-										</div>
-										<div class="user_profile_upload_label">
-											Votre logo
-										</div>
-									</div>
-									<button type="button" class="btn btn-sm btn-outline-danger mt-2" data-action="click->image-preview#removePreview">
-										Supprimer l’aperçu
-									</button>
+							<div class="artisan-panel__profile text-center px-4">
+								<div class="artisan-panel__avatar mx-auto">
+									<i class="fas fa-user"></i>
 								</div>
 
-								<div class="user_profile_hidden_input">
-									{{ form_widget(form.imageFile, {
-                                        attr: {
-                                            'data-image-preview-target': 'input',
-                                            'data-action': 'change->image-preview#previewFile'
-                                        }
-                                    }) }}
-								</div>
+								<h3 class="artisan-panel__name mb-1">Espace Artisan</h3>
+								<p class="artisan-panel__subtitle mb-3">Pilotez votre activité et vos demandes clients</p>
 
-								{{ form_errors(form.imageFile) }}
-							</div>
-
-							<div class="flex-grow-1 w-100">
-								{{ form_widget(form.compagny) }}
-								{{ form_widget(form.activity) }}
-								{{ form_widget(form.address) }}
-
-								<div class="row g-3">
-									<div class="col-md-5">
-										{{ form_widget(form.phoneNumber) }}
-									</div>
-									<div class="col-md-7">
-										{{ form_widget(form.email) }}
-									</div>
+								<div class="artisan-panel__badge d-inline-flex align-items-center">
+									<span class="status-dot me-2"></span>
+									Compte actif
 								</div>
 							</div>
 						</div>
 
-						<div class="user_profile_section_divider"></div>
+						<div class="card-body p-4">
+							<div class="artisan-quick-stats row g-3 mb-4">
+								<div class="col-4">
+									<div class="artisan-stat-card text-center">
+										<strong>24</strong>
+										<span>Demandes</span>
+									</div>
+								</div>
+								<div class="col-4">
+									<div class="artisan-stat-card text-center">
+										<strong>12</strong>
+										<span>Avis</span>
+									</div>
+								</div>
+								<div class="col-4">
+									<div class="artisan-stat-card text-center">
+										<strong>4.8</strong>
+										<span>Note</span>
+									</div>
+								</div>
+							</div>
 
-						<div class="mb-3">
-							<h4 class="user_profile_card_title mb-2">
-								Description de vos services
-								<span class="user_profile_inline_note">(minimum 300 caractères)</span>
-							</h4>
+							<nav class="artisan-nav">
+								<div class="artisan-nav-group mb-4">
+									<div class="artisan-nav-group__title">Principal</div>
 
-							{{ form_widget(form.description) }}
+									<a href="#" class="artisan-nav-link active">
+										<span class="artisan-nav-link__icon"><i class="fas fa-grip-horizontal"></i></span>
+										<span class="artisan-nav-link__text">Tableau de bord</span>
+										<span class="artisan-nav-link__arrow"><i class="fas fa-chevron-right"></i></span>
+									</a>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-id-card"></i></span>
+										<span class="artisan-nav-link__text">Mon profil</span>
+										<span class="artisan-nav-link__arrow"><i class="fas fa-chevron-right"></i></span>
+									</a>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-tools"></i></span>
+										<span class="artisan-nav-link__text">Mes services</span>
+										<span class="artisan-nav-link__arrow"><i class="fas fa-chevron-right"></i></span>
+									</a>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-images"></i></span>
+										<span class="artisan-nav-link__text">Mes réalisations</span>
+										<span class="artisan-nav-link__arrow"><i class="fas fa-chevron-right"></i></span>
+									</a>
+								</div>
+
+								<div class="artisan-nav-group mb-4">
+									<div class="artisan-nav-group__title">Demandes clients</div>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-inbox"></i></span>
+										<span class="artisan-nav-link__text">Nouvelles demandes</span>
+										<span class="artisan-nav-link__count">5</span>
+									</a>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-hourglass-half"></i></span>
+										<span class="artisan-nav-link__text">Demandes en cours</span>
+										<span class="artisan-nav-link__count">8</span>
+									</a>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-calendar-check"></i></span>
+										<span class="artisan-nav-link__text">Mes rendez-vous</span>
+										<span class="artisan-nav-link__count">3</span>
+									</a>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-comments"></i></span>
+										<span class="artisan-nav-link__text">Messages</span>
+										<span class="artisan-nav-link__count">2</span>
+									</a>
+								</div>
+
+								<div class="artisan-nav-group mb-4">
+									<div class="artisan-nav-group__title">Gestion</div>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-star"></i></span>
+										<span class="artisan-nav-link__text">Mes avis</span>
+										<span class="artisan-nav-link__arrow"><i class="fas fa-chevron-right"></i></span>
+									</a>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-chart-line"></i></span>
+										<span class="artisan-nav-link__text">Mes statistiques</span>
+										<span class="artisan-nav-link__arrow"><i class="fas fa-chevron-right"></i></span>
+									</a>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-crown"></i></span>
+										<span class="artisan-nav-link__text">Mon abonnement</span>
+										<span class="artisan-nav-link__arrow"><i class="fas fa-chevron-right"></i></span>
+									</a>
+
+									<a href="#" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-cog"></i></span>
+										<span class="artisan-nav-link__text">Paramètres</span>
+										<span class="artisan-nav-link__arrow"><i class="fas fa-chevron-right"></i></span>
+									</a>
+								</div>
+
+								<div class="artisan-offer-box">
+									<div class="artisan-offer-box__icon">
+										<i class="fas fa-bolt"></i>
+									</div>
+									<div class="artisan-offer-box__content">
+										<h5 class="mb-1">Boostez votre visibilité</h5>
+										<p class="mb-3">Passez à une offre supérieure pour recevoir plus de demandes.</p>
+										<a href="#" class="btn btn-dark rounded-pill px-3">Voir mon offre</a>
+									</div>
+								</div>
+
+								<div class="mt-4">
+									<a href="#" class="artisan-logout-btn">
+										<i class="fas fa-sign-out-alt me-2"></i>
+										Déconnexion
+									</a>
+								</div>
+							</nav>
 						</div>
-
-						<h4 class="user_profile_card_title">Labels et Disponibilité</h4>
-
-						<div class="user_profile_check_grid mb-4">
-							<label class="user_profile_check_line">
-								<input type="checkbox" checked>
-								<span>Dépannage plomberie</span>
-							</label>
-							<label class="user_profile_check_line">
-								<input type="checkbox" checked>
-								<span>Recherche de fuite</span>
-							</label>
-							<label class="user_profile_check_line">
-								<input type="checkbox" checked>
-								<span>Installation salle de bains</span>
-							</label>
-							<label class="user_profile_check_line">
-								<input type="checkbox">
-								<span>Entretien chauffe-eau</span>
-							</label>
-							<label class="user_profile_check_line">
-								<input type="checkbox" checked>
-								<span>Recherche de fuite</span>
-							</label>
-							<label class="user_profile_check_line">
-								<input type="checkbox" checked>
-								<span>Débouchage canalisation</span>
-							</label>
-						</div>
-
-						<div class="user_profile_section_divider"></div>
-
-
-						<div class="user_profile_info_row">
-							<div class="user_profile_info_label">Lien de votre site</div>
-							{{ form_widget(form.website) }}
-						</div>
-
-						<div class="user_profile_info_row mb-0">
-							<div class="user_profile_info_label">SIRET</div>
-							<input type="text" class="user_profile_info_input" value="12345678900014">
-						</div>
-					</div>
+					</aside>
 				</div>
-                <div class="col-lg-5">
-                    <div class="user_profile_card mb-4">
-                        <div class="row g-3">
-                            {% for i in 1..6 %}
-                                <div class="col-6 px-2">
-                                    <div class="upload-box" data-index="{{ i }}">
-                                        <input type="file" name="images[]" class="d-none input-file" accept="image/*">
 
-                                        <div class="upload-content">
-                                            <img src="https://placehold.co/250x150?text=+" class="img-fluid" />
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <div class="user_profile_info_notice mb-4">
-                        ✔ Votre fiche sera vérifiée avant publication.
-                    </div>
-                    <button class="btn user_profile_btn_save">Enregistrer ma fiche</button>
-                </div>
+				<div class="col-xl-8">
+					<form method="post" enctype="multipart/form-data" class="artisan-form-page">
+
+						<div class="house-detail mb-4">
+							<div class="container">
+								<div class="row g-4">
+									<div class="col-12">
+										<div class="artisan-card">
+											<div class="artisan-section-header mb-4">
+												<h2>Informations personnelles</h2>
+												<p>Les informations principales de votre compte.</p>
+											</div>
+
+											<div class="row g-3">
+												<div class="col-12 col-md-6">
+													<label for="firstName" class="form-label">Prénom</label>
+													<input type="text" class="form-control artisan-input" id="firstName" name="firstName" placeholder="Prénom">
+												</div>
+
+												<div class="col-12 col-md-6">
+													<label for="lastName" class="form-label">Nom</label>
+													<input type="text" class="form-control artisan-input" id="lastName" name="lastName" placeholder="Nom">
+												</div>
+
+												<div class="col-12 col-md-6">
+													<label for="email" class="form-label">Email</label>
+													<input type="email" class="form-control artisan-input" id="email" name="email" placeholder="Adresse email">
+												</div>
+
+												<div class="col-12 col-md-6">
+													<label for="phoneNumber" class="form-label">Téléphone</label>
+													<input type="tel" class="form-control artisan-input" id="phoneNumber" name="phoneNumber" placeholder="Numéro de téléphone">
+												</div>
+
+												<div class="col-12 col-md-6">
+													<label for="password" class="form-label">Mot de passe</label>
+													<input type="password" class="form-control artisan-input" id="password" name="password" placeholder="Mot de passe">
+												</div>
+
+												<div class="col-12 col-md-6">
+													<label for="roles" class="form-label">Rôles</label>
+													<input type="text" class="form-control artisan-input" id="roles" name="roles" placeholder="ROLE_USER">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="house-detail mb-4">
+							<div class="container">
+								<div class="row g-4">
+									<div class="col-12">
+										<div class="artisan-card">
+											<div class="artisan-section-header mb-4">
+												<h2>Informations entreprise</h2>
+												<p>Les données professionnelles visibles sur votre fiche.</p>
+											</div>
+
+											<div class="row g-3">
+												<div class="col-12 col-md-6">
+													<label for="compagny" class="form-label">Entreprise</label>
+													<input type="text" class="form-control artisan-input" id="compagny" name="compagny" placeholder="Nom de l’entreprise">
+												</div>
+
+												<div class="col-12 col-md-6">
+													<label for="siren" class="form-label">SIREN</label>
+													<input type="text" class="form-control artisan-input" id="siren" name="siren" placeholder="Numéro SIREN">
+												</div>
+
+												<div class="col-12">
+													<label for="website" class="form-label">Site web</label>
+													<input type="url" class="form-control artisan-input" id="website" name="website" placeholder="https://www.monsite.fr">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="house-detail mb-4">
+							<div class="container">
+								<div class="row g-4">
+									<div class="col-12">
+										<div class="artisan-card">
+											<div class="artisan-section-header mb-4">
+												<h2>Adresse et localisation</h2>
+												<p>Indiquez votre localisation professionnelle.</p>
+											</div>
+
+											<div class="row g-3">
+												<div class="col-12">
+													<label for="address" class="form-label">Adresse</label>
+													<input type="text" class="form-control artisan-input" id="address" name="address" placeholder="Adresse complète">
+												</div>
+
+												<div class="col-12 col-md-4">
+													<label for="postalCode" class="form-label">Code postal</label>
+													<input type="text" class="form-control artisan-input" id="postalCode" name="postalCode" placeholder="Code postal">
+												</div>
+
+												<div class="col-12 col-md-4">
+													<label for="city" class="form-label">Ville</label>
+													<input type="text" class="form-control artisan-input" id="city" name="city" placeholder="Ville">
+												</div>
+
+												<div class="col-12 col-md-4">
+													<label for="latitude" class="form-label">Latitude</label>
+													<input type="text" class="form-control artisan-input" id="latitude" name="latitude" placeholder="Latitude">
+												</div>
+
+												<div class="col-12 col-md-6">
+													<label for="longitude" class="form-label">Longitude</label>
+													<input type="text" class="form-control artisan-input" id="longitude" name="longitude" placeholder="Longitude">
+												</div>
+
+												<div class="col-12 col-md-6">
+													<label for="updatedAt" class="form-label">Dernière mise à jour</label>
+													<input type="datetime-local" class="form-control artisan-input" id="updatedAt" name="updatedAt" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="house-detail mb-4">
+							<div class="container">
+								<div class="row g-4">
+									<div class="col-12">
+										<div class="artisan-card">
+											<div class="artisan-section-header mb-4">
+												<h2>Présentation</h2>
+												<p>Décrivez votre savoir-faire, vos spécialités et votre expérience.</p>
+											</div>
+
+											<div class="row g-3">
+												<div class="col-12">
+													<label for="description" class="form-label">Description</label>
+													<textarea class="form-control artisan-input artisan-textarea" id="description" name="description" rows="6" placeholder="Présentez votre activité, vos services et votre expérience..."></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="house-detail mb-4">
+							<div class="container">
+								<div class="row g-4">
+									<div class="col-12">
+										<div class="artisan-card artisan-card-light">
+											<div class="artisan-section-header mb-4">
+												<h2>Informations techniques</h2>
+												<p>Ces champs sont généralement gérés automatiquement.</p>
+											</div>
+
+											<div class="row g-3">
+												<div class="col-12 col-md-4">
+													<label for="id" class="form-label">ID</label>
+													<input type="number" class="form-control artisan-input" id="id" name="id" placeholder="ID" readonly>
+												</div>
+
+												<div class="col-12 col-md-4">
+													<label for="imageName" class="form-label">Nom du fichier</label>
+													<input type="text" class="form-control artisan-input" id="imageName" name="imageName" placeholder="Nom de l’image" readonly>
+												</div>
+
+												<div class="col-12 col-md-4">
+													<label for="imageSize" class="form-label">Taille image</label>
+													<input type="number" class="form-control artisan-input" id="imageSize" name="imageSize" placeholder="Taille" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="d-flex justify-content-end">
+							<button type="submit" class="btn btn-dark rounded-pill px-4 py-2">
+								Enregistrer
+							</button>
+						</div>
+
+					</form>
+				</div>
 			</div>
 		</div>
 	</section>
-	{{ form_end(form) }}
-
 {% endblock %}
