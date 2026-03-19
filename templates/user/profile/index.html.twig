@@ -1,245 +1,181 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}Hello ProfileController!
+{% endblock %}
 
 {% block body %}
- <section class="container-fluid user_profile_hero_section px-0">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5">
-                    <div class="user_profile_hero_content">
-                        <h1 class="user_profile_hero_title">{{ showUser.firstName }} {{ showUser.lastName }}</h1>
-                        <p class="user_profile_hero_text">
-                            Créez et personnalisez votre profil pour attirer plus de clients.
-                        </p>
-                        <div class="user_profile_hero_note">
-                            Déjà plus de 5,000 artisans et prestataires inscrits !
-                        </div>
-                    </div>
-                </div>
+	<section class="container-fluid user_profile_hero_section px-0">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-5">
+					<div class="user_profile_hero_content">
+						<h1 class="user_profile_hero_title">{{ showUser.firstName }}
+							{{ showUser.lastName }}</h1>
+						<p class="user_profile_hero_text">
+							Créez et personnalisez votre profil pour attirer plus de clients.
+						</p>
+						<div class="user_profile_hero_note">
+							Déjà plus de 5,000 artisans et prestataires inscrits !
+						</div>
+					</div>
+				</div>
 
-                <div class="col-lg-7">
-                    <div class="user_profile_hero_image_box">
-                        <img src="https://placehold.co/150x150" alt="Artisan">
-                    </div>
-                </div>
-            </div>
-        </div>
+				<div class="col-lg-7">
+					<div class="user_profile_hero_image_box">
+						<img src="https://placehold.co/150x150" alt="Artisan">
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="user_profile_hero_curve"></div>
-    </section>
+		<div class="user_profile_hero_curve"></div>
+	</section>
 
-    <!-- MAIN -->
- {{ form_start(form) }}   
-    <section class="container-fluid user_profile_main_section px-0">
-        <div class="container">
-            <h2 class="user_profile_main_title">
-                Remplissez les champs ci-dessous <span>pour créer votre fiche artisan.</span>
-            </h2>
+	<!-- MAIN -->
+	{{ form_start(form) }}
+	<section class="container-fluid user_profile_main_section px-0">
+		<div class="container">
+			<h2 class="user_profile_main_title">
+				Remplissez les champs ci-dessous
+				<span>pour créer votre fiche artisan.</span>
+			</h2>
+			<div
+				class="row g-4">
+				<!-- LEFT COLUMN -->
+				<div class="col-lg-7">
+					<div class="user_profile_card">
+						<h3 class="user_profile_card_title">Informations Générales</h3>
+						<div class="d-flex flex-column flex-md-row gap-3 align-items-start mb-3">
+							{% set imagePath = vich_uploader_asset(showUser, 'imageFile') %}
+							{% set defaultImage = 'https://placehold.co/150x150?text=Photo' %}
 
-            
-            <div class="row g-4">
-                <!-- LEFT COLUMN -->
-                <div class="col-lg-7">
-                    <div class="user_profile_card">
-                        <h3 class="user_profile_card_title">Informations Générales</h3>
+							<div class="user_profile_upload_wrapper" data-controller="image-preview" data-image-preview-default-image-value="{{ defaultImage }}">
+								{{ form_label(form.imageFile, 'Photo artisan', {
+                                    label_attr: {
+                                        class: 'form-label user_profile_main_label'
+                                    }
+                                }) }}
 
-                        <div class="d-flex flex-column flex-md-row gap-3 align-items-start mb-3">
-{% set imagePath = vich_uploader_asset(showUser, 'imageFile') %}
-{% set defaultImage = 'https://placehold.co/150x150?text=Photo' %}
+								<div class="user_profile_upload_container">
+									<div class="user_profile_upload_box" data-action="click->image-preview#openFileDialog">
+										<div class="user_profile_upload_preview">
+											<img src="{{ imagePath ?: defaultImage }}" alt="Photo artisan" class="user_profile_upload_image" data-image-preview-target="preview">
+										</div>
+										<div class="user_profile_upload_label">
+											Votre logo
+										</div>
+									</div>
+									<button type="button" class="btn btn-sm btn-outline-danger mt-2" data-action="click->image-preview#removePreview">
+										Supprimer l’aperçu
+									</button>
+								</div>
 
-<div
-    class="user_profile_upload_wrapper"
-    data-controller="image-preview"
-    data-image-preview-default-image-value="{{ defaultImage }}"
->
-    {{ form_label(form.imageFile, 'Photo artisan', {
-        label_attr: {
-            class: 'form-label user_profile_main_label'
-        }
-    }) }}
+								<div class="user_profile_hidden_input">
+									{{ form_widget(form.imageFile, {
+                                        attr: {
+                                            'data-image-preview-target': 'input',
+                                            'data-action': 'change->image-preview#previewFile'
+                                        }
+                                    }) }}
+								</div>
 
-    <div class="user_profile_upload_container">
-        <div
-            class="user_profile_upload_box"
-            data-action="click->image-preview#openFileDialog"
-        >
-            <div class="user_profile_upload_preview">
-                <img
-                    src="{{ imagePath ?: defaultImage }}"
-                    alt="Photo artisan"
-                    class="user_profile_upload_image"
-                    data-image-preview-target="preview"
-                >
-            </div>
+								{{ form_errors(form.imageFile) }}
+							</div>
 
-            <div class="user_profile_upload_label">
-                Ajouter une photo
-            </div>
-        </div>
+							<div class="flex-grow-1 w-100">
+								{{ form_widget(form.compagny) }}
+								{{ form_widget(form.activity) }}
+								{{ form_widget(form.address) }}
 
-        <button
-            type="button"
-            class="btn btn-sm btn-outline-danger mt-2"
-            data-action="click->image-preview#removePreview"
-        >
-            Supprimer l’aperçu
-        </button>
-    </div>
+								<div class="row g-3">
+									<div class="col-md-5">
+										{{ form_widget(form.phoneNumber) }}
+									</div>
+									<div class="col-md-7">
+										{{ form_widget(form.email) }}
+									</div>
+								</div>
+							</div>
+						</div>
 
-    <div class="user_profile_hidden_input">
-        {{ form_widget(form.imageFile, {
-            attr: {
-                'data-image-preview-target': 'input',
-                'data-action': 'change->image-preview#previewFile'
-            }
-        }) }}
-    </div>
+						<div class="user_profile_section_divider"></div>
 
-    {{ form_errors(form.imageFile) }}
-</div>
+						<div class="mb-3">
+							<h4 class="user_profile_card_title mb-2">
+								Description de vos services
+								<span class="user_profile_inline_note">(minimum 300 caractères)</span>
+							</h4>
 
+							{{ form_widget(form.description) }}
+						</div>
 
+						<h4 class="user_profile_card_title">Labels et Disponibilité</h4>
 
-                            <div class="flex-grow-1 w-100">
-                                {{ form_widget(form.compagny) }}
-                                {{ form_widget(form.activity) }}
-                                {{ form_widget(form.address) }}
+						<div class="user_profile_check_grid mb-4">
+							<label class="user_profile_check_line">
+								<input type="checkbox" checked>
+								<span>Dépannage plomberie</span>
+							</label>
+							<label class="user_profile_check_line">
+								<input type="checkbox" checked>
+								<span>Recherche de fuite</span>
+							</label>
+							<label class="user_profile_check_line">
+								<input type="checkbox" checked>
+								<span>Installation salle de bains</span>
+							</label>
+							<label class="user_profile_check_line">
+								<input type="checkbox">
+								<span>Entretien chauffe-eau</span>
+							</label>
+							<label class="user_profile_check_line">
+								<input type="checkbox" checked>
+								<span>Recherche de fuite</span>
+							</label>
+							<label class="user_profile_check_line">
+								<input type="checkbox" checked>
+								<span>Débouchage canalisation</span>
+							</label>
+						</div>
 
-                                <div class="row g-3">
-                                    <div class="col-md-5">
-                                        {{ form_widget(form.phoneNumber) }}
-                                    </div>
-                                    <div class="col-md-7">
-                                        {{ form_widget(form.email) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="user_profile_section_divider"></div>
-
-                        <div class="mb-3">
-                            <h4 class="user_profile_card_title mb-2">
-                                Description de vos services <span class="user_profile_inline_note">(minimum 300 caractères)</span>
-                            </h4>
-
-                            {{ form_widget(form.description) }}
-                        </div>
-
-                        <h4 class="user_profile_card_title">Labels et Disponibilité</h4>
-
-                        <div class="user_profile_check_grid mb-4">
-                            <label class="user_profile_check_line">
-                                <input type="checkbox" checked>
-                                <span>Dépannage plomberie</span>
-                            </label>
-                            <label class="user_profile_check_line">
-                                <input type="checkbox" checked>
-                                <span>Recherche de fuite</span>
-                            </label>
-                            <label class="user_profile_check_line">
-                                <input type="checkbox" checked>
-                                <span>Installation salle de bains</span>
-                            </label>
-                            <label class="user_profile_check_line">
-                                <input type="checkbox">
-                                <span>Entretien chauffe-eau</span>
-                            </label>
-                            <label class="user_profile_check_line">
-                                <input type="checkbox" checked>
-                                <span>Recherche de fuite</span>
-                            </label>
-                            <label class="user_profile_check_line">
-                                <input type="checkbox" checked>
-                                <span>Débouchage canalisation</span>
-                            </label>
-                        </div>
-
-                        <div class="user_profile_section_divider"></div>
+						<div class="user_profile_section_divider"></div>
 
 
-                        <div class="user_profile_info_row">
-                            <div class="user_profile_info_label">Lien de votre site</div>
-                            {{ form_widget(form.website) }}
-                        </div>
+						<div class="user_profile_info_row">
+							<div class="user_profile_info_label">Lien de votre site</div>
+							{{ form_widget(form.website) }}
+						</div>
 
-                        <div class="user_profile_info_row mb-0">
-                            <div class="user_profile_info_label">SIRET</div>
-                            <input type="text" class="user_profile_info_input" value="12345678900014">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RIGHT COLUMN -->
+						<div class="user_profile_info_row mb-0">
+							<div class="user_profile_info_label">SIRET</div>
+							<input type="text" class="user_profile_info_input" value="12345678900014">
+						</div>
+					</div>
+				</div>
                 <div class="col-lg-5">
                     <div class="user_profile_card mb-4">
-                        <h3 class="user_profile_side_title">
-                            Remplissez le formulaire<br>
-                            pour inscrire votre entreprise !
-                        </h3>
+                        <div class="row g-3">
+                            {% for i in 1..6 %}
+                                <div class="col-6 px-2">
+                                    <div class="upload-box" data-index="{{ i }}">
+                                        <input type="file" name="images[]" class="d-none input-file" accept="image/*">
 
-                        <select class="form-select user_profile_form_select mb-3">
-                            <option selected>Nom de l’entreprise</option>
-                        </select>
-
-                        <input type="text" class="form-control user_profile_form_control mb-3" value="Vious">
-
-                        <div class="user_profile_section_divider"></div>
-
-                        <div class="user_profile_success_line">
-                            <span class="user_profile_success_icon">✔</span>
-                            <span>Disponibilité</span>
+                                        <div class="upload-content">
+                                            <img src="https://placehold.co/250x150?text=+" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
-
-                        <div class="user_profile_success_line">
-                            <span class="user_profile_success_icon">✔</span>
-                            <span><em>Disponible cette semaine</em></span>
-                        </div>
-
-                        <div class="user_profile_section_divider"></div>
-
-                        <h4 class="user_profile_card_title mb-3">Travaux réalisés</h4>
-
-                        <div class="d-grid gap-2 mb-4">
-                            <label class="user_profile_check_line">
-                                <input type="checkbox" checked>
-                                <span>Dépannage plomberie</span>
-                            </label>
-                            <label class="user_profile_check_line">
-                                <input type="checkbox" checked>
-                                <span>Installation salle de bains</span>
-                            </label>
-                            <label class="user_profile_check_line">
-                                <input type="checkbox" checked>
-                                <span>Recherche de fuite</span>
-                            </label>
-                            <label class="user_profile_check_line">
-                                <input type="checkbox">
-                                <span>Entretien chauffe-eau</span>
-                            </label>
-                            <label class="user_profile_check_line">
-                                <input type="checkbox" checked>
-                                <span>Débouchage canalisation</span>
-                            </label>
-                        </div>
-
-                        <select class="form-select user_profile_form_select user_profile_side_select mb-3">
-                            <option selected>60 € &nbsp; par heure</option>
-                        </select>
-
-                        <button class="btn user_profile_btn_blue">Ajouter des photos</button>
                     </div>
-
                     <div class="user_profile_info_notice mb-4">
                         ✔ Votre fiche sera vérifiée avant publication.
                     </div>
-
                     <button class="btn user_profile_btn_save">Enregistrer ma fiche</button>
                 </div>
-            </div>
-        </div>
-    </section>
-{{ form_end(form) }}
-    
+			</div>
+		</div>
+	</section>
+	{{ form_end(form) }}
+
 {% endblock %}

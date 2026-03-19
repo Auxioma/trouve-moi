@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% block stylesheets %}{% endblock %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('media/favicon-dark.png') }}">
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {{ render(controller('App\\Controller\\Api\\NavBarController::NavBar')) }}
-        {% block body %}{% endblock %}
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/sal.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-        {% include ('_partials/footer.html.twig') %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+    {% block stylesheets %}{% endblock %}
+
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+
+<body class="ui-smooth-scroll">
+
+    {% include ('_partials/preloader.html.twig') %}
+
+    {{ render(controller('App\\Controller\\Api\\NavBarController::NavBar')) }}
+
+    {% block body %}{% endblock %}
+
+    
+
+    <!-- JS -->
+    <script src="{{ asset('js/vendor/jquery-3.6.3.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/slick.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery-appear.js') }}"></script>
+    <script src="{{ asset('js/vendor/jquery-validator.js') }}"></script>
+    <script src="{{ asset('js/vendor/smooth-scrollbar.js') }}"></script>
+
+    <!-- App JS -->
+    <script src="{{ asset('js/app.js') }}"></script>
+
+</body>
 </html>

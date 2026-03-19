@@ -1,0 +1,125 @@
+
+.sidebar{
+    padding: 32px;
+    border-radius: 10px;
+  .title {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 130%;
+    text-transform: capitalize;
+    color: #1B1C1E;
+    margin-bottom: 16px;
+  }
+  .selector {
+    width: 100%;
+    background: #FAFAFA;
+    border: 1px solid #2C2D2F;
+    border-radius: 5px;
+    padding: 21.5px 24px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: #AFB1B6;
+    margin-bottom: 32px;
+    &:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid #2C2D2F;
+    border-radius: 5px;
+    background: #FAFAFA;
+    padding: 12px 24px;
+    li {
+        padding: 12px 0;
+        width: 50%;
+      }
+  }
+  .slider-track {
+    border: 1px solid #2C2D2F;
+    border-radius: 5px;
+    background: #FAFAFA;
+    padding: 24px;
+    .irs--big {
+      height: 32px;
+      margin-bottom: 16px;
+    }
+    .irs-line {
+      top: 12px;
+      height: 5px;
+      border: 1px solid #D6D8DB;
+      background: #D6D8DB;
+      cursor: pointer;
+    }
+    .irs-bar {
+      top: 12px;
+      height: 5px;
+      border: 1px solid #A57A5A;
+      background: #A57A5A;
+      box-shadow: none;
+      cursor: pointer;
+    }
+    .irs-handle {
+      top: 0;
+      border: 1px solid #A57A5A;
+      background-color: #A57A5A;
+      background: #A57A5A;
+      box-shadow: none;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    p {
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+      color: #797D86;
+    }
+  }
+  .form-group {
+    display: block;
+    margin-bottom: 0;
+    input {
+      padding: 0;
+      height: initial;
+      width: initial;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+    label {
+      font-family: "Inter", sans-serif;
+      position: relative;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 19px;
+      line-height: 130%;
+      color: #797D86;
+      @include short-query(1199px , 1399px) {
+          font-size: 14px;
+      }
+      @include media-query(490px) {
+          font-size: 14px;
+      }
+    }
+  }
+}
+.form-group label
+.form-group input:checked + label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 7px;
+  width: 7px;
+  height: 17px;
+  border: solid #1B1C1E;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

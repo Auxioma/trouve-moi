@@ -1,0 +1,29 @@
+.inner-banner {
+    background: url(../media/banner/inner-banner-bg.png);
+    background-position: center;
+    background-size: cover;
+    height: clamp(350px, 26.042vw, 600px);
+    display: grid;
+    align-content: center;
+    padding-top: 5%;
+    @include media-query(768px) {
+      height: 250px;
+    }
+    h2 {
+      font-weight: 600;
+      font-size: 69px;
+      line-height: 120%;
+      text-align: center;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: $white;
+      margin: 0;
+      @include media-query(1199px) {
+        font-size: 60px;
+      }
+      @include media-query(768px) {
+        font-size: 50px;
+      }
+    }
+  }
+  

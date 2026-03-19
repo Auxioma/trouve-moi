@@ -1,0 +1,43 @@
+.testimonial{
+    .testimonial-block{
+        position: relative;
+        background: $white;
+        border-radius: 10px;
+        margin: 0 12px;
+        overflow: hidden;
+        .quote{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        .user-img{
+            padding-top: 50px;
+            text-align: center;
+            img{
+                margin: -100px auto 8px;
+            }
+        }
+        .name{
+            font-weight: 500;
+            font-size: clamp(19px, 1.2vw, 32px);
+            line-height: 130%;   
+            text-align: center;
+            font-family: $font-sec;
+            color: $black-2;
+            margin-bottom: 8px;
+        }
+        p{
+            padding: 0  clamp(18px, 1.66vw, 40px);
+            font-family: $font-sec;
+            text-align: center;
+            color: $gray-4;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4; 
+            -webkit-box-orient: vertical;
+            margin-bottom: 28px;
+        }
+    }
+}

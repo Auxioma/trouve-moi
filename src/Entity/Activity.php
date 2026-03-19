@@ -27,9 +27,16 @@ class Activity
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'activity')]
     private Collection $users;
 
+    /**
+     * @var Collection<int, Services>
+     */
+    #[ORM\OneToMany(targetEntity: Services::class, mappedBy: 'activity')]
+    private Collection $Services;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->Services = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -85,6 +92,36 @@ class Activity
             // set the owning side to null (unless already changed)
             if ($user->getActivity() === $this) {
                 $user->setActivity(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Services>
+     */
+    public function getServices(): Collection
+    {
+        return $this->Services;
+    }
+
+    public function addService(Services $service): static
+    {
+        if (!$this->Services->contains($service)) {
+            $this->Services->add($service);
+            $service->setActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeService(Services $service): static
+    {
+        if ($this->Services->removeElement($service)) {
+            // set the owning side to null (unless already changed)
+            if ($service->getActivity() === $this) {
+                $service->setActivity(null);
             }
         }
 

@@ -1,0 +1,51 @@
+.team{
+    .team-block{
+        padding: 32px 16px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: $gray-1;
+        text-align: center;
+        align-items: center;
+        margin: 0 12px;
+        img{
+            margin: 0 auto 8px;
+        }
+        .name{
+            font-weight: 500;
+            font-size: 23px;
+            line-height: 130%;
+            text-align: center;
+            text-transform: capitalize; 
+            font-family: $font-sec;
+            color: $black-2;
+            margin-bottom: 1px;           
+        }
+        .designation{
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 140%;    
+            text-align: center;
+            letter-spacing: 0.02em;
+            color: $gray-4; 
+            font-family: $font-sec;
+            margin-bottom: 18px;     
+        }
+        .socialicon{
+            display: flex;
+            margin-bottom: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            li{
+                margin: 0 8px;
+                i{
+                    font-size: 24px;
+                    color: $black;
+                    &:hover{
+                        color: $accent-1;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.heading{
+    margin-bottom: clamp(32px, 2.5vw, 64px);
+    text-align: center;
+    h2{
+        font-weight: 600;
+        font-size: clamp(36px, 2.5vw, 64px);
+        color: $black-1;
+        line-height: 120%;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        @include media-query(768px) {
+            font-size: 38px;
+        }
+        @include media-query(490px) {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+    }
+    p{
+        line-height: 140%;
+        color: $gray-4;
+        font-family: $font-sec;
+        margin-bottom: 0;
+        @include media-query(992px) {
+            margin-bottom: 32px;
+        }
+        @include media-query(768px) {
+            margin-bottom: 24px;
+        }
+        @include media-query(490px) {
+            margin-bottom: 16px;
+        }
+        br{
+            @include media-query(768px) {
+                display: none;
+            }
+        }
+    }
+}
+

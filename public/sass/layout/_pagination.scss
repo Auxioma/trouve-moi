@@ -1,0 +1,56 @@
+
+.pagination-wrape {
+    margin: 30px 0 0;
+    text-align: center;
+    .pagination {
+       display: block;
+        li {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            margin-right: 16px;
+            box-shadow: $shadow;
+            &:last-child{
+                margin-right: 0;
+            }
+            a{
+                width: 40px;
+                height: 40px;
+                font-weight: 400;
+                font-size: 21px;
+                line-height: 140%;
+                text-align: center;
+                color: $black;
+                box-shadow: $shadow;
+                background-color: $white;
+                display: block;
+                border: none;
+                border-radius: 10px;
+                &.arrow{
+                    font-size: 22px;
+                }
+                &.current {
+                    background-color: $accent-1;
+                    color: $white;
+                }
+                &:hover {
+                    background-color: $accent-1;
+                    color: $white;
+                }
+           }
+        }
+     }
+  }
+  .page-item{
+    &:first-child{
+        .page-link {
+            border-radius: 10px;
+        }
+    }
+    &:last-child{
+        .page-link {
+            border-radius: 10px;
+        }
+    }
+  }
