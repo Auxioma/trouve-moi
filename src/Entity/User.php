@@ -107,42 +107,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Services::class, inversedBy: 'users')]
     private Collection $services;
 
+    /**
+     * @var Collection<int, Pictures>
+     */
+    #[ORM\OneToMany(targetEntity: Pictures::class, mappedBy: 'User')]
+    private Collection $pictures;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     // -----------------------------------------------------------------------
     // Serialization — must exclude File objects (not serializable)
     // -----------------------------------------------------------------------
 
-    public function __serialize(): array
-    {
-        $data = (array) $this;
+public function __serialize(): array
+{
+    return [
+        'id' => $this->id,
+        'email' => $this->email,
+        'password' => $this->password,
+        'roles' => $this->roles,
+    ];
+}
 
-        // Hash the password before storing in session
-        $data["\0" . self::class . "\0password"] = hash('crc32c', $this->password);
-
-        // Strip the File object — cannot be serialized
-        $data["\0" . self::class . "\0imageFile"] = null;
-
-        return $data;
-    }
-
-    public function __unserialize(array $data): void
-    {
-        foreach ($data as $key => $value) {
-            // Extract the property name from the mangled key (\0ClassName\0prop or \0*\0prop)
-            $prop = ltrim(preg_replace('/^\x00.*\x00/', '', $key));
-            if (property_exists($this, $prop)) {
-                $this->$prop = $value;
-            }
-        }
-
-        // imageFile is intentionally left null after deserialization
-        // VichUploader will re-hydrate it from imageName when needed
-        $this->imageFile = null;
-    }
+public function __unserialize(array $data): void
+{
+    $this->id = $data['id'] ?? null;
+    $this->email = $data['email'] ?? null;
+    $this->password = $data['password'] ?? null;
+    $this->roles = $data['roles'] ?? [];
+}
 
     // -----------------------------------------------------------------------
     // Getters / Setters
@@ -446,6 +443,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeService(Services $service): static
     {
         $this->services->removeElement($service);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Pictures>
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Pictures $picture): static
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures->add($picture);
+            $picture->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Pictures $picture): static
+    {
+        if ($this->pictures->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getUser() === $this) {
+                $picture->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -2,7 +2,6 @@
 
 namespace App\Controller\User;
 
-use App\Entity\Enum\UserProfileStatus;
 use App\Form\ProfileType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,6 +15,7 @@ final class ProfileController extends AbstractController
     public function __construct(
         private UserRepository $userRepository
     ){}
+    
     #[Route('/user/profile', name: 'app_user_profile')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -27,13 +27,23 @@ final class ProfileController extends AbstractController
         }
 
         $form = $this->createForm(ProfileType::class, $user);
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
+        $form->handleRequest($request);       
+        if ($form->isSubmitted()) {
+
+            $services = $form->get('services')->getData();
+
+            // Optionnel : reset si besoin (évite doublons / incohérences)
+            $user->getServices();
+
+            foreach ($services as $service) {
+                $user->addService($service);
+            }
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home');
+            $this->addFlash('success', 'Profil mis à jour avec succès.');
+
+            return $this->redirectToRoute('app_user_profile');
         }
 
         return $this->render('user/profile/index.html.twig', [
