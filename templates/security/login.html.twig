@@ -288,7 +288,7 @@
                             name="email"
                             id="inputEmail"
                             class="{{ error ? 'input-error' : '' }}"
-                            autocomplete="email"
+                            autocomplete="off"
                             placeholder="Votre adresse e-mail"
                             required
                             autofocus
@@ -341,7 +341,7 @@
         <div class="order__right centered no__overflow">
             <img
                 class="img"
-                src="https://res.cloudinary.com/diod8pjhj/image/upload/v1670658158/3d1920_e2qpuj.jpg"
+                src="{{ asset('media/banner/register.png') }}"
                 alt="Illustration"
             >
         </div>

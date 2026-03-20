@@ -21,7 +21,7 @@
 
 							<div class="artisan-panel__profile text-center px-4">
 								<div class="artisan-panel__avatar mx-auto">
-									<i class="fas fa-user"></i>
+									<img src="https://placehold.co/70x70" class="rounded-circle">
 								</div>
 
 								<h3 class="artisan-panel__name mb-1">Espace Artisan</h3>
@@ -164,7 +164,11 @@
 				</div>
 
 				<div class="col-xl-8">
-					<form method="post" enctype="multipart/form-data" class="artisan-form-page">
+					{{ form_start(form, {
+						attr: {
+							class: 'artisan-form-page'
+						}
+					}) }}
 
 						<div class="house-detail mb-4">
 							<div class="container">
@@ -177,35 +181,11 @@
 											</div>
 
 											<div class="row g-3">
-												<div class="col-12 col-md-6">
-													<label for="firstName" class="form-label">Prénom</label>
-													<input type="text" class="form-control artisan-input" id="firstName" name="firstName" placeholder="Prénom">
-												</div>
+												{{ form_row(form.firstName) }}
+												{{ form_row(form.lastName) }}
+												{{ form_row(form.email) }}
+												{{ form_row(form.phoneNumber) }}
 
-												<div class="col-12 col-md-6">
-													<label for="lastName" class="form-label">Nom</label>
-													<input type="text" class="form-control artisan-input" id="lastName" name="lastName" placeholder="Nom">
-												</div>
-
-												<div class="col-12 col-md-6">
-													<label for="email" class="form-label">Email</label>
-													<input type="email" class="form-control artisan-input" id="email" name="email" placeholder="Adresse email">
-												</div>
-
-												<div class="col-12 col-md-6">
-													<label for="phoneNumber" class="form-label">Téléphone</label>
-													<input type="tel" class="form-control artisan-input" id="phoneNumber" name="phoneNumber" placeholder="Numéro de téléphone">
-												</div>
-
-												<div class="col-12 col-md-6">
-													<label for="password" class="form-label">Mot de passe</label>
-													<input type="password" class="form-control artisan-input" id="password" name="password" placeholder="Mot de passe">
-												</div>
-
-												<div class="col-12 col-md-6">
-													<label for="roles" class="form-label">Rôles</label>
-													<input type="text" class="form-control artisan-input" id="roles" name="roles" placeholder="ROLE_USER">
-												</div>
 											</div>
 										</div>
 									</div>
@@ -224,20 +204,9 @@
 											</div>
 
 											<div class="row g-3">
-												<div class="col-12 col-md-6">
-													<label for="compagny" class="form-label">Entreprise</label>
-													<input type="text" class="form-control artisan-input" id="compagny" name="compagny" placeholder="Nom de l’entreprise">
-												</div>
-
-												<div class="col-12 col-md-6">
-													<label for="siren" class="form-label">SIREN</label>
-													<input type="text" class="form-control artisan-input" id="siren" name="siren" placeholder="Numéro SIREN">
-												</div>
-
-												<div class="col-12">
-													<label for="website" class="form-label">Site web</label>
-													<input type="url" class="form-control artisan-input" id="website" name="website" placeholder="https://www.monsite.fr">
-												</div>
+												{{ form_row(form.compagny) }}
+												{{ form_row(form.siren) }}
+												{{ form_row(form.website) }}
 											</div>
 										</div>
 									</div>
@@ -256,35 +225,9 @@
 											</div>
 
 											<div class="row g-3">
-												<div class="col-12">
-													<label for="address" class="form-label">Adresse</label>
-													<input type="text" class="form-control artisan-input" id="address" name="address" placeholder="Adresse complète">
-												</div>
-
-												<div class="col-12 col-md-4">
-													<label for="postalCode" class="form-label">Code postal</label>
-													<input type="text" class="form-control artisan-input" id="postalCode" name="postalCode" placeholder="Code postal">
-												</div>
-
-												<div class="col-12 col-md-4">
-													<label for="city" class="form-label">Ville</label>
-													<input type="text" class="form-control artisan-input" id="city" name="city" placeholder="Ville">
-												</div>
-
-												<div class="col-12 col-md-4">
-													<label for="latitude" class="form-label">Latitude</label>
-													<input type="text" class="form-control artisan-input" id="latitude" name="latitude" placeholder="Latitude">
-												</div>
-
-												<div class="col-12 col-md-6">
-													<label for="longitude" class="form-label">Longitude</label>
-													<input type="text" class="form-control artisan-input" id="longitude" name="longitude" placeholder="Longitude">
-												</div>
-
-												<div class="col-12 col-md-6">
-													<label for="updatedAt" class="form-label">Dernière mise à jour</label>
-													<input type="datetime-local" class="form-control artisan-input" id="updatedAt" name="updatedAt" readonly>
-												</div>
+												{{ form_row(form.address) }}
+												{{ form_row(form.postalCode) }}
+												{{ form_row(form.city) }}
 											</div>
 										</div>
 									</div>
@@ -303,10 +246,7 @@
 											</div>
 
 											<div class="row g-3">
-												<div class="col-12">
-													<label for="description" class="form-label">Description</label>
-													<textarea class="form-control artisan-input artisan-textarea" id="description" name="description" rows="6" placeholder="Présentez votre activité, vos services et votre expérience..."></textarea>
-												</div>
+												{{ form_row(form.description) }}
 											</div>
 										</div>
 									</div>
@@ -325,19 +265,10 @@
 											</div>
 
 											<div class="row g-3">
-												<div class="col-12 col-md-4">
-													<label for="id" class="form-label">ID</label>
-													<input type="number" class="form-control artisan-input" id="id" name="id" placeholder="ID" readonly>
-												</div>
-
-												<div class="col-12 col-md-4">
-													<label for="imageName" class="form-label">Nom du fichier</label>
-													<input type="text" class="form-control artisan-input" id="imageName" name="imageName" placeholder="Nom de l’image" readonly>
-												</div>
-
-												<div class="col-12 col-md-4">
-													<label for="imageSize" class="form-label">Taille image</label>
-													<input type="number" class="form-control artisan-input" id="imageSize" name="imageSize" placeholder="Taille" readonly>
+												{{ form_row(form.activity) }}
+												<div class="col-12">
+													<label class="form-label">Services</label>
+													<div class="row" id="services-container"></div>
 												</div>
 											</div>
 										</div>
@@ -352,9 +283,104 @@
 							</button>
 						</div>
 
-					</form>
+					{{ form_end(form) }}
 				</div>
 			</div>
 		</div>
 	</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const activityField = document.querySelector('[name$="[activity]"]');
+    const servicesContainer = document.querySelector('#services-container');
+    const urlTemplate = '{{ path('ajax_services_by_activity', { id: '__ID__' }) }}';
+
+    if (!activityField || !servicesContainer) {
+        return;
+    }
+
+    activityField.addEventListener('change', async function () {
+        const activityId = this.value;
+
+        // 🔥 sauvegarde des services cochés
+        const selectedValues = new Set(
+            Array.from(document.querySelectorAll('input[name="profile[services][]"]:checked'))
+                .map(el => el.value)
+        );
+
+        // reset
+        servicesContainer.innerHTML = '';
+
+        if (!activityId) {
+            return;
+        }
+
+        try {
+            const response = await fetch(urlTemplate.replace('__ID__', activityId), {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Erreur AJAX');
+            }
+
+            const services = await response.json();
+
+            services.forEach(service => {
+
+                // 👉 COLONNE (col-6 responsive)
+                const col = document.createElement('div');
+                col.classList.add('col-6');
+
+                // 👉 wrapper bootstrap
+                const wrapper = document.createElement('div');
+                wrapper.classList.add('form-check');
+
+                // 👉 checkbox
+                const input = document.createElement('input');
+                input.type = 'checkbox';
+                input.classList.add('form-check-input');
+
+                // ⚠️ adapte "profile" si besoin
+                input.name = 'profile[services][]';
+                input.value = service.id;
+                input.id = `profile_services_${service.id}`;
+
+                // 👉 restore checked state
+                if (selectedValues.has(String(service.id))) {
+                    input.checked = true;
+                }
+
+                // 👉 label
+                const label = document.createElement('label');
+                label.classList.add('form-check-label');
+                label.setAttribute('for', input.id);
+                label.textContent = service.name;
+
+                // assemblage
+                wrapper.appendChild(input);
+                wrapper.appendChild(label);
+                col.appendChild(wrapper);
+                servicesContainer.appendChild(col);
+            });
+
+        } catch (error) {
+            console.error('Erreur chargement services:', error);
+
+            servicesContainer.innerHTML = `
+                <div class="col-12 text-danger">
+                    Impossible de charger les services
+                </div>
+            `;
+        }
+    });
+
+    // 🔥 trigger au chargement si valeur déjà sélectionnée
+    if (activityField.value) {
+        activityField.dispatchEvent(new Event('change'));
+    }
+});
+</script>
 {% endblock %}

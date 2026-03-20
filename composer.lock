@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b4995847accdd709932535572c5d83d",
+    "content-hash": "e9b55b4225565f172f59960b5d305f34",
     "packages": [
         {
             "name": "composer/semver",
@@ -6902,16 +6902,16 @@
         },
         {
             "name": "symfony/ux-autocomplete",
-            "version": "v2.32.0",
+            "version": "v2.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-autocomplete.git",
-                "reference": "d4259531cadaf6c36c611a325fe0fe4b9955c279"
+                "reference": "a2968590fa0baf5e823ba894d9ad06c823c5429d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-autocomplete/zipball/d4259531cadaf6c36c611a325fe0fe4b9955c279",
-                "reference": "d4259531cadaf6c36c611a325fe0fe4b9955c279",
+                "url": "https://api.github.com/repos/symfony/ux-autocomplete/zipball/a2968590fa0baf5e823ba894d9ad06c823c5429d",
+                "reference": "a2968590fa0baf5e823ba894d9ad06c823c5429d",
                 "shasum": ""
             },
             "require": {
@@ -6972,7 +6972,7 @@
                 "symfony-ux"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-autocomplete/tree/v2.32.0"
+                "source": "https://github.com/symfony/ux-autocomplete/tree/v2.33.0"
             },
             "funding": [
                 {
@@ -6992,7 +6992,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-01-01T14:41:17+00:00"
+            "time": "2026-03-15T07:57:29+00:00"
         },
         {
             "name": "symfony/ux-turbo",

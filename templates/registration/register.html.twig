@@ -215,6 +215,137 @@ h3 {
 	text-align:center;
 	padding: 20px 0;
 }
+
+/* =========================
+   FLASH MESSAGES SYMFONY
+========================= */
+.alert {
+    position: relative;
+    width: 100%;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 500;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.alert + .alert {
+    margin-top: 12px;
+}
+
+.alert:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   SUCCESS
+========================= */
+.alert-success {
+    color: #0f5132;
+    background: #d1e7dd;
+    border-color: #badbcc;
+}
+
+/* =========================
+   DANGER / ERROR
+========================= */
+.alert-danger,
+.alert-error {
+    color: #842029;
+    background: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+/* =========================
+   WARNING
+========================= */
+.alert-warning {
+    color: #664d03;
+    background: #fff3cd;
+    border-color: #ffecb5;
+}
+
+/* =========================
+   INFO
+========================= */
+.alert-info {
+    color: #055160;
+    background: #cff4fc;
+    border-color: #b6effb;
+}
+
+/* =========================
+   PRIMARY
+========================= */
+.alert-primary {
+    color: #084298;
+    background: #cfe2ff;
+    border-color: #b6d4fe;
+}
+
+/* =========================
+   SECONDARY
+========================= */
+.alert-secondary {
+    color: #41464b;
+    background: #e2e3e5;
+    border-color: #d3d6d8;
+}
+
+/* =========================
+   LIGHT
+========================= */
+.alert-light {
+    color: #636464;
+    background: #fefefe;
+    border-color: #fdfdfe;
+}
+
+/* =========================
+   DARK
+========================= */
+.alert-dark {
+    color: #141619;
+    background: #d3d3d4;
+    border-color: #bcbebf;
+}
+
+/* =========================
+   PETIT EFFET BARRE GAUCHE
+========================= */
+.alert::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 0;
+    width: 5px;
+    border-radius: 10px;
+    background: currentColor;
+    opacity: 0.35;
+}
+
+/* espace pour la barre */
+.alert {
+    padding-left: 24px;
+}
+
+/* =========================
+   VERSION RESPONSIVE
+========================= */
+@media (max-width: 767.98px) {
+    .alert {
+        padding: 14px 16px 14px 20px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+}
+
 		</style>
 	</head>
 	<body>
@@ -234,6 +365,15 @@ h3 {
 
 					<h3 class="py-3 text-center">
 						Information sur votre entreprise</h3>
+
+						{% for label, messages in app.flashes %}
+							{% for message in messages %}
+								<div class="alert alert-{{ label }}">
+									{{ message }}
+								</div>
+							{% endfor %}
+						{% endfor %}
+
 				{{ form_row(registrationPro.siren) }}
 				<div class="form-row">
 					<div class="form-col">
@@ -264,7 +404,7 @@ h3 {
 			</div>
 
 			<div class="order__right centered no__overflow">
-				<img class="img" src="https://res.cloudinary.com/diod8pjhj/image/upload/v1670658158/3d1920_e2qpuj.jpg" alt="picture">
+				<img class="img" src="{{ asset('media/banner/register.png') }}" alt="picture">
 			</div>
 		</div>
 
