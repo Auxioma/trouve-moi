@@ -2,6 +2,7 @@
 
 namespace App\Controller\User;
 
+use App\Entity\Enum\UserProfileStatus;
 use App\Form\ProfileType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -38,6 +39,8 @@ final class ProfileController extends AbstractController
             foreach ($services as $service) {
                 $user->addService($service);
             }
+
+            $user->setProfileStatus(UserProfileStatus::VALIDATED);
 
             $entityManager->flush();
 

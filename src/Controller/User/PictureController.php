@@ -29,8 +29,14 @@ final class PictureController extends AbstractController
         $form = $this->createForm(ImageProfileType::class, $user);
         $form->handleRequest($request); 
 
-        dd($form);
+        if ($form->isSubmitted()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
 
+            $this->addFlash('success', 'Votre photo de profil a été mise à jour avec succès.');
+
+            return $this->redirectToRoute('app_user_profile');
+        }
 
         return $this->render('user/picture/index.html.twig', [
             'showUser' => $user,

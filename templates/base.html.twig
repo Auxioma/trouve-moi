@@ -14,6 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ importmap('app') }}
     {% block stylesheets %}{% endblock %}
+    {% if app.user %}
+    <style>
+        .inner-banner {
+            height: clamp(250px, 26.042vw, 300px);!important;
+        }
+    </style>
+    {% endif %}
 
 </head>
 

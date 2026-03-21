@@ -12,8 +12,8 @@ vich_uploader:
             delete_on_remove: true
 
         pictures:
-            uri_prefix: /uploads/pictures
-            upload_destination: '%kernel.project_dir%/public/uploads/pictures'
+            uri_prefix: /images/slider
+            upload_destination: '%kernel.project_dir%/public/images/slider'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
             directory_namer: App\Vich\LogoDirectoryNamer
             inject_on_load: false
