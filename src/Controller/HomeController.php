@@ -17,7 +17,7 @@ final class HomeController extends AbstractController
     public function index(): Response
     {
         /* Je vais prendre les 10 derniers utilisateurs créés pour les afficher sur la page d'accueil */
-        $latestUsers = $this->userRepository->findBy([], ['id' => 'DESC'], 10);
+        $latestUsers = $this->userRepository->findLatestArtisans(10);
 
         return $this->render('home/index.html.twig', [
             'lastUser' => $latestUsers,

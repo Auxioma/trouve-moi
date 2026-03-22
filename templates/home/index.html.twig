@@ -104,7 +104,11 @@
 								{{ item.description|u.truncate(80) }}
 							</li>
 						</ul>
-						<a href="./properties.html" class="real-btn bordered text-capitalize mb-0">{{ item.activity.name }}</a>
+						<a href="{{ path('app_company', {
+							codePostal: item.postalCode,
+							ville: item.city|lower|replace({' ': '-'}),
+							slug: item.slug
+						}) }}" class="real-btn bordered text-capitalize mb-0">{{ item.activity.name }}</a>
 					</div>
 
 				{% endfor %}
