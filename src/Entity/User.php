@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\Enum\UserProfileStatus;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Attribute as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -117,6 +118,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         orphanRemoval: true
     )]
     private Collection $pictures;
+
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    private ?Testimonial $testimonial = null;
+
+    #[ORM\Column(length: 255)]
+    #[Gedmo\Slug(fields: ['compagny'], unique: true)]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -478,6 +486,30 @@ public function __unserialize(array $data): void
                 $picture->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTestimonial(): ?Testimonial
+    {
+        return $this->testimonial;
+    }
+
+    public function setTestimonial(?Testimonial $testimonial): static
+    {
+        $this->testimonial = $testimonial;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

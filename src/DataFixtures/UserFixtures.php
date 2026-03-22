@@ -4,12 +4,15 @@ namespace App\DataFixtures;
 
 use App\Entity\Activity;
 use App\Entity\Enum\UserProfileStatus;
+use App\Entity\Pictures;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture implements DependentFixtureInterface
@@ -66,20 +69,74 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($admin);
 
         // 1000 artisans
-        for ($i = 1; $i <= 1000; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $user = $this->createArtisan($faker, $activities, $hashedPassword);
+
             $manager->persist($user);
+            $manager->flush(); // génère l'ID
 
-            if ($i % 100 === 0) {
-                $manager->flush();
+            $url = 'https://api.dicebear.com/7.x/avataaars/png?seed=' . $i;
+            $tmpPath = sys_get_temp_dir() . '/avatar_' . uniqid('', true) . '.png';
+
+            $content = @file_get_contents($url);
+
+            if ($content === false) {
+                continue;
+            }
+
+            file_put_contents($tmpPath, $content);
+
+            $user->setImageFile(new UploadedFile(
+                $tmpPath,
+                'avatar_' . $i . '.png',
+                'image/png',
+                null,
+                true
+            ));
+
+            // http://picsum.photos/4096/3072
+            for ($j = 0; $j < random_int(1, 5); $j++) {
+                $imageOrigine = 'https://picsum.photos/4096/3072?random=' . uniqid();
+                $tmpPathOrigine = sys_get_temp_dir() . '/slider_' . uniqid('', true) . '.jpg';
+
+                $contentOrigine = @file_get_contents($imageOrigine);
+
+                if ($contentOrigine === false) {
+                    continue;
+                }
+
+                file_put_contents($tmpPathOrigine, $contentOrigine);
+
+                $uploadedFile = new UploadedFile(
+                    $tmpPathOrigine,
+                    'slider_' . $j . '.jpg',
+                    'image/jpeg',
+                    null,
+                    true
+                );
+
+                $picture = new Pictures();
+                $picture->setImageFile($uploadedFile);
+                $picture->setUser($user);
+
+                $user->addPicture($picture);
+
+                $manager->persist($picture);
+            }
+
+
+            $manager->persist($user);
+            $manager->flush();
+
+            @unlink($tmpPath);
+
+            if ($i % 100 === 0) { 
                 $manager->clear();
-
-                /** @var Activity[] $activities */
                 $activities = $manager->getRepository(Activity::class)->findAll();
             }
         }
 
-        $manager->flush();
+        $manager->flush();            
     }
 
     /**
