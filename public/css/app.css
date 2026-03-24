@@ -2856,7 +2856,7 @@ body:not(.is-mobile).ui-smooth-scroll #scroll-container {
   background: url(../media/banner/inner-banner-bg.png);
   background-position: center;
   background-size: cover;
-  height: clamp(350px, 26.042vw, 600px);
+  height: clamp(200px, 26.042vw, 250px);
   display: grid;
   align-content: center;
   padding-top: 5%;
