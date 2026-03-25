@@ -109,12 +109,29 @@
 							<div class="container">
 								<div class="row g-4">
 									<div class="col-12">
+										<div class="artisan-card">
+											<div class="artisan-section-header mb-4">
+											<h2>Description de votre entreprise</h2>
+											<p>Présentez votre entreprise, votre expertise et votre expérience.</p>
+											</div>
+											<div class="row g-3">
+												{{ form_row(form.grandeDescription) }}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="house-detail mb-4">
+							<div class="container">
+								<div class="row g-4">
+									<div class="col-12">
 										<div class="artisan-card artisan-card-light">
 											<div class="artisan-section-header mb-4">
 												<h2>Informations techniques</h2>
 												<p>Ces champs sont généralement gérés automatiquement.</p>
 											</div>
-
 											<div class="row g-3">
 												{{ form_row(form.activity) }}
 												<div class="col-12">

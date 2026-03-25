@@ -251,7 +251,30 @@ class ProfileType extends AbstractType
                     'class' => 'form-label',
                 ],
                 'attr' => [
-                    'class' => 'form-control user_profile_textarea',
+                    'class' => 'form-control user_profile_textarea artisan-input',
+                    'rows' => 6,
+                    'placeholder' => 'Présentez votre activité, vos services et votre expérience...',
+                ],
+                'required' => false,
+                'row_attr' => [
+                    'class' => 'col-12',
+                ],
+                'constraints' => [
+                    new Length(
+                        max: 2000,
+                        maxMessage: 'La description ne doit pas dépasser {{ limit }} caractères.'
+                    ),
+                ],
+            ])
+
+            /* description de l'entreprise */
+            ->add('grandeDescription', TextareaType::class, [
+                'label' => 'Description',
+                'label_attr' => [
+                    'class' => 'form-label',
+                ],
+                'attr' => [
+                    'class' => 'form-control user_profile_textarea artisan-input',
                     'rows' => 6,
                     'placeholder' => 'Présentez votre activité, vos services et votre expérience...',
                 ],
