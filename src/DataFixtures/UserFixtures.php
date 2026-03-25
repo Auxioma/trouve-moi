@@ -192,6 +192,12 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setProfileStatus(UserProfileStatus::PARTIAL);
         $user->setActivity($activity);
         $user->setDescription($this->generateDescription($faker, $activity->getName() ?? 'artisanat'));
+        $user->setGrandeDescription($faker->paragraphs(3, true));
+        $user->setLastLogin(
+            \DateTimeImmutable::createFromMutable(
+                $faker->dateTimeBetween('-6 months', 'now')
+            )
+        );
         $user->setWebsite('https://www.' . $faker->slug(2) . '.fr');
         $user->setUpdatedAt(
             \DateTimeImmutable::createFromMutable(

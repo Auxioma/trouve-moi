@@ -4560,6 +4560,35 @@ iframe {
   background: #A57A5A;
   border-radius: 20px;
   padding: 10px 20px;
-  color: #fff;
+  color: #FFF;
 }
+.section-titre-droite {
+  font-family: "Inter", sans-serif;
+  line-height: 150%;
+  color: #797D86
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.stats-row:last-child {
+    border-bottom: none;
+}
+
+.stats-label {
+    width: 70%;
+    font-weight: 600;
+    color: #797D86;
+}
+
+.stats-value {
+    width: 30%;
+    text-align: right;
+    color: #797D86;
+}
+
 /*# sourceMappingURL=app.css.map */
