@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\TestimonialRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TestimonialRepository::class)]
@@ -15,13 +13,7 @@ class Testimonial
     #[ORM\Column]
     private ?int $id = null;
 
-    /**
-     * @var Collection<int, User>
-     */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'testimonial')]
-    private Collection $user;
-
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
@@ -30,44 +22,22 @@ class Testimonial
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'writtenTestimonials')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $author = null;
+
+    #[ORM\ManyToOne(inversedBy: 'receivedTestimonials')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $artisan = null;
+
     public function __construct()
     {
-        $this->user = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUser(): Collection
-    {
-        return $this->user;
-    }
-
-    public function addUser(User $user): static
-    {
-        if (!$this->user->contains($user)) {
-            $this->user->add($user);
-            $user->setTestimonial($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): static
-    {
-        if ($this->user->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getTestimonial() === $this) {
-                $user->setTestimonial(null);
-            }
-        }
-
-        return $this;
     }
 
     public function getDescription(): ?string
@@ -102,6 +72,30 @@ class Testimonial
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getArtisan(): ?User
+    {
+        return $this->artisan;
+    }
+
+    public function setArtisan(?User $artisan): static
+    {
+        $this->artisan = $artisan;
 
         return $this;
     }

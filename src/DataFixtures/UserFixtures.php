@@ -11,7 +11,6 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -61,6 +60,10 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $admin->setWebsite('https://www.auxioma.fr');
         $admin->setUpdatedAt(new \DateTimeImmutable());
 
+        $admin->setGrandeDescription(
+            "Auxioma est une agence web spécialisée dans la création de sites internet, le développement sur mesure et l’accompagnement digital. Nous aidons les entreprises à se démarquer en ligne grâce à des solutions innovantes et personnalisées. Notre équipe d'experts passionnés travaille en étroite collaboration avec nos clients pour comprendre leurs besoins uniques et créer des expériences numériques exceptionnelles. Que vous ayez besoin d'un site vitrine, d'une boutique en ligne ou d'une application web, nous sommes là pour transformer vos idées en réalité digitale."
+        );
+
         shuffle($adminServices);
         foreach (array_slice($adminServices, 0, min(2, count($adminServices))) as $service) {
             $admin->addService($service);
@@ -68,8 +71,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         $manager->persist($admin);
 
-        // 1000 artisans
-        for ($i = 1; $i <= 100; $i++) {
+        // 20 artisans
+        for ($i = 1; $i <= 50; $i++) {
             $user = $this->createArtisan($faker, $activities, $hashedPassword);
 
             $manager->persist($user);
@@ -135,6 +138,22 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 $activities = $manager->getRepository(Activity::class)->findAll();
             }
         }
+
+        /**
+         * je vais creer 10 utilisateur en ROLE_USER
+         */
+            for ($i = 1; $i <= 10; $i++) {
+                $user = new User();
+                $user->setEmail($faker->unique()->safeEmail());
+                $user->setRoles(['ROLE_USER']);
+                $user->setPassword($hashedPassword);
+                $user->setIsVerified($faker->boolean(90));
+                $user->setFirstName($faker->firstName());
+                $user->setLastName($faker->lastName());
+                $user->setUpdatedAt(new \DateTimeImmutable());
+    
+                $manager->persist($user);
+            }
 
         $manager->flush();            
     }

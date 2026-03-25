@@ -4535,4 +4535,31 @@ iframe {
   font-size: .875rem !important;
   line-height: 1.25rem !important;
 }
+
+.titre-compagny {
+  color: #A57A5A;
+}
+
+.city-compagny {
+  color: #797D86;
+}
+
+.titre-services {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #797D86;
+}
+.paragraphe-service {
+  color: #797D86;
+}
+.service-link {
+  list-style-type: none;
+  margin-left:0!important;
+}
+.service-link a {
+  background: #A57A5A;
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: #fff;
+}
 /*# sourceMappingURL=app.css.map */

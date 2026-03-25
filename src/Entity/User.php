@@ -2,18 +2,18 @@
 
 namespace App\Entity;
 
+use App\Entity\Enum\UserProfileStatus;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use App\Entity\Enum\UserProfileStatus;
-use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Attribute as Vich;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -23,7 +23,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
+    #[ORM\GeneratedValue] 
     #[ORM\Column]
     private ?int $id = null;
 
@@ -31,14 +31,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     /**
-     * @var list<string> The user roles
+     * @var list<string>
      */
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
 
@@ -119,44 +116,57 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private Collection $pictures;
 
-    #[ORM\ManyToOne(inversedBy: 'user')]
-    private ?Testimonial $testimonial = null;
-
     #[ORM\Column(length: 255)]
     #[Gedmo\Slug(fields: ['compagny'], unique: true)]
     private ?string $slug = null;
+
+    /**
+     * Témoignages écrits par cet utilisateur
+     *
+     * @var Collection<int, Testimonial>
+     */
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Testimonial::class)]
+    private Collection $writtenTestimonials;
+
+    /**
+     * Témoignages reçus par cet artisan
+     *
+     * @var Collection<int, Testimonial>
+     */
+    #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Testimonial::class)]
+    private Collection $receivedTestimonials;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $grandeDescription = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $lastLogin = null;
 
     public function __construct()
     {
         $this->services = new ArrayCollection();
         $this->pictures = new ArrayCollection();
+        $this->writtenTestimonials = new ArrayCollection();
+        $this->receivedTestimonials = new ArrayCollection();
     }
 
-    // -----------------------------------------------------------------------
-    // Serialization — must exclude File objects (not serializable)
-    // -----------------------------------------------------------------------
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'password' => $this->password,
+            'roles' => $this->roles,
+        ];
+    }
 
-public function __serialize(): array
-{
-    return [
-        'id' => $this->id,
-        'email' => $this->email,
-        'password' => $this->password,
-        'roles' => $this->roles,
-    ];
-}
-
-public function __unserialize(array $data): void
-{
-    $this->id = $data['id'] ?? null;
-    $this->email = $data['email'] ?? null;
-    $this->password = $data['password'] ?? null;
-    $this->roles = $data['roles'] ?? [];
-}
-
-    // -----------------------------------------------------------------------
-    // Getters / Setters
-    // -----------------------------------------------------------------------
+    public function __unserialize(array $data): void
+    {
+        $this->id = $data['id'] ?? null;
+        $this->email = $data['email'] ?? null;
+        $this->password = $data['password'] ?? null;
+        $this->roles = $data['roles'] ?? [];
+    }
 
     public function getId(): ?int
     {
@@ -205,6 +215,10 @@ public function __unserialize(array $data): void
         $this->password = $password;
 
         return $this;
+    }
+
+    public function eraseCredentials(): void
+    {
     }
 
     public function isVerified(): bool
@@ -332,7 +346,7 @@ public function __unserialize(array $data): void
         return $this->longitude;
     }
 
-    public function setLongitude(string $longitude): static
+    public function setLongitude(?string $longitude): static
     {
         $this->longitude = $longitude;
 
@@ -481,23 +495,10 @@ public function __unserialize(array $data): void
     public function removePicture(Pictures $picture): static
     {
         if ($this->pictures->removeElement($picture)) {
-            // set the owning side to null (unless already changed)
             if ($picture->getUser() === $this) {
                 $picture->setUser(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getTestimonial(): ?Testimonial
-    {
-        return $this->testimonial;
-    }
-
-    public function setTestimonial(?Testimonial $testimonial): static
-    {
-        $this->testimonial = $testimonial;
 
         return $this;
     }
@@ -510,6 +511,88 @@ public function __unserialize(array $data): void
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Testimonial>
+     */
+    public function getWrittenTestimonials(): Collection
+    {
+        return $this->writtenTestimonials;
+    }
+
+    public function addWrittenTestimonial(Testimonial $testimonial): static
+    {
+        if (!$this->writtenTestimonials->contains($testimonial)) {
+            $this->writtenTestimonials->add($testimonial);
+            $testimonial->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWrittenTestimonial(Testimonial $testimonial): static
+    {
+        if ($this->writtenTestimonials->removeElement($testimonial)) {
+            if ($testimonial->getAuthor() === $this) {
+                $testimonial->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Testimonial>
+     */
+    public function getReceivedTestimonials(): Collection
+    {
+        return $this->receivedTestimonials;
+    }
+
+    public function addReceivedTestimonial(Testimonial $testimonial): static
+    {
+        if (!$this->receivedTestimonials->contains($testimonial)) {
+            $this->receivedTestimonials->add($testimonial);
+            $testimonial->setArtisan($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceivedTestimonial(Testimonial $testimonial): static
+    {
+        if ($this->receivedTestimonials->removeElement($testimonial)) {
+            if ($testimonial->getArtisan() === $this) {
+                $testimonial->setArtisan(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getGrandeDescription(): ?string
+    {
+        return $this->grandeDescription;
+    }
+
+    public function setGrandeDescription(?string $grandeDescription): static
+    {
+        $this->grandeDescription = $grandeDescription;
+
+        return $this;
+    }
+
+    public function getLastLogin(): ?\DateTimeImmutable
+    {
+        return $this->lastLogin;
+    }
+
+    public function setLastLogin(?\DateTimeImmutable $lastLogin): static
+    {
+        $this->lastLogin = $lastLogin;
 
         return $this;
     }
