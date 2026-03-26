@@ -1,0 +1,321 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de devis{% endblock %}
+
+{% block body %}
+
+
+<section class="quote-stepper d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+
+                <div class="bg-gris shadow-sm rounded-4 p-4 p-lg-5">
+
+                    <div class="text-center mb-4">
+                        <h1 class="">Demande de devis</h1>
+                        <p class="text-muted mb-0">Répondez aux questions en quelques étapes</p>
+                    </div>
+
+                    {# Barre de progression + étapes #}
+                    <div class="step-progress-wrapper mb-5">
+                        <div class="step-progress">
+                            <div class="step-progress-bar" id="stepProgressBar" style="width: 0%;"></div>
+                        </div>
+
+                        <div class="d-flex justify-content-between step-items">
+                            <button type="button" class="step-circle active" data-step="1">1</button>
+                            <button type="button" class="step-circle" data-step="2">2</button>
+                            <button type="button" class="step-circle" data-step="3">3</button>
+                            <button type="button" class="step-circle" data-step="4">4</button>
+                            <button type="button" class="step-circle" data-step="5">5</button>
+                        </div>
+                    </div>
+
+                    {# Formulaire / contenu #}
+                        {{ form_start(form, {
+                            attr: {
+                                class: 'demande-de-devis-en-ligne quote-form',
+                                id: 'quoteForm'
+                            }
+                        }) }}
+
+                        <div class="step-content active" data-step="1">
+                            <h2 class="h5 fw-bold mb-3">Étape 1</h2>
+                            <div class="row form-group">
+                                {{ form_row(form.activity) }}
+                                {{ form_row(form.requestType) }}  
+                                {{ form_row(form.urgency) }}
+                            </div>
+
+                          
+                        </div>
+
+                        <div class="step-content d-none" data-step="2">
+                            <h2 class="h5 fw-bold mb-3">Étape 2</h2>
+                            <div class="row form-group">
+                                {{ form_row(form.description) }}
+                            </div>
+                        </div>
+
+                        <div class="step-content d-none" data-step="3">
+                            <h2 class="h5 fw-bold mb-3">Étape 3</h2>
+                            <div class="row form-group">
+                                {{ form_row(form.address) }}
+                                {{ form_row(form.postalCode) }}
+                                {{ form_row(form.city) }}
+                                {{ form_row(form.accessDetails) }}
+                            </div>
+                        </div>
+
+                        <div class="step-content d-none" data-step="4">
+                            <h2 class="h5 fw-bold mb-3">Étape 4</h2>
+                            <div class="row form-group">
+                                {{ form_row(form.desiredDelay) }}
+                                {{ form_row(form.budget) }}
+                            </div>
+                        </div>
+
+                        <div class="step-content d-none" data-step="5">
+                            <h2 class="h5 fw-bold mb-3">Étape 5</h2>
+                            <div class="row form-group">
+                                {{ form_row(form.firstName) }}
+                                {{ form_row(form.lastName) }}
+                                {{ form_row(form.email) }}
+                                {{ form_row(form.phone) }}
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-outline-secondary px-4" id="prevBtn">Précédent</button>
+                            <button type="button" id="nextBtn">Suivant</button>
+                        </div>
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+#quote_request_accessDetails {
+    max-height:100px;
+}
+#nextBtn {
+    padding: clamp(8px, 0.67vw, 16px) clamp(16px, 1.25vw, 32px) !important;
+    border-radius: 5px !important;
+    font-weight: 600 !important;
+    font-size: clamp(16px, 1vw, 24px) !important;
+    font-family: "Inter", sans-serif !important;
+    line-height: 130%;
+    text-transform: capitalize;
+    transition: all 0.5s ease-in-out;
+    border: 1px solid #A57A5A;
+}
+#nextBtn:hover {
+    color: #FAFAFA;
+    border: 1px solid #A57A5A;
+    background: #A57A5A;
+}
+
+#prevBtn {
+    padding: clamp(8px, 0.67vw, 16px) clamp(16px, 1.25vw, 32px) !important;
+    border-radius: 5px !important;
+    font-weight: 600 !important;
+    font-size: clamp(16px, 1vw, 24px) !important;
+    font-family: "Inter", sans-serif !important;
+    line-height: 130%;
+    text-transform: capitalize;
+    transition: all 0.5s ease-in-out;    
+    border: 1px solid #A57A5A;
+    background: #A57A5A;
+    color: #FAFAFA;
+}
+#prevBtn:hover {
+    border: 1px solid #A57A5A;
+    background: #FFF;
+    color: #000;
+}
+
+
+.bg-gris {
+    background: #F0F2F4;
+}
+.bg-gris h1 {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 130%;
+    text-transform: capitalize;
+    color: #0D0D0D;
+    margin-bottom: 16px;
+}
+.bg-gris p, .bg-gris h2 {
+    font-family: "Inter", sans-serif;
+    line-height: 150%;
+    color: #797D86;
+    margin-bottom: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    -webkit-box-orient: vertical;
+}
+
+.step-progress-wrapper {
+    position: relative;
+    padding: 0 12px;
+}
+
+.step-progress {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    right: 24px;
+    height: 4px;
+    background: #e9ecef;
+    border-radius: 50px;
+    z-index: 1;
+}
+
+.step-progress-bar {
+    height: 100%;
+    width: 0;
+    background: #A57A5A;
+    border-radius: 50px;
+    transition: width 0.3s ease;
+}
+
+.step-items {
+    position: relative;
+    z-index: 2;
+}
+
+.step-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #dee2e6;
+    background: #fff;
+    color: #6c757d;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.step-circle.active {
+    background: #A57A5A;
+    border-color: #A57A5A;
+    color: #fff;
+}
+
+.step-circle:hover.active {
+        box-shadow: 0 0 0 6px #A57A5A;
+}
+.step-circle {
+    transition: all 0.3s ease;
+}
+
+.step-circle.active:hover {
+    animation: pulseShadow 0.4s ease forwards;
+}
+
+@keyframes pulseShadow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(165, 122, 90, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 6px rgba(165, 122, 90, 0.35);
+    }
+}
+
+
+
+
+.step-circle.done {
+    background: #A57A5A;
+    border-color: #A57A5A;
+    color: #fff;
+}
+
+.step-content {
+    animation: fadeStep 0.25s ease;
+}
+
+@keyframes fadeStep {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const steps = document.querySelectorAll('.step-content');
+    const circles = document.querySelectorAll('.step-circle');
+    const progressBar = document.getElementById('stepProgressBar');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentStep = 1;
+    const totalSteps = steps.length;
+
+    function updateStepper() {
+        steps.forEach(step => {
+            step.classList.add('d-none');
+            step.classList.remove('active');
+        });
+
+        const activeStep = document.querySelector(`.step-content[data-step="${currentStep}"]`);
+        activeStep.classList.remove('d-none');
+        activeStep.classList.add('active');
+
+        circles.forEach(circle => {
+            const stepNumber = parseInt(circle.dataset.step);
+
+            circle.classList.remove('active', 'done');
+
+            if (stepNumber < currentStep) {
+                circle.classList.add('done');
+            } else if (stepNumber === currentStep) {
+                circle.classList.add('active');
+            }
+        });
+
+        const progressPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+        progressBar.style.width = progressPercent + '%';
+
+        prevBtn.style.visibility = currentStep === 1 ? 'hidden' : 'visible';
+        nextBtn.textContent = currentStep === totalSteps ? 'Envoyer' : 'Suivant';
+    }
+
+    nextBtn.addEventListener('click', function () {
+        if (currentStep < totalSteps) {
+            currentStep++;
+            updateStepper();
+        } else {
+            document.getElementById('multiStepForm').submit();
+        }
+    });
+
+    prevBtn.addEventListener('click', function () {
+        if (currentStep > 1) {
+            currentStep--;
+            updateStepper();
+        }
+    });
+
+    updateStepper();
+});
+</script>
+
+{% endblock %}
