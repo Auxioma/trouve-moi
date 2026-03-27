@@ -2,298 +2,275 @@
 
 namespace App\Form;
 
-use App\Dto\QuoteRequestDto;
-use App\Entity\Activity;
-use App\Entity\Services;
-use App\Repository\ServicesRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use App\Dto\QuoteRequestDto;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class QuoteRequestType extends AbstractType
 {
-    public function __construct(
-        private readonly ServicesRepository $servicesRepository,
-    ) {}
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var QuoteRequestDto|null $data */
-        $data = $options['data'] ?? null;
-        $activity = $data?->activity;
-
-        // =========================
-        // ETAPE 1
-        // =========================
         $builder
-
-            ->add('activity', EntityType::class, [
-                'class' => Activity::class,
-                'choice_label' => 'name',
-                'placeholder' => 'Sélectionnez un métier',
-                'required' => false,
-                'disabled' => true,
-
-                'row_attr' => [
-                    'class' => 'step step-1 col-12',
-                ],
-
-                'label_attr' => [
-                    'class' => 'form-label w-100',
-                ],
-
-                'attr' => [
-                    'class' => 'form-select',
-                ],
-            ])
-            ->add('requestType', ChoiceType::class, [
-                'label' => 'Type de besoin',
-                'required' => false,
-                'placeholder' => 'Sélectionnez',
-
-                'choices' => [
-                    'Installation' => 'installation',
-                    'Réparation' => 'reparation',
-                    'Rénovation' => 'renovation',
-                    'Entretien' => 'entretien',
-                    'Dépannage' => 'depannage',
-                    'Autre' => 'autre',
-                ],
-
-                'row_attr' => [
-                    'class' => 'step step-2 col-6',
-                ],
-
-                'label_attr' => [
-                    'class' => 'form-label',
-                ],
-
-                'attr' => [
-                    'class' => 'form-select',
-                ],
-            ])
-
-            ->add('description', TextareaType::class, [
-                'label' => 'Décrivez votre besoin',
-                'required' => false,
-
-                'row_attr' => [
-                    'class' => 'step step-2 col-12',
-                ],
-
-                'label_attr' => [
-                    'class' => 'form-label',
-                ],
-
+            ->add('lastName', TextType::class, [
+                'label' => false,
                 'attr' => [
                     'class' => 'form-control',
-                    'rows' => 6,
-                    'placeholder' => 'Expliquez votre projet, vos besoins, les travaux à réaliser...',
+                    'placeholder' => 'Nom',
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3',
                 ],
             ])
 
-            ->add('urgency', ChoiceType::class, [
-                'label' => 'Niveau d’urgence',
-                'required' => false,
-                'placeholder' => 'Sélectionnez un délai',
-
-                'choices' => [
-                    'Pas urgent' => 'not_urgent',
-                    'Dans les 15 jours' => 'within_15_days',
-                    'Le plus vite possible' => 'asap',
-                ],
-
-                'row_attr' => [
-                    'class' => 'step step-2 col-6',
-                ],
-
-                'label_attr' => [
-                    'class' => 'form-label',
-                ],
-
+            ->add('firstName', TextType::class, [
+                'label' => false,
                 'attr' => [
-                    'class' => 'form-select',
+                    'class' => 'form-control',
+                    'placeholder' => 'Prénom',
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3',
                 ],
             ])
 
             ->add('address', TextType::class, [
-                'label' => 'Adresse',
-                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Adresse postale',
+                ],
                 'row_attr' => [
-                    'class' => 'step step-3 col-12',
+                    'class' => 'mb-3',
+                ],
+            ])
+
+            ->add('postalCity', TextType::class, [
+                'mapped' => false,
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Code postal / Ville',
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3',
+                ],
+            ])
+
+            ->add('phone', TelType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Téléphone',
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3',
+                ],
+            ])
+
+            ->add('email', EmailType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Email',
+                ],
+                'row_attr' => [
+                    'class' => 'mb-0',
+                ],
+            ])
+            ->add('projectType', ChoiceType::class, [
+                'label' => 'Type de projet',
+                'choices' => [
+                    'Rénovation de salle de bain' => 'Rénovation de salle de bain',
+                    'Plomberie' => 'Plomberie',
+                    'Électricité' => 'Électricité',
+                    'Peinture' => 'Peinture',
+                    'Menuiserie' => 'Menuiserie',
+                    'Maçonnerie' => 'Maçonnerie',
+                    'Chauffage' => 'Chauffage',
+                ],
+                'attr' => [
+                    'class' => 'form-select selection-devis mb-3',
                 ],
                 'label_attr' => [
                     'class' => 'form-label',
                 ],
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Numéro et rue',
+                'row_attr' => [
+                    'class' => 'mb-3',
                 ],
+                'placeholder' => 'Sélectionnez un type de projet',
             ])
 
-            ->add('postalCode', TextType::class, [
-                'label' => 'Code postal',
-                'required' => false,
-                'row_attr' => [
-                    'class' => 'step step-3 col-4',
+            ->add('artisanType', ChoiceType::class, [
+                'label' => 'Artisan recherché',
+                'choices' => [
+                    'Plombier' => 'Plombier',
+                    'Électricien' => 'Électricien',
+                    'Peintre' => 'Peintre',
+                    'Menuisier' => 'Menuisier',
+                    'Maçon' => 'Maçon',
+                    'Chauffagiste' => 'Chauffagiste',
+                ],
+                'placeholder' => 'Sélectionnez',
+                'attr' => [
+                    'class' => 'form-select selection-devis mb-3',
                 ],
                 'label_attr' => [
-                    'class' => 'form-label fw-semibold',
+                    'class' => 'form-label',
                 ],
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => '75000',
-                ],
-            ])
-
-            ->add('city', TextType::class, [
-                'label' => 'Ville',
-                'required' => false,
                 'row_attr' => [
-                    'class' => 'step step-3 col-md-8',
-                ],
-                'label_attr' => [
-                    'class' => 'form-label fw-semibold',
-                ],
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Paris',
-                ],
-            ])
-
-            ->add('accessDetails', TextareaType::class, [
-                'label' => 'Informations d’accès',
-                'required' => false,
-                'row_attr' => [
-                    'class' => 'step step-3 col-12',
-                ],
-                'label_attr' => [
-                    'class' => 'form-label fw-semibold',
-                ],
-                'attr' => [
-                    'class' => 'form-control',
-                    'rows' => 1,
-                    'placeholder' => 'Digicode, étage, ascenseur, parking, etc.',
+                    'class' => 'col-6 mb-3',
                 ],
             ])
 
             ->add('desiredDelay', ChoiceType::class, [
                 'label' => 'Délai souhaité',
-                'required' => false,
-                'placeholder' => 'Sélectionnez',
-
                 'choices' => [
-                    'Dès que possible' => 'asap',
-                    'Sous 24h' => '24h',
-                    'Cette semaine' => 'week',
-                    'Ce mois-ci' => 'month',
+                    'Moins de 48h' => 'Moins de 48h',
+                    'Dans la semaine' => 'Dans la semaine',
+                    'Dans le mois' => 'Dans le mois',
+                    'Flexible' => 'Flexible',
+                ],
+                'placeholder' => 'Choisissez un délai',
+                'attr' => [
+                    'class' => 'form-select selection-devis mb-3',
+                ],
+                'label_attr' => [
+                    'class' => 'form-select',
+                ],
+                'row_attr' => [
+                    'class' => 'col-12 mb-3',
+                ],
+            ])
+
+            ->add('urgence', ChoiceType::class, [
+                'label' => 'Urgence du projet',
+                'expanded' => true,
+                'multiple' => false,
+                'choices' => [
+                    'Urgent (moins de 48h)' => 'urgent',
+                    'Dans la semaine' => 'semaine',
+                    'Dans le mois' => 'mois',
                     'Flexible' => 'flexible',
                 ],
-
-                'row_attr' => [
-                    'class' => 'step step-4 col-6',
-                ],
-
                 'label_attr' => [
-                    'class' => 'form-label',
-                ],
-
-                'attr' => [
-                    'class' => 'form-select',
+                    'class' => 'form-label  d-block',
                 ],
             ])
 
-            ->add('budget', ChoiceType::class, [
-                'label' => 'Budget',
-                'required' => false,
-                'placeholder' => 'Sélectionnez',
-
-                'choices' => [
-                    'Moins de 100 €' => 'lt_100',
-                    '100 à 500 €' => '100_500',
-                    '500 à 1 000 €' => '500_1000',
-                    '1 000 à 5 000 €' => '1000_5000',
-                    'Plus de 5 000 €' => 'gt_5000',
-                    'À discuter' => 'unknown',
-                ],
-
-                'row_attr' => [
-                    'class' => 'step step-4 col-6',
-                ],
-
-                'label_attr' => [
-                    'class' => 'form-label',
-                ],
-
+            ->add('budget', RangeType::class, [
+                'label' => 'Budget estimé',
                 'attr' => [
-                    'class' => 'form-select',
+                    'min' => 500,
+                    'max' => 50000,
+                    'step' => 100,
+                    'class' => 'form-range mb-2',
                 ],
             ])
-            ->add('firstName', TextType::class, [
-                'label' => 'Prénom',
-                'required' => false,
-                'row_attr' => [
-                    'class' => 'step step-5 col-6',
+            ->add('message', TextareaType::class, [
+                'label' => 'Décrivez votre besoin',
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control devis-textarea',
+                    'placeholder' => "Décrivez votre besoin (surface, problème, urgence, contraintes d'accès, matériaux souhaités...)",
+                    'rows' => 4,
                 ],
                 'label_attr' => [
-                    'class' => 'form-label',
+                    'class' => 'form-label ',
                 ],
+                'row_attr' => [
+                    'class' => 'mb-3',
+                ],
+            ])
+            ->add('photos', FileType::class, [
+                'label' => 'Ajoutez des photos',
+                'required' => false,
+                'multiple' => true,
+                'mapped' => true,
                 'attr' => [
+                    'accept' => 'image/*',
                     'class' => 'form-control',
-                    'placeholder' => 'Jean',
                 ],
-            ])
-
-            ->add('lastName', TextType::class, [
-                'label' => 'Nom',
-                'required' => false,
-                'row_attr' => [
-                    'class' => 'step step-5 col-6',
-                ],
+                'help' => 'Les demandes avec photos reçoivent généralement plus de réponses et permettent aux professionnels de mieux comprendre votre projet.',
                 'label_attr' => [
-                    'class' => 'form-label',
+                    'class' => 'fw-bold mb-2 text-primary-custom',
                 ],
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'Dupont',
-                ],
-            ])
-
-            ->add('email', EmailType::class, [
-                'label' => 'Email',
-                'required' => false,
                 'row_attr' => [
-                    'class' => 'step step-5 col-6',
-                ],
-                'label_attr' => [
-                    'class' => 'form-label',
-                ],
-                'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'email@exemple.fr',
+                    'class' => 'upload-box mb-4',
                 ],
             ])
-
-            ->add('phone', TextType::class, [
+            ->add('contactPhone', CheckboxType::class, [
                 'label' => 'Téléphone',
                 'required' => false,
-                'row_attr' => [
-                    'class' => 'step step-5 col-6',
+            ])
+
+            ->add('contactEmail', CheckboxType::class, [
+                'label' => 'Email',
+                'required' => false,
+            ])
+
+            ->add('contactSms', CheckboxType::class, [
+                'label' => 'SMS',
+                'required' => false,
+            ])
+
+            ->add('contactChat', CheckboxType::class, [
+                'label' => 'Chat',
+                'required' => false,
+            ])
+            ->add('callbackAvailability', ChoiceType::class, [
+                'label' => 'Disponibilité pour être rappelé',
+                'choices' => [
+                    '9h00 - 12h00, 14h00 - 18h00' => '9h00 - 12h00, 14h00 - 18h00',
+                    '8h00 - 12h00' => '8h00 - 12h00',
+                    '12h00 - 14h00' => '12h00 - 14h00',
+                    '14h00 - 18h00' => '14h00 - 18h00',
+                    '18h00 - 20h00' => '18h00 - 20h00',
+                ],
+                'placeholder' => 'Choisir une disponibilité',
+                'attr' => [
+                    'class' => 'form-select selection-devis mb-3',
                 ],
                 'label_attr' => [
-                    'class' => 'form-label',
+                    'class' => 'form-label ',
                 ],
+                'row_attr' => [
+                    'class' => 'mb-3',
+                ],
+            ])
+            ->add('interventionMoment', ChoiceType::class, [
+                'label' => 'Moment préféré pour l’intervention',
+                'choices' => [
+                    'En semaine' => 'En semaine',
+                    'Le matin' => 'Le matin',
+                    'L’après-midi' => 'L’après-midi',
+                    'Le soir' => 'Le soir',
+                    'Le week-end' => 'Le week-end',
+                ],
+                'placeholder' => 'Choisir un moment',
                 'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => '06 00 00 00 00',
+                    'class' => 'form-select selection-devis mb-3',
+                ],
+                'label_attr' => [
+                    'class' => 'form-label ',
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3',
+                ],
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Recevoir mes devis gratuits',
+                'attr' => [
+                    'class' => 'btn btn-success btn-lg px-5 py-3 fw-bold devis-submit-btn',
                 ],
             ])
         ;
@@ -303,18 +280,6 @@ class QuoteRequestType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => QuoteRequestDto::class,
-            'step' => 1,
-            'validation_groups' => static function (FormInterface $form) {
-                $step = $form->getConfig()->getOption('step');
-
-                if ($step === 5) {
-                    return false;
-                }
-
-                return ['Default', 'step'.$step];
-            },
         ]);
-
-        $resolver->setAllowedTypes('step', 'int');
     }
 }

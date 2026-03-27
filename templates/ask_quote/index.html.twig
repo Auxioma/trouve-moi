@@ -3,319 +3,319 @@
 {% block title %}Demande de devis{% endblock %}
 
 {% block body %}
+    <section class="inner-banner py-4">
+        <div class="container">
+            <h2 class="mb-0 text-center fw-bold">Demandez votre devis en ligne</h2>
+        </div>
+    </section>
 
+    <section class="properties-detail bg-light py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                {{ form_start(form, {
+                    attr: {
+                        class: 'form-devis'
+                    }
+                }) }}
+                <div class="col-10 col-xl-10 mx-auto">
+                    <div class="devis-card bg-white shadow-sm">
 
-<section class="quote-stepper d-flex align-items-center justify-content-center" style="min-height: 100vh;">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 col-xl-8">
+                        <div class="row g-0">
+                            <!-- Colonne gauche -->
+                            <div class="col-12 col-lg-6 devis-col border-end-lg">
+                                <div class="p-4 p-md-5">
+                                    <div class="d-flex align-items-center gap-3 mb-4">
+                                        <span class="step-badge">1</span>
+                                        <h3 class="h3 mb-0 fw-bold text-primary-custom">Vos coordonnées</h3>
+                                    </div>
+                                    {{ form_row(form.lastName)}}
+                                    {{ form_row(form.firstName)}}
+                                    {{ form_row(form.address)}}
+                                    {{ form_row(form.postalCity)}}
+                                    {{ form_row(form.phone)}}
+                                    {{ form_row(form.email)}}
+                                </div>
+                            </div>
 
-                <div class="bg-gris shadow-sm rounded-4 p-4 p-lg-5">
+                            <!-- Colonne droite -->
+                            <div class="col-12 col-lg-6 devis-col">
+                                <div class="p-4 p-md-5">
+                                    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mb-4">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <span class="step-badge">2</span>
+                                            <h3 class="h3 mb-0 fw-bold text-primary-custom">Votre besoin</h3>
+                                        </div>
+                                    </div>
+                           
+                                    <div class="row">
+                                    {{ form_widget(form.artisanType)}}
+                                    {{ form_widget(form.projectType)}}
+                                    {{ form_widget(form.desiredDelay)}} 
+                               
+                                    </div>
 
-                    <div class="text-center mb-4">
-                        <h1 class="">Demande de devis</h1>
-                        <p class="text-muted mb-0">Répondez aux questions en quelques étapes</p>
+                                    <div class="mb-0">
+                                        <div class="row g-2">
+                                                {% for choice in form.urgence %}
+                                                    <div class="col-6">
+                                                        <div class="form-check">
+                                                            {{ form_widget(choice) }}
+                                                            {{ form_label(choice) }}
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Partie basse -->
+                        <div class="border-top p-4 p-md-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                                        <span class="fw-bold fs-5 text-primary-custom">Budget estimatif :</span>
+                                        <span class="fw-bold fs-4 text-primary-custom">10 000 €</span>
+                                    </div>
+
+                                    {{ form_widget(form.budget)}}
+
+                                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                                        <span class="fw-bold fs-4 text-primary-custom">500 €</span>
+                                        <span class="fw-bold fs-4 text-primary-custom" id="budgetCurrent">Budget : 2 300 €</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4">
+                                    {{ form_widget(form.message)}}
+                                </div>
+
+                                <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                                    <div class="upload-box mb-4">
+                                        <h4 class="fw-bold mb-2 text-primary-custom">
+                                            📷 Ajoutez des photos
+                                            <small class="text-muted fw-normal">(fortement recommandé)</small>
+                                        </h4>
+
+                                        <p class="mb-3 text-muted">
+                                            Les demandes avec photos reçoivent généralement plus de réponses
+                                            et permettent aux professionnels de mieux comprendre votre projet.
+                                        </p>
+
+                                        {{ form_widget(form.photos) }}
+                                        {{ form_errors(form.photos) }}
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label fw-semibold d-block">Être contacté de préférence par :</label>
+
+                                        <div class="row g-2">
+                                            <div class="row g-2">
+                                                <div class="col-6 col-sm-4">
+                                                    <div class="form-check">
+                                                        {{ form_widget(form.contactPhone) }}
+                                                        {{ form_label(form.contactPhone) }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-4">
+                                                    <div class="form-check">
+                                                        {{ form_widget(form.contactEmail) }}
+                                                        {{ form_label(form.contactEmail) }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-4">
+                                                    <div class="form-check">
+                                                        {{ form_widget(form.contactSms) }}
+                                                        {{ form_label(form.contactSms) }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6 col-sm-4">
+                                                    <div class="form-check">
+                                                        {{ form_widget(form.contactChat) }}
+                                                        {{ form_label(form.contactChat) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-6">
+                                    <div class="mb-3">
+                                        {{ form_label(form.callbackAvailability) }}
+                                        {{ form_widget(form.callbackAvailability) }}
+                                        {{ form_errors(form.callbackAvailability) }}
+                                    </div>
+
+                                    <div class="mb-0">
+                                        {{ form_label(form.interventionMoment) }}
+                                        {{ form_widget(form.interventionMoment) }}
+                                        {{ form_errors(form.interventionMoment) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-5">
+                                {{ form_row(form.submit) }}
+
+                                <div class="mt-3 fw-semibold text-primary-custom fs-5">
+                                    ⭐ 4,8/5 basé sur 120 avis
+                                    <span class="text-muted fw-normal">• plus de 2 000 demandes traitées</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-
-                    {# Barre de progression + étapes #}
-                    <div class="step-progress-wrapper mb-5">
-                        <div class="step-progress">
-                            <div class="step-progress-bar" id="stepProgressBar" style="width: 0%;"></div>
-                        </div>
-
-                        <div class="d-flex justify-content-between step-items">
-                            <button type="button" class="step-circle active" data-step="1">1</button>
-                            <button type="button" class="step-circle" data-step="2">2</button>
-                            <button type="button" class="step-circle" data-step="3">3</button>
-                            <button type="button" class="step-circle" data-step="4">4</button>
-                            <button type="button" class="step-circle" data-step="5">5</button>
-                        </div>
-                    </div>
-
-                    {# Formulaire / contenu #}
-                        {{ form_start(form, {
-                            attr: {
-                                class: 'demande-de-devis-en-ligne quote-form',
-                                id: 'quoteForm'
-                            }
-                        }) }}
-
-                        <div class="step-content active" data-step="1">
-                            <h2 class="h5 fw-bold mb-3">Étape 1</h2>
-                            <div class="row form-group">
-                                {{ form_row(form.activity) }}
-                                {{ form_row(form.requestType) }}  
-                                {{ form_row(form.urgency) }}
-                            </div>
-
-                          
-                        </div>
-
-                        <div class="step-content d-none" data-step="2">
-                            <h2 class="h5 fw-bold mb-3">Étape 2</h2>
-                            <div class="row form-group">
-                                {{ form_row(form.description) }}
-                            </div>
-                        </div>
-
-                        <div class="step-content d-none" data-step="3">
-                            <h2 class="h5 fw-bold mb-3">Étape 3</h2>
-                            <div class="row form-group">
-                                {{ form_row(form.address) }}
-                                {{ form_row(form.postalCode) }}
-                                {{ form_row(form.city) }}
-                                {{ form_row(form.accessDetails) }}
-                            </div>
-                        </div>
-
-                        <div class="step-content d-none" data-step="4">
-                            <h2 class="h5 fw-bold mb-3">Étape 4</h2>
-                            <div class="row form-group">
-                                {{ form_row(form.desiredDelay) }}
-                                {{ form_row(form.budget) }}
-                            </div>
-                        </div>
-
-                        <div class="step-content d-none" data-step="5">
-                            <h2 class="h5 fw-bold mb-3">Étape 5</h2>
-                            <div class="row form-group">
-                                {{ form_row(form.firstName) }}
-                                {{ form_row(form.lastName) }}
-                                {{ form_row(form.email) }}
-                                {{ form_row(form.phone) }}
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-between mt-4">
-                            <button type="button" class="btn btn-outline-secondary px-4" id="prevBtn">Précédent</button>
-                            <button type="button" id="nextBtn">Suivant</button>
-                        </div>
-
-                    {{ form_end(form) }}
-
                 </div>
+                {{ form_end(form) }}
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<style>
-#quote_request_accessDetails {
-    max-height:100px;
-}
-#nextBtn {
-    padding: clamp(8px, 0.67vw, 16px) clamp(16px, 1.25vw, 32px) !important;
-    border-radius: 5px !important;
-    font-weight: 600 !important;
-    font-size: clamp(16px, 1vw, 24px) !important;
-    font-family: "Inter", sans-serif !important;
-    line-height: 130%;
-    text-transform: capitalize;
-    transition: all 0.5s ease-in-out;
-    border: 1px solid #A57A5A;
-}
-#nextBtn:hover {
-    color: #FAFAFA;
-    border: 1px solid #A57A5A;
-    background: #A57A5A;
-}
-
-#prevBtn {
-    padding: clamp(8px, 0.67vw, 16px) clamp(16px, 1.25vw, 32px) !important;
-    border-radius: 5px !important;
-    font-weight: 600 !important;
-    font-size: clamp(16px, 1vw, 24px) !important;
-    font-family: "Inter", sans-serif !important;
-    line-height: 130%;
-    text-transform: capitalize;
-    transition: all 0.5s ease-in-out;    
-    border: 1px solid #A57A5A;
-    background: #A57A5A;
-    color: #FAFAFA;
-}
-#prevBtn:hover {
-    border: 1px solid #A57A5A;
-    background: #FFF;
-    color: #000;
-}
-
-
-.bg-gris {
-    background: #F0F2F4;
-}
-.bg-gris h1 {
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-    font-size: 23px;
-    line-height: 130%;
-    text-transform: capitalize;
-    color: #0D0D0D;
-    margin-bottom: 16px;
-}
-.bg-gris p, .bg-gris h2 {
-    font-family: "Inter", sans-serif;
-    line-height: 150%;
-    color: #797D86;
-    margin-bottom: 0;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    line-clamp: 6;
-    -webkit-box-orient: vertical;
-}
-
-.step-progress-wrapper {
-    position: relative;
-    padding: 0 12px;
-}
-
-.step-progress {
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    right: 24px;
-    height: 4px;
-    background: #e9ecef;
-    border-radius: 50px;
-    z-index: 1;
-}
-
-.step-progress-bar {
-    height: 100%;
-    width: 0;
-    background: #A57A5A;
-    border-radius: 50px;
-    transition: width 0.3s ease;
-}
-
-.step-items {
-    position: relative;
-    z-index: 2;
-}
-
-.step-circle {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 2px solid #dee2e6;
-    background: #fff;
-    color: #6c757d;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    cursor: default;
-}
-
-.step-circle.active {
-    background: #A57A5A;
-    border-color: #A57A5A;
-    color: #fff;
-}
-
-.step-circle:hover.active {
-        box-shadow: 0 0 0 6px #A57A5A;
-}
-.step-circle {
-    transition: all 0.3s ease;
-}
-
-.step-circle.active:hover {
-    animation: pulseShadow 0.4s ease forwards;
-}
-
-@keyframes pulseShadow {
-    0% {
-        box-shadow: 0 0 0 0 rgba(165, 122, 90, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 6px rgba(165, 122, 90, 0.35);
-    }
-}
-
-
-
-
-.step-circle.done {
-    background: #A57A5A;
-    border-color: #A57A5A;
-    color: #fff;
-}
-
-.step-content {
-    animation: fadeStep 0.25s ease;
-}
-
-@keyframes fadeStep {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-</style>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const steps = document.querySelectorAll('.step-content');
-    const circles = document.querySelectorAll('.step-circle');
-    const progressBar = document.getElementById('stepProgressBar');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    const budgetRange = document.getElementById('quote_request_budget');
+    const budgetCurrent = document.getElementById('budgetCurrent');
 
-    let currentStep = 1;
-    const totalSteps = steps.length;
-
-    function updateStepper() {
-        steps.forEach(step => {
-            step.classList.add('d-none');
-            step.classList.remove('active');
-        });
-
-        const activeStep = document.querySelector(`.step-content[data-step="${currentStep}"]`);
-        activeStep.classList.remove('d-none');
-        activeStep.classList.add('active');
-
-        circles.forEach(circle => {
-            const stepNumber = parseInt(circle.dataset.step);
-
-            circle.classList.remove('active', 'done');
-
-            if (stepNumber < currentStep) {
-                circle.classList.add('done');
-            } else if (stepNumber === currentStep) {
-                circle.classList.add('active');
-            }
-        });
-
-        const progressPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
-        progressBar.style.width = progressPercent + '%';
-
-        prevBtn.style.visibility = currentStep === 1 ? 'hidden' : 'visible';
-        nextBtn.textContent = currentStep === totalSteps ? 'Envoyer' : 'Suivant';
+    function formatEuros(value) {
+        return new Intl.NumberFormat('fr-FR').format(value) + ' €';
     }
 
-    nextBtn.addEventListener('click', function () {
-        if (currentStep < totalSteps) {
-            currentStep++;
-            updateStepper();
-        } else {
-            document.getElementById('multiStepForm').submit();
-        }
-    });
+    function updateBudget() {
+        const value = budgetRange.value;
+        const min = budgetRange.min;
+        const max = budgetRange.max;
 
-    prevBtn.addEventListener('click', function () {
-        if (currentStep > 1) {
-            currentStep--;
-            updateStepper();
-        }
-    });
+        budgetCurrent.textContent = 'Budget : ' + formatEuros(value);
 
-    updateStepper();
+        const percent = ((value - min) / (max - min)) * 100;
+
+        budgetRange.style.background =
+            `linear-gradient(to right, #0d6efd ${percent}%, #e5e5e5 ${percent}%)`;
+    }
+
+    if (budgetRange && budgetCurrent) {
+        budgetRange.addEventListener('input', updateBudget);
+        updateBudget();
+    }
+
+    
 });
 </script>
 
+    <style>
+        .form-devis input[type="text"],
+        .form-devis input[type="tel"],
+        .form-devis input[type="email"],
+        .form-devis textarea {
+            background: #FAFAFA;
+            padding: clamp(10px, 0.83vw, 22px) clamp(14px, 1.1vw, 30px);
+            border-radius: 5px;
+            border: 1px solid #0D0D0D;
+            font-size: 16px;
+            font-weight: 400;
+            font-family: "Inter", sans-serif;
+            position: relative;
+            margin-bottom: 0;
+            color: #797D86;
+        }
+
+        .selection-devis.form-select {
+            border-color: #797D86!important;
+            box-shadow: initial;
+        }
+        .selection-devis.form-select:focus {
+            border-color: #797D86!important;
+            box-shadow: initial;
+        }
+
+        .bg-light {
+            background: #f0f2f4 !important;
+        }
+
+        .devis-card {
+            border: 2px solid #A57A5A;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .text-primary-custom {
+            color: #183153;
+        }
+
+        .step-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: #f7e3a3;
+            color: #183153;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-bottom: 0!important;
+        }
+
+        .next-step-badge {
+            background: #eef1f6;
+            color: #4b5563;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .form-control,
+        .form-select {
+            min-height: 58px;
+            border-radius: 12px;
+        }
+
+        .devis-textarea {
+            min-height: 140px;
+            border-radius: 12px;
+            resize: vertical;
+        }
+
+        .upload-box {
+            border: 1px solid #A57A5A;
+            border-radius: 12px;
+            background: #f7f9fc;
+            padding: 20px;
+        }
+
+        .devis-submit-btn {
+            min-width: 320px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, #198754 0%, #157347 100%);
+            border: none;
+        }
+
+        @media (min-width: 992px) {
+            .border-end-lg {
+                border-right: 1px solid #A57A5A;
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .devis-col:first-child {
+                border-bottom: 1px solid #A57A5A
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .devis-submit-btn {
+                min-width: 100%;
+            }
+        }
+        .border-top {
+            border-top: 1px solid #A57A5A !important;
+        }
+    </style>
 {% endblock %}
