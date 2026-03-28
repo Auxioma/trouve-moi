@@ -25,7 +25,7 @@
                             <div class="col-12 col-lg-6 devis-col border-end-lg">
                                 <div class="p-4 p-md-5">
                                     <div class="d-flex align-items-center gap-3 mb-4">
-                                        <span class="step-badge">1</span>
+                                        <span class="step-badge">11</span>
                                         <h3 class="h3 mb-0 fw-bold text-primary-custom">Vos coordonnées</h3>
                                     </div>
                                     {{ form_row(form.lastName)}}
@@ -42,15 +42,15 @@
                                 <div class="p-4 p-md-5">
                                     <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mb-4">
                                         <div class="d-flex align-items-center gap-3">
-                                            <span class="step-badge">2</span>
+                                            <span class="step-badge">2.</span>
                                             <h3 class="h3 mb-0 fw-bold text-primary-custom">Votre besoin</h3>
                                         </div>
                                     </div>
                            
                                     <div class="row">
-                                    {{ form_widget(form.artisanType)}}
-                                    {{ form_widget(form.projectType)}}
-                                    {{ form_widget(form.desiredDelay)}} 
+                                    {{ form_row(form.artisanType)}}
+                                    {{ form_row(form.projectType)}}
+                                    {{ form_row(form.desiredDelay)}} 
                                
                                     </div>
 
@@ -145,16 +145,9 @@
                                 </div>
 
                                 <div class="col-12 col-lg-6">
-                                    <div class="mb-3">
-                                        {{ form_label(form.callbackAvailability) }}
-                                        {{ form_widget(form.callbackAvailability) }}
-                                        {{ form_errors(form.callbackAvailability) }}
-                                    </div>
-
-                                    <div class="mb-0">
-                                        {{ form_label(form.interventionMoment) }}
-                                        {{ form_widget(form.interventionMoment) }}
-                                        {{ form_errors(form.interventionMoment) }}
+                                    
+                                    {{ form_row(form.callbackAvailability) }}
+                                    {{ form_row(form.interventionMoment) }}
                                     </div>
                                 </div>
                             </div>
@@ -213,10 +206,10 @@ document.addEventListener('DOMContentLoaded', function () {
         .form-devis input[type="email"],
         .form-devis textarea {
             background: #FAFAFA;
-            padding: clamp(10px, 0.83vw, 22px) clamp(14px, 1.1vw, 30px);
+            padding: clamp(10px, 0.83vw, 10px) clamp(10px, 1.1vw, 10px);
             border-radius: 5px;
             border: 1px solid #0D0D0D;
-            font-size: 16px;
+            font-size: 12px;
             font-weight: 400;
             font-family: "Inter", sans-serif;
             position: relative;
@@ -224,9 +217,26 @@ document.addEventListener('DOMContentLoaded', function () {
             color: #797D86;
         }
 
+        .properties-detail span {
+            font-family: "Inter", sans-serif;
+            font-weight: initial;
+            font-size: initial;
+            line-height: initial;
+            margin-bottom: initial;
+            margin-right: initial;
+            position: initial;
+        }
+
         .selection-devis.form-select {
-            border-color: #797D86!important;
-            box-shadow: initial;
+            padding: clamp(10px, 0.83vw, 10px) clamp(10px, 1.1vw, 10px);
+            border-radius: 5px;
+            border: 1px solid #0D0D0D;
+            font-size: 12px;
+            font-weight: 400;
+            font-family: "Inter", sans-serif;
+            position: relative;
+            margin-bottom: 0;
+            color: #797D86;
         }
         .selection-devis.form-select:focus {
             border-color: #797D86!important;
@@ -273,8 +283,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         .form-control,
         .form-select {
-            min-height: 58px;
-            border-radius: 12px;
+            /*min-height: 58px;
+            border-radius: 12px;*/  
         }
 
         .devis-textarea {
