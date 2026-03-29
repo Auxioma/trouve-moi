@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes messages{% endblock %}
+
+{% block body %}
+    <h1>Mes messages</h1>
+
+    {% for message in messages %}
+        <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+            <strong>
+                {{ message.sender.firstName }} {{ message.sender.lastName }}
+            </strong>
+            <br>
+            <small>{{ message.createdAt|date('d/m/Y H:i') }}</small>
+
+            <p>{{ message.content }}</p>
+        </div>
+    {% else %}
+        <p>Aucun message.</p>
+    {% endfor %}
+{% endblock %}
