@@ -84,6 +84,7 @@ public function show(
     if ($request->isMethod('POST')) {
         $content = trim((string) $request->request->get('content'));
 
+
         if ($content !== '') {
             $message = new Message();
             $message->setConversation($conversation);

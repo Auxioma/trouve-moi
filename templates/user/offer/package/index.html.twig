@@ -1,0 +1,267 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes packs{% endblock %}
+
+{% block body %}
+<section class="inner-banner">
+	<div class="container">
+		<h2>Mes packs</h2>
+	</div>
+</section>
+
+<section class="packs-page py-5">
+	<div class="container">
+		<div class="row g-4">
+			{% include '_partials/nav_bar_artisant.html.twig' %}
+
+			<div class="col-xl-8">
+				<div class="packs-card">
+
+					<div class="packs-header">
+						<div>
+							<h3 class="packs-title mb-1">Choisissez votre pack</h3>
+							<p class="packs-subtitle mb-0">
+								Sélectionnez l’offre pour répondre aux annonces.
+							</p>
+						</div>
+					</div>
+
+					<div class="packs-body">
+						<div class="row g-4 justify-content-center">
+
+							<!-- PACK GRATUIT -->
+							<div class="col-md-6">
+								<div class="pack-item">
+									<div class="pack-top">
+										<span class="pack-label">Découverte</span>
+										<h4 class="pack-name">Pack Gratuit</h4>
+										<div class="pack-price">
+											<span class="price-value">0€</span>
+											<span class="price-period">/mois</span>
+										</div>
+										<p class="pack-description">
+											Idéal pour commencer et découvrir la plateforme.
+										</p>
+									</div>
+
+									<ul class="pack-features">
+										<li>Accès limité aux annonces</li>
+										<li>Réponses restreintes</li>
+										<li>Visibilité standard</li>
+										<li>Sans engagement</li>
+									</ul>
+
+									<div class="pack-footer">
+										<a href="#" class="pack-btn pack-btn-outline">
+											Choisir ce pack
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- PACK 29€ FAVORI -->
+							<div class="col-md-6">
+								<div class="pack-item pack-item-featured">
+									<div class="pack-badge">Le plus vendu</div>
+
+									<div class="pack-top">
+										<span class="pack-label pack-label-featured">Favori</span>
+										<h4 class="pack-name">Pack Pro</h4>
+										<div class="pack-price">
+											<span class="price-value">29€</span>
+											<span class="price-period">/mois</span>
+										</div>
+										<p class="pack-description">
+											Le meilleur choix pour répondre aux annonces et obtenir plus de clients.
+										</p>
+									</div>
+
+									<ul class="pack-features">
+										<li>Réponses étendues aux annonces</li>
+										<li>Mise en avant du profil</li>
+										<li>Plus de visibilité</li>
+										<li>Support prioritaire</li>
+									</ul>
+
+									<div class="pack-footer">
+										<a href="#" class="pack-btn pack-btn-solid">
+											Choisir ce pack
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="packs-note">
+							<p class="mb-0">
+								Vous pouvez changer de pack à tout moment.
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+.packs-page {
+	background: #f7f8fc;
+	min-height: 100vh;
+}
+
+.packs-card {
+	background: #ffffff;
+	border: 1px solid #eceef3;
+	border-radius: 24px;
+	box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+	overflow: hidden;
+}
+
+.packs-header {
+	padding: 24px;
+	border-bottom: 1px solid #eff1f5;
+}
+
+.packs-title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #111827;
+}
+
+.packs-subtitle {
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.packs-body {
+	padding: 24px;
+}
+
+.pack-item {
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 24px;
+	border: 1px solid #eceef3;
+	border-radius: 24px;
+	background: #f9fafc;
+	transition: all 0.25s ease;
+}
+
+.pack-item:hover {
+	transform: translateY(-4px);
+	background: #ffffff;
+	box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.pack-item-featured {
+	background: linear-gradient(135deg, rgb(165, 122, 90) 0%, rgb(140, 100, 72) 50%, rgb(115, 80, 58) 100%);
+	border-color: rgb(140, 100, 72);
+	color: #ffffff;
+	transform: scale(1.05);
+	box-shadow: 0 18px 40px rgba(115, 80, 58, 0.25);
+}
+
+.pack-badge {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	padding: 6px 12px;
+	border-radius: 999px;
+	background: #ffffff;
+	color: rgb(115, 80, 58);
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.pack-label {
+	display: inline-block;
+	margin-bottom: 10px;
+	padding: 6px 12px;
+	border-radius: 999px;
+	background: #eef2f7;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.pack-label-featured {
+	background: rgba(255,255,255,0.2);
+	color: #ffffff;
+}
+
+.pack-name {
+	font-size: 22px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.pack-price {
+	display: flex;
+	align-items: flex-end;
+	gap: 5px;
+	margin-bottom: 10px;
+}
+
+.price-value {
+	font-size: 40px;
+	font-weight: 800;
+}
+
+.price-period {
+	font-size: 14px;
+	opacity: 0.7;
+}
+
+.pack-description {
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+
+.pack-features {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 20px;
+}
+
+.pack-features li {
+	margin-bottom: 8px;
+	font-size: 14px;
+}
+
+.pack-btn {
+	display: block;
+	text-align: center;
+	padding: 12px;
+	border-radius: 12px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.pack-btn-solid {
+	background: #ffffff;
+	color: rgb(115, 80, 58);
+	border: none;
+}
+
+.pack-btn-solid:hover {
+	background: #f3f4f6;
+}
+
+.pack-btn-outline {
+	background: #111827;
+	color: #ffffff;
+}
+
+.packs-note {
+	margin-top: 20px;
+	text-align: center;
+	color: #6b7280;
+}
+</style>
+
+{% endblock %}

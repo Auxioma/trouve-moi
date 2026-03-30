@@ -64,12 +64,6 @@
 
 
 									<a href="#" class="artisan-nav-link">
-										<span class="artisan-nav-link__icon"><i class="fas fa-tools"></i></span>
-										<span class="artisan-nav-link__text">Mes services</span>
-										<span class="artisan-nav-link__arrow"><i class="fas fa-chevron-right"></i></span>
-									</a>
-
-									<a href="#" class="artisan-nav-link">
 										<span class="artisan-nav-link__icon"><i class="fas fa-images"></i></span>
 										<span class="artisan-nav-link__text">Mes réalisations</span>
 										<span class="artisan-nav-link__arrow"><i class="fas fa-chevron-right"></i></span>
@@ -86,17 +80,18 @@
 									</a>
 
 
-									<a href="#" class="artisan-nav-link">
+									<a href="{{ path('app_calendar_monthly') }}" class="artisan-nav-link">
 										<span class="artisan-nav-link__icon"><i class="fas fa-calendar-check"></i></span>
-										<span class="artisan-nav-link__text">Mes rendez-vous</span>
+										<span class="artisan-nav-link__text">Prise de rendez vous</span>
 										<span class="artisan-nav-link__count">3</span>
 									</a>
 
-									<a href="#" class="artisan-nav-link">
-										<span class="artisan-nav-link__icon"><i class="fas fa-comments"></i></span>
-										<span class="artisan-nav-link__text">Messages</span>
-										<span class="artisan-nav-link__count">2</span>
+									<a href="{{ path('app_calendar_monthly') }}" class="artisan-nav-link">
+										<span class="artisan-nav-link__icon"><i class="fas fa-calendar-check"></i></span>
+										<span class="artisan-nav-link__text">Mes futur rendez vous</span>
+										<span class="artisan-nav-link__count">3</span>
 									</a>
+
 								</div>
 
 								<div class="artisan-nav-group mb-4">
@@ -134,7 +129,7 @@
 									<div class="artisan-offer-box__content">
 										<h5 class="mb-1">Boostez votre visibilité</h5>
 										<p class="mb-3">Passez à une offre supérieure pour recevoir plus de demandes.</p>
-										<a href="#" class="btn btn-dark rounded-pill px-3">Voir mon offre</a>
+										<a href="{{ path('app_user_offer_package') }}" class="btn btn-dark rounded-pill px-3">Voir mon offre</a>
 									</div>
 								</div>
 

@@ -1,0 +1,722 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendrier de rendez-vous{% endblock %}
+
+{% block body %}
+<section class="inner-banner">
+	<div class="container">
+		<h2>Calendrier de rendez-vous</h2>
+	</div>
+</section>
+
+<section class="calendar-page py-5">
+	<div class="container">
+		<div class="row g-4">
+			{% include '_partials/nav_bar_artisant.html.twig' %}
+
+			<div class="col-xl-8">
+				<div class="calendar-card">
+					<div class="calendar-header">
+						<div>
+							<h3 class="calendar-title mb-1">Disponibilités sur 12 mois</h3>
+							<p class="calendar-subtitle mb-0">
+								Cliquez sur une date pour choisir un créneau de rendez-vous.
+							</p>
+						</div>
+					</div>
+
+					<div class="calendar-body">
+						<div id="calendarGrid" class="calendar-grid"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div id="appointmentModal" class="appointment-modal" aria-hidden="true">
+	<div class="appointment-modal-backdrop"></div>
+
+	<div class="appointment-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="appointmentModalTitle">
+		<button type="button" class="appointment-modal-close" id="closeAppointmentModal" aria-label="Fermer">
+			✕
+		</button>
+
+		<div class="appointment-modal-header">
+			<h4 id="appointmentModalTitle" class="appointment-modal-title">Prise de rendez-vous</h4>
+			<p id="selectedDateLabel" class="appointment-modal-date mb-0"></p>
+		</div>
+
+		<div class="appointment-modal-body">
+			<div class="slots-header">
+				<h5 class="slots-title">Choisissez un horaire</h5>
+				<p class="slots-subtitle mb-0">Créneaux disponibles de 06h00 à 20h00, toutes les 30 minutes.</p>
+			</div>
+
+			<div id="timeSlots" class="time-slots"></div>
+
+			<form id="appointmentForm" class="appointment-form mt-4">
+				<input type="hidden" name="appointment_date" id="appointmentDateInput">
+				<input type="hidden" name="appointment_time" id="appointmentTimeInput">
+
+				<div class="selected-slot-box">
+					<span class="selected-slot-label">Créneau sélectionné :</span>
+					<strong id="selectedSlotText">Aucun créneau sélectionné</strong>
+				</div>
+
+				<div class="appointment-actions">
+					<button type="button" class="btn-cancel" id="cancelAppointmentBtn">Annuler</button>
+					<button type="submit" class="btn-confirm">Confirmer le rendez-vous</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<style>
+.calendar-page {
+	background: #f7f8fc;
+	min-height: 100vh;
+}
+
+.calendar-card {
+	background: #ffffff;
+	border: 1px solid #eceef3;
+	border-radius: 24px;
+	box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+	overflow: hidden;
+}
+
+.calendar-header {
+	padding: 24px;
+	border-bottom: 1px solid #eff1f5;
+}
+
+.calendar-title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #111827;
+}
+
+.calendar-subtitle {
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.calendar-body {
+	padding: 24px;
+}
+
+.calendar-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 20px;
+}
+
+.month-card {
+	background: #f9fafc;
+	border: 1px solid #eceef3;
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+.month-header {
+	padding: 18px 20px;
+	background: linear-gradient(135deg, rgb(165, 122, 90) 0%, rgb(140, 100, 72) 50%, rgb(115, 80, 58) 100%);
+	color: #ffffff;
+}
+
+.month-title {
+	margin: 0;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.month-weekdays,
+.month-days {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.month-weekdays {
+	background: #ffffff;
+	border-bottom: 1px solid #edf0f4;
+}
+
+.weekday {
+	padding: 12px 6px;
+	text-align: center;
+	font-size: 12px;
+	font-weight: 700;
+	color: #6b7280;
+	text-transform: uppercase;
+}
+
+.month-days {
+	padding: 10px;
+	gap: 8px;
+}
+
+.day-cell,
+.day-cell-empty {
+	aspect-ratio: 1 / 1;
+}
+
+.day-cell-empty {
+	background: transparent;
+}
+
+.day-btn {
+	width: 100%;
+	height: 100%;
+	border: 1px solid #e5e7eb;
+	border-radius: 14px;
+	background: #ffffff;
+	color: #111827;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.day-btn:hover {
+	transform: translateY(-2px);
+	border-color: rgb(140, 100, 72);
+	box-shadow: 0 8px 18px rgba(115, 80, 58, 0.12);
+}
+
+.day-btn.today {
+	border: 2px solid rgb(140, 100, 72);
+	background: rgba(165, 122, 90, 0.08);
+	color: rgb(115, 80, 58);
+}
+
+.day-btn.selected-day {
+	background: linear-gradient(135deg, rgb(165, 122, 90) 0%, rgb(140, 100, 72) 50%, rgb(115, 80, 58) 100%);
+	color: #ffffff;
+	border-color: rgb(140, 100, 72);
+}
+
+.disabled-day {
+	background: #f3f4f6;
+	color: #9ca3af;
+	border-color: #e5e7eb;
+	cursor: not-allowed;
+	box-shadow: none;
+	transform: none;
+}
+
+.disabled-day:hover {
+	transform: none;
+	box-shadow: none;
+	border-color: #e5e7eb;
+}
+
+.appointment-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 2000;
+	display: none;
+}
+
+.appointment-modal.is-open {
+	display: block;
+}
+
+.appointment-modal-backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(17, 24, 39, 0.55);
+	backdrop-filter: blur(4px);
+}
+
+.appointment-modal-dialog {
+	position: relative;
+	width: min(920px, calc(100% - 32px));
+	max-height: calc(100vh - 40px);
+	margin: 20px auto;
+	background: #ffffff;
+	border-radius: 24px;
+	box-shadow: 0 25px 70px rgba(15, 23, 42, 0.2);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+.appointment-modal-close {
+	position: absolute;
+	top: 18px;
+	right: 18px;
+	width: 42px;
+	height: 42px;
+	border: none;
+	border-radius: 50%;
+	background: #f3f4f6;
+	color: #111827;
+	font-size: 18px;
+	cursor: pointer;
+	z-index: 2;
+	transition: all 0.2s ease;
+}
+
+.appointment-modal-close:hover {
+	background: #e5e7eb;
+}
+
+.appointment-modal-header {
+	padding: 28px 28px 20px;
+	border-bottom: 1px solid #eff1f5;
+	background: #ffffff;
+}
+
+.appointment-modal-title {
+	margin: 0 0 8px;
+	font-size: 24px;
+	font-weight: 700;
+	color: #111827;
+}
+
+.appointment-modal-date {
+	font-size: 15px;
+	color: #6b7280;
+}
+
+.appointment-modal-body {
+	padding: 24px 28px 28px;
+	overflow-y: auto;
+}
+
+.slots-header {
+	margin-bottom: 18px;
+}
+
+.slots-title {
+	font-size: 18px;
+	font-weight: 700;
+	color: #111827;
+	margin-bottom: 6px;
+}
+
+.slots-subtitle {
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.time-slots {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.time-slot-btn {
+	border: 1px solid #e5e7eb;
+	background: #ffffff;
+	color: #111827;
+	border-radius: 14px;
+	padding: 12px 14px;
+	font-size: 14px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.time-slot-btn:hover {
+	transform: translateY(-2px);
+	border-color: rgb(140, 100, 72);
+	box-shadow: 0 8px 16px rgba(115, 80, 58, 0.12);
+}
+
+.time-slot-btn.active {
+	background: linear-gradient(135deg, rgb(165, 122, 90) 0%, rgb(140, 100, 72) 50%, rgb(115, 80, 58) 100%);
+	border-color: rgb(140, 100, 72);
+	color: #ffffff;
+}
+
+.time-slot-btn.booked-slot {
+	background: #f3f4f6;
+	color: #9ca3af;
+	border-color: #e5e7eb;
+	cursor: not-allowed;
+	box-shadow: none;
+	transform: none;
+}
+
+.time-slot-btn.booked-slot:hover {
+	transform: none;
+	border-color: #e5e7eb;
+	box-shadow: none;
+}
+
+.selected-slot-box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 16px 18px;
+	border: 1px solid #eceef3;
+	border-radius: 16px;
+	background: #f9fafc;
+	margin-bottom: 18px;
+}
+
+.selected-slot-label {
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.appointment-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
+}
+
+.btn-cancel,
+.btn-confirm {
+	border: none;
+	border-radius: 14px;
+	padding: 14px 18px;
+	font-size: 14px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.btn-cancel {
+	background: #eef2f7;
+	color: #111827;
+}
+
+.btn-cancel:hover {
+	background: #e5e7eb;
+}
+
+.btn-confirm {
+	background: linear-gradient(135deg, rgb(165, 122, 90) 0%, rgb(140, 100, 72) 50%, rgb(115, 80, 58) 100%);
+	color: #ffffff;
+	box-shadow: 0 12px 24px rgba(115, 80, 58, 0.2);
+}
+
+.btn-confirm:hover {
+	transform: translateY(-1px);
+}
+
+@media (max-width: 1199.98px) {
+	.calendar-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.calendar-header,
+	.calendar-body {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	.month-header {
+		padding: 16px;
+	}
+
+	.month-days {
+		gap: 6px;
+		padding: 8px;
+	}
+
+	.day-btn {
+		border-radius: 10px;
+		font-size: 13px;
+	}
+
+	.appointment-modal-dialog {
+		width: calc(100% - 16px);
+		margin: 8px auto;
+		max-height: calc(100vh - 16px);
+		border-radius: 20px;
+	}
+
+	.appointment-modal-header,
+	.appointment-modal-body {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	.time-slots {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.selected-slot-box {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.appointment-actions {
+		flex-direction: column;
+	}
+
+	.btn-cancel,
+	.btn-confirm {
+		width: 100%;
+	}
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	const calendarGrid = document.getElementById('calendarGrid');
+	const modal = document.getElementById('appointmentModal');
+	const modalBackdrop = modal.querySelector('.appointment-modal-backdrop');
+	const closeModalBtn = document.getElementById('closeAppointmentModal');
+	const cancelAppointmentBtn = document.getElementById('cancelAppointmentBtn');
+	const selectedDateLabel = document.getElementById('selectedDateLabel');
+	const timeSlotsContainer = document.getElementById('timeSlots');
+	const appointmentDateInput = document.getElementById('appointmentDateInput');
+	const appointmentTimeInput = document.getElementById('appointmentTimeInput');
+	const selectedSlotText = document.getElementById('selectedSlotText');
+	const appointmentForm = document.getElementById('appointmentForm');
+
+	const monthNames = [
+		'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+		'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+	];
+
+	const weekdayNames = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+
+	const today = new Date();
+	const todayNoTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+	const startDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+
+	let currentSelectedDayButton = null;
+	let currentSelectedSlotButton = null;
+
+	/*
+	 * Exemple de créneaux déjà réservés.
+	 * Plus tard, tu pourras générer ça depuis Symfony/Twig avec tes rendez-vous en base.
+	 */
+	const bookedSlots = {
+		'2026-03-31': ['09:00', '09:30', '14:00'],
+		'2026-04-02': ['10:00', '10:30', '11:00'],
+		'2026-04-05': ['15:30', '16:00']
+	};
+
+	function formatDateToYmd(date) {
+		const year = date.getFullYear();
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+		const day = String(date.getDate()).padStart(2, '0');
+		return `${year}-${month}-${day}`;
+	}
+
+	function formatDateFr(date) {
+		return date.toLocaleDateString('fr-FR', {
+			weekday: 'long',
+			day: '2-digit',
+			month: 'long',
+			year: 'numeric'
+		});
+	}
+
+	function getMondayFirstDayIndex(jsDay) {
+		return jsDay === 0 ? 6 : jsDay - 1;
+	}
+
+	function isBooked(dateString, time) {
+		return bookedSlots[dateString] && bookedSlots[dateString].includes(time);
+	}
+
+	function createTimeSlots() {
+		timeSlotsContainer.innerHTML = '';
+		currentSelectedSlotButton = null;
+		appointmentTimeInput.value = '';
+		selectedSlotText.textContent = 'Aucun créneau sélectionné';
+
+		const selectedDate = appointmentDateInput.value;
+
+		for (let hour = 6; hour < 20; hour++) {
+			['00', '30'].forEach(minute => {
+				const time = `${String(hour).padStart(2, '0')}:${minute}`;
+
+				const slotBtn = document.createElement('button');
+				slotBtn.type = 'button';
+				slotBtn.className = 'time-slot-btn';
+				slotBtn.textContent = time;
+
+				if (isBooked(selectedDate, time)) {
+					slotBtn.classList.add('booked-slot');
+					slotBtn.disabled = true;
+				} else {
+					slotBtn.addEventListener('click', function () {
+						if (currentSelectedSlotButton) {
+							currentSelectedSlotButton.classList.remove('active');
+						}
+
+						slotBtn.classList.add('active');
+						currentSelectedSlotButton = slotBtn;
+						appointmentTimeInput.value = time;
+						selectedSlotText.textContent = `${appointmentDateInput.value} à ${time}`;
+					});
+				}
+
+				timeSlotsContainer.appendChild(slotBtn);
+			});
+		}
+
+		const lastTime = '20:00';
+		const lastSlot = document.createElement('button');
+		lastSlot.type = 'button';
+		lastSlot.className = 'time-slot-btn';
+		lastSlot.textContent = lastTime;
+
+		if (isBooked(selectedDate, lastTime)) {
+			lastSlot.classList.add('booked-slot');
+			lastSlot.disabled = true;
+		} else {
+			lastSlot.addEventListener('click', function () {
+				if (currentSelectedSlotButton) {
+					currentSelectedSlotButton.classList.remove('active');
+				}
+
+				lastSlot.classList.add('active');
+				currentSelectedSlotButton = lastSlot;
+				appointmentTimeInput.value = lastTime;
+				selectedSlotText.textContent = `${appointmentDateInput.value} à ${lastTime}`;
+			});
+		}
+
+		timeSlotsContainer.appendChild(lastSlot);
+	}
+
+	function openModal(date) {
+		appointmentDateInput.value = formatDateToYmd(date);
+		selectedDateLabel.textContent = formatDateFr(date);
+		createTimeSlots();
+
+		modal.classList.add('is-open');
+		modal.setAttribute('aria-hidden', 'false');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeModal() {
+		modal.classList.remove('is-open');
+		modal.setAttribute('aria-hidden', 'true');
+		document.body.style.overflow = '';
+	}
+
+	function generateMonth(year, month) {
+		const monthCard = document.createElement('div');
+		monthCard.className = 'month-card';
+
+		const monthHeader = document.createElement('div');
+		monthHeader.className = 'month-header';
+
+		const monthTitle = document.createElement('h4');
+		monthTitle.className = 'month-title';
+		monthTitle.textContent = `${monthNames[month]} ${year}`;
+
+		monthHeader.appendChild(monthTitle);
+		monthCard.appendChild(monthHeader);
+
+		const weekdaysRow = document.createElement('div');
+		weekdaysRow.className = 'month-weekdays';
+
+		weekdayNames.forEach(dayName => {
+			const weekday = document.createElement('div');
+			weekday.className = 'weekday';
+			weekday.textContent = dayName;
+			weekdaysRow.appendChild(weekday);
+		});
+
+		monthCard.appendChild(weekdaysRow);
+
+		const monthDays = document.createElement('div');
+		monthDays.className = 'month-days';
+
+		const firstDay = new Date(year, month, 1);
+		const lastDay = new Date(year, month + 1, 0);
+		const firstDayIndex = getMondayFirstDayIndex(firstDay.getDay());
+		const daysInMonth = lastDay.getDate();
+
+		for (let i = 0; i < firstDayIndex; i++) {
+			const emptyCell = document.createElement('div');
+			emptyCell.className = 'day-cell-empty';
+			monthDays.appendChild(emptyCell);
+		}
+
+		for (let day = 1; day <= daysInMonth; day++) {
+			const date = new Date(year, month, day);
+
+			const dayCell = document.createElement('div');
+			dayCell.className = 'day-cell';
+
+			const dayBtn = document.createElement('button');
+			dayBtn.type = 'button';
+			dayBtn.className = 'day-btn';
+			dayBtn.textContent = day;
+
+			const isToday =
+				date.getFullYear() === today.getFullYear() &&
+				date.getMonth() === today.getMonth() &&
+				date.getDate() === today.getDate();
+
+			if (isToday) {
+				dayBtn.classList.add('today');
+			}
+
+			if (date < todayNoTime) {
+				dayBtn.classList.add('disabled-day');
+				dayBtn.disabled = true;
+			} else {
+				dayBtn.addEventListener('click', function () {
+					if (currentSelectedDayButton) {
+						currentSelectedDayButton.classList.remove('selected-day');
+					}
+
+					dayBtn.classList.add('selected-day');
+					currentSelectedDayButton = dayBtn;
+					openModal(date);
+				});
+			}
+
+			dayCell.appendChild(dayBtn);
+			monthDays.appendChild(dayCell);
+		}
+
+		monthCard.appendChild(monthDays);
+		return monthCard;
+	}
+
+	function render12Months() {
+		calendarGrid.innerHTML = '';
+
+		for (let i = 0; i < 12; i++) {
+			const date = new Date(startDate.getFullYear(), startDate.getMonth() + i, 1);
+			const monthElement = generateMonth(date.getFullYear(), date.getMonth());
+			calendarGrid.appendChild(monthElement);
+		}
+	}
+
+	closeModalBtn.addEventListener('click', closeModal);
+	cancelAppointmentBtn.addEventListener('click', closeModal);
+	modalBackdrop.addEventListener('click', closeModal);
+
+	document.addEventListener('keydown', function (event) {
+		if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+			closeModal();
+		}
+	});
+
+	appointmentForm.addEventListener('submit', function (event) {
+		event.preventDefault();
+
+		if (!appointmentDateInput.value || !appointmentTimeInput.value) {
+			alert('Veuillez sélectionner une date et un horaire.');
+			return;
+		}
+
+		alert(`Rendez-vous sélectionné : ${appointmentDateInput.value} à ${appointmentTimeInput.value}`);
+		closeModal();
+	});
+
+	render12Months();
+});
+</script>
+{% endblock %}
