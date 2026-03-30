@@ -17,18 +17,6 @@ class MessageRepository extends ServiceEntityRepository
         parent::__construct($registry, Message::class);
     }
     
-    public function findMessagesByUser(User $user): array
-    {
-        return $this->createQueryBuilder('m')
-            ->innerJoin('m.conversation', 'c')
-            ->innerJoin('c.participants', 'cp')
-            ->andWhere('cp.user = :user')
-            ->setParameter('user', $user)
-            ->orderBy('m.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
     //    /**
     //     * @return Message[] Returns an array of Message objects
     //     */

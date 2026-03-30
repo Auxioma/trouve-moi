@@ -1,21 +1,307 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes messages{% endblock %}
+{% block title %}Messagerie{% endblock %}
 
 {% block body %}
-    <h1>Mes messages</h1>
+<section class="inner-banner">
+	<div class="container">
+		<h2>Messagerie</h2>
+	</div>
+</section>
 
-    {% for message in messages %}
-        <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-            <strong>
-                {{ message.sender.firstName }} {{ message.sender.lastName }}
-            </strong>
-            <br>
-            <small>{{ message.createdAt|date('d/m/Y H:i') }}</small>
+<section class="messagerie-page py-5">
+	<div class="container">
+		<div class="row g-4">
+			{% include '_partials/nav_bar_artisant.html.twig' %}
 
-            <p>{{ message.content }}</p>
-        </div>
-    {% else %}
-        <p>Aucun message.</p>
-    {% endfor %}
+			<div class="col-xl-8">
+				<div class="messagerie-card">
+
+					<div class="messagerie-header">
+						<div>
+							<h3 class="messagerie-title mb-1">Boîte de réception</h3>
+							<p class="messagerie-subtitle mb-0">
+								{{ discussions|length }} discussion{{ discussions|length > 1 ? 's' : '' }}
+							</p>
+						</div>
+					</div>
+
+					<div class="messagerie-list">
+						{% for discussion in discussions %}
+							<a href="{{ path('app_user_messagerie_show', { id: discussion.conversation.id }) }}"
+							   class="message-item">
+
+								<div class="message-avatar-wrapper">
+									<div class="message-avatar">
+										{% if discussion.user.imageName is defined and discussion.user.imageName %}
+											<img
+												src="{{ asset('uploads/users/' ~ discussion.user.imageName) }}"
+												alt="{{ discussion.user.firstName }}"
+											>
+										{% else %}
+											<span>
+												{{ discussion.user.firstName|default('U')|slice(0, 1)|upper }}
+											</span>
+										{% endif %}
+									</div>
+								</div>
+
+								<div class="message-main">
+									<div class="message-topline">
+										<p class="message-title">
+											<span class="message-user-name">
+												{{ discussion.user.firstName|default('') }} {{ discussion.user.lastName|default('') }}
+											</span>
+
+											{% if discussion.conversation.title is defined and discussion.conversation.title %}
+												<span class="message-separator">•</span>
+												<span class="message-project-title">
+													{{ discussion.conversation.title }}
+												</span>
+											{% endif %}
+										</p>
+
+										<span class="message-date">
+											{% if discussion.lastMessage and discussion.lastMessage.createdAt %}
+												{{ discussion.lastMessage.createdAt|date('d M') }}
+											{% endif %}
+										</span>
+									</div>
+
+									<div class="message-bottomline">
+										<p class="message-preview">
+											{% if discussion.lastMessage and discussion.lastMessage.content %}
+												{{ discussion.lastMessage.content|striptags|u.truncate(85, '...') }}
+											{% else %}
+												Aucun message pour le moment
+											{% endif %}
+										</p>
+
+										{% if discussion.lastMessage is defined and discussion.lastMessage and discussion.lastMessage.isRead is defined and not discussion.lastMessage.isRead %}
+											<span class="message-unread-dot"></span>
+										{% endif %}
+									</div>
+								</div>
+							</a>
+						{% else %}
+							<div class="messagerie-empty">
+								<div class="messagerie-empty-icon">✉️</div>
+								<h4>Aucune discussion</h4>
+								<p class="mb-0">Vos conversations apparaîtront ici.</p>
+							</div>
+						{% endfor %}
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+.messagerie-page {
+	background: #f7f8fc;
+	min-height: 100vh;
+}
+
+.messagerie-card {
+	background: #ffffff;
+	border: 1px solid #eceef3;
+	border-radius: 24px;
+	box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+	overflow: hidden;
+}
+
+.messagerie-header {
+	padding: 24px 24px 18px;
+	border-bottom: 1px solid #eff1f5;
+}
+
+.messagerie-title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #111827;
+}
+
+.messagerie-subtitle {
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.messagerie-list {
+	padding: 14px;
+}
+
+.message-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 14px;
+	margin-bottom: 10px;
+	border: 1px solid #edf0f4;
+	border-radius: 18px;
+	background: #f9fafc;
+	text-decoration: none;
+	transition: all 0.22s ease;
+}
+
+.message-item:hover {
+	background: #ffffff;
+	border-color: #dfe5ee;
+	box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+	transform: translateY(-1px);
+}
+
+.message-avatar-wrapper {
+	flex: 0 0 auto;
+}
+
+.message-avatar {
+	width: 52px;
+	height: 52px;
+	border-radius: 50%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, #1f2937, #4b5563);
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 700;
+	box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+}
+
+.message-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.message-main {
+	flex: 1;
+	min-width: 0;
+}
+
+.message-topline {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 6px;
+}
+
+.message-title {
+	margin: 0;
+	min-width: 0;
+	font-size: 15px;
+	font-weight: 600;
+	color: #111827;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.message-user-name {
+	font-weight: 700;
+	color: #111827;
+}
+
+.message-separator {
+	margin: 0 6px;
+	color: #9ca3af;
+}
+
+.message-project-title {
+	color: #6b7280;
+	font-weight: 500;
+}
+
+.message-date {
+	flex-shrink: 0;
+	font-size: 13px;
+	font-weight: 600;
+	color: #6b7280;
+	white-space: nowrap;
+}
+
+.message-bottomline {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.message-preview {
+	margin: 0;
+	min-width: 0;
+	font-size: 14px;
+	color: #6b7280;
+	line-height: 1.45;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.message-unread-dot {
+	flex-shrink: 0;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #111827;
+}
+
+.messagerie-empty {
+	padding: 60px 20px;
+	text-align: center;
+	color: #6b7280;
+}
+
+.messagerie-empty-icon {
+	font-size: 52px;
+	margin-bottom: 14px;
+}
+
+.messagerie-empty h4 {
+	font-size: 22px;
+	font-weight: 700;
+	color: #111827;
+	margin-bottom: 8px;
+}
+
+@media (max-width: 767.98px) {
+	.messagerie-header {
+		padding: 18px 16px 14px;
+	}
+
+	.messagerie-list {
+		padding: 10px;
+	}
+
+	.message-item {
+		padding: 12px;
+		border-radius: 16px;
+		gap: 12px;
+	}
+
+	.message-avatar {
+		width: 46px;
+		height: 46px;
+		font-size: 16px;
+	}
+
+	.message-title {
+		font-size: 14px;
+	}
+
+	.message-preview {
+		font-size: 13px;
+	}
+
+	.message-date {
+		font-size: 12px;
+	}
+}
+</style>
 {% endblock %}

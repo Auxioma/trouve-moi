@@ -1,0 +1,520 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie{% endblock %}
+
+{% block body %}
+<section class="inner-banner">
+	<div class="container">
+		<h2>Messagerie</h2>
+	</div>
+</section>
+
+<section class="messagerie-page py-5">
+	<div class="container">
+		<div class="row g-4">
+			{% include '_partials/nav_bar_artisant.html.twig' %}
+
+			<div class="col-xl-8">
+				<div class="messagerie-layout">
+
+					{# COLONNE DROITE : CONVERSATION #}
+					<div class="messagerie-content">
+						<div class="messagerie-card h-100">
+							{% if conversation is defined and conversation %}
+								{% set currentDiscussion = null %}
+								{% for discussion in discussions %}
+									{% if discussion.conversation.id == conversation.id %}
+										{% set currentDiscussion = discussion %}
+									{% endif %}
+								{% endfor %}
+
+								<div class="conversation-header">
+									<div class="conversation-user">
+										<div class="conversation-avatar">
+											{% if currentDiscussion and currentDiscussion.user.imageName is defined and currentDiscussion.user.imageName %}
+												<img
+													src="{{ asset('uploads/users/' ~ currentDiscussion.user.imageName) }}"
+													alt="{{ currentDiscussion.user.firstName }}"
+												>
+											{% elseif currentDiscussion and currentDiscussion.user.logo is defined and currentDiscussion.user.logo %}
+												<img
+													src="{{ asset('uploads/users/' ~ currentDiscussion.user.logo) }}"
+													alt="{{ currentDiscussion.user.firstName }}"
+												>
+											{% elseif currentDiscussion %}
+												<span>
+													{{ currentDiscussion.user.firstName|default('U')|slice(0, 1)|upper }}
+												</span>
+											{% else %}
+												<span>U</span>
+											{% endif %}
+										</div>
+
+										<div>
+											<h4 class="conversation-name mb-1">
+												{% if currentDiscussion %}
+													{{ currentDiscussion.user.firstName|default('') }} {{ currentDiscussion.user.lastName|default('') }}
+												{% else %}
+													Conversation
+												{% endif %}
+											</h4>
+
+											<p class="conversation-status mb-0">
+												{% if currentDiscussion and currentDiscussion.user.compagny is defined and currentDiscussion.user.compagny %}
+													{{ currentDiscussion.user.compagny }}
+												{% else %}
+													Discussion en cours
+												{% endif %}
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="conversation-body">
+									{% for message in messages %}
+										<div class="conversation-row {{ message.sender.id == app.user.id ? 'is-me' : 'is-other' }}">
+											<div class="conversation-bubble">
+												<p class="conversation-text mb-1">
+													{{ message.content }}
+												</p>
+												<span class="conversation-date">
+													{{ message.createdAt|date('d/m/Y H:i') }}
+												</span>
+											</div>
+										</div>
+									{% else %}
+										<div class="messagerie-empty">
+											<div class="messagerie-empty-icon">💬</div>
+											<h4>Aucun message</h4>
+											<p class="mb-0">Cette conversation ne contient pas encore de message.</p>
+										</div>
+									{% endfor %}
+								</div>
+
+								<div class="conversation-footer">
+									<form method="post" class="conversation-form">
+										<textarea
+											name="content"
+											class="conversation-textarea"
+											rows="2"
+											placeholder="Écrire votre message..."
+										></textarea>
+										<button type="submit" class="conversation-send-btn">
+											Envoyer
+										</button>
+									</form>
+								</div>
+							{% else %}
+								<div class="messagerie-empty full-height">
+									<div class="messagerie-empty-icon">📩</div>
+									<h4>Sélectionnez une discussion</h4>
+									<p class="mb-0">Choisissez une conversation à gauche pour afficher les messages.</p>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+.messagerie-page {
+	background: #f7f8fc;
+	min-height: 100vh;
+}
+
+.messagerie-layout {
+	display: grid;
+	gap: 20px;
+	align-items: stretch;
+}
+
+.messagerie-sidebar,
+.messagerie-content {
+	min-width: 0;
+}
+
+.messagerie-card {
+	background: #ffffff;
+	border: 1px solid #eceef3;
+	border-radius: 24px;
+	box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+	overflow: hidden;
+}
+
+.h-100 {
+	height: 100%;
+}
+
+.messagerie-header {
+	padding: 24px 24px 18px;
+	border-bottom: 1px solid #eff1f5;
+}
+
+.messagerie-title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #111827;
+}
+
+.messagerie-subtitle {
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.messagerie-list {
+	padding: 14px;
+	max-height: 760px;
+	overflow-y: auto;
+}
+
+.message-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 14px;
+	margin-bottom: 10px;
+	border: 1px solid #edf0f4;
+	border-radius: 18px;
+	background: #f9fafc;
+	text-decoration: none;
+	transition: all 0.22s ease;
+}
+
+.message-item:hover {
+	background: #ffffff;
+	border-color: #dfe5ee;
+	box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+	transform: translateY(-1px);
+}
+
+.message-item.active {
+	background: #ffffff;
+	border-color: #111827;
+	box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.message-avatar-wrapper {
+	flex: 0 0 auto;
+}
+
+.message-avatar,
+.conversation-avatar {
+	width: 52px;
+	height: 52px;
+	border-radius: 50%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, #1f2937, #4b5563);
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 700;
+	box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+}
+
+.message-avatar img,
+.conversation-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.message-main {
+	flex: 1;
+	min-width: 0;
+}
+
+.message-topline {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 6px;
+}
+
+.message-title {
+	margin: 0;
+	min-width: 0;
+	font-size: 15px;
+	font-weight: 600;
+	color: #111827;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.message-user-name {
+	font-weight: 700;
+	color: #111827;
+}
+
+.message-separator {
+	margin: 0 6px;
+	color: #9ca3af;
+}
+
+.message-project-title {
+	color: #6b7280;
+	font-weight: 500;
+}
+
+.message-date {
+	flex-shrink: 0;
+	font-size: 13px;
+	font-weight: 600;
+	color: #6b7280;
+	white-space: nowrap;
+}
+
+.message-bottomline {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.message-preview {
+	margin: 0;
+	min-width: 0;
+	font-size: 14px;
+	color: #6b7280;
+	line-height: 1.45;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.message-unread-dot {
+	flex-shrink: 0;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #111827;
+}
+
+.conversation-header {
+	padding: 20px 24px;
+	border-bottom: 1px solid #eff1f5;
+	background: #fff;
+}
+
+.conversation-user {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+
+.conversation-name {
+	font-size: 18px;
+	font-weight: 700;
+	color: #111827;
+}
+
+.conversation-status {
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.conversation-body {
+	padding: 24px;
+	background: #f9fafc;
+	min-height: 520px;
+	max-height: 520px;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.conversation-row {
+	display: flex;
+	width: 100%;
+}
+
+.conversation-row.is-me {
+	justify-content: flex-end;
+}
+
+.conversation-row.is-other {
+	justify-content: flex-start;
+}
+
+.conversation-bubble {
+	max-width: 72%;
+	padding: 14px 16px;
+	border-radius: 18px;
+	box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+}
+
+.conversation-row.is-me .conversation-bubble {
+	background: #111827;
+	color: #ffffff;
+	border-bottom-right-radius: 6px;
+}
+
+.conversation-row.is-other .conversation-bubble {
+	background: #ffffff;
+	color: #111827;
+	border: 1px solid #edf0f4;
+	border-bottom-left-radius: 6px;
+}
+
+.conversation-text {
+	font-size: 14px;
+	line-height: 1.55;
+	word-break: break-word;
+}
+
+.conversation-date {
+	display: block;
+	font-size: 12px;
+	opacity: 0.7;
+}
+
+.conversation-footer {
+	padding: 18px 24px 24px;
+	border-top: 1px solid #eff1f5;
+	background: #ffffff;
+}
+
+.conversation-form {
+	display: flex;
+	align-items: flex-end;
+	gap: 12px;
+}
+
+.conversation-textarea {
+	flex: 1;
+	border: 1px solid #dfe5ee;
+	border-radius: 16px;
+	padding: 14px 16px;
+	font-size: 14px;
+	color: #111827;
+	background: #f9fafc;
+	resize: none;
+	outline: none;
+	min-height: 56px;
+}
+
+.conversation-textarea:focus {
+	border-color: #111827;
+	background: #ffffff;
+}
+
+.conversation-send-btn {
+	border: none;
+	background: #111827;
+	color: #ffffff;
+	padding: 14px 22px;
+	border-radius: 14px;
+	font-size: 14px;
+	font-weight: 600;
+	transition: all 0.2s ease;
+}
+
+.conversation-send-btn:hover {
+	background: #000000;
+}
+
+.messagerie-empty {
+	padding: 60px 20px;
+	text-align: center;
+	color: #6b7280;
+}
+
+.messagerie-empty.full-height {
+	min-height: 650px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.messagerie-empty-icon {
+	font-size: 52px;
+	margin-bottom: 14px;
+}
+
+.messagerie-empty h4 {
+	font-size: 22px;
+	font-weight: 700;
+	color: #111827;
+	margin-bottom: 8px;
+}
+
+@media (max-width: 1199.98px) {
+	.messagerie-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.conversation-body {
+		min-height: 420px;
+		max-height: 420px;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.messagerie-header,
+	.conversation-header,
+	.conversation-footer {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	.messagerie-list {
+		padding: 10px;
+	}
+
+	.message-item {
+		padding: 12px;
+		border-radius: 16px;
+		gap: 12px;
+	}
+
+	.message-avatar,
+	.conversation-avatar {
+		width: 46px;
+		height: 46px;
+		font-size: 16px;
+	}
+
+	.message-title {
+		font-size: 14px;
+	}
+
+	.message-preview {
+		font-size: 13px;
+	}
+
+	.message-date {
+		font-size: 12px;
+	}
+
+	.conversation-body {
+		padding: 16px;
+		min-height: 360px;
+		max-height: 360px;
+	}
+
+	.conversation-bubble {
+		max-width: 88%;
+	}
+
+	.conversation-form {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.conversation-send-btn {
+		width: 100%;
+	}
+}
+</style>
+{% endblock %}
