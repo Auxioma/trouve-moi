@@ -3,204 +3,179 @@
 {% block title %}Hello DashboardController!{% endblock %}
 
 {% block body %}
-<section class="inner-banner dashboard-banner">
+<section class="dashboard-lux-banner">
 	<div class="container">
-		<div class="dashboard-banner-content">
-			<div>
-				<span class="dashboard-overline">Espace personnel</span>
-				<h1 class="dashboard-main-title">Tableau de bord</h1>
-				<p class="dashboard-main-subtitle">
-					Gérez vos échanges, suivez vos demandes et accédez rapidement à toutes les fonctionnalités de votre compte.
+		<div class="dashboard-lux-banner-content">
+			<div class="dashboard-lux-banner-text">
+				<span class="dashboard-lux-kicker">Espace personnel</span>
+				<h1>Bienvenue sur votre tableau de bord</h1>
+				<p>
+					Retrouvez vos échanges, le suivi de vos demandes, vos informations personnelles et toutes vos actions importantes depuis une interface claire, élégante et haut de gamme.
 				</p>
 			</div>
 
-			<div class="dashboard-banner-actions">
-				<a href="#" class="dashboard-btn dashboard-btn-primary">Voir la messagerie</a>
-				<a href="#" class="dashboard-btn dashboard-btn-secondary">Modifier le profil</a>
+			<div class="dashboard-lux-banner-actions">
+				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary">Accéder à la messagerie</a>
+				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline">Mettre à jour mon profil</a>
 			</div>
 		</div>
 	</div>
 </section>
 
-<section class="dashboard-home py-5">
+<section class="dashboard-lux-page">
 	<div class="container">
 		<div class="row g-4">
 
 			<div class="col-xl-3 col-lg-4">
-				<aside class="dashboard-sidebar">
+				<aside class="dashboard-lux-sidebar">
 
-					<div class="dashboard-profile-card">
-						<div class="dashboard-profile-cover"></div>
+					<div class="dashboard-lux-profile-card">
+						<div class="dashboard-lux-profile-cover"></div>
 
-						<div class="dashboard-profile-content">
-							<div class="dashboard-profile-avatar">
-								<img src="https://placehold.co/96x96" alt="Photo de profil">
+						<div class="dashboard-lux-profile-content">
+							<div class="dashboard-lux-profile-avatar">
+								<img src="https://placehold.co/110x110" alt="Photo de profil">
 							</div>
 
-							<h3 class="dashboard-profile-name">Jean Dupont</h3>
-							<p class="dashboard-profile-role">Compte utilisateur vérifié</p>
+							<h3>Jean Dupont</h3>
+							<p class="dashboard-lux-profile-subtitle">Compte personnel actif</p>
 
-							<div class="dashboard-profile-meta">
-								<div class="dashboard-profile-meta-item">
-									<span class="dashboard-meta-label">Membre depuis</span>
+							<div class="dashboard-lux-profile-details">
+								<div class="dashboard-lux-profile-line">
+									<span>Membre depuis</span>
 									<strong>Janvier 2026</strong>
 								</div>
-								<div class="dashboard-profile-meta-item">
-									<span class="dashboard-meta-label">Statut</span>
-									<strong>Actif</strong>
+								<div class="dashboard-lux-profile-line">
+									<span>Statut</span>
+									<strong>Vérifié</strong>
+								</div>
+								<div class="dashboard-lux-profile-line">
+									<span>Dernière activité</span>
+									<strong>Aujourd’hui</strong>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<nav class="dashboard-nav-card">
-						<a href="#" class="dashboard-nav-item active">
-							<span class="dashboard-nav-indicator"></span>
-							<span class="dashboard-nav-text">Accueil</span>
-						</a>
-						<a href="#" class="dashboard-nav-item">
-							<span class="dashboard-nav-indicator"></span>
-							<span class="dashboard-nav-text">Messagerie</span>
-						</a>
-						<a href="#" class="dashboard-nav-item">
-							<span class="dashboard-nav-indicator"></span>
-							<span class="dashboard-nav-text">Mes demandes</span>
-						</a>
-						<a href="#" class="dashboard-nav-item">
-							<span class="dashboard-nav-indicator"></span>
-							<span class="dashboard-nav-text">Mon profil</span>
-						</a>
-						<a href="#" class="dashboard-nav-item">
-							<span class="dashboard-nav-indicator"></span>
-							<span class="dashboard-nav-text">Mes documents</span>
-						</a>
-						<a href="#" class="dashboard-nav-item">
-							<span class="dashboard-nav-indicator"></span>
-							<span class="dashboard-nav-text">Paramètres</span>
-						</a>
+					<nav class="dashboard-lux-nav">
+						<a href="#" class="dashboard-lux-nav-item active">Accueil</a>
+						<a href="#" class="dashboard-lux-nav-item">Messagerie</a>
+						<a href="#" class="dashboard-lux-nav-item">Mes demandes</a>
+						<a href="#" class="dashboard-lux-nav-item">Mon profil</a>
+						<a href="#" class="dashboard-lux-nav-item">Mes documents</a>
+						<a href="#" class="dashboard-lux-nav-item">Paramètres</a>
 					</nav>
 
-					<div class="dashboard-support-card">
-						<h4>Besoin d’assistance&nbsp;?</h4>
-						<p>Notre équipe est disponible pour vous accompagner dans vos démarches et le suivi de vos demandes.</p>
-						<a href="#" class="dashboard-btn dashboard-btn-primary w-100">Contacter le support</a>
+					<div class="dashboard-lux-help-card">
+						<span class="dashboard-lux-kicker">Accompagnement</span>
+						<h4>Besoin d’aide ?</h4>
+						<p>
+							Notre équipe vous accompagne dans le suivi de vos demandes et l’utilisation de votre espace personnel.
+						</p>
+						<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary w-100">Contacter le support</a>
 					</div>
 
 				</aside>
 			</div>
 
 			<div class="col-xl-9 col-lg-8">
-				<div class="dashboard-content">
+				<div class="dashboard-lux-main">
 
-					<section class="dashboard-welcome-card">
-						<div class="dashboard-welcome-text">
-							<span class="dashboard-section-label">Vue d’ensemble</span>
-							<h2>Bienvenue sur votre espace personnel</h2>
+					<section class="dashboard-lux-intro-card">
+						<div class="dashboard-lux-intro-text">
+							<span class="dashboard-lux-kicker">Vue d’ensemble</span>
+							<h2>Un espace conçu pour une gestion simple et fluide</h2>
 							<p>
-								Retrouvez vos informations importantes en un coup d’œil, consultez votre activité récente et accédez rapidement aux actions essentielles.
+								Accédez rapidement à vos informations clés, suivez vos projets en cours et gardez le contrôle sur l’ensemble de votre activité depuis une interface pensée pour la clarté et l’efficacité.
 							</p>
 						</div>
 
-						<div class="dashboard-welcome-side">
-							<div class="dashboard-completion-box">
-								<div class="dashboard-completion-top">
-									<span>Complétion du profil</span>
-									<strong>75%</strong>
-								</div>
-								<div class="dashboard-progress">
-									<div class="dashboard-progress-bar" style="width: 75%;"></div>
-								</div>
-								<a href="#" class="dashboard-inline-link">Compléter mes informations</a>
+						<div class="dashboard-lux-completion-card">
+							<div class="dashboard-lux-completion-top">
+								<span>Complétion du profil</span>
+								<strong>82%</strong>
 							</div>
+							<div class="dashboard-lux-progress">
+								<div class="dashboard-lux-progress-bar" style="width: 82%;"></div>
+							</div>
+							<a href="#" class="dashboard-lux-inline-link">Finaliser mon profil</a>
 						</div>
 					</section>
 
-					<section class="dashboard-stats-grid">
-						<div class="dashboard-stat-card">
-							<div class="dashboard-stat-top">
-								<span class="dashboard-stat-title">Messages</span>
-								<span class="dashboard-stat-badge">Ce mois</span>
-							</div>
+					<section class="dashboard-lux-stats">
+						<div class="dashboard-lux-stat-card">
+							<span class="dashboard-lux-stat-label">Messages</span>
 							<h3>12</h3>
-							<p>Conversations actives avec vos interlocuteurs</p>
+							<p>Conversations actives actuellement disponibles.</p>
 						</div>
 
-						<div class="dashboard-stat-card">
-							<div class="dashboard-stat-top">
-								<span class="dashboard-stat-title">Demandes</span>
-								<span class="dashboard-stat-badge">En cours</span>
-							</div>
+						<div class="dashboard-lux-stat-card">
+							<span class="dashboard-lux-stat-label">Demandes</span>
 							<h3>05</h3>
-							<p>Demandes actuellement en traitement</p>
+							<p>Demandes et projets en cours de traitement.</p>
 						</div>
 
-						<div class="dashboard-stat-card">
-							<div class="dashboard-stat-top">
-								<span class="dashboard-stat-title">Projets validés</span>
-								<span class="dashboard-stat-badge">Total</span>
-							</div>
+						<div class="dashboard-lux-stat-card">
+							<span class="dashboard-lux-stat-label">Projets validés</span>
 							<h3>08</h3>
-							<p>Dossiers confirmés et terminés</p>
+							<p>Dossiers confirmés et finalisés avec succès.</p>
 						</div>
 
-						<div class="dashboard-stat-card">
-							<div class="dashboard-stat-top">
-								<span class="dashboard-stat-title">Avis reçus</span>
-								<span class="dashboard-stat-badge">Satisfaction</span>
-							</div>
+						<div class="dashboard-lux-stat-card">
+							<span class="dashboard-lux-stat-label">Avis reçus</span>
 							<h3>14</h3>
-							<p>Retours déposés sur votre activité</p>
+							<p>Évaluations déposées sur votre activité.</p>
 						</div>
 					</section>
 
-					<div class="row g-4 mt-1">
+					<div class="row g-4">
 						<div class="col-lg-7">
-							<section class="dashboard-panel">
-								<div class="dashboard-panel-head">
+							<section class="dashboard-lux-panel">
+								<div class="dashboard-lux-panel-head">
 									<div>
-										<span class="dashboard-section-label">Activité récente</span>
-										<h3>Derniers messages</h3>
+										<span class="dashboard-lux-kicker">Activité récente</span>
+										<h3>Derniers échanges</h3>
 									</div>
-									<a href="#" class="dashboard-panel-link">Voir tout</a>
+									<a href="#" class="dashboard-lux-panel-link">Voir tout</a>
 								</div>
 
-								<div class="dashboard-panel-body">
-									<a href="#" class="dashboard-message-card">
-										<div class="dashboard-message-avatar">
-											<img src="https://placehold.co/56x56" alt="Utilisateur">
+								<div class="dashboard-lux-panel-body">
+									<a href="#" class="dashboard-lux-message-card">
+										<div class="dashboard-lux-message-avatar">
+											<img src="https://placehold.co/58x58" alt="Utilisateur">
 										</div>
-										<div class="dashboard-message-body">
-											<div class="dashboard-message-head">
+										<div class="dashboard-lux-message-content">
+											<div class="dashboard-lux-message-head">
 												<h4>Marie Laurent</h4>
 												<span>12 mars 2026</span>
 											</div>
-											<p>Bonjour, nous avons bien reçu votre demande et revenons vers vous avec une proposition détaillée.</p>
+											<p>Bonjour, nous avons bien reçu votre demande et revenons vers vous avec une proposition détaillée dans les meilleurs délais.</p>
 										</div>
 									</a>
 
-									<a href="#" class="dashboard-message-card">
-										<div class="dashboard-message-avatar">
-											<img src="https://placehold.co/56x56" alt="Utilisateur">
+									<a href="#" class="dashboard-lux-message-card">
+										<div class="dashboard-lux-message-avatar">
+											<img src="https://placehold.co/58x58" alt="Utilisateur">
 										</div>
-										<div class="dashboard-message-body">
-											<div class="dashboard-message-head">
+										<div class="dashboard-lux-message-content">
+											<div class="dashboard-lux-message-head">
 												<h4>Thomas Bernard</h4>
 												<span>10 mars 2026</span>
 											</div>
-											<p>Merci pour votre retour. Nous restons disponibles pour finaliser les prochains éléments de votre projet.</p>
+											<p>Merci pour votre retour. Votre dossier est bien pris en compte et nous restons disponibles pour tout complément.</p>
 										</div>
 									</a>
 
-									<a href="#" class="dashboard-message-card">
-										<div class="dashboard-message-avatar">
-											<img src="https://placehold.co/56x56" alt="Utilisateur">
+									<a href="#" class="dashboard-lux-message-card">
+										<div class="dashboard-lux-message-avatar">
+											<img src="https://placehold.co/58x58" alt="Utilisateur">
 										</div>
-										<div class="dashboard-message-body">
-											<div class="dashboard-message-head">
+										<div class="dashboard-lux-message-content">
+											<div class="dashboard-lux-message-head">
 												<h4>Sophie Martin</h4>
 												<span>08 mars 2026</span>
 											</div>
-											<p>Votre dossier est actuellement en cours d’étude. Vous serez notifié dès qu’une mise à jour sera disponible.</p>
+											<p>Votre projet est en cours d’étude. Une nouvelle mise à jour sera disponible très prochainement depuis votre espace personnel.</p>
 										</div>
 									</a>
 								</div>
@@ -208,46 +183,46 @@
 						</div>
 
 						<div class="col-lg-5">
-							<section class="dashboard-panel">
-								<div class="dashboard-panel-head">
+							<section class="dashboard-lux-panel">
+								<div class="dashboard-lux-panel-head">
 									<div>
-										<span class="dashboard-section-label">Accès rapide</span>
+										<span class="dashboard-lux-kicker">Accès rapide</span>
 										<h3>Actions principales</h3>
 									</div>
 								</div>
 
-								<div class="dashboard-panel-body">
-									<div class="dashboard-action-list">
-										<a href="#" class="dashboard-action-card">
-											<div class="dashboard-action-content">
+								<div class="dashboard-lux-panel-body">
+									<div class="dashboard-lux-action-list">
+										<a href="#" class="dashboard-lux-action-card">
+											<div>
 												<h4>Consulter la messagerie</h4>
-												<p>Accéder à tous vos échanges et conversations récentes.</p>
+												<p>Retrouver toutes vos conversations et réponses récentes.</p>
 											</div>
-											<span class="dashboard-action-arrow">→</span>
+											<span>→</span>
 										</a>
 
-										<a href="#" class="dashboard-action-card">
-											<div class="dashboard-action-content">
+										<a href="#" class="dashboard-lux-action-card">
+											<div>
 												<h4>Suivre mes demandes</h4>
-												<p>Retrouver l’état d’avancement de vos projets en cours.</p>
+												<p>Accéder à l’évolution de vos dossiers et projets en cours.</p>
 											</div>
-											<span class="dashboard-action-arrow">→</span>
+											<span>→</span>
 										</a>
 
-										<a href="#" class="dashboard-action-card">
-											<div class="dashboard-action-content">
+										<a href="#" class="dashboard-lux-action-card">
+											<div>
 												<h4>Modifier mon profil</h4>
-												<p>Mettre à jour vos informations personnelles et professionnelles.</p>
+												<p>Mettre à jour vos informations personnelles et votre présentation.</p>
 											</div>
-											<span class="dashboard-action-arrow">→</span>
+											<span>→</span>
 										</a>
 
-										<a href="#" class="dashboard-action-card">
-											<div class="dashboard-action-content">
-												<h4>Gérer mes paramètres</h4>
-												<p>Configurer vos préférences et options de compte.</p>
+										<a href="#" class="dashboard-lux-action-card">
+											<div>
+												<h4>Gérer les paramètres</h4>
+												<p>Configurer vos préférences et sécuriser votre compte.</p>
 											</div>
-											<span class="dashboard-action-arrow">→</span>
+											<span>→</span>
 										</a>
 									</div>
 								</div>
@@ -255,18 +230,18 @@
 						</div>
 					</div>
 
-					<section class="dashboard-panel mt-4">
-						<div class="dashboard-panel-head">
+					<section class="dashboard-lux-panel">
+						<div class="dashboard-lux-panel-head">
 							<div>
-								<span class="dashboard-section-label">Suivi des demandes</span>
+								<span class="dashboard-lux-kicker">Suivi</span>
 								<h3>Mes demandes récentes</h3>
 							</div>
-							<a href="#" class="dashboard-panel-link">Voir tout</a>
+							<a href="#" class="dashboard-lux-panel-link">Voir tout</a>
 						</div>
 
-						<div class="dashboard-panel-body p-0">
+						<div class="dashboard-lux-panel-body dashboard-lux-table-wrap">
 							<div class="table-responsive">
-								<table class="table dashboard-table mb-0">
+								<table class="table dashboard-lux-table mb-0">
 									<thead>
 										<tr>
 											<th>Projet</th>
@@ -280,30 +255,30 @@
 										<tr>
 											<td>Rénovation salle de bain</td>
 											<td>Rénovation</td>
-											<td><span class="dashboard-status dashboard-status-pending">En attente</span></td>
+											<td><span class="dashboard-lux-badge dashboard-lux-badge-pending">En attente</span></td>
 											<td>11/03/2026</td>
-											<td class="text-end"><a href="#" class="dashboard-table-link">Voir</a></td>
+											<td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
 										</tr>
 										<tr>
 											<td>Peinture intérieure</td>
 											<td>Travaux</td>
-											<td><span class="dashboard-status dashboard-status-progress">En cours</span></td>
+											<td><span class="dashboard-lux-badge dashboard-lux-badge-progress">En cours</span></td>
 											<td>09/03/2026</td>
-											<td class="text-end"><a href="#" class="dashboard-table-link">Voir</a></td>
+											<td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
 										</tr>
 										<tr>
 											<td>Pose de carrelage</td>
 											<td>Aménagement</td>
-											<td><span class="dashboard-status dashboard-status-valid">Validé</span></td>
+											<td><span class="dashboard-lux-badge dashboard-lux-badge-valid">Validé</span></td>
 											<td>05/03/2026</td>
-											<td class="text-end"><a href="#" class="dashboard-table-link">Voir</a></td>
+											<td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
 										</tr>
 										<tr>
 											<td>Installation électrique</td>
 											<td>Électricité</td>
-											<td><span class="dashboard-status dashboard-status-cancel">Annulé</span></td>
+											<td><span class="dashboard-lux-badge dashboard-lux-badge-cancel">Annulé</span></td>
 											<td>28/02/2026</td>
-											<td class="text-end"><a href="#" class="dashboard-table-link">Voir</a></td>
+											<td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -317,446 +292,430 @@
 		</div>
 	</div>
 </section>
+
 <style>
-.dashboard-home {
-	background: linear-gradient(180deg, #f8fafc 0%, #f3f6fb 100%);
+:root {
+	--tm-primary: #A57A5A;
+	--tm-primary-dark: #8D6548;
+	--tm-primary-soft: #C7A58A;
+	--tm-primary-pale: #E8DDD3;
+	--tm-cream: #F7F3EE;
+	--tm-ivory: #FCFAF7;
+	--tm-border: #E8DED5;
+	--tm-text: #2E241E;
+	--tm-text-soft: #7A6A5D;
+	--tm-white: #FFFFFF;
+	--tm-shadow: 0 18px 45px rgba(77, 55, 39, 0.08);
+}
+
+.dashboard-lux-page {
+	background: linear-gradient(180deg, var(--tm-ivory) 0%, #F6F0EA 100%);
 	min-height: 100vh;
+	padding: 32px 0 60px;
 }
 
-.dashboard-banner {
-	padding: 115px 0 27px;
-	background: #ffffff;
-	border-bottom: 1px solid #edf1f5;
+.dashboard-lux-banner {
+	padding: 46px 0 28px;
+	background:
+		linear-gradient(135deg, rgba(165, 122, 90, 0.08), rgba(255,255,255,0.82)),
+		var(--tm-white);
+	border-bottom: 1px solid var(--tm-border);
 }
 
-.dashboard-banner-content {
+.dashboard-lux-banner-content {
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
 	gap: 24px;
 }
 
-.dashboard-overline,
-.dashboard-section-label {
+.dashboard-lux-kicker {
 	display: inline-block;
 	font-size: 12px;
 	font-weight: 700;
-	letter-spacing: 0.08em;
 	text-transform: uppercase;
-	color: #6b7280;
-	margin-bottom: 10px;
-}
-
-.dashboard-main-title {
-	font-size: 38px;
-	line-height: 1.1;
-	font-weight: 800;
-	color: #0f172a;
+	letter-spacing: 0.08em;
+	color: var(--tm-primary);
 	margin-bottom: 12px;
 }
 
-.dashboard-main-subtitle {
-	max-width: 720px;
+.dashboard-lux-banner-text h1 {
+	font-size: 42px;
+	line-height: 1.08;
+	font-weight: 800;
+	color: var(--tm-text);
+	margin-bottom: 14px;
+}
+
+.dashboard-lux-banner-text p {
+	max-width: 760px;
 	font-size: 16px;
-	line-height: 1.7;
-	color: #667085;
+	line-height: 1.8;
+	color: var(--tm-text-soft);
 	margin: 0;
 }
 
-.dashboard-banner-actions {
+.dashboard-lux-banner-actions {
 	display: flex;
 	gap: 12px;
 	flex-wrap: wrap;
 }
 
-.dashboard-btn {
+.dashboard-lux-btn {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 48px;
-	padding: 0 20px;
+	min-height: 50px;
+	padding: 0 22px;
 	border-radius: 14px;
 	font-size: 14px;
 	font-weight: 700;
 	text-decoration: none;
-	transition: 0.25s ease;
+	transition: all 0.25s ease;
 	border: 1px solid transparent;
 }
 
-.dashboard-btn-primary {
-	background: #0f172a;
-	color: #ffffff;
-	box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+.dashboard-lux-btn-primary {
+	background: var(--tm-primary);
+	color: var(--tm-white);
+	box-shadow: 0 12px 28px rgba(165, 122, 90, 0.22);
 }
 
-.dashboard-btn-primary:hover {
-	background: #111827;
-	color: #ffffff;
+.dashboard-lux-btn-primary:hover {
+	background: var(--tm-primary-dark);
+	color: var(--tm-white);
 	transform: translateY(-1px);
 }
 
-.dashboard-btn-secondary {
-	background: #ffffff;
-	color: #0f172a;
-	border-color: #dbe2ea;
+.dashboard-lux-btn-outline {
+	background: rgba(255,255,255,0.86);
+	color: var(--tm-text);
+	border-color: var(--tm-border);
 }
 
-.dashboard-btn-secondary:hover {
-	background: #f8fafc;
-	color: #0f172a;
-	border-color: #cfd8e3;
+.dashboard-lux-btn-outline:hover {
+	background: var(--tm-cream);
+	color: var(--tm-text);
+	border-color: #D8C8BB;
 }
 
-.dashboard-btn-outline {
-	background: #ffffff;
-	color: #0f172a;
-	border-color: #dbe2ea;
-}
-
-.dashboard-sidebar {
+.dashboard-lux-sidebar,
+.dashboard-lux-main {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: 22px;
 }
 
-.dashboard-profile-card,
-.dashboard-nav-card,
-.dashboard-support-card,
-.dashboard-panel,
-.dashboard-welcome-card,
-.dashboard-stat-card {
-	background: rgba(255, 255, 255, 0.95);
-	backdrop-filter: blur(10px);
-	border: 1px solid #e9eef5;
-	border-radius: 24px;
-	box-shadow: 0 18px 45px rgba(15, 23, 42, 0.05);
+.dashboard-lux-profile-card,
+.dashboard-lux-nav,
+.dashboard-lux-help-card,
+.dashboard-lux-intro-card,
+.dashboard-lux-stat-card,
+.dashboard-lux-panel {
+	background: rgba(255,255,255,0.88);
+	backdrop-filter: blur(12px);
+	border: 1px solid var(--tm-border);
+	border-radius: 28px;
+	box-shadow: var(--tm-shadow);
 }
 
-.dashboard-profile-card {
+.dashboard-lux-profile-card {
 	overflow: hidden;
 }
 
-.dashboard-profile-cover {
-	height: 88px;
-	background: linear-gradient(135deg, #0f172a, #334155);
+.dashboard-lux-profile-cover {
+	height: 110px;
+	background: linear-gradient(135deg, var(--tm-primary-dark), var(--tm-primary), #C9A88E);
 }
 
-.dashboard-profile-content {
+.dashboard-lux-profile-content {
 	position: relative;
-	padding: 0 24px 24px;
+	padding: 0 24px 26px;
 	text-align: center;
 }
 
-.dashboard-profile-avatar {
-	width: 96px;
-	height: 96px;
+.dashboard-lux-profile-avatar {
+	width: 110px;
+	height: 110px;
 	border-radius: 50%;
 	overflow: hidden;
-	border: 5px solid #ffffff;
-	margin: -48px auto 14px;
-	box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
-	background: #ffffff;
+	border: 6px solid var(--tm-white);
+	margin: -55px auto 16px;
+	box-shadow: 0 14px 30px rgba(77, 55, 39, 0.14);
+	background: var(--tm-white);
 }
 
-.dashboard-profile-avatar img {
+.dashboard-lux-profile-avatar img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	display: block;
 }
 
-.dashboard-profile-name {
-	font-size: 22px;
+.dashboard-lux-profile-content h3 {
+	font-size: 24px;
 	font-weight: 800;
-	color: #0f172a;
+	color: var(--tm-text);
 	margin-bottom: 6px;
 }
 
-.dashboard-profile-role {
+.dashboard-lux-profile-subtitle {
 	font-size: 14px;
-	color: #667085;
+	color: var(--tm-text-soft);
 	margin-bottom: 18px;
 }
 
-.dashboard-profile-meta {
+.dashboard-lux-profile-details {
+	padding-top: 18px;
+	border-top: 1px solid var(--tm-border);
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
-	padding-top: 16px;
-	border-top: 1px solid #edf1f5;
 }
 
-.dashboard-profile-meta-item {
+.dashboard-lux-profile-line {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
-	gap: 10px;
+	align-items: center;
+	gap: 12px;
 	font-size: 14px;
-	color: #0f172a;
+	color: var(--tm-text);
 }
 
-.dashboard-meta-label {
-	color: #667085;
-	font-weight: 500;
+.dashboard-lux-profile-line span {
+	color: var(--tm-text-soft);
 }
 
-.dashboard-nav-card {
+.dashboard-lux-nav {
 	padding: 14px;
 }
 
-.dashboard-nav-item {
-	position: relative;
+.dashboard-lux-nav-item {
 	display: flex;
 	align-items: center;
-	gap: 12px;
-	min-height: 52px;
-	padding: 0 16px;
+	min-height: 54px;
+	padding: 0 18px;
 	border-radius: 16px;
 	text-decoration: none;
-	color: #334155;
 	font-size: 15px;
-	font-weight: 600;
-	transition: 0.22s ease;
+	font-weight: 700;
+	color: var(--tm-text);
+	transition: all 0.22s ease;
 }
 
-.dashboard-nav-item:hover {
-	background: #f8fafc;
-	color: #0f172a;
+.dashboard-lux-nav-item:hover {
+	background: #F8F2EC;
+	color: var(--tm-primary-dark);
 }
 
-.dashboard-nav-item.active {
-	background: #0f172a;
-	color: #ffffff;
-	box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+.dashboard-lux-nav-item.active {
+	background: linear-gradient(135deg, var(--tm-primary), var(--tm-primary-dark));
+	color: var(--tm-white);
+	box-shadow: 0 12px 28px rgba(165, 122, 90, 0.22);
 }
 
-.dashboard-nav-indicator {
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: currentColor;
-	opacity: 0.7;
-}
-
-.dashboard-support-card {
+.dashboard-lux-help-card {
 	padding: 24px;
 }
 
-.dashboard-support-card h4 {
-	font-size: 20px;
+.dashboard-lux-help-card h4 {
+	font-size: 22px;
 	font-weight: 800;
-	color: #0f172a;
+	color: var(--tm-text);
 	margin-bottom: 10px;
 }
 
-.dashboard-support-card p {
+.dashboard-lux-help-card p {
 	font-size: 14px;
-	line-height: 1.7;
-	color: #667085;
+	line-height: 1.8;
+	color: var(--tm-text-soft);
 	margin-bottom: 18px;
 }
 
-.dashboard-content {
-	display: flex;
-	flex-direction: column;
-	gap: 24px;
-}
-
-.dashboard-welcome-card {
+.dashboard-lux-intro-card {
 	padding: 28px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 24px;
+	background:
+		linear-gradient(135deg, rgba(165,122,90,0.06), rgba(255,255,255,0.94)),
+		var(--tm-white);
 }
 
-.dashboard-welcome-text h2 {
-	font-size: 30px;
+.dashboard-lux-intro-text h2 {
+	font-size: 32px;
 	font-weight: 800;
-	color: #0f172a;
-	margin-bottom: 10px;
+	line-height: 1.2;
+	color: var(--tm-text);
+	margin-bottom: 12px;
 }
 
-.dashboard-welcome-text p {
-	max-width: 700px;
+.dashboard-lux-intro-text p {
+	max-width: 720px;
 	font-size: 15px;
-	line-height: 1.8;
-	color: #667085;
+	line-height: 1.9;
+	color: var(--tm-text-soft);
 	margin: 0;
 }
 
-.dashboard-welcome-side {
-	min-width: 280px;
+.dashboard-lux-completion-card {
+	min-width: 290px;
+	padding: 22px;
+	border-radius: 22px;
+	background: rgba(255,255,255,0.72);
+	border: 1px solid var(--tm-border);
 }
 
-.dashboard-completion-box {
-	padding: 20px;
-	border-radius: 18px;
-	background: #f8fafc;
-	border: 1px solid #e9eef5;
-}
-
-.dashboard-completion-top {
+.dashboard-lux-completion-top {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	gap: 10px;
 	margin-bottom: 12px;
 	font-size: 14px;
 	font-weight: 700;
-	color: #0f172a;
+	color: var(--tm-text);
 }
 
-.dashboard-progress {
+.dashboard-lux-progress {
 	height: 10px;
 	border-radius: 999px;
-	background: #e8edf4;
+	background: #EEE4DB;
 	overflow: hidden;
 }
 
-.dashboard-progress-bar {
+.dashboard-lux-progress-bar {
 	height: 100%;
 	border-radius: 999px;
-	background: linear-gradient(90deg, #0f172a, #475569);
+	background: linear-gradient(90deg, var(--tm-primary), var(--tm-primary-dark));
 }
 
-.dashboard-inline-link {
+.dashboard-lux-inline-link {
 	display: inline-block;
 	margin-top: 12px;
 	font-size: 14px;
 	font-weight: 700;
-	color: #0f172a;
+	color: var(--tm-primary-dark);
 	text-decoration: none;
 }
 
-.dashboard-inline-link:hover {
+.dashboard-lux-inline-link:hover {
 	text-decoration: underline;
 }
 
-.dashboard-stats-grid {
+.dashboard-lux-stats {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 18px;
 }
 
-.dashboard-stat-card {
+.dashboard-lux-stat-card {
 	padding: 24px;
+	background:
+		linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,243,238,0.9));
 }
 
-.dashboard-stat-top {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 12px;
+.dashboard-lux-stat-label {
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	color: var(--tm-primary-dark);
 	margin-bottom: 16px;
 }
 
-.dashboard-stat-title {
-	font-size: 14px;
-	font-weight: 700;
-	color: #475569;
-}
-
-.dashboard-stat-badge {
-	padding: 6px 10px;
-	border-radius: 999px;
-	background: #f1f5f9;
-	font-size: 12px;
-	font-weight: 700;
-	color: #64748b;
-}
-
-.dashboard-stat-card h3 {
-	font-size: 36px;
-	font-weight: 800;
-	color: #0f172a;
-	margin-bottom: 8px;
+.dashboard-lux-stat-card h3 {
+	font-size: 38px;
 	line-height: 1;
+	font-weight: 800;
+	color: var(--tm-text);
+	margin-bottom: 10px;
 }
 
-.dashboard-stat-card p {
+.dashboard-lux-stat-card p {
 	font-size: 14px;
-	line-height: 1.7;
-	color: #667085;
+	line-height: 1.8;
+	color: var(--tm-text-soft);
 	margin: 0;
 }
 
-.dashboard-panel-head {
+.dashboard-lux-panel-head {
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
 	gap: 16px;
 	padding: 24px 24px 18px;
-	border-bottom: 1px solid #edf1f5;
+	border-bottom: 1px solid var(--tm-border);
 }
 
-.dashboard-panel-head h3 {
-	font-size: 24px;
+.dashboard-lux-panel-head h3 {
+	font-size: 26px;
 	font-weight: 800;
-	color: #0f172a;
+	color: var(--tm-text);
 	margin: 0;
 }
 
-.dashboard-panel-link {
+.dashboard-lux-panel-link {
 	font-size: 14px;
 	font-weight: 700;
-	color: #0f172a;
+	color: var(--tm-primary-dark);
 	text-decoration: none;
 }
 
-.dashboard-panel-link:hover {
+.dashboard-lux-panel-link:hover {
 	text-decoration: underline;
 }
 
-.dashboard-panel-body {
+.dashboard-lux-panel-body {
 	padding: 20px 24px 24px;
 }
 
-.dashboard-message-card {
+.dashboard-lux-message-card {
 	display: flex;
 	align-items: flex-start;
 	gap: 16px;
 	padding: 16px;
-	border: 1px solid #edf1f5;
-	border-radius: 18px;
-	background: #fbfcfe;
+	border-radius: 20px;
+	border: 1px solid var(--tm-border);
+	background: linear-gradient(180deg, #FFFEFD, #FAF6F2);
 	text-decoration: none;
-	transition: 0.22s ease;
+	transition: all 0.22s ease;
 	margin-bottom: 14px;
 }
 
-.dashboard-message-card:last-child {
+.dashboard-lux-message-card:last-child {
 	margin-bottom: 0;
 }
 
-.dashboard-message-card:hover {
-	background: #ffffff;
-	border-color: #dbe2ea;
-	box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+.dashboard-lux-message-card:hover {
+	border-color: #D5C1B0;
+	box-shadow: 0 14px 32px rgba(165, 122, 90, 0.12);
 	transform: translateY(-1px);
 }
 
-.dashboard-message-avatar {
-	width: 56px;
-	height: 56px;
+.dashboard-lux-message-avatar {
+	width: 58px;
+	height: 58px;
 	border-radius: 50%;
 	overflow: hidden;
 	flex-shrink: 0;
-	background: #e5e7eb;
+	background: #EFE4DA;
 }
 
-.dashboard-message-avatar img {
+.dashboard-lux-message-avatar img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	display: block;
 }
 
-.dashboard-message-body {
+.dashboard-lux-message-content {
 	flex: 1;
 	min-width: 0;
 }
 
-.dashboard-message-head {
+.dashboard-lux-message-head {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -764,211 +723,215 @@
 	margin-bottom: 8px;
 }
 
-.dashboard-message-head h4 {
+.dashboard-lux-message-head h4 {
 	font-size: 16px;
 	font-weight: 800;
-	color: #0f172a;
+	color: var(--tm-text);
 	margin: 0;
 }
 
-.dashboard-message-head span {
+.dashboard-lux-message-head span {
 	font-size: 12px;
 	font-weight: 700;
-	color: #94a3b8;
+	color: #9B8777;
 	white-space: nowrap;
 }
 
-.dashboard-message-body p {
+.dashboard-lux-message-content p {
 	margin: 0;
 	font-size: 14px;
-	line-height: 1.7;
-	color: #667085;
+	line-height: 1.8;
+	color: var(--tm-text-soft);
 }
 
-.dashboard-action-list {
+.dashboard-lux-action-list {
 	display: flex;
 	flex-direction: column;
 	gap: 14px;
 }
 
-.dashboard-action-card {
+.dashboard-lux-action-card {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 16px;
 	padding: 18px;
-	border: 1px solid #edf1f5;
-	border-radius: 18px;
-	background: #fbfcfe;
+	border-radius: 20px;
+	border: 1px solid var(--tm-border);
+	background: linear-gradient(180deg, #FFFEFD, #FAF6F2);
 	text-decoration: none;
-	transition: 0.22s ease;
+	transition: all 0.22s ease;
 }
 
-.dashboard-action-card:hover {
-	background: #ffffff;
-	border-color: #dbe2ea;
-	box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+.dashboard-lux-action-card:hover {
+	border-color: #D5C1B0;
+	box-shadow: 0 14px 32px rgba(165, 122, 90, 0.12);
 	transform: translateY(-1px);
 }
 
-.dashboard-action-content h4 {
+.dashboard-lux-action-card h4 {
 	font-size: 16px;
 	font-weight: 800;
-	color: #0f172a;
+	color: var(--tm-text);
 	margin-bottom: 6px;
 }
 
-.dashboard-action-content p {
+.dashboard-lux-action-card p {
 	font-size: 14px;
-	line-height: 1.7;
-	color: #667085;
+	line-height: 1.8;
+	color: var(--tm-text-soft);
 	margin: 0;
 }
 
-.dashboard-action-arrow {
-	font-size: 20px;
+.dashboard-lux-action-card span {
+	font-size: 22px;
 	font-weight: 700;
-	color: #0f172a;
+	color: var(--tm-primary-dark);
 	flex-shrink: 0;
 }
 
-.dashboard-table thead th {
+.dashboard-lux-table-wrap {
+	padding: 0;
+}
+
+.dashboard-lux-table thead th {
 	padding: 18px 24px;
-	background: #fafbfd;
-	border-bottom: 1px solid #edf1f5;
+	background: #FBF7F3;
+	border-bottom: 1px solid var(--tm-border);
 	font-size: 13px;
 	font-weight: 800;
-	color: #64748b;
+	color: #8A7565;
 	white-space: nowrap;
 }
 
-.dashboard-table tbody td {
+.dashboard-lux-table tbody td {
 	padding: 18px 24px;
 	vertical-align: middle;
-	border-color: #edf1f5;
+	border-color: #F0E7DF;
 	font-size: 14px;
-	color: #0f172a;
+	color: var(--tm-text);
 }
 
-.dashboard-status {
+.dashboard-lux-badge {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 32px;
+	min-height: 34px;
 	padding: 0 12px;
 	border-radius: 999px;
 	font-size: 12px;
 	font-weight: 800;
 }
 
-.dashboard-status-pending {
-	background: #fff7ed;
-	color: #c2410c;
+.dashboard-lux-badge-pending {
+	background: #F7ECDD;
+	color: #A4691C;
 }
 
-.dashboard-status-progress {
-	background: #eff6ff;
-	color: #1d4ed8;
+.dashboard-lux-badge-progress {
+	background: #EDE3D8;
+	color: #8D6548;
 }
 
-.dashboard-status-valid {
-	background: #ecfdf3;
-	color: #15803d;
+.dashboard-lux-badge-valid {
+	background: #E8F2EA;
+	color: #4D7A54;
 }
 
-.dashboard-status-cancel {
-	background: #fef2f2;
-	color: #b91c1c;
+.dashboard-lux-badge-cancel {
+	background: #F8E9E8;
+	color: #A14B47;
 }
 
-.dashboard-table-link {
+.dashboard-lux-table-link {
 	font-size: 14px;
 	font-weight: 800;
-	color: #0f172a;
+	color: var(--tm-primary-dark);
 	text-decoration: none;
 }
 
-.dashboard-table-link:hover {
+.dashboard-lux-table-link:hover {
 	text-decoration: underline;
 }
 
 @media (max-width: 1199.98px) {
-	.dashboard-stats-grid {
+	.dashboard-lux-stats {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
 @media (max-width: 991.98px) {
-	.dashboard-banner-content,
-	.dashboard-welcome-card {
+	.dashboard-lux-banner-content,
+	.dashboard-lux-intro-card {
 		flex-direction: column;
 		align-items: flex-start;
 	}
 
-	.dashboard-welcome-side {
-		min-width: 100%;
+	.dashboard-lux-banner-text h1 {
+		font-size: 34px;
+	}
+
+	.dashboard-lux-intro-text h2 {
+		font-size: 28px;
+	}
+
+	.dashboard-lux-completion-card {
 		width: 100%;
-	}
-
-	.dashboard-main-title {
-		font-size: 30px;
-	}
-
-	.dashboard-welcome-text h2 {
-		font-size: 26px;
+		min-width: 100%;
 	}
 }
 
 @media (max-width: 767.98px) {
-	.dashboard-banner {
-		padding: 30px 0 18px;
+	.dashboard-lux-banner {
+		padding: 34px 0 22px;
 	}
 
-	.dashboard-main-title {
-		font-size: 26px;
+	.dashboard-lux-banner-text h1 {
+		font-size: 28px;
 	}
 
-	.dashboard-main-subtitle {
-		font-size: 15px;
+	.dashboard-lux-banner-text p,
+	.dashboard-lux-intro-text p {
+		font-size: 14px;
 	}
 
-	.dashboard-profile-card,
-	.dashboard-nav-card,
-	.dashboard-support-card,
-	.dashboard-panel,
-	.dashboard-welcome-card,
-	.dashboard-stat-card {
-		border-radius: 20px;
+	.dashboard-lux-stats {
+		grid-template-columns: 1fr;
 	}
 
-	.dashboard-panel-head,
-	.dashboard-panel-body,
-	.dashboard-welcome-card,
-	.dashboard-support-card {
+	.dashboard-lux-profile-card,
+	.dashboard-lux-nav,
+	.dashboard-lux-help-card,
+	.dashboard-lux-intro-card,
+	.dashboard-lux-stat-card,
+	.dashboard-lux-panel {
+		border-radius: 22px;
+	}
+
+	.dashboard-lux-panel-head,
+	.dashboard-lux-panel-body,
+	.dashboard-lux-intro-card,
+	.dashboard-lux-help-card {
 		padding-left: 18px;
 		padding-right: 18px;
 	}
 
-	.dashboard-stats-grid {
-		grid-template-columns: 1fr;
+	.dashboard-lux-btn {
+		width: 100%;
 	}
 
-	.dashboard-message-head {
+	.dashboard-lux-banner-actions {
+		width: 100%;
+	}
+
+	.dashboard-lux-message-head {
 		flex-direction: column;
 		align-items: flex-start;
 	}
 
-	.dashboard-table thead th,
-	.dashboard-table tbody td {
+	.dashboard-lux-table thead th,
+	.dashboard-lux-table tbody td {
 		padding: 14px 16px;
-	}
-
-	.dashboard-btn {
-		width: 100%;
-	}
-
-	.dashboard-banner-actions {
-		width: 100%;
 	}
 }
 </style>
