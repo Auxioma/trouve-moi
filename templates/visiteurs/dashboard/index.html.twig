@@ -1,0 +1,975 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block body %}
+<section class="inner-banner dashboard-banner">
+	<div class="container">
+		<div class="dashboard-banner-content">
+			<div>
+				<span class="dashboard-overline">Espace personnel</span>
+				<h1 class="dashboard-main-title">Tableau de bord</h1>
+				<p class="dashboard-main-subtitle">
+					Gérez vos échanges, suivez vos demandes et accédez rapidement à toutes les fonctionnalités de votre compte.
+				</p>
+			</div>
+
+			<div class="dashboard-banner-actions">
+				<a href="#" class="dashboard-btn dashboard-btn-primary">Voir la messagerie</a>
+				<a href="#" class="dashboard-btn dashboard-btn-secondary">Modifier le profil</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="dashboard-home py-5">
+	<div class="container">
+		<div class="row g-4">
+
+			<div class="col-xl-3 col-lg-4">
+				<aside class="dashboard-sidebar">
+
+					<div class="dashboard-profile-card">
+						<div class="dashboard-profile-cover"></div>
+
+						<div class="dashboard-profile-content">
+							<div class="dashboard-profile-avatar">
+								<img src="https://placehold.co/96x96" alt="Photo de profil">
+							</div>
+
+							<h3 class="dashboard-profile-name">Jean Dupont</h3>
+							<p class="dashboard-profile-role">Compte utilisateur vérifié</p>
+
+							<div class="dashboard-profile-meta">
+								<div class="dashboard-profile-meta-item">
+									<span class="dashboard-meta-label">Membre depuis</span>
+									<strong>Janvier 2026</strong>
+								</div>
+								<div class="dashboard-profile-meta-item">
+									<span class="dashboard-meta-label">Statut</span>
+									<strong>Actif</strong>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<nav class="dashboard-nav-card">
+						<a href="#" class="dashboard-nav-item active">
+							<span class="dashboard-nav-indicator"></span>
+							<span class="dashboard-nav-text">Accueil</span>
+						</a>
+						<a href="#" class="dashboard-nav-item">
+							<span class="dashboard-nav-indicator"></span>
+							<span class="dashboard-nav-text">Messagerie</span>
+						</a>
+						<a href="#" class="dashboard-nav-item">
+							<span class="dashboard-nav-indicator"></span>
+							<span class="dashboard-nav-text">Mes demandes</span>
+						</a>
+						<a href="#" class="dashboard-nav-item">
+							<span class="dashboard-nav-indicator"></span>
+							<span class="dashboard-nav-text">Mon profil</span>
+						</a>
+						<a href="#" class="dashboard-nav-item">
+							<span class="dashboard-nav-indicator"></span>
+							<span class="dashboard-nav-text">Mes documents</span>
+						</a>
+						<a href="#" class="dashboard-nav-item">
+							<span class="dashboard-nav-indicator"></span>
+							<span class="dashboard-nav-text">Paramètres</span>
+						</a>
+					</nav>
+
+					<div class="dashboard-support-card">
+						<h4>Besoin d’assistance&nbsp;?</h4>
+						<p>Notre équipe est disponible pour vous accompagner dans vos démarches et le suivi de vos demandes.</p>
+						<a href="#" class="dashboard-btn dashboard-btn-primary w-100">Contacter le support</a>
+					</div>
+
+				</aside>
+			</div>
+
+			<div class="col-xl-9 col-lg-8">
+				<div class="dashboard-content">
+
+					<section class="dashboard-welcome-card">
+						<div class="dashboard-welcome-text">
+							<span class="dashboard-section-label">Vue d’ensemble</span>
+							<h2>Bienvenue sur votre espace personnel</h2>
+							<p>
+								Retrouvez vos informations importantes en un coup d’œil, consultez votre activité récente et accédez rapidement aux actions essentielles.
+							</p>
+						</div>
+
+						<div class="dashboard-welcome-side">
+							<div class="dashboard-completion-box">
+								<div class="dashboard-completion-top">
+									<span>Complétion du profil</span>
+									<strong>75%</strong>
+								</div>
+								<div class="dashboard-progress">
+									<div class="dashboard-progress-bar" style="width: 75%;"></div>
+								</div>
+								<a href="#" class="dashboard-inline-link">Compléter mes informations</a>
+							</div>
+						</div>
+					</section>
+
+					<section class="dashboard-stats-grid">
+						<div class="dashboard-stat-card">
+							<div class="dashboard-stat-top">
+								<span class="dashboard-stat-title">Messages</span>
+								<span class="dashboard-stat-badge">Ce mois</span>
+							</div>
+							<h3>12</h3>
+							<p>Conversations actives avec vos interlocuteurs</p>
+						</div>
+
+						<div class="dashboard-stat-card">
+							<div class="dashboard-stat-top">
+								<span class="dashboard-stat-title">Demandes</span>
+								<span class="dashboard-stat-badge">En cours</span>
+							</div>
+							<h3>05</h3>
+							<p>Demandes actuellement en traitement</p>
+						</div>
+
+						<div class="dashboard-stat-card">
+							<div class="dashboard-stat-top">
+								<span class="dashboard-stat-title">Projets validés</span>
+								<span class="dashboard-stat-badge">Total</span>
+							</div>
+							<h3>08</h3>
+							<p>Dossiers confirmés et terminés</p>
+						</div>
+
+						<div class="dashboard-stat-card">
+							<div class="dashboard-stat-top">
+								<span class="dashboard-stat-title">Avis reçus</span>
+								<span class="dashboard-stat-badge">Satisfaction</span>
+							</div>
+							<h3>14</h3>
+							<p>Retours déposés sur votre activité</p>
+						</div>
+					</section>
+
+					<div class="row g-4 mt-1">
+						<div class="col-lg-7">
+							<section class="dashboard-panel">
+								<div class="dashboard-panel-head">
+									<div>
+										<span class="dashboard-section-label">Activité récente</span>
+										<h3>Derniers messages</h3>
+									</div>
+									<a href="#" class="dashboard-panel-link">Voir tout</a>
+								</div>
+
+								<div class="dashboard-panel-body">
+									<a href="#" class="dashboard-message-card">
+										<div class="dashboard-message-avatar">
+											<img src="https://placehold.co/56x56" alt="Utilisateur">
+										</div>
+										<div class="dashboard-message-body">
+											<div class="dashboard-message-head">
+												<h4>Marie Laurent</h4>
+												<span>12 mars 2026</span>
+											</div>
+											<p>Bonjour, nous avons bien reçu votre demande et revenons vers vous avec une proposition détaillée.</p>
+										</div>
+									</a>
+
+									<a href="#" class="dashboard-message-card">
+										<div class="dashboard-message-avatar">
+											<img src="https://placehold.co/56x56" alt="Utilisateur">
+										</div>
+										<div class="dashboard-message-body">
+											<div class="dashboard-message-head">
+												<h4>Thomas Bernard</h4>
+												<span>10 mars 2026</span>
+											</div>
+											<p>Merci pour votre retour. Nous restons disponibles pour finaliser les prochains éléments de votre projet.</p>
+										</div>
+									</a>
+
+									<a href="#" class="dashboard-message-card">
+										<div class="dashboard-message-avatar">
+											<img src="https://placehold.co/56x56" alt="Utilisateur">
+										</div>
+										<div class="dashboard-message-body">
+											<div class="dashboard-message-head">
+												<h4>Sophie Martin</h4>
+												<span>08 mars 2026</span>
+											</div>
+											<p>Votre dossier est actuellement en cours d’étude. Vous serez notifié dès qu’une mise à jour sera disponible.</p>
+										</div>
+									</a>
+								</div>
+							</section>
+						</div>
+
+						<div class="col-lg-5">
+							<section class="dashboard-panel">
+								<div class="dashboard-panel-head">
+									<div>
+										<span class="dashboard-section-label">Accès rapide</span>
+										<h3>Actions principales</h3>
+									</div>
+								</div>
+
+								<div class="dashboard-panel-body">
+									<div class="dashboard-action-list">
+										<a href="#" class="dashboard-action-card">
+											<div class="dashboard-action-content">
+												<h4>Consulter la messagerie</h4>
+												<p>Accéder à tous vos échanges et conversations récentes.</p>
+											</div>
+											<span class="dashboard-action-arrow">→</span>
+										</a>
+
+										<a href="#" class="dashboard-action-card">
+											<div class="dashboard-action-content">
+												<h4>Suivre mes demandes</h4>
+												<p>Retrouver l’état d’avancement de vos projets en cours.</p>
+											</div>
+											<span class="dashboard-action-arrow">→</span>
+										</a>
+
+										<a href="#" class="dashboard-action-card">
+											<div class="dashboard-action-content">
+												<h4>Modifier mon profil</h4>
+												<p>Mettre à jour vos informations personnelles et professionnelles.</p>
+											</div>
+											<span class="dashboard-action-arrow">→</span>
+										</a>
+
+										<a href="#" class="dashboard-action-card">
+											<div class="dashboard-action-content">
+												<h4>Gérer mes paramètres</h4>
+												<p>Configurer vos préférences et options de compte.</p>
+											</div>
+											<span class="dashboard-action-arrow">→</span>
+										</a>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+
+					<section class="dashboard-panel mt-4">
+						<div class="dashboard-panel-head">
+							<div>
+								<span class="dashboard-section-label">Suivi des demandes</span>
+								<h3>Mes demandes récentes</h3>
+							</div>
+							<a href="#" class="dashboard-panel-link">Voir tout</a>
+						</div>
+
+						<div class="dashboard-panel-body p-0">
+							<div class="table-responsive">
+								<table class="table dashboard-table mb-0">
+									<thead>
+										<tr>
+											<th>Projet</th>
+											<th>Catégorie</th>
+											<th>Statut</th>
+											<th>Date</th>
+											<th class="text-end">Détail</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Rénovation salle de bain</td>
+											<td>Rénovation</td>
+											<td><span class="dashboard-status dashboard-status-pending">En attente</span></td>
+											<td>11/03/2026</td>
+											<td class="text-end"><a href="#" class="dashboard-table-link">Voir</a></td>
+										</tr>
+										<tr>
+											<td>Peinture intérieure</td>
+											<td>Travaux</td>
+											<td><span class="dashboard-status dashboard-status-progress">En cours</span></td>
+											<td>09/03/2026</td>
+											<td class="text-end"><a href="#" class="dashboard-table-link">Voir</a></td>
+										</tr>
+										<tr>
+											<td>Pose de carrelage</td>
+											<td>Aménagement</td>
+											<td><span class="dashboard-status dashboard-status-valid">Validé</span></td>
+											<td>05/03/2026</td>
+											<td class="text-end"><a href="#" class="dashboard-table-link">Voir</a></td>
+										</tr>
+										<tr>
+											<td>Installation électrique</td>
+											<td>Électricité</td>
+											<td><span class="dashboard-status dashboard-status-cancel">Annulé</span></td>
+											<td>28/02/2026</td>
+											<td class="text-end"><a href="#" class="dashboard-table-link">Voir</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</section>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+<style>
+.dashboard-home {
+	background: linear-gradient(180deg, #f8fafc 0%, #f3f6fb 100%);
+	min-height: 100vh;
+}
+
+.dashboard-banner {
+	padding: 115px 0 27px;
+	background: #ffffff;
+	border-bottom: 1px solid #edf1f5;
+}
+
+.dashboard-banner-content {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 24px;
+}
+
+.dashboard-overline,
+.dashboard-section-label {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #6b7280;
+	margin-bottom: 10px;
+}
+
+.dashboard-main-title {
+	font-size: 38px;
+	line-height: 1.1;
+	font-weight: 800;
+	color: #0f172a;
+	margin-bottom: 12px;
+}
+
+.dashboard-main-subtitle {
+	max-width: 720px;
+	font-size: 16px;
+	line-height: 1.7;
+	color: #667085;
+	margin: 0;
+}
+
+.dashboard-banner-actions {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.dashboard-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 48px;
+	padding: 0 20px;
+	border-radius: 14px;
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration: none;
+	transition: 0.25s ease;
+	border: 1px solid transparent;
+}
+
+.dashboard-btn-primary {
+	background: #0f172a;
+	color: #ffffff;
+	box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+}
+
+.dashboard-btn-primary:hover {
+	background: #111827;
+	color: #ffffff;
+	transform: translateY(-1px);
+}
+
+.dashboard-btn-secondary {
+	background: #ffffff;
+	color: #0f172a;
+	border-color: #dbe2ea;
+}
+
+.dashboard-btn-secondary:hover {
+	background: #f8fafc;
+	color: #0f172a;
+	border-color: #cfd8e3;
+}
+
+.dashboard-btn-outline {
+	background: #ffffff;
+	color: #0f172a;
+	border-color: #dbe2ea;
+}
+
+.dashboard-sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.dashboard-profile-card,
+.dashboard-nav-card,
+.dashboard-support-card,
+.dashboard-panel,
+.dashboard-welcome-card,
+.dashboard-stat-card {
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(10px);
+	border: 1px solid #e9eef5;
+	border-radius: 24px;
+	box-shadow: 0 18px 45px rgba(15, 23, 42, 0.05);
+}
+
+.dashboard-profile-card {
+	overflow: hidden;
+}
+
+.dashboard-profile-cover {
+	height: 88px;
+	background: linear-gradient(135deg, #0f172a, #334155);
+}
+
+.dashboard-profile-content {
+	position: relative;
+	padding: 0 24px 24px;
+	text-align: center;
+}
+
+.dashboard-profile-avatar {
+	width: 96px;
+	height: 96px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 5px solid #ffffff;
+	margin: -48px auto 14px;
+	box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+	background: #ffffff;
+}
+
+.dashboard-profile-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.dashboard-profile-name {
+	font-size: 22px;
+	font-weight: 800;
+	color: #0f172a;
+	margin-bottom: 6px;
+}
+
+.dashboard-profile-role {
+	font-size: 14px;
+	color: #667085;
+	margin-bottom: 18px;
+}
+
+.dashboard-profile-meta {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding-top: 16px;
+	border-top: 1px solid #edf1f5;
+}
+
+.dashboard-profile-meta-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	font-size: 14px;
+	color: #0f172a;
+}
+
+.dashboard-meta-label {
+	color: #667085;
+	font-weight: 500;
+}
+
+.dashboard-nav-card {
+	padding: 14px;
+}
+
+.dashboard-nav-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	min-height: 52px;
+	padding: 0 16px;
+	border-radius: 16px;
+	text-decoration: none;
+	color: #334155;
+	font-size: 15px;
+	font-weight: 600;
+	transition: 0.22s ease;
+}
+
+.dashboard-nav-item:hover {
+	background: #f8fafc;
+	color: #0f172a;
+}
+
+.dashboard-nav-item.active {
+	background: #0f172a;
+	color: #ffffff;
+	box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+.dashboard-nav-indicator {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: currentColor;
+	opacity: 0.7;
+}
+
+.dashboard-support-card {
+	padding: 24px;
+}
+
+.dashboard-support-card h4 {
+	font-size: 20px;
+	font-weight: 800;
+	color: #0f172a;
+	margin-bottom: 10px;
+}
+
+.dashboard-support-card p {
+	font-size: 14px;
+	line-height: 1.7;
+	color: #667085;
+	margin-bottom: 18px;
+}
+
+.dashboard-content {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.dashboard-welcome-card {
+	padding: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+}
+
+.dashboard-welcome-text h2 {
+	font-size: 30px;
+	font-weight: 800;
+	color: #0f172a;
+	margin-bottom: 10px;
+}
+
+.dashboard-welcome-text p {
+	max-width: 700px;
+	font-size: 15px;
+	line-height: 1.8;
+	color: #667085;
+	margin: 0;
+}
+
+.dashboard-welcome-side {
+	min-width: 280px;
+}
+
+.dashboard-completion-box {
+	padding: 20px;
+	border-radius: 18px;
+	background: #f8fafc;
+	border: 1px solid #e9eef5;
+}
+
+.dashboard-completion-top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 12px;
+	font-size: 14px;
+	font-weight: 700;
+	color: #0f172a;
+}
+
+.dashboard-progress {
+	height: 10px;
+	border-radius: 999px;
+	background: #e8edf4;
+	overflow: hidden;
+}
+
+.dashboard-progress-bar {
+	height: 100%;
+	border-radius: 999px;
+	background: linear-gradient(90deg, #0f172a, #475569);
+}
+
+.dashboard-inline-link {
+	display: inline-block;
+	margin-top: 12px;
+	font-size: 14px;
+	font-weight: 700;
+	color: #0f172a;
+	text-decoration: none;
+}
+
+.dashboard-inline-link:hover {
+	text-decoration: underline;
+}
+
+.dashboard-stats-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 18px;
+}
+
+.dashboard-stat-card {
+	padding: 24px;
+}
+
+.dashboard-stat-top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 16px;
+}
+
+.dashboard-stat-title {
+	font-size: 14px;
+	font-weight: 700;
+	color: #475569;
+}
+
+.dashboard-stat-badge {
+	padding: 6px 10px;
+	border-radius: 999px;
+	background: #f1f5f9;
+	font-size: 12px;
+	font-weight: 700;
+	color: #64748b;
+}
+
+.dashboard-stat-card h3 {
+	font-size: 36px;
+	font-weight: 800;
+	color: #0f172a;
+	margin-bottom: 8px;
+	line-height: 1;
+}
+
+.dashboard-stat-card p {
+	font-size: 14px;
+	line-height: 1.7;
+	color: #667085;
+	margin: 0;
+}
+
+.dashboard-panel-head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 24px 24px 18px;
+	border-bottom: 1px solid #edf1f5;
+}
+
+.dashboard-panel-head h3 {
+	font-size: 24px;
+	font-weight: 800;
+	color: #0f172a;
+	margin: 0;
+}
+
+.dashboard-panel-link {
+	font-size: 14px;
+	font-weight: 700;
+	color: #0f172a;
+	text-decoration: none;
+}
+
+.dashboard-panel-link:hover {
+	text-decoration: underline;
+}
+
+.dashboard-panel-body {
+	padding: 20px 24px 24px;
+}
+
+.dashboard-message-card {
+	display: flex;
+	align-items: flex-start;
+	gap: 16px;
+	padding: 16px;
+	border: 1px solid #edf1f5;
+	border-radius: 18px;
+	background: #fbfcfe;
+	text-decoration: none;
+	transition: 0.22s ease;
+	margin-bottom: 14px;
+}
+
+.dashboard-message-card:last-child {
+	margin-bottom: 0;
+}
+
+.dashboard-message-card:hover {
+	background: #ffffff;
+	border-color: #dbe2ea;
+	box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+	transform: translateY(-1px);
+}
+
+.dashboard-message-avatar {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
+	background: #e5e7eb;
+}
+
+.dashboard-message-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.dashboard-message-body {
+	flex: 1;
+	min-width: 0;
+}
+
+.dashboard-message-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 8px;
+}
+
+.dashboard-message-head h4 {
+	font-size: 16px;
+	font-weight: 800;
+	color: #0f172a;
+	margin: 0;
+}
+
+.dashboard-message-head span {
+	font-size: 12px;
+	font-weight: 700;
+	color: #94a3b8;
+	white-space: nowrap;
+}
+
+.dashboard-message-body p {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #667085;
+}
+
+.dashboard-action-list {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.dashboard-action-card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 18px;
+	border: 1px solid #edf1f5;
+	border-radius: 18px;
+	background: #fbfcfe;
+	text-decoration: none;
+	transition: 0.22s ease;
+}
+
+.dashboard-action-card:hover {
+	background: #ffffff;
+	border-color: #dbe2ea;
+	box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+	transform: translateY(-1px);
+}
+
+.dashboard-action-content h4 {
+	font-size: 16px;
+	font-weight: 800;
+	color: #0f172a;
+	margin-bottom: 6px;
+}
+
+.dashboard-action-content p {
+	font-size: 14px;
+	line-height: 1.7;
+	color: #667085;
+	margin: 0;
+}
+
+.dashboard-action-arrow {
+	font-size: 20px;
+	font-weight: 700;
+	color: #0f172a;
+	flex-shrink: 0;
+}
+
+.dashboard-table thead th {
+	padding: 18px 24px;
+	background: #fafbfd;
+	border-bottom: 1px solid #edf1f5;
+	font-size: 13px;
+	font-weight: 800;
+	color: #64748b;
+	white-space: nowrap;
+}
+
+.dashboard-table tbody td {
+	padding: 18px 24px;
+	vertical-align: middle;
+	border-color: #edf1f5;
+	font-size: 14px;
+	color: #0f172a;
+}
+
+.dashboard-status {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 32px;
+	padding: 0 12px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 800;
+}
+
+.dashboard-status-pending {
+	background: #fff7ed;
+	color: #c2410c;
+}
+
+.dashboard-status-progress {
+	background: #eff6ff;
+	color: #1d4ed8;
+}
+
+.dashboard-status-valid {
+	background: #ecfdf3;
+	color: #15803d;
+}
+
+.dashboard-status-cancel {
+	background: #fef2f2;
+	color: #b91c1c;
+}
+
+.dashboard-table-link {
+	font-size: 14px;
+	font-weight: 800;
+	color: #0f172a;
+	text-decoration: none;
+}
+
+.dashboard-table-link:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 1199.98px) {
+	.dashboard-stats-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 991.98px) {
+	.dashboard-banner-content,
+	.dashboard-welcome-card {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.dashboard-welcome-side {
+		min-width: 100%;
+		width: 100%;
+	}
+
+	.dashboard-main-title {
+		font-size: 30px;
+	}
+
+	.dashboard-welcome-text h2 {
+		font-size: 26px;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.dashboard-banner {
+		padding: 30px 0 18px;
+	}
+
+	.dashboard-main-title {
+		font-size: 26px;
+	}
+
+	.dashboard-main-subtitle {
+		font-size: 15px;
+	}
+
+	.dashboard-profile-card,
+	.dashboard-nav-card,
+	.dashboard-support-card,
+	.dashboard-panel,
+	.dashboard-welcome-card,
+	.dashboard-stat-card {
+		border-radius: 20px;
+	}
+
+	.dashboard-panel-head,
+	.dashboard-panel-body,
+	.dashboard-welcome-card,
+	.dashboard-support-card {
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+
+	.dashboard-stats-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.dashboard-message-head {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.dashboard-table thead th,
+	.dashboard-table tbody td {
+		padding: 14px 16px;
+	}
+
+	.dashboard-btn {
+		width: 100%;
+	}
+
+	.dashboard-banner-actions {
+		width: 100%;
+	}
+}
+</style>
+{% endblock %}
