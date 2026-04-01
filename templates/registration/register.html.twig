@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Login Page</title>
+		<title>Inscription</title>
 
 		<style>
 			*,
@@ -23,7 +23,7 @@
 			.grid {
 				display: grid;
 				grid-template-columns: 1fr 1fr;
-				height: 100vh;
+				min-height: 100vh;
 			}
 
 			.order__left {
@@ -56,6 +56,12 @@
 				margin-bottom: 12px;
 			}
 
+			.header-logo {
+				max-width: 180px;
+				height: auto;
+				display: block;
+			}
+
 			h4 {
 				color: #867992;
 				text-align: justify;
@@ -63,6 +69,12 @@
 				letter-spacing: 0.2px;
 				line-height: 20px;
 				font-weight: 500;
+			}
+
+			h3 {
+				text-align: center;
+				padding: 20px 0;
+				color: #4F4659;
 			}
 
 			input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="file"]) {
@@ -76,11 +88,12 @@
 				font-size: 16px;
 				color: #4F4659;
 				outline: none;
-				transition: box-shadow 0.25s ease-in-out, background-image 0.25s;
+				transition: box-shadow 0.25s ease-in-out, background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 			}
 
 			input[type="email"]:focus,
-			input[type="password"]:focus {
+			input[type="password"]:focus,
+			input[type="text"]:focus {
 				border-color: #A26ED4;
 				background: #FDFCFE;
 				box-shadow: 0 0 0 0.25rem #ebd6ff;
@@ -88,21 +101,6 @@
 
 			::placeholder {
 				color: #A29CA8;
-			}
-
-			.justify__space_between {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				margin: 30px 0 26px;
-				gap: 15px;
-				flex-wrap: wrap;
-			}
-
-			.remember-wrapper {
-				display: flex;
-				align-items: center;
-				gap: 6px;
 			}
 
 			input[type="checkbox"],
@@ -138,6 +136,7 @@
 				font-size: 16px;
 				cursor: pointer;
 				transition: box-shadow 0.25s ease-in-out, background-color 0.3s;
+				margin-top: 10px;
 			}
 
 			.login__button:hover {
@@ -162,10 +161,147 @@
 				display: block;
 			}
 
-			@media only screen and(max-width: 800px) {
+			.form-row {
+				display: flex;
+				gap: 20px;
+			}
+
+			.form-col {
+				flex: 1;
+			}
+
+			/* =========================
+			   TABS
+			========================= */
+			.auth-tabs {
+				display: flex;
+				gap: 10px;
+				margin-bottom: 25px;
+				padding: 6px;
+				background: #f4eef9;
+				border-radius: 14px;
+			}
+
+			.auth-tab {
+				flex: 1;
+				border: none;
+				background: transparent;
+				color: #867992;
+				padding: 14px 16px;
+				border-radius: 10px;
+				font-size: 15px;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.25s ease;
+			}
+
+			.auth-tab.active {
+				background: #ffffff;
+				color: #A26ED4;
+				box-shadow: 0 8px 20px rgba(162, 110, 212, 0.14);
+			}
+
+			.tab-panel {
+				display: none;
+			}
+
+			.tab-panel.active {
+				display: block;
+			}
+
+			/* =========================
+			   FLASH MESSAGES
+			========================= */
+			.alert {
+				position: relative;
+				width: 100%;
+				padding: 16px 20px 16px 24px;
+				margin-bottom: 16px;
+				border: 1px solid transparent;
+				border-radius: 12px;
+				font-size: 15px;
+				line-height: 1.5;
+				font-weight: 500;
+				box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+				transition: all 0.3s ease;
+			}
+
+			.alert + .alert {
+				margin-top: 12px;
+			}
+
+			.alert:hover {
+				transform: translateY(-1px);
+				box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+			}
+
+			.alert-success {
+				color: #0f5132;
+				background: #d1e7dd;
+				border-color: #badbcc;
+			}
+
+			.alert-danger,
+			.alert-error {
+				color: #842029;
+				background: #f8d7da;
+				border-color: #f5c2c7;
+			}
+
+			.alert-warning {
+				color: #664d03;
+				background: #fff3cd;
+				border-color: #ffecb5;
+			}
+
+			.alert-info {
+				color: #055160;
+				background: #cff4fc;
+				border-color: #b6effb;
+			}
+
+			.alert-primary {
+				color: #084298;
+				background: #cfe2ff;
+				border-color: #b6d4fe;
+			}
+
+			.alert-secondary {
+				color: #41464b;
+				background: #e2e3e5;
+				border-color: #d3d6d8;
+			}
+
+			.alert-light {
+				color: #636464;
+				background: #fefefe;
+				border-color: #fdfdfe;
+			}
+
+			.alert-dark {
+				color: #141619;
+				background: #d3d3d4;
+				border-color: #bcbebf;
+			}
+
+			.alert::before {
+				content: "";
+				position: absolute;
+				top: 12px;
+				bottom: 12px;
+				left: 0;
+				width: 5px;
+				border-radius: 10px;
+				background: currentColor;
+				opacity: 0.35;
+			}
+
+			/* =========================
+			   RESPONSIVE
+			========================= */
+			@media only screen and (max-width: 800px) {
 				.grid {
 					grid-template-columns: 1fr;
-					height: auto;
 					min-height: 100vh;
 				}
 
@@ -195,157 +331,30 @@
 					width: 100%;
 					height: 300px;
 				}
+
+				.form-row {
+					flex-direction: column;
+					gap: 0;
+				}
 			}
 
-			@media only screen and(max-height: 600px) {
+			@media only screen and (max-height: 600px) {
 				.img {
 					width: 120%;
 				}
 			}
-			.form-row {
-    display: flex;
-    gap: 20px; /* espace entre les champs */
-}
 
-.form-col {
-    flex: 1; /* équivalent col-6 */
-}
+			@media (max-width: 767.98px) {
+				.alert {
+					padding: 14px 16px 14px 20px;
+					font-size: 14px;
+					border-radius: 10px;
+				}
 
-h3 {
-	text-align:center;
-	padding: 20px 0;
-}
-
-/* =========================
-   FLASH MESSAGES SYMFONY
-========================= */
-.alert {
-    position: relative;
-    width: 100%;
-    padding: 16px 20px;
-    margin-bottom: 16px;
-    border: 1px solid transparent;
-    border-radius: 12px;
-    font-size: 15px;
-    line-height: 1.5;
-    font-weight: 500;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
-}
-
-.alert + .alert {
-    margin-top: 12px;
-}
-
-.alert:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
-}
-
-/* =========================
-   SUCCESS
-========================= */
-.alert-success {
-    color: #0f5132;
-    background: #d1e7dd;
-    border-color: #badbcc;
-}
-
-/* =========================
-   DANGER / ERROR
-========================= */
-.alert-danger,
-.alert-error {
-    color: #842029;
-    background: #f8d7da;
-    border-color: #f5c2c7;
-}
-
-/* =========================
-   WARNING
-========================= */
-.alert-warning {
-    color: #664d03;
-    background: #fff3cd;
-    border-color: #ffecb5;
-}
-
-/* =========================
-   INFO
-========================= */
-.alert-info {
-    color: #055160;
-    background: #cff4fc;
-    border-color: #b6effb;
-}
-
-/* =========================
-   PRIMARY
-========================= */
-.alert-primary {
-    color: #084298;
-    background: #cfe2ff;
-    border-color: #b6d4fe;
-}
-
-/* =========================
-   SECONDARY
-========================= */
-.alert-secondary {
-    color: #41464b;
-    background: #e2e3e5;
-    border-color: #d3d6d8;
-}
-
-/* =========================
-   LIGHT
-========================= */
-.alert-light {
-    color: #636464;
-    background: #fefefe;
-    border-color: #fdfdfe;
-}
-
-/* =========================
-   DARK
-========================= */
-.alert-dark {
-    color: #141619;
-    background: #d3d3d4;
-    border-color: #bcbebf;
-}
-
-/* =========================
-   PETIT EFFET BARRE GAUCHE
-========================= */
-.alert::before {
-    content: "";
-    position: absolute;
-    top: 12px;
-    bottom: 12px;
-    left: 0;
-    width: 5px;
-    border-radius: 10px;
-    background: currentColor;
-    opacity: 0.35;
-}
-
-/* espace pour la barre */
-.alert {
-    padding-left: 24px;
-}
-
-/* =========================
-   VERSION RESPONSIVE
-========================= */
-@media (max-width: 767.98px) {
-    .alert {
-        padding: 14px 16px 14px 20px;
-        font-size: 14px;
-        border-radius: 10px;
-    }
-}
-
+				.auth-tabs {
+					flex-direction: column;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -354,52 +363,34 @@ h3 {
 			<div class="order__left centered">
 				<div class="form">
 					<div class="logo">
-						<img src="{{ asset('media/logo.png') }}" alt="/logo" class="header-logo">
+						<img src="{{ asset('media/logo.png') }}" alt="logo" class="header-logo">
 					</div>
 
 					<h4>
 						Bienvenue sur trouvemoi.eu, une plateforme haut de gamme conçue pour connecter efficacement particuliers et professionnels du bâtiment, avec exigence, qualité et performance.
 					</h4>
 
-					{{ form_start(registrationPro) }}
+					<div class="auth-tabs">
+						<button type="button" class="auth-tab active" data-tab="tab-pro">	
+							Professionnel
+						</button>
+						<button type="button" class="auth-tab" data-tab="tab-particulier">
+							Particulier
+						</button>
+					</div>
 
-					<h3 class="py-3 text-center">
-						Information sur votre entreprise</h3>
-
-						{% for label, messages in app.flashes %}
-							{% for message in messages %}
-								<div class="alert alert-{{ label }}">
-									{{ message }}
-								</div>
-							{% endfor %}
+					{% for label, messages in app.flashes %}
+						{% for message in messages %}
+							<div class="alert alert-{{ label }}">
+								{{ message }}
+							</div>
 						{% endfor %}
+					{% endfor %}
 
-				{{ form_row(registrationPro.siren) }}
-				<div class="form-row">
-					<div class="form-col">
-						{{ form_row(registrationPro.lastName) }}
-					</div>
-					<div class="form-col">
-						{{ form_row(registrationPro.firstName) }}
-					</div>
-				</div>
-                
+					{% include('_partials/registrationPro.html.twig') %}
+					{{ render(controller('App\\Controller\\SecurityController::NavTabLogin')) }}
 
-               
-                {{ form_row(registrationPro.email) }}
-								{{ form_row(registrationPro.plainPassword) }}
-								{{ form_row(registrationPro.agreeTerms) }}
-        
 
-					<button type="submit" class="login__button">S'enregistré</button>
-
-					<div class="signup">
-						<label class="remember_me">Vous avez déjà un compte?</label>
-						<a href="{{ path('app_login') }}" class="forgot__password">
-							<strong>se connecter</strong>
-						</a>
-					</div>
-					{{ form_end(registrationPro) }}
 				</div>
 			</div>
 
@@ -407,6 +398,25 @@ h3 {
 				<img class="img" src="{{ asset('media/banner/register.png') }}" alt="picture">
 			</div>
 		</div>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				const tabs = document.querySelectorAll('.auth-tab');
+				const panels = document.querySelectorAll('.tab-panel');
+
+				tabs.forEach(tab => {
+					tab.addEventListener('click', function () {
+						const target = this.getAttribute('data-tab');
+
+						tabs.forEach(btn => btn.classList.remove('active'));
+						panels.forEach(panel => panel.classList.remove('active'));
+
+						this.classList.add('active');
+						document.getElementById(target).classList.add('active');
+					});
+				});
+			});
+		</script>
 
 	</body>
 </html>
