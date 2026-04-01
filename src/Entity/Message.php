@@ -1,9 +1,25 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Entity;
 
 use App\Repository\MessageRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
@@ -46,6 +62,7 @@ class Message
     public function setConversation(?Conversation $conversation): self
     {
         $this->conversation = $conversation;
+
         return $this;
     }
 
@@ -57,6 +74,7 @@ class Message
     public function setSender(?User $sender): self
     {
         $this->sender = $sender;
+
         return $this;
     }
 
@@ -68,6 +86,7 @@ class Message
     public function setContent(string $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -79,6 +98,7 @@ class Message
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 }

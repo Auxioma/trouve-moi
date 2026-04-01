@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Controller\User;
 
 use App\Entity\Message;
@@ -34,15 +51,15 @@ final class MessagerieController extends AbstractController
                 $participantUser = $participant->getUser();
 
                 if (
-                    $participantUser !== null &&
-                    $participantUser->getId() !== $currentUser->getId()
+                    null !== $participantUser
+                    && $participantUser->getId() !== $currentUser->getId()
                 ) {
                     $otherUser = $participantUser;
                     break;
                 }
             }
 
-            if ($otherUser === null) {
+            if (null === $otherUser) {
                 continue;
             }
 
@@ -61,84 +78,83 @@ final class MessagerieController extends AbstractController
         ]);
     }
 
-#[Route('/user/messagerie/{id}', name: 'app_user_messagerie_show', methods: ['GET', 'POST'])]
-public function show(
-    int $id,
-    ConversationRepository $conversationRepository,
-    Request $request,
-    EntityManagerInterface $entityManager
-): Response {
-    /** @var User|null $currentUser */
-    $currentUser = $this->getUser();
+    #[Route('/user/messagerie/{id}', name: 'app_user_messagerie_show', methods: ['GET', 'POST'])]
+    public function show(
+        int $id,
+        ConversationRepository $conversationRepository,
+        Request $request,
+        EntityManagerInterface $entityManager,
+    ): Response {
+        /** @var User|null $currentUser */
+        $currentUser = $this->getUser();
 
-    if (!$currentUser instanceof User) {
-        throw $this->createAccessDeniedException('Utilisateur non connecté.');
-    }
-
-    $conversation = $conversationRepository->findUserConversationById($currentUser, $id);
-
-    if (!$conversation) {
-        throw $this->createAccessDeniedException('Accès refusé.');
-    }
-
-    if ($request->isMethod('POST')) {
-        $content = trim((string) $request->request->get('content'));
-
-
-        if ($content !== '') {
-            $message = new Message();
-            $message->setConversation($conversation);
-            $message->setSender($currentUser);
-            $message->setContent($content);
-
-            $conversation->setUpdatedAt(new \DateTimeImmutable());
-
-            $entityManager->persist($message);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_user_messagerie_show', [
-                'id' => $conversation->getId(),
-            ]);
+        if (!$currentUser instanceof User) {
+            throw $this->createAccessDeniedException('Utilisateur non connecté.');
         }
-    }
 
-    $conversations = $conversationRepository->findConversationsWithMessagesByUser($currentUser);
+        $conversation = $conversationRepository->findUserConversationById($currentUser, $id);
 
-    $discussions = [];
+        if (!$conversation) {
+            throw $this->createAccessDeniedException('Accès refusé.');
+        }
 
-    foreach ($conversations as $conversationItem) {
-        $otherUser = null;
+        if ($request->isMethod('POST')) {
+            $content = mb_trim((string) $request->request->get('content'));
 
-        foreach ($conversationItem->getParticipants() as $participant) {
-            $participantUser = $participant->getUser();
+            if ('' !== $content) {
+                $message = new Message();
+                $message->setConversation($conversation);
+                $message->setSender($currentUser);
+                $message->setContent($content);
 
-            if (
-                $participantUser !== null &&
-                $participantUser->getId() !== $currentUser->getId()
-            ) {
-                $otherUser = $participantUser;
-                break;
+                $conversation->setUpdatedAt(new \DateTimeImmutable());
+
+                $entityManager->persist($message);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_user_messagerie_show', [
+                    'id' => $conversation->getId(),
+                ]);
             }
         }
 
-        if ($otherUser === null) {
-            continue;
+        $conversations = $conversationRepository->findConversationsWithMessagesByUser($currentUser);
+
+        $discussions = [];
+
+        foreach ($conversations as $conversationItem) {
+            $otherUser = null;
+
+            foreach ($conversationItem->getParticipants() as $participant) {
+                $participantUser = $participant->getUser();
+
+                if (
+                    null !== $participantUser
+                    && $participantUser->getId() !== $currentUser->getId()
+                ) {
+                    $otherUser = $participantUser;
+                    break;
+                }
+            }
+
+            if (null === $otherUser) {
+                continue;
+            }
+
+            $messages = $conversationItem->getMessages();
+            $lastMessage = $messages->isEmpty() ? null : $messages->last();
+
+            $discussions[] = [
+                'user' => $otherUser,
+                'conversation' => $conversationItem,
+                'lastMessage' => $lastMessage,
+            ];
         }
 
-        $messages = $conversationItem->getMessages();
-        $lastMessage = $messages->isEmpty() ? null : $messages->last();
-
-        $discussions[] = [
-            'user' => $otherUser,
-            'conversation' => $conversationItem,
-            'lastMessage' => $lastMessage,
-        ];
+        return $this->render('user/messagerie/show.html.twig', [
+            'conversation' => $conversation,
+            'messages' => $conversation->getMessages(),
+            'discussions' => $discussions,
+        ]);
     }
-
-    return $this->render('user/messagerie/show.html.twig', [
-        'conversation' => $conversation,
-        'messages' => $conversation->getMessages(),
-        'discussions' => $discussions,
-    ]);
-}
 }

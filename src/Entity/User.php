@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Entity;
 
 use App\Entity\Enum\UserProfileStatus;
@@ -23,7 +40,7 @@ use Vich\UploaderBundle\Mapping\Attribute as Vich;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue] 
+    #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
@@ -121,7 +138,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $slug = null;
 
     /**
-     * Témoignages écrits par cet utilisateur
+     * Témoignages écrits par cet utilisateur.
      *
      * @var Collection<int, Testimonial>
      */
@@ -129,7 +146,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $writtenTestimonials;
 
     /**
-     * Témoignages reçus par cet artisan
+     * Témoignages reçus par cet artisan.
      *
      * @var Collection<int, Testimonial>
      */

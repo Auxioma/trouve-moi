@@ -1,27 +1,43 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\VisiteurLoginType;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Mime\Address;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 class SecurityController extends AbstractController
 {
-
     public function __construct(private EmailVerifier $emailVerifier)
     {
     }
-    
+
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -44,7 +60,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/nav-tab-login', name: 'app_nav_tab_login')]
-    public  function NavTabLogin(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function NavTabLogin(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $newVisiteur = new User();
         $Visiteur = $this->createForm(VisiteurLoginType::class, $newVisiteur, [
@@ -54,8 +70,7 @@ class SecurityController extends AbstractController
         $Visiteur->handleRequest($request);
 
         if ($Visiteur->isSubmitted() && $Visiteur->isValid()) {
-            
-             $plainPassword = $Visiteur->get('plainPassword')->getData();
+            $plainPassword = $Visiteur->get('plainPassword')->getData();
 
             // encode the plain password
             $newVisiteur->setPassword($userPasswordHasher->hashPassword($newVisiteur, $plainPassword));
@@ -74,7 +89,7 @@ class SecurityController extends AbstractController
 
             return $this->redirectToRoute('app_login');
         }
-        
+
         return $this->render('_partials/registrationParticulier.html.twig', [
             'registrationParticulier' => $Visiteur->createView(),
         ]);

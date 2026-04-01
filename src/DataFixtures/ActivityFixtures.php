@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\DataFixtures;
 
 use App\Entity\Activity;
@@ -37,7 +54,7 @@ class ActivityFixtures extends Fixture
         $text = mb_strtolower($text);
         $text = preg_replace('/[^a-z0-9]+/iu', '-', $text);
 
-        return trim((string) $text, '-');
+        return mb_trim((string) $text, '-');
     }
 
     private function getActivitiesWithServices(): array

@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Controller;
 
 use App\Dto\QuoteRequestDto;
@@ -8,15 +25,11 @@ use App\Entity\ConversationParticipant;
 use App\Entity\Message;
 use App\Entity\User;
 use App\Form\QuoteRequestType;
-use App\Repository\ActivityRepository;
-use App\Repository\ServicesRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Dom\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
@@ -24,7 +37,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class CompanyController extends AbstractController
 {
     public function __construct(
-        private readonly UserRepository $userRepository
+        private readonly UserRepository $userRepository,
     ) {
     }
 
@@ -34,7 +47,7 @@ final class CompanyController extends AbstractController
         requirements: [
             'codePostal' => '\d{5}',
             'ville' => '[a-zA-ZÀ-ÿ\-]+',
-            'slug' => '[a-zA-Z0-9\-]+'
+            'slug' => '[a-zA-Z0-9\-]+',
         ],
         defaults: ['step' => 1],
     )]
@@ -43,16 +56,15 @@ final class CompanyController extends AbstractController
         Request $request,
         UserRepository $userRepository,
         EntityManagerInterface $entityManager,
-        MailerInterface $mailer
+        MailerInterface $mailer,
     ): Response {
-
         $artisan = $userRepository->findOneBy(['slug' => $slug]);
 
         if (!$artisan) {
             throw $this->createNotFoundException('Artisan introuvable.');
         }
 
-        if (!in_array('ROLE_ARTISAN', $artisan->getRoles(), true)) {
+        if (!\in_array('ROLE_ARTISAN', $artisan->getRoles(), true)) {
             throw $this->createNotFoundException('Le profil demandé n’est pas un artisan.');
         }
 
@@ -60,10 +72,7 @@ final class CompanyController extends AbstractController
         $form = $this->createForm(QuoteRequestType::class, $quote);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted()) {
-
-
             $customerEmail = $quote->getEmail();
             $customer = $userRepository->findOneBy(['email' => $customerEmail]);
 
@@ -94,7 +103,7 @@ final class CompanyController extends AbstractController
             }
 
             /**
-             * Création ou récupération d'une conversation entre le client et l'artisan
+             * Création ou récupération d'une conversation entre le client et l'artisan.
              */
             $conversation = $entityManager
                 ->getRepository(Conversation::class)
@@ -131,9 +140,9 @@ final class CompanyController extends AbstractController
             }
 
             /**
-             * Création d’un premier message automatique à partir de la demande de devis
+             * Création d’un premier message automatique à partir de la demande de devis.
              */
-            $messageContent = sprintf(
+            $messageContent = \sprintf(
                 "Nouvelle demande de devis\n\nNom : %s %s\nEmail : %s\nTéléphone : %s\n\nMessage :\n%s",
                 method_exists($quote, 'getFirstName') ? $quote->getFirstName() : '',
                 method_exists($quote, 'getLastName') ? $quote->getLastName() : '',
@@ -145,14 +154,14 @@ final class CompanyController extends AbstractController
             $message = new Message();
             $message->setConversation($conversation);
             $message->setSender($customer);
-            $message->setContent(trim($messageContent));
+            $message->setContent(mb_trim($messageContent));
 
             $conversation->setUpdatedAt(new \DateTimeImmutable());
 
             $entityManager->persist($message);
 
             /**
-             * Envoi email à l'artisan
+             * Envoi email à l'artisan.
              */
             $artisanEmail = (new Email())
                 ->from('contact@tonsite.com')
@@ -167,8 +176,6 @@ final class CompanyController extends AbstractController
             $mailer->send($artisanEmail);
 
             $entityManager->flush();
-
-           
 
             return $this->redirectToRoute('app_ask_quote_success');
         }
@@ -190,7 +197,7 @@ final class CompanyController extends AbstractController
     public function showCompany(
         string $codePostal,
         string $ville,
-        string $slug
+        string $slug,
     ): Response {
         $company = $this->userRepository->findOneBy([
             'slug' => $slug,
@@ -215,21 +222,22 @@ final class CompanyController extends AbstractController
     }
 
     /**
-     * Génère un mot de passe aléatoire sécurisé
+     * Génère un mot de passe aléatoire sécurisé.
      *
      * @param int $length La longueur du mot de passe à générer
+     *
      * @return string Le mot de passe généré
      */
-    function generatePassword($length = 20)
-{
-    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}<>?';
-    $password = '';
-    $max = strlen($chars) - 1;
+    public function generatePassword($length = 20)
+    {
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}<>?';
+        $password = '';
+        $max = mb_strlen($chars) - 1;
 
-    for ($i = 0; $i < $length; $i++) {
-        $password .= $chars[random_int(0, $max)];
+        for ($i = 0; $i < $length; ++$i) {
+            $password .= $chars[random_int(0, $max)];
+        }
+
+        return $password;
     }
-
-    return $password;
-}
 }

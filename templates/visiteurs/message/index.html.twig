@@ -27,57 +27,7 @@
 	<div class="container">
 		<div class="row g-4">
 
-			<div class="col-xl-3 col-lg-4">
-				<aside class="dashboard-lux-sidebar">
-
-					<div class="dashboard-lux-profile-card">
-						<div class="dashboard-lux-profile-cover"></div>
-
-						<div class="dashboard-lux-profile-content">
-							<div class="dashboard-lux-profile-avatar">
-								<img src="https://placehold.co/110x110" alt="Photo de profil">
-							</div>
-
-							<h3>Jean Dupont</h3>
-							<p class="dashboard-lux-profile-subtitle">Compte personnel actif</p>
-
-							<div class="dashboard-lux-profile-details">
-								<div class="dashboard-lux-profile-line">
-									<span>Membre depuis</span>
-									<strong>Janvier 2026</strong>
-								</div>
-								<div class="dashboard-lux-profile-line">
-									<span>Statut</span>
-									<strong>Vérifié</strong>
-								</div>
-								<div class="dashboard-lux-profile-line">
-									<span>Dernière activité</span>
-									<strong>Aujourd’hui</strong>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<nav class="dashboard-lux-nav">
-						<a href="#" class="dashboard-lux-nav-item">Accueil</a>
-						<a href="#" class="dashboard-lux-nav-item active">Messagerie</a>
-						<a href="#" class="dashboard-lux-nav-item">Mes demandes</a>
-						<a href="#" class="dashboard-lux-nav-item">Mon profil</a>
-						<a href="#" class="dashboard-lux-nav-item">Mes documents</a>
-						<a href="#" class="dashboard-lux-nav-item">Paramètres</a>
-					</nav>
-
-					<div class="dashboard-lux-help-card">
-						<span class="dashboard-lux-kicker">Accompagnement</span>
-						<h4>Besoin d’aide ?</h4>
-						<p>
-							Notre équipe vous accompagne dans le suivi de vos demandes et l’utilisation de votre espace personnel.
-						</p>
-						<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary w-100">Contacter le support</a>
-					</div>
-
-				</aside>
-			</div>
+			{% include '_partials/nav_bar_visiteur.html.twig' %}
 
 			<div class="col-xl-9 col-lg-8">
 				<div class="messagerie-card">
@@ -86,7 +36,9 @@
 						<div class="messagerie-header-left">
 							<span class="messagerie-kicker">Boîte de réception</span>
 							<h3 class="messagerie-title mb-1">Vos conversations récentes</h3>
-							<p class="messagerie-subtitle mb-0">3 discussions disponibles</p>
+							<p class="messagerie-subtitle mb-0">
+								{{ discussions|length }} discussion{% if discussions|length > 1 %}s{% endif %} disponible{% if discussions|length > 1 %}s{% endif %}
+							</p>
 						</div>
 
 						<div class="messagerie-header-right">
@@ -95,88 +47,92 @@
 					</div>
 
 					<div class="messagerie-list">
+						{% if discussions is not empty %}
+							{% for discussion in discussions %}
+								{% set otherUser = discussion.user %}
+								{% set conversation = discussion.conversation %}
+								{% set lastMessage = discussion.lastMessage %}
 
-						<a href="#" class="message-item unread">
-							<div class="message-avatar-wrapper">
-								<div class="message-avatar">
-									<img src="https://i.pravatar.cc/100?img=1" alt="Jean Dupont">
+								<a href="{{ path('app_conversation_show', {id: conversation.id}) }}" class="message-item {% if lastMessage and lastMessage.isRead is defined and not lastMessage.isRead %}unread{% endif %}">
+									<div class="message-avatar-wrapper">
+										{% if otherUser.photo is defined and otherUser.photo %}
+											<div class="message-avatar">
+												<img src="{{ asset(otherUser.photo) }}" alt="{{ otherUser.fullName ?? otherUser.nom ?? otherUser.email }}">
+											</div>
+										{% else %}
+											<div class="message-avatar message-avatar-letter">
+												<span>
+													{{ (otherUser.firstname ?? otherUser.prenom ?? otherUser.nom ?? otherUser.email)|first|upper }}
+												</span>
+											</div>
+										{% endif %}
+									</div>
+
+									<div class="message-main">
+										<div class="message-topline">
+											<p class="message-title">
+												<span class="message-user-name">
+													{{ otherUser.fullName ?? ((otherUser.firstname ?? otherUser.prenom ?? '') ~ ' ' ~ (otherUser.lastname ?? otherUser.nom ?? ''))|trim ?: otherUser.email }}
+												</span>
+
+												{% if conversation.title is defined and conversation.title %}
+													<span class="message-separator">•</span>
+													<span class="message-project-title">{{ conversation.title }}</span>
+												{% endif %}
+											</p>
+
+											<span class="message-date">
+												{% if lastMessage and lastMessage.createdAt %}
+													{{ lastMessage.createdAt|date('d M') }}
+												{% else %}
+													-
+												{% endif %}
+											</span>
+										</div>
+
+										<div class="message-bottomline">
+											<p class="message-preview">
+												{% if lastMessage and lastMessage.content %}
+													{{ lastMessage.content|u.truncate(90, '...') }}
+												{% else %}
+													Aucun message pour le moment.
+												{% endif %}
+											</p>
+
+											{% if lastMessage and lastMessage.isRead is defined and not lastMessage.isRead %}
+												<span class="message-meta">
+													<span class="message-unread-dot"></span>
+												</span>
+											{% endif %}
+										</div>
+									</div>
+								</a>
+							{% endfor %}
+						{% else %}
+							<div class="message-item">
+								<div class="message-avatar-wrapper">
+									<div class="message-avatar message-avatar-letter">
+										<span>?</span>
+									</div>
+								</div>
+
+								<div class="message-main">
+									<div class="message-topline">
+										<p class="message-title">
+											<span class="message-user-name">Aucune conversation</span>
+										</p>
+									</div>
+
+									<div class="message-bottomline">
+										<p class="message-preview">
+											Vous n’avez encore aucune discussion dans votre messagerie.
+										</p>
+									</div>
 								</div>
 							</div>
-
-							<div class="message-main">
-								<div class="message-topline">
-									<p class="message-title">
-										<span class="message-user-name">Jean Dupont</span>
-										<span class="message-separator">•</span>
-										<span class="message-project-title">Rénovation cuisine</span>
-									</p>
-
-									<span class="message-date">12 Mar</span>
-								</div>
-
-								<div class="message-bottomline">
-									<p class="message-preview">
-										Bonjour, je voulais savoir si vous étiez disponible la semaine prochaine pour le chantier...
-									</p>
-
-									<span class="message-meta">
-										<span class="message-unread-dot"></span>
-									</span>
-								</div>
-							</div>
-						</a>
-
-						<a href="#" class="message-item">
-							<div class="message-avatar-wrapper">
-								<div class="message-avatar">
-									<img src="https://i.pravatar.cc/100?img=5" alt="Sophie Martin">
-								</div>
-							</div>
-
-							<div class="message-main">
-								<div class="message-topline">
-									<p class="message-title">
-										<span class="message-user-name">Sophie Martin</span>
-										<span class="message-separator">•</span>
-										<span class="message-project-title">Devis plomberie</span>
-									</p>
-
-									<span class="message-date">08 Mar</span>
-								</div>
-
-								<div class="message-bottomline">
-									<p class="message-preview">
-										Merci pour votre devis, je vous confirme que cela me convient.
-									</p>
-								</div>
-							</div>
-						</a>
-
-						<a href="#" class="message-item">
-							<div class="message-avatar-wrapper">
-								<div class="message-avatar message-avatar-letter">
-									<span>A</span>
-								</div>
-							</div>
-
-							<div class="message-main">
-								<div class="message-topline">
-									<p class="message-title">
-										<span class="message-user-name">Alex Bernard</span>
-									</p>
-
-									<span class="message-date">02 Mar</span>
-								</div>
-
-								<div class="message-bottomline">
-									<p class="message-preview">
-										Aucun message pour le moment.
-									</p>
-								</div>
-							</div>
-						</a>
-
+						{% endif %}
 					</div>
+
 				</div>
 			</div>
 
@@ -424,7 +380,6 @@
 	margin-bottom: 18px;
 }
 
-/* MESSAGERIE */
 .messagerie-card {
 	overflow: hidden;
 }

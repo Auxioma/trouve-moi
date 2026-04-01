@@ -1,0 +1,696 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie{% endblock %}
+
+{% block body %}
+
+<section class="dashboard-lux-banner">
+	<div class="container">
+		<div class="dashboard-lux-banner-content">
+			<div class="dashboard-lux-banner-text">
+				<span class="dashboard-lux-kicker">Espace artisan</span>
+				<h1>Messagerie</h1>
+				<p>
+					Gérez vos échanges avec vos clients, consultez vos conversations et répondez rapidement depuis votre espace professionnel.
+				</p>
+			</div>
+
+			<div class="dashboard-lux-banner-actions">
+				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline">Mes demandes</a>
+				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary">Nouvelle réponse</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="dashboard-lux-page">
+	<div class="container">
+		<div class="row g-4">
+
+			{% include '_partials/nav_bar_visiteur.html.twig' %}
+
+			<div class="col-xl-8 col-lg-8">
+				<div class="messagerie-layout">
+
+					<div class="messagerie-content">
+						<div class="messagerie-card h-100">
+							{% if conversation is defined and conversation %}
+								{% set currentDiscussion = null %}
+								{% for discussion in discussions %}
+									{% if discussion.conversation.id == conversation.id %}
+										{% set currentDiscussion = discussion %}
+									{% endif %}
+								{% endfor %}
+
+								<div class="conversation-header">
+									<div class="conversation-user">
+										<div class="conversation-avatar">
+											{% if currentDiscussion and currentDiscussion.user.imageName is defined and currentDiscussion.user.imageName %}
+												<img
+													src="{{ asset('uploads/users/' ~ currentDiscussion.user.imageName) }}"
+													alt="{{ currentDiscussion.user.firstName }}"
+												>
+											{% elseif currentDiscussion and currentDiscussion.user.logo is defined and currentDiscussion.user.logo %}
+												<img
+													src="{{ asset('uploads/users/' ~ currentDiscussion.user.logo) }}"
+													alt="{{ currentDiscussion.user.firstName }}"
+												>
+											{% elseif currentDiscussion %}
+												<span>
+													{{ currentDiscussion.user.firstName|default('U')|slice(0, 1)|upper }}
+												</span>
+											{% else %}
+												<span>U</span>
+											{% endif %}
+										</div>
+
+										<div>
+											<h4 class="conversation-name mb-1">
+												{% if currentDiscussion %}
+													{{ currentDiscussion.user.firstName|default('') }} {{ currentDiscussion.user.lastName|default('') }}
+												{% else %}
+													Conversation
+												{% endif %}
+											</h4>
+
+											<p class="conversation-status mb-0">
+												{% if currentDiscussion and currentDiscussion.user.compagny is defined and currentDiscussion.user.compagny %}
+													{{ currentDiscussion.user.compagny }}
+												{% else %}
+													Discussion en cours
+												{% endif %}
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="conversation-body">
+									{% for message in messages %}
+										<div class="conversation-row {{ message.sender.id == app.user.id ? 'is-me' : 'is-other' }}">
+											<div class="conversation-bubble">
+												<p class="conversation-text mb-1">
+													{{ message.content }}
+												</p>
+												<span class="conversation-date">
+													{{ message.createdAt|date('d/m/Y H:i') }}
+												</span>
+											</div>
+										</div>
+									{% else %}
+										<div class="messagerie-empty">
+											<div class="messagerie-empty-icon">💬</div>
+											<h4>Aucun message</h4>
+											<p class="mb-0">Cette conversation ne contient pas encore de message.</p>
+										</div>
+									{% endfor %}
+								</div>
+
+								<div class="conversation-footer">
+									<form method="post" class="conversation-form">
+										<textarea
+											name="content"
+											class="conversation-textarea"
+											rows="2"
+											placeholder="Écrire votre message..."
+										></textarea>
+										<button type="submit" class="conversation-send-btn">
+											Envoyer
+										</button>
+									</form>
+								</div>
+							{% else %}
+								<div class="messagerie-empty full-height">
+									<div class="messagerie-empty-icon">📩</div>
+									<h4>Sélectionnez une discussion</h4>
+									<p class="mb-0">Choisissez une conversation dans votre liste pour afficher les messages.</p>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<style>
+:root {
+	--tm-primary: #A57A5A;
+	--tm-primary-dark: #8D6548;
+	--tm-primary-soft: #C7A58A;
+	--tm-primary-pale: #E8DDD3;
+	--tm-cream: #F7F3EE;
+	--tm-ivory: #FCFAF7;
+	--tm-border: #E8DED5;
+	--tm-text: #2E241E;
+	--tm-text-soft: #7A6A5D;
+	--tm-white: #FFFFFF;
+	--tm-shadow: 0 18px 45px rgba(77, 55, 39, 0.08);
+}
+
+.dashboard-lux-page {
+	background: linear-gradient(180deg, var(--tm-ivory) 0%, #F6F0EA 100%);
+	min-height: 100vh;
+	padding: 32px 0 60px;
+}
+
+.dashboard-lux-banner {
+	padding: 46px 0 28px;
+	background:
+		linear-gradient(135deg, rgba(165, 122, 90, 0.08), rgba(255,255,255,0.82)),
+		var(--tm-white);
+	border-bottom: 1px solid var(--tm-border);
+}
+
+.dashboard-lux-banner-content {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 24px;
+}
+
+.dashboard-lux-kicker {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--tm-primary);
+	margin-bottom: 12px;
+}
+
+.dashboard-lux-banner-text h1 {
+	font-size: 42px;
+	line-height: 1.08;
+	font-weight: 800;
+	color: var(--tm-text);
+	margin-bottom: 14px;
+}
+
+.dashboard-lux-banner-text p {
+	max-width: 760px;
+	font-size: 16px;
+	line-height: 1.8;
+	color: var(--tm-text-soft);
+	margin: 0;
+}
+
+.dashboard-lux-banner-actions {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.dashboard-lux-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 50px;
+	padding: 0 22px;
+	border-radius: 14px;
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration: none;
+	transition: all 0.25s ease;
+	border: 1px solid transparent;
+}
+
+.dashboard-lux-btn-primary {
+	background: var(--tm-primary);
+	color: var(--tm-white);
+	box-shadow: 0 12px 28px rgba(165, 122, 90, 0.22);
+}
+
+.dashboard-lux-btn-primary:hover {
+	background: var(--tm-primary-dark);
+	color: var(--tm-white);
+	transform: translateY(-1px);
+}
+
+.dashboard-lux-btn-outline {
+	background: rgba(255,255,255,0.86);
+	color: var(--tm-text);
+	border-color: var(--tm-border);
+}
+
+.dashboard-lux-btn-outline:hover {
+	background: var(--tm-cream);
+	color: var(--tm-text);
+	border-color: #D8C8BB;
+}
+
+/* ===== SIDEBAR / NAV / PROFILE ===== */
+
+.dashboard-lux-sidebar,
+.dashboard-lux-main {
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+}
+
+.dashboard-lux-profile-card,
+.dashboard-lux-nav,
+.dashboard-lux-help-card,
+.dashboard-lux-intro-card,
+.dashboard-lux-stat-card,
+.dashboard-lux-panel,
+.messagerie-card {
+	background: rgba(255,255,255,0.88);
+	backdrop-filter: blur(12px);
+	border: 1px solid var(--tm-border);
+	border-radius: 28px;
+	box-shadow: var(--tm-shadow);
+}
+
+.dashboard-lux-profile-card {
+	overflow: hidden;
+}
+
+.dashboard-lux-profile-cover {
+	height: 110px;
+	background: linear-gradient(135deg, var(--tm-primary-dark), var(--tm-primary), #C9A88E);
+}
+
+.dashboard-lux-profile-content {
+	position: relative;
+	padding: 0 24px 26px;
+	text-align: center;
+}
+
+.dashboard-lux-profile-avatar {
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 6px solid var(--tm-white);
+	margin: -55px auto 16px;
+	box-shadow: 0 14px 30px rgba(77, 55, 39, 0.14);
+	background: var(--tm-white);
+}
+
+.dashboard-lux-profile-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.dashboard-lux-profile-content h3 {
+	font-size: 24px;
+	font-weight: 800;
+	color: var(--tm-text);
+	margin-bottom: 6px;
+}
+
+.dashboard-lux-profile-subtitle {
+	font-size: 14px;
+	color: var(--tm-text-soft);
+	margin-bottom: 18px;
+}
+
+.dashboard-lux-profile-details {
+	padding-top: 18px;
+	border-top: 1px solid var(--tm-border);
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.dashboard-lux-profile-line {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	font-size: 14px;
+	color: var(--tm-text);
+}
+
+.dashboard-lux-profile-line span {
+	color: var(--tm-text-soft);
+}
+
+.dashboard-lux-nav {
+	padding: 14px;
+}
+
+.dashboard-lux-nav-item {
+	display: flex;
+	align-items: center;
+	min-height: 54px;
+	padding: 0 18px;
+	border-radius: 16px;
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: 700;
+	color: var(--tm-text);
+	transition: all 0.22s ease;
+}
+
+.dashboard-lux-nav-item:hover {
+	background: #F8F2EC;
+	color: var(--tm-primary-dark);
+}
+
+.dashboard-lux-nav-item.active {
+	background: linear-gradient(135deg, var(--tm-primary), var(--tm-primary-dark));
+	color: var(--tm-white);
+	box-shadow: 0 12px 28px rgba(165, 122, 90, 0.22);
+}
+
+.dashboard-lux-help-card {
+	padding: 24px;
+}
+
+.dashboard-lux-help-card h4 {
+	font-size: 22px;
+	font-weight: 800;
+	color: var(--tm-text);
+	margin-bottom: 10px;
+}
+
+.dashboard-lux-help-card p {
+	font-size: 14px;
+	line-height: 1.8;
+	color: var(--tm-text-soft);
+	margin-bottom: 18px;
+}
+
+/* ===== MESSAGERIE ===== */
+
+.messagerie-layout {
+	display: grid;
+	gap: 20px;
+	align-items: stretch;
+}
+
+.messagerie-content {
+	min-width: 0;
+}
+
+.messagerie-card {
+	overflow: hidden;
+}
+
+.h-100 {
+	height: 100%;
+}
+
+.conversation-header {
+	padding: 24px 28px;
+	border-bottom: 1px solid var(--tm-border);
+	background:
+		linear-gradient(135deg, rgba(165,122,90,0.05), rgba(255,255,255,0.95)),
+		var(--tm-white);
+}
+
+.conversation-user {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.conversation-avatar {
+	width: 58px;
+	height: 58px;
+	border-radius: 50%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, var(--tm-primary-dark), var(--tm-primary));
+	color: var(--tm-white);
+	font-size: 18px;
+	font-weight: 800;
+	box-shadow: 0 10px 24px rgba(165, 122, 90, 0.18);
+	flex-shrink: 0;
+}
+
+.conversation-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.conversation-name {
+	font-size: 22px;
+	font-weight: 800;
+	color: var(--tm-text);
+	line-height: 1.2;
+	margin: 0;
+}
+
+.conversation-status {
+	font-size: 14px;
+	color: var(--tm-text-soft);
+	line-height: 1.6;
+}
+
+.conversation-body {
+	padding: 28px;
+	background: linear-gradient(180deg, #FCFAF7 0%, #F7F1EB 100%);
+	min-height: 520px;
+	max-height: 520px;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.conversation-row {
+	display: flex;
+	width: 100%;
+}
+
+.conversation-row.is-me {
+	justify-content: flex-end;
+}
+
+.conversation-row.is-other {
+	justify-content: flex-start;
+}
+
+.conversation-bubble {
+	max-width: 72%;
+	padding: 15px 18px;
+	border-radius: 20px;
+	box-shadow: 0 8px 22px rgba(77, 55, 39, 0.06);
+}
+
+.conversation-row.is-me .conversation-bubble {
+	background: linear-gradient(135deg, var(--tm-primary), var(--tm-primary-dark));
+	color: var(--tm-white);
+	border-bottom-right-radius: 8px;
+}
+
+.conversation-row.is-other .conversation-bubble {
+	background: rgba(255,255,255,0.95);
+	color: var(--tm-text);
+	border: 1px solid var(--tm-border);
+	border-bottom-left-radius: 8px;
+}
+
+.conversation-text {
+	font-size: 14px;
+	line-height: 1.7;
+	word-break: break-word;
+	margin: 0;
+}
+
+.conversation-date {
+	display: block;
+	font-size: 12px;
+	margin-top: 6px;
+	opacity: 0.72;
+	font-weight: 600;
+}
+
+.conversation-footer {
+	padding: 20px 28px 28px;
+	border-top: 1px solid var(--tm-border);
+	background: rgba(255,255,255,0.96);
+}
+
+.conversation-form {
+	display: flex;
+	align-items: flex-end;
+	gap: 12px;
+}
+
+.conversation-textarea {
+	flex: 1;
+	border: 1px solid var(--tm-border);
+	border-radius: 18px;
+	padding: 15px 18px;
+	font-size: 14px;
+	color: var(--tm-text);
+	background: #FCFAF7;
+	resize: none;
+	outline: none;
+	min-height: 58px;
+	transition: all 0.22s ease;
+}
+
+.conversation-textarea:focus {
+	border-color: var(--tm-primary);
+	background: var(--tm-white);
+	box-shadow: 0 0 0 4px rgba(165, 122, 90, 0.08);
+}
+
+.conversation-send-btn {
+	border: none;
+	background: var(--tm-primary);
+	color: var(--tm-white);
+	padding: 14px 24px;
+	border-radius: 14px;
+	font-size: 14px;
+	font-weight: 700;
+	transition: all 0.25s ease;
+	box-shadow: 0 12px 28px rgba(165, 122, 90, 0.18);
+}
+
+.conversation-send-btn:hover {
+	background: var(--tm-primary-dark);
+	transform: translateY(-1px);
+}
+
+.messagerie-empty {
+	padding: 60px 20px;
+	text-align: center;
+	color: var(--tm-text-soft);
+}
+
+.messagerie-empty.full-height {
+	min-height: 650px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.messagerie-empty-icon {
+	font-size: 52px;
+	margin-bottom: 14px;
+}
+
+.messagerie-empty h4 {
+	font-size: 24px;
+	font-weight: 800;
+	color: var(--tm-text);
+	margin-bottom: 10px;
+}
+
+.messagerie-empty p {
+	font-size: 14px;
+	line-height: 1.8;
+	color: var(--tm-text-soft);
+	max-width: 420px;
+	margin: 0 auto;
+}
+
+/* ===== SCROLLBAR ===== */
+
+.conversation-body::-webkit-scrollbar {
+	width: 8px;
+}
+
+.conversation-body::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.conversation-body::-webkit-scrollbar-thumb {
+	background: rgba(165, 122, 90, 0.25);
+	border-radius: 20px;
+}
+
+.conversation-body::-webkit-scrollbar-thumb:hover {
+	background: rgba(165, 122, 90, 0.4);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 991.98px) {
+	.dashboard-lux-banner-content {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.dashboard-lux-banner-text h1 {
+		font-size: 34px;
+	}
+
+	.conversation-body {
+		min-height: 430px;
+		max-height: 430px;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.dashboard-lux-banner {
+		padding: 34px 0 22px;
+	}
+
+	.dashboard-lux-banner-text h1 {
+		font-size: 28px;
+	}
+
+	.dashboard-lux-banner-text p {
+		font-size: 14px;
+	}
+
+	.dashboard-lux-profile-card,
+	.dashboard-lux-nav,
+	.dashboard-lux-help-card,
+	.messagerie-card {
+		border-radius: 22px;
+	}
+
+	.dashboard-lux-btn {
+		width: 100%;
+	}
+
+	.dashboard-lux-banner-actions {
+		width: 100%;
+	}
+
+	.conversation-header,
+	.conversation-footer {
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+
+	.conversation-body {
+		padding: 18px;
+		min-height: 360px;
+		max-height: 360px;
+	}
+
+	.conversation-avatar {
+		width: 48px;
+		height: 48px;
+		font-size: 16px;
+	}
+
+	.conversation-name {
+		font-size: 18px;
+	}
+
+	.conversation-bubble {
+		max-width: 88%;
+		padding: 13px 15px;
+	}
+
+	.conversation-form {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.conversation-send-btn {
+		width: 100%;
+	}
+}
+</style>
+
+{% endblock %}

@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +32,7 @@ final class ApiCompanyController extends AbstractController
     #[Route('/company-by-siren', name: 'company_by_siren', methods: ['GET'])]
     public function getCompanyBySiren(Request $request, HttpClientInterface $httpClient): JsonResponse
     {
-        $siren = trim((string) $request->query->get('siren', ''));
+        $siren = mb_trim((string) $request->query->get('siren', ''));
 
         if (!preg_match('/^\d{9}$/', $siren)) {
             return $this->json([
@@ -38,7 +55,7 @@ final class ApiCompanyController extends AbstractController
                 ]
             );
 
-            if ($response->getStatusCode() !== 200) {
+            if (200 !== $response->getStatusCode()) {
                 return $this->json([
                     'success' => false,
                     'message' => 'Impossible de récupérer les informations de l’entreprise.',
@@ -82,7 +99,7 @@ final class ApiCompanyController extends AbstractController
             $companyName = $company['nom_complet']
                 ?? $company['nom_raison_sociale']
                 ?? $company['nom_entreprise']
-                ?? trim($firstName . ' ' . $lastName);
+                ?? mb_trim($firstName.' '.$lastName);
 
             return $this->json([
                 'success' => true,

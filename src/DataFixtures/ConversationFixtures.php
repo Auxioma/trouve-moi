@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\DataFixtures;
 
 use App\Entity\Conversation;
@@ -18,7 +35,7 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
         /** @var User[] $users */
         $users = $manager->getRepository(User::class)->findAll();
 
-        if (count($users) < 2) {
+        if (\count($users) < 2) {
             throw new \RuntimeException('Pas assez d\'utilisateurs. Vérifie UserFixtures.');
         }
 
@@ -44,8 +61,8 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
         $pairs = [];
 
         $attempts = 0;
-        while (count($conversations) < 60 && $attempts < 5000) {
-            $attempts++;
+        while (\count($conversations) < 60 && $attempts < 5000) {
+            ++$attempts;
 
             $aIdx = array_rand($users);
             $bIdx = array_rand($users);
@@ -54,7 +71,7 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
                 continue;
             }
 
-            $pairKey = min($aIdx, $bIdx) . '-' . max($aIdx, $bIdx);
+            $pairKey = min($aIdx, $bIdx).'-'.max($aIdx, $bIdx);
             if (isset($pairs[$pairKey])) {
                 continue;
             }
@@ -82,9 +99,9 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($participantB);
 
             $conversations[] = [
-                'entity'    => $conversation,
-                'userA'     => $users[$aIdx],
-                'userB'     => $users[$bIdx],
+                'entity' => $conversation,
+                'userA' => $users[$aIdx],
+                'userB' => $users[$bIdx],
                 'createdAt' => $createdAt,
             ];
         }
@@ -104,20 +121,20 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
         foreach ($conversations as $conv) {
             /** @var Conversation $conversation */
             $conversation = $conv['entity'];
-            $userA        = $conv['userA'];
-            $userB        = $conv['userB'];
-            $currentDate  = clone $conv['createdAt'];
+            $userA = $conv['userA'];
+            $userB = $conv['userB'];
+            $currentDate = clone $conv['createdAt'];
 
             $msgCount = random_int(5, 10);
 
-            for ($i = 0; $i < $msgCount; $i++) {
-                $sender = ($i % 2 === 0) ? $userA : $userB;
+            for ($i = 0; $i < $msgCount; ++$i) {
+                $sender = (0 === $i % 2) ? $userA : $userB;
                 // Quelques envois consécutifs du même expéditeur
-                if (random_int(1, 5) === 1) {
+                if (1 === random_int(1, 5)) {
                     $sender = ($sender === $userA) ? $userB : $userA;
                 }
 
-                $currentDate = $currentDate->modify('+' . random_int(2, 1440) . ' minutes');
+                $currentDate = $currentDate->modify('+'.random_int(2, 1440).' minutes');
 
                 $message = new Message();
                 $message->setConversation($conversation);
@@ -128,11 +145,11 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
                 $manager->persist($message);
 
                 $allMessages[] = [
-                    'entity'  => $message,
-                    'sender'  => $sender,
-                    'userA'   => $userA,
-                    'userB'   => $userB,
-                    'sentAt'  => clone $currentDate,
+                    'entity' => $message,
+                    'sender' => $sender,
+                    'userA' => $userA,
+                    'userB' => $userB,
+                    'sentAt' => clone $currentDate,
                 ];
             }
         }
@@ -154,17 +171,17 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
             }
 
             /** @var Message $message */
-            $message   = $msgData['entity'];
-            $sender    = $msgData['sender'];
+            $message = $msgData['entity'];
+            $sender = $msgData['sender'];
             $recipient = ($sender === $msgData['userA']) ? $msgData['userB'] : $msgData['userA'];
 
-            $key = spl_object_id($message) . '-' . spl_object_id($recipient);
+            $key = spl_object_id($message).'-'.spl_object_id($recipient);
             if (isset($tracked[$key])) {
                 continue;
             }
             $tracked[$key] = true;
 
-            $readAt = $msgData['sentAt']->modify('+' . random_int(1, 720) . ' minutes');
+            $readAt = $msgData['sentAt']->modify('+'.random_int(1, 720).' minutes');
 
             $read = new MessageRead();
             $read->setMessage($message);
@@ -182,9 +199,9 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
     private function randomDate(string $from, string $to): \DateTimeImmutable
     {
         $start = (new \DateTime($from))->getTimestamp();
-        $end   = (new \DateTime($to))->getTimestamp();
+        $end = (new \DateTime($to))->getTimestamp();
 
-        return new \DateTimeImmutable('@' . random_int(min($start, $end), max($start, $end)));
+        return new \DateTimeImmutable('@'.random_int(min($start, $end), max($start, $end)));
     }
 
     /** @return string[] */

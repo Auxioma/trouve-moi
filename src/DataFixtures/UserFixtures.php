@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\DataFixtures;
 
 use App\Entity\Activity;
@@ -17,7 +34,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     public function __construct(
-        private UserPasswordHasherInterface $passwordHasher
+        private UserPasswordHasherInterface $passwordHasher,
     ) {
     }
 
@@ -65,25 +82,25 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         );
 
         shuffle($adminServices);
-        foreach (array_slice($adminServices, 0, min(2, count($adminServices))) as $service) {
+        foreach (\array_slice($adminServices, 0, min(2, \count($adminServices))) as $service) {
             $admin->addService($service);
         }
 
         $manager->persist($admin);
 
         // 20 artisans
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 50; ++$i) {
             $user = $this->createArtisan($faker, $activities, $hashedPassword);
 
             $manager->persist($user);
             $manager->flush(); // génère l'ID
 
-            $url = 'https://api.dicebear.com/7.x/avataaars/png?seed=' . $i;
-            $tmpPath = sys_get_temp_dir() . '/avatar_' . uniqid('', true) . '.png';
+            $url = 'https://api.dicebear.com/7.x/avataaars/png?seed='.$i;
+            $tmpPath = sys_get_temp_dir().'/avatar_'.uniqid('', true).'.png';
 
             $content = @file_get_contents($url);
 
-            if ($content === false) {
+            if (false === $content) {
                 continue;
             }
 
@@ -91,20 +108,20 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
             $user->setImageFile(new UploadedFile(
                 $tmpPath,
-                'avatar_' . $i . '.png',
+                'avatar_'.$i.'.png',
                 'image/png',
                 null,
                 true
             ));
 
             // http://picsum.photos/4096/3072
-            for ($j = 0; $j < random_int(1, 5); $j++) {
-                $imageOrigine = 'https://picsum.photos/4096/3072?random=' . uniqid();
-                $tmpPathOrigine = sys_get_temp_dir() . '/slider_' . uniqid('', true) . '.jpg';
+            for ($j = 0; $j < random_int(1, 5); ++$j) {
+                $imageOrigine = 'https://picsum.photos/4096/3072?random='.uniqid();
+                $tmpPathOrigine = sys_get_temp_dir().'/slider_'.uniqid('', true).'.jpg';
 
                 $contentOrigine = @file_get_contents($imageOrigine);
 
-                if ($contentOrigine === false) {
+                if (false === $contentOrigine) {
                     continue;
                 }
 
@@ -112,7 +129,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
                 $uploadedFile = new UploadedFile(
                     $tmpPathOrigine,
-                    'slider_' . $j . '.jpg',
+                    'slider_'.$j.'.jpg',
                     'image/jpeg',
                     null,
                     true
@@ -127,35 +144,44 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 $manager->persist($picture);
             }
 
-
             $manager->persist($user);
             $manager->flush();
 
             @unlink($tmpPath);
 
-            if ($i % 100 === 0) { 
+            if (0 === $i % 100) {
                 $manager->clear();
                 $activities = $manager->getRepository(Activity::class)->findAll();
             }
         }
 
         /**
-         * je vais creer 10 utilisateur en ROLE_USER
+         * je vais creer 10 utilisateur en ROLE_USER.
          */
-            for ($i = 1; $i <= 10; $i++) {
-                $user = new User();
-                $user->setEmail($faker->unique()->safeEmail());
-                $user->setRoles(['ROLE_USER']);
-                $user->setPassword($hashedPassword);
-                $user->setIsVerified($faker->boolean(90));
-                $user->setFirstName($faker->firstName());
-                $user->setLastName($faker->lastName());
-                $user->setUpdatedAt(new \DateTimeImmutable());
-    
-                $manager->persist($user);
-            }
+        $visiteur = new User();
+        $visiteur->setEmail('user@user.user');
+        $visiteur->setRoles(['ROLE_USER']);
+        $visiteur->setPassword($this->passwordHasher->hashPassword($visiteur, 'user'));
+        $visiteur->setIsVerified($faker->boolean(90));
+        $visiteur->setFirstName($faker->firstName());
+        $visiteur->setLastName($faker->lastName());
+        $visiteur->setUpdatedAt(new \DateTimeImmutable());
+        $manager->persist($visiteur);
 
-        $manager->flush();            
+        for ($i = 1; $i <= 10; ++$i) {
+            $user = new User();
+            $user->setEmail($faker->unique()->safeEmail());
+            $user->setRoles(['ROLE_USER']);
+            $user->setPassword($hashedPassword);
+            $user->setIsVerified($faker->boolean(90));
+            $user->setFirstName($faker->firstName());
+            $user->setLastName($faker->lastName());
+            $user->setUpdatedAt(new \DateTimeImmutable());
+
+            $manager->persist($user);
+        }
+
+        $manager->flush();
     }
 
     /**
@@ -164,7 +190,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
     private function createArtisan(
         Generator $faker,
         array $activities,
-        string $hashedPassword
+        string $hashedPassword,
     ): User {
         $user = new User();
 
@@ -198,7 +224,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
                 $faker->dateTimeBetween('-6 months', 'now')
             )
         );
-        $user->setWebsite('https://www.' . $faker->slug(2) . '.fr');
+        $user->setWebsite('https://www.'.$faker->slug(2).'.fr');
         $user->setUpdatedAt(
             \DateTimeImmutable::createFromMutable(
                 $faker->dateTimeBetween('-1 year', 'now')
@@ -207,10 +233,10 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
         shuffle($services);
 
-        $selectedServices = array_slice(
+        $selectedServices = \array_slice(
             $services,
             0,
-            min(random_int(1, 3), count($services))
+            min(random_int(1, 3), \count($services))
         );
 
         foreach ($selectedServices as $service) {
@@ -222,7 +248,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
     private function generateCompanyName(Generator $faker, string $lastName): string
     {
-        return sprintf(
+        return \sprintf(
             '%s %s',
             $faker->randomElement([
                 'Atelier',
@@ -246,7 +272,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
 
     private function generateDescription(Generator $faker, string $activityName): string
     {
-        return sprintf(
+        return \sprintf(
             '%s expérimenté dans le domaine de %s. %s',
             $faker->randomElement([
                 'Artisan',

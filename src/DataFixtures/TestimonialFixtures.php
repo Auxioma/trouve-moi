@@ -1,12 +1,29 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\DataFixtures;
 
 use App\Entity\Testimonial;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
 class TestimonialFixtures extends Fixture implements DependentFixtureInterface
@@ -18,11 +35,11 @@ class TestimonialFixtures extends Fixture implements DependentFixtureInterface
         // Récupérer tous les users
         $users = $manager->getRepository(User::class)->findAll();
 
-        if (count($users) < 2) {
+        if (\count($users) < 2) {
             return;
         }
 
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 30; ++$i) {
             $testimonial = new Testimonial();
 
             $author = $users[array_rand($users)];

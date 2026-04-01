@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Controller\User;
 
 use App\Form\ImageProfileType;
@@ -13,8 +30,9 @@ use Symfony\Component\Routing\Attribute\Route;
 final class PictureController extends AbstractController
 {
     public function __construct(
-        private UserRepository $userRepository
-    ){}
+        private UserRepository $userRepository,
+    ) {
+    }
 
     #[Route('/user/picture', name: 'app_user_picture')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
@@ -22,12 +40,12 @@ final class PictureController extends AbstractController
         $sessionUser = $this->getUser();
         $user = $this->userRepository->find($sessionUser->getId());
 
-         if (!$user) {
+        if (!$user) {
             throw $this->createAccessDeniedException();
-        }       
+        }
 
         $form = $this->createForm(ImageProfileType::class, $user);
-        $form->handleRequest($request); 
+        $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             $entityManager->persist($user);

@@ -26,57 +26,7 @@
 	<div class="container">
 		<div class="row g-4">
 
-			<div class="col-xl-3 col-lg-4">
-				<aside class="dashboard-lux-sidebar">
-
-					<div class="dashboard-lux-profile-card">
-						<div class="dashboard-lux-profile-cover"></div>
-
-						<div class="dashboard-lux-profile-content">
-							<div class="dashboard-lux-profile-avatar">
-								<img src="https://placehold.co/110x110" alt="Photo de profil">
-							</div>
-
-							<h3>Jean Dupont</h3>
-							<p class="dashboard-lux-profile-subtitle">Compte personnel actif</p>
-
-							<div class="dashboard-lux-profile-details">
-								<div class="dashboard-lux-profile-line">
-									<span>Membre depuis</span>
-									<strong>Janvier 2026</strong>
-								</div>
-								<div class="dashboard-lux-profile-line">
-									<span>Statut</span>
-									<strong>Vérifié</strong>
-								</div>
-								<div class="dashboard-lux-profile-line">
-									<span>Dernière activité</span>
-									<strong>Aujourd’hui</strong>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<nav class="dashboard-lux-nav">
-						<a href="#" class="dashboard-lux-nav-item active">Accueil</a>
-						<a href="#" class="dashboard-lux-nav-item">Messagerie</a>
-						<a href="#" class="dashboard-lux-nav-item">Mes demandes</a>
-						<a href="#" class="dashboard-lux-nav-item">Mon profil</a>
-						<a href="#" class="dashboard-lux-nav-item">Mes documents</a>
-						<a href="#" class="dashboard-lux-nav-item">Paramètres</a>
-					</nav>
-
-					<div class="dashboard-lux-help-card">
-						<span class="dashboard-lux-kicker">Accompagnement</span>
-						<h4>Besoin d’aide ?</h4>
-						<p>
-							Notre équipe vous accompagne dans le suivi de vos demandes et l’utilisation de votre espace personnel.
-						</p>
-						<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary w-100">Contacter le support</a>
-					</div>
-
-				</aside>
-			</div>
+			{% include '_partials/nav_bar_visiteur.html.twig' %}
 
 			<div class="col-xl-9 col-lg-8">
 				<div class="dashboard-lux-main">
