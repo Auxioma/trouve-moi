@@ -22,10 +22,12 @@ namespace App\Controller\User\Offer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class PackageController extends AbstractController
 {
     #[Route('/user/offer/package', name: 'app_user_offer_package')]
+    #[IsGranted('ROLE_ARTISAN')]
     public function index(): Response
     {
         return $this->render('user/offer/package/index.html.twig', [

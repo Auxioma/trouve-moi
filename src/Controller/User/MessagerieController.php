@@ -27,10 +27,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class MessagerieController extends AbstractController
 {
     #[Route('/user/messagerie', name: 'app_user_messagerie', methods: ['GET'])]
+    #[IsGranted('ROLE_ARTISAN')]
     public function index(ConversationRepository $conversationRepository): Response
     {
         /** @var User|null $currentUser */
@@ -79,6 +81,7 @@ final class MessagerieController extends AbstractController
     }
 
     #[Route('/user/messagerie/{id}', name: 'app_user_messagerie_show', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ARTISAN')]
     public function show(
         int $id,
         ConversationRepository $conversationRepository,
