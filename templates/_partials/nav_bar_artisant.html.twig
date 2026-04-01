@@ -5,14 +5,30 @@
 
 							<div class="artisan-panel__profile text-center px-4">
 								<div class="artisan-panel__avatar mx-auto">
-									<img src="https://placehold.co/70x70" class="rounded-circle">
-								</div>
+									{% if app.user.imageName %}
+										<img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" class="rounded-circle" alt="Avatar">
+									{% else %}
+										{% set firstInitial = app.user.firstName ? app.user.firstName|trim|slice(0, 1)|upper : '' %}
+										{% set lastInitial = app.user.lastName ? app.user.lastName|trim|slice(0, 1)|upper : '' %}
+										{% set initials = firstInitial ~ lastInitial %}
 
-								<h3 class="artisan-panel__name mb-1">Espace Artisan</h3>
+										<div class="avatar-placeholder rounded-circle">
+											{{ initials is not empty ? initials : 'Z' }}
+										</div>
+									{% endif %}
+								</div>
+								<h3 class="artisan-panel__name mb-1">
+									{{ app.user.compagny 
+										? app.user.compagny 
+										: (app.user.firstName or app.user.lastName 
+											? app.user.firstName ~ ' ' ~ app.user.lastName 
+											: 'John Doe') 
+									}}
+								</h3>
 								<p class="artisan-panel__subtitle mb-3">Pilotez votre activité et vos demandes clients</p>
 
 								<div class="artisan-panel__badge d-inline-flex align-items-center">
-									<span class="status-dot me-2"></span>
+									<span class="status-dot mb-0 me-2"></span>
 									Compte actif
 								</div>
 							</div>
@@ -134,7 +150,7 @@
 								</div>
 
 								<div class="mt-4">
-									<a href="#" class="artisan-logout-btn">
+									<a href="{{ path('app_logout') }}" class="artisan-logout-btn">
 										<i class="fas fa-sign-out-alt me-2"></i>
 										Déconnexion
 									</a>

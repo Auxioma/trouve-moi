@@ -157,7 +157,4 @@ final class MessageController extends AbstractController
             'discussions' => $discussions,
         ]);
     }
-
-
-
 }
