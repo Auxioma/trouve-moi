@@ -1,137 +1,51 @@
-<div class="col-xl-4">
-    <aside class="artisan-panel card border-0 shadow-sm rounded-4 overflow-hidden">
-        <div class="artisan-panel__top position-relative">
-            <div class="artisan-panel__cover"></div>
+			<div class="col-xl-3 col-lg-4">
+				<aside class="dashboard-lux-sidebar">
 
-            <div class="artisan-panel__profile text-center px-4">
-                <div class="artisan-panel__avatar mx-auto">
-                    <img src="https://placehold.co/70x70" class="rounded-circle">
-                </div>
+					<div class="dashboard-lux-profile-card">
+						<div class="dashboard-lux-profile-cover"></div>
 
-                <h3 class="artisan-panel__name mb-1">Espace Client</h3>
-                <p class="artisan-panel__subtitle mb-3">
-                    Suivez vos demandes et vos échanges avec les artisans
-                </p>
+						<div class="dashboard-lux-profile-content">
+							<div class="dashboard-lux-profile-avatar">
+								<img src="https://placehold.co/110x110" alt="Photo de profil">
+							</div>
 
-                <div class="artisan-panel__badge d-inline-flex align-items-center">
-                    <span class="status-dot me-2"></span>
-                    Compte actif
-                </div>
-            </div>
-        </div>
+							<h3>Jean Dupont</h3>
+							<p class="dashboard-lux-profile-subtitle">Compte personnel actif</p>
 
-        <div class="card-body p-4">
-            <nav class="artisan-nav">
+							<div class="dashboard-lux-profile-details">
+								<div class="dashboard-lux-profile-line">
+									<span>Membre depuis</span>
+									<strong>Janvier 2026</strong>
+								</div>
+								<div class="dashboard-lux-profile-line">
+									<span>Statut</span>
+									<strong>Vérifié</strong>
+								</div>
+								<div class="dashboard-lux-profile-line">
+									<span>Dernière activité</span>
+									<strong>Aujourd’hui</strong>
+								</div>
+							</div>
+						</div>
+					</div>
 
-                <!-- Principal -->
-                <div class="artisan-nav-group mb-4">
-                    <div class="artisan-nav-group__title">Principal</div>
+					<nav class="dashboard-lux-nav">
+						<a href="#" class="dashboard-lux-nav-item active">Accueil</a>
+						<a href="#" class="dashboard-lux-nav-item">Messagerie</a>
+						<a href="#" class="dashboard-lux-nav-item">Mes demandes</a>
+						<a href="#" class="dashboard-lux-nav-item">Mon profil</a>
+						<a href="#" class="dashboard-lux-nav-item">Mes documents</a>
+						<a href="#" class="dashboard-lux-nav-item">Paramètres</a>
+					</nav>
 
-                    <a href="/dashboard-client" class="artisan-nav-link active">
-                        <span class="artisan-nav-link__icon">
-                            <i class="fas fa-grip-horizontal"></i>
-                        </span>
-                        <span class="artisan-nav-link__text">Tableau de bord</span>
-                        <span class="artisan-nav-link__arrow">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                    </a>
+					<div class="dashboard-lux-help-card">
+						<span class="dashboard-lux-kicker">Accompagnement</span>
+						<h4>Besoin d’aide ?</h4>
+						<p>
+							Notre équipe vous accompagne dans le suivi de vos demandes et l’utilisation de votre espace personnel.
+						</p>
+						<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary w-100">Contacter le support</a>
+					</div>
 
-                    <a href="/mes-demandes" class="artisan-nav-link">
-                        <span class="artisan-nav-link__icon">
-                            <i class="fas fa-file-alt"></i>
-                        </span>
-                        <span class="artisan-nav-link__text">Mes demandes</span>
-                        <span class="artisan-nav-link__count">3</span>
-                    </a>
-
-                    <a href="/deposer-demande" class="artisan-nav-link">
-                        <span class="artisan-nav-link__icon">
-                            <i class="fas fa-plus-circle"></i>
-                        </span>
-                        <span class="artisan-nav-link__text">Nouvelle demande</span>
-                    </a>
-                </div>
-
-                <!-- Messages & RDV -->
-                <div class="artisan-nav-group mb-4">
-                    <div class="artisan-nav-group__title">Échanges</div>
-
-                    <a href="/messagerie" class="artisan-nav-link">
-                        <span class="artisan-nav-link__icon">
-                            <i class="fas fa-inbox"></i>
-                        </span>
-                        <span class="artisan-nav-link__text">Messagerie</span>
-                        <span class="artisan-nav-link__count">5</span>
-                    </a>
-
-                    <a href="/rendez-vous" class="artisan-nav-link">
-                        <span class="artisan-nav-link__icon">
-                            <i class="fas fa-calendar-check"></i>
-                        </span>
-                        <span class="artisan-nav-link__text">Mes rendez-vous</span>
-                        <span class="artisan-nav-link__count">2</span>
-                    </a>
-
-                    <a href="/mes-devis" class="artisan-nav-link">
-                        <span class="artisan-nav-link__icon">
-                            <i class="fas fa-file-invoice"></i>
-                        </span>
-                        <span class="artisan-nav-link__text">Mes devis</span>
-                        <span class="artisan-nav-link__count">4</span>
-                    </a>
-                </div>
-
-                <!-- Compte -->
-                <div class="artisan-nav-group mb-4">
-                    <div class="artisan-nav-group__title">Mon compte</div>
-
-                    <a href="/mon-profil" class="artisan-nav-link">
-                        <span class="artisan-nav-link__icon">
-                            <i class="fas fa-user"></i>
-                        </span>
-                        <span class="artisan-nav-link__text">Mon profil</span>
-                    </a>
-
-                    <a href="/mes-avis" class="artisan-nav-link">
-                        <span class="artisan-nav-link__icon">
-                            <i class="fas fa-star"></i>
-                        </span>
-                        <span class="artisan-nav-link__text">Mes avis</span>
-                    </a>
-
-                    <a href="/parametres" class="artisan-nav-link">
-                        <span class="artisan-nav-link__icon">
-                            <i class="fas fa-cog"></i>
-                        </span>
-                        <span class="artisan-nav-link__text">Paramètres</span>
-                    </a>
-                </div>
-
-                <!-- Box aide -->
-                <div class="artisan-offer-box">
-                    <div class="artisan-offer-box__icon">
-                        <i class="fas fa-life-ring"></i>
-                    </div>
-                    <div class="artisan-offer-box__content">
-                        <h5 class="mb-1">Besoin d'aide ?</h5>
-                        <p class="mb-3">
-                            Contactez notre support ou consultez notre centre d'aide.
-                        </p>
-                        <a href="/support" class="btn btn-dark rounded-pill px-3">
-                            Support
-                        </a>
-                    </div>
-                </div>
-
-                <div class="mt-4">
-                    <a href="/logout" class="artisan-logout-btn">
-                        <i class="fas fa-sign-out-alt me-2"></i>
-                        Déconnexion
-                    </a>
-                </div>
-
-            </nav>
-        </div>
-    </aside>
-</div>
+				</aside>
+			</div>

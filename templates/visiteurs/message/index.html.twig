@@ -1,0 +1,703 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie{% endblock %}
+
+{% block body %}
+
+<section class="dashboard-lux-banner">
+	<div class="container">
+		<div class="dashboard-lux-banner-content">
+			<div class="dashboard-lux-banner-text">
+				<span class="dashboard-lux-kicker">Espace personnel</span>
+				<h1>Messagerie</h1>
+				<p>
+					Retrouvez toutes vos conversations avec les artisans et suivez facilement l’avancement de vos échanges depuis votre espace personnel.
+				</p>
+			</div>
+
+			<div class="dashboard-lux-banner-actions">
+				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline">Mes demandes</a>
+				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary">Nouvelle demande</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="dashboard-lux-page">
+	<div class="container">
+		<div class="row g-4">
+
+			<div class="col-xl-3 col-lg-4">
+				<aside class="dashboard-lux-sidebar">
+
+					<div class="dashboard-lux-profile-card">
+						<div class="dashboard-lux-profile-cover"></div>
+
+						<div class="dashboard-lux-profile-content">
+							<div class="dashboard-lux-profile-avatar">
+								<img src="https://placehold.co/110x110" alt="Photo de profil">
+							</div>
+
+							<h3>Jean Dupont</h3>
+							<p class="dashboard-lux-profile-subtitle">Compte personnel actif</p>
+
+							<div class="dashboard-lux-profile-details">
+								<div class="dashboard-lux-profile-line">
+									<span>Membre depuis</span>
+									<strong>Janvier 2026</strong>
+								</div>
+								<div class="dashboard-lux-profile-line">
+									<span>Statut</span>
+									<strong>Vérifié</strong>
+								</div>
+								<div class="dashboard-lux-profile-line">
+									<span>Dernière activité</span>
+									<strong>Aujourd’hui</strong>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<nav class="dashboard-lux-nav">
+						<a href="#" class="dashboard-lux-nav-item">Accueil</a>
+						<a href="#" class="dashboard-lux-nav-item active">Messagerie</a>
+						<a href="#" class="dashboard-lux-nav-item">Mes demandes</a>
+						<a href="#" class="dashboard-lux-nav-item">Mon profil</a>
+						<a href="#" class="dashboard-lux-nav-item">Mes documents</a>
+						<a href="#" class="dashboard-lux-nav-item">Paramètres</a>
+					</nav>
+
+					<div class="dashboard-lux-help-card">
+						<span class="dashboard-lux-kicker">Accompagnement</span>
+						<h4>Besoin d’aide ?</h4>
+						<p>
+							Notre équipe vous accompagne dans le suivi de vos demandes et l’utilisation de votre espace personnel.
+						</p>
+						<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary w-100">Contacter le support</a>
+					</div>
+
+				</aside>
+			</div>
+
+			<div class="col-xl-9 col-lg-8">
+				<div class="messagerie-card">
+
+					<div class="messagerie-header">
+						<div class="messagerie-header-left">
+							<span class="messagerie-kicker">Boîte de réception</span>
+							<h3 class="messagerie-title mb-1">Vos conversations récentes</h3>
+							<p class="messagerie-subtitle mb-0">3 discussions disponibles</p>
+						</div>
+
+						<div class="messagerie-header-right">
+							<a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline messagerie-filter-btn">Tous les messages</a>
+						</div>
+					</div>
+
+					<div class="messagerie-list">
+
+						<a href="#" class="message-item unread">
+							<div class="message-avatar-wrapper">
+								<div class="message-avatar">
+									<img src="https://i.pravatar.cc/100?img=1" alt="Jean Dupont">
+								</div>
+							</div>
+
+							<div class="message-main">
+								<div class="message-topline">
+									<p class="message-title">
+										<span class="message-user-name">Jean Dupont</span>
+										<span class="message-separator">•</span>
+										<span class="message-project-title">Rénovation cuisine</span>
+									</p>
+
+									<span class="message-date">12 Mar</span>
+								</div>
+
+								<div class="message-bottomline">
+									<p class="message-preview">
+										Bonjour, je voulais savoir si vous étiez disponible la semaine prochaine pour le chantier...
+									</p>
+
+									<span class="message-meta">
+										<span class="message-unread-dot"></span>
+									</span>
+								</div>
+							</div>
+						</a>
+
+						<a href="#" class="message-item">
+							<div class="message-avatar-wrapper">
+								<div class="message-avatar">
+									<img src="https://i.pravatar.cc/100?img=5" alt="Sophie Martin">
+								</div>
+							</div>
+
+							<div class="message-main">
+								<div class="message-topline">
+									<p class="message-title">
+										<span class="message-user-name">Sophie Martin</span>
+										<span class="message-separator">•</span>
+										<span class="message-project-title">Devis plomberie</span>
+									</p>
+
+									<span class="message-date">08 Mar</span>
+								</div>
+
+								<div class="message-bottomline">
+									<p class="message-preview">
+										Merci pour votre devis, je vous confirme que cela me convient.
+									</p>
+								</div>
+							</div>
+						</a>
+
+						<a href="#" class="message-item">
+							<div class="message-avatar-wrapper">
+								<div class="message-avatar message-avatar-letter">
+									<span>A</span>
+								</div>
+							</div>
+
+							<div class="message-main">
+								<div class="message-topline">
+									<p class="message-title">
+										<span class="message-user-name">Alex Bernard</span>
+									</p>
+
+									<span class="message-date">02 Mar</span>
+								</div>
+
+								<div class="message-bottomline">
+									<p class="message-preview">
+										Aucun message pour le moment.
+									</p>
+								</div>
+							</div>
+						</a>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<style>
+:root {
+	--tm-primary: #A57A5A;
+	--tm-primary-dark: #8D6548;
+	--tm-primary-soft: #C7A58A;
+	--tm-primary-pale: #E8DDD3;
+	--tm-cream: #F7F3EE;
+	--tm-ivory: #FCFAF7;
+	--tm-border: #E8DED5;
+	--tm-text: #2E241E;
+	--tm-text-soft: #7A6A5D;
+	--tm-white: #FFFFFF;
+	--tm-shadow: 0 18px 45px rgba(77, 55, 39, 0.08);
+}
+
+.dashboard-lux-page {
+	background: linear-gradient(180deg, var(--tm-ivory) 0%, #F6F0EA 100%);
+	min-height: 100vh;
+	padding: 32px 0 60px;
+}
+
+.dashboard-lux-banner {
+	padding: 46px 0 28px;
+	background:
+		linear-gradient(135deg, rgba(165, 122, 90, 0.08), rgba(255,255,255,0.82)),
+		var(--tm-white);
+	border-bottom: 1px solid var(--tm-border);
+}
+
+.dashboard-lux-banner-content {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 24px;
+}
+
+.dashboard-lux-kicker {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--tm-primary);
+	margin-bottom: 12px;
+}
+
+.dashboard-lux-banner-text h1 {
+	font-size: 42px;
+	line-height: 1.08;
+	font-weight: 800;
+	color: var(--tm-text);
+	margin-bottom: 14px;
+}
+
+.dashboard-lux-banner-text p {
+	max-width: 760px;
+	font-size: 16px;
+	line-height: 1.8;
+	color: var(--tm-text-soft);
+	margin: 0;
+}
+
+.dashboard-lux-banner-actions {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.dashboard-lux-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 50px;
+	padding: 0 22px;
+	border-radius: 14px;
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration: none;
+	transition: all 0.25s ease;
+	border: 1px solid transparent;
+}
+
+.dashboard-lux-btn-primary {
+	background: var(--tm-primary);
+	color: var(--tm-white);
+	box-shadow: 0 12px 28px rgba(165, 122, 90, 0.22);
+}
+
+.dashboard-lux-btn-primary:hover {
+	background: var(--tm-primary-dark);
+	color: var(--tm-white);
+	transform: translateY(-1px);
+}
+
+.dashboard-lux-btn-outline {
+	background: rgba(255,255,255,0.86);
+	color: var(--tm-text);
+	border-color: var(--tm-border);
+}
+
+.dashboard-lux-btn-outline:hover {
+	background: var(--tm-cream);
+	color: var(--tm-text);
+	border-color: #D8C8BB;
+}
+
+.dashboard-lux-sidebar,
+.dashboard-lux-main {
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+}
+
+.dashboard-lux-profile-card,
+.dashboard-lux-nav,
+.dashboard-lux-help-card,
+.dashboard-lux-intro-card,
+.dashboard-lux-stat-card,
+.dashboard-lux-panel,
+.messagerie-card {
+	background: rgba(255,255,255,0.88);
+	backdrop-filter: blur(12px);
+	border: 1px solid var(--tm-border);
+	border-radius: 28px;
+	box-shadow: var(--tm-shadow);
+}
+
+.dashboard-lux-profile-card {
+	overflow: hidden;
+}
+
+.dashboard-lux-profile-cover {
+	height: 110px;
+	background: linear-gradient(135deg, var(--tm-primary-dark), var(--tm-primary), #C9A88E);
+}
+
+.dashboard-lux-profile-content {
+	position: relative;
+	padding: 0 24px 26px;
+	text-align: center;
+}
+
+.dashboard-lux-profile-avatar {
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 6px solid var(--tm-white);
+	margin: -55px auto 16px;
+	box-shadow: 0 14px 30px rgba(77, 55, 39, 0.14);
+	background: var(--tm-white);
+}
+
+.dashboard-lux-profile-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.dashboard-lux-profile-content h3 {
+	font-size: 24px;
+	font-weight: 800;
+	color: var(--tm-text);
+	margin-bottom: 6px;
+}
+
+.dashboard-lux-profile-subtitle {
+	font-size: 14px;
+	color: var(--tm-text-soft);
+	margin-bottom: 18px;
+}
+
+.dashboard-lux-profile-details {
+	padding-top: 18px;
+	border-top: 1px solid var(--tm-border);
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.dashboard-lux-profile-line {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	font-size: 14px;
+	color: var(--tm-text);
+}
+
+.dashboard-lux-profile-line span {
+	color: var(--tm-text-soft);
+}
+
+.dashboard-lux-nav {
+	padding: 14px;
+}
+
+.dashboard-lux-nav-item {
+	display: flex;
+	align-items: center;
+	min-height: 54px;
+	padding: 0 18px;
+	border-radius: 16px;
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: 700;
+	color: var(--tm-text);
+	transition: all 0.22s ease;
+}
+
+.dashboard-lux-nav-item:hover {
+	background: #F8F2EC;
+	color: var(--tm-primary-dark);
+}
+
+.dashboard-lux-nav-item.active {
+	background: linear-gradient(135deg, var(--tm-primary), var(--tm-primary-dark));
+	color: var(--tm-white);
+	box-shadow: 0 12px 28px rgba(165, 122, 90, 0.22);
+}
+
+.dashboard-lux-help-card {
+	padding: 24px;
+}
+
+.dashboard-lux-help-card h4 {
+	font-size: 22px;
+	font-weight: 800;
+	color: var(--tm-text);
+	margin-bottom: 10px;
+}
+
+.dashboard-lux-help-card p {
+	font-size: 14px;
+	line-height: 1.8;
+	color: var(--tm-text-soft);
+	margin-bottom: 18px;
+}
+
+/* MESSAGERIE */
+.messagerie-card {
+	overflow: hidden;
+}
+
+.messagerie-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 18px;
+	padding: 28px 28px 22px;
+	border-bottom: 1px solid var(--tm-border);
+	background:
+		linear-gradient(135deg, rgba(165,122,90,0.05), rgba(255,255,255,0.95)),
+		var(--tm-white);
+}
+
+.messagerie-kicker {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--tm-primary);
+	margin-bottom: 10px;
+}
+
+.messagerie-title {
+	font-size: 28px;
+	font-weight: 800;
+	line-height: 1.2;
+	color: var(--tm-text);
+	margin: 0;
+}
+
+.messagerie-subtitle {
+	font-size: 14px;
+	line-height: 1.7;
+	color: var(--tm-text-soft);
+}
+
+.messagerie-filter-btn {
+	min-height: 46px;
+	padding-left: 18px;
+	padding-right: 18px;
+}
+
+.messagerie-list {
+	padding: 18px;
+}
+
+.message-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 18px;
+	margin-bottom: 14px;
+	border: 1px solid var(--tm-border);
+	border-radius: 22px;
+	background: linear-gradient(180deg, #FFFEFD, #FAF6F2);
+	text-decoration: none;
+	transition: all 0.24s ease;
+}
+
+.message-item:last-child {
+	margin-bottom: 0;
+}
+
+.message-item:hover {
+	background: var(--tm-white);
+	border-color: #D5C1B0;
+	box-shadow: 0 14px 32px rgba(165, 122, 90, 0.12);
+	transform: translateY(-1px);
+}
+
+.message-item.unread {
+	border-color: #DCC7B6;
+	background: linear-gradient(180deg, #FFFDFC, #F8F1EA);
+}
+
+.message-avatar-wrapper {
+	flex: 0 0 auto;
+}
+
+.message-avatar {
+	width: 58px;
+	height: 58px;
+	border-radius: 50%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, var(--tm-primary-dark), var(--tm-primary));
+	color: var(--tm-white);
+	font-size: 18px;
+	font-weight: 800;
+	box-shadow: 0 10px 24px rgba(165, 122, 90, 0.18);
+}
+
+.message-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.message-avatar-letter span {
+	line-height: 1;
+}
+
+.message-main {
+	flex: 1;
+	min-width: 0;
+}
+
+.message-topline {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 14px;
+	margin-bottom: 8px;
+}
+
+.message-title {
+	margin: 0;
+	min-width: 0;
+	font-size: 16px;
+	font-weight: 700;
+	color: var(--tm-text);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.message-user-name {
+	font-weight: 800;
+	color: var(--tm-text);
+}
+
+.message-separator {
+	margin: 0 8px;
+	color: #B19A89;
+}
+
+.message-project-title {
+	color: var(--tm-text-soft);
+	font-weight: 600;
+}
+
+.message-date {
+	flex-shrink: 0;
+	font-size: 12px;
+	font-weight: 800;
+	color: #9B8777;
+	white-space: nowrap;
+}
+
+.message-bottomline {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.message-preview {
+	margin: 0;
+	min-width: 0;
+	font-size: 14px;
+	color: var(--tm-text-soft);
+	line-height: 1.75;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.message-meta {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.message-unread-dot {
+	width: 11px;
+	height: 11px;
+	border-radius: 50%;
+	background: var(--tm-primary);
+	box-shadow: 0 0 0 6px rgba(165, 122, 90, 0.12);
+}
+
+@media (max-width: 991.98px) {
+	.dashboard-lux-banner-content {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.dashboard-lux-banner-text h1 {
+		font-size: 34px;
+	}
+
+	.messagerie-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.dashboard-lux-banner {
+		padding: 34px 0 22px;
+	}
+
+	.dashboard-lux-banner-text h1 {
+		font-size: 28px;
+	}
+
+	.dashboard-lux-banner-text p {
+		font-size: 14px;
+	}
+
+	.dashboard-lux-profile-card,
+	.dashboard-lux-nav,
+	.dashboard-lux-help-card,
+	.messagerie-card {
+		border-radius: 22px;
+	}
+
+	.dashboard-lux-btn {
+		width: 100%;
+	}
+
+	.dashboard-lux-banner-actions {
+		width: 100%;
+	}
+
+	.messagerie-header {
+		padding: 20px 18px 18px;
+	}
+
+	.messagerie-list {
+		padding: 12px;
+	}
+
+	.message-item {
+		padding: 14px;
+		border-radius: 18px;
+		gap: 12px;
+	}
+
+	.message-avatar {
+		width: 48px;
+		height: 48px;
+		font-size: 16px;
+	}
+
+	.message-topline {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 6px;
+	}
+
+	.message-title,
+	.message-preview {
+		white-space: normal;
+		overflow: visible;
+		text-overflow: initial;
+	}
+
+	.message-bottomline {
+		align-items: flex-start;
+	}
+
+	.messagerie-title {
+		font-size: 24px;
+	}
+}
+</style>
+{% endblock %}
