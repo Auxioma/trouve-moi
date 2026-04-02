@@ -19,19 +19,54 @@
 
 namespace App\Controller\User\Offer;
 
+use App\Repository\PlanRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class PackageController extends AbstractController
 {
-    #[Route('/user/offer/package', name: 'app_user_offer_package')]
-    #[IsGranted('ROLE_ARTISAN')]
-    public function index(): Response
-    {
-        return $this->render('user/offer/package/index.html.twig', [
-            'controller_name' => 'PackageController',
+    #[Route('/{code}/{billing}/{id}', name: 'app_user_offer_basket', methods: ['GET'], requirements: ['billing' => 'monthly|yearly'])]
+    public function basket(
+        string $code,
+        string $billing,
+        int $id,
+        PlanRepository $planRepository
+    ): Response {
+        $plan = $planRepository->find($id);
+
+        if (!$plan) {
+            throw $this->createNotFoundException('Le pack demandé est introuvable.');
+        }
+
+        $price = match ($billing) {
+            'monthly' => $plan->getPriceMonthly(),
+            'yearly' => $plan->getPriceYearly(),
+            default => null,
+        };
+
+        if ($price === null) {
+            throw $this->createNotFoundException('Cette formule de facturation n’est pas disponible pour ce pack.');
+        }
+
+        return $this->render('user/offer/package/billing.html.twig', [
+            'plan' => $plan,
+            'billing' => $billing,
+            'price' => $price,
+            'billingLabel' => $billing === 'monthly' ? 'Mensuel' : 'Annuel',
+            'features' => $plan->getFeatures() ?? [],
         ]);
     }
+    
+    #[Route('/user/offer/package', name: 'app_user_offer_package')]
+    #[IsGranted('ROLE_ARTISAN')]
+    public function index(PlanRepository $planRepository): Response
+    {
+        return $this->render('user/offer/package/index.html.twig', [
+            'plans' => $planRepository->findAll()
+        ]);
+    }
+
 }
