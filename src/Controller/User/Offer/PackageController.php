@@ -73,15 +73,21 @@ final class PackageController extends AbstractController
         ]);
     }
 
-    #[Route('/user/offer/paiement', name: 'app_user_offer_paiement')]
+    #[Route('/user/offer/paiement', name: 'app_user_offer_paiement', methods: ['POST'])]
     #[IsGranted('ROLE_ARTISAN')]
     public function paiement(Request $request, PlanRepository $planRepository): Response
     {
-
         $planId = $request->request->get('plan_id');
         $billing = $request->request->get('billing');
 
-        // On va reférivier le plan pour s'assurer qu'il existe et que les données sont correctes
+        if (!$planId) {
+            throw $this->createNotFoundException('Aucun plan sélectionné.');
+        }
+
+        if (!in_array($billing, ['monthly', 'yearly'], true)) {
+            throw $this->createNotFoundException('Périodicité invalide.');
+        }
+
         $plan = $planRepository->find($planId);
 
         if (!$plan) {
@@ -89,19 +95,23 @@ final class PackageController extends AbstractController
         }
 
         $price = match ($billing) {
-            'yearly' => $plan->getPriceYearly(), 
-            default => $plan->getPriceMonthly(),
+            'monthly' => $plan->getPriceMonthly(),
+            'yearly' => $plan->getPriceYearly(),
         };
-        $interval = 'monthly' === $billing ? 'month' : 'year'; // adapte à ta logique
+
+        if ($price === null || $price <= 0) {
+            throw new \RuntimeException('Le prix du plan est invalide.');
+        }
+
+        $interval = $billing === 'monthly' ? 'month' : 'year';
 
         Stripe::setApiKey($this->getParameter('stripe_secret_key'));
-        $currency = 'eur';
 
         $successUrl = $this->generateUrl(
             'stripe_success',
             [],
             UrlGeneratorInterface::ABSOLUTE_URL
-        ).'?session_id={CHECKOUT_SESSION_ID}';
+        ) . '?session_id={CHECKOUT_SESSION_ID}';
 
         $cancelUrl = $this->generateUrl(
             'stripe_cancel',
@@ -114,27 +124,30 @@ final class PackageController extends AbstractController
             'line_items' => [[
                 'quantity' => 1,
                 'price_data' => [
-                    'currency' => $currency,
-                    'unit_amount' => $price * 100, // Stripe attend le montant en centimes
+                    'currency' => 'eur',
+                    'unit_amount' => (int) round($price * 100),
                     'recurring' => [
                         'interval' => $interval,
-                        // optionnel:
-                        // 'interval_count' => 1,
                     ],
                     'product_data' => [
                         'name' => $plan->getName(),
-                        'description' => ucfirst($billing),
+                        'description' => $billing === 'monthly'
+                            ? 'Abonnement mensuel'
+                            : 'Abonnement annuel',
                     ],
                 ],
             ]],
-
             'success_url' => $successUrl,
             'cancel_url' => $cancelUrl,
         ]);
 
+        if (empty($session->url)) {
+            throw new \RuntimeException('Stripe n’a pas retourné d’URL de paiement.');
+        }
+
         return $this->redirect($session->url, 303);
     }
-
+    
     #[Route('/user/offer/paiement/sucess', name: 'stripe_success')]
     public function success(Request $request): Response
     {
