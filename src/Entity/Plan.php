@@ -22,7 +22,7 @@ class Plan
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
     private ?string $priceMonthly = null;
 
-    #[ORM\Column(type: 'decimal', precision: 10, scale: 2, nullable: true)]
+    #[ORM\Column(type: 'decimal', precision: 10, scale: 2, nullable: true)] 
     private ?string $priceYearly = null;
 
     #[ORM\Column]

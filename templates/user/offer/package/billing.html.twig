@@ -13,7 +13,6 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-xl-12">
-				<form method="post" class="artisan-form-page">
 					{% set priceHt = price %}
 					{% set tvaRate = 20 %}
 					{% set discountAmount = discountAmount is defined ? discountAmount : 0 %}
@@ -178,30 +177,36 @@
 											</div>
 										{% endif %}
 									</div>
-                                    <div class="basket-terms mb-3">
-                                        <label class="basket-terms-check">
-                                            <input type="checkbox" name="accept_cgv" value="1" required>
-                                            <span class="basket-terms-text">
-                                                J'accepte les
-                                                <a href="#" target="_blank">
-                                                    conditions générales de vente
-                                                </a>
-                                                et reconnais avoir pris connaissance des modalités de l’abonnement.
-                                            </span>
-                                        </label>
-                                    </div>
-									<button type="submit" class="btn basket-submit-btn w-100">
-										Continuer le paiement
-									</button>
 
-									<p class="basket-secure-note mb-0">
+    
+									<div class="basket-terms mb-3">
+										<label class="basket-terms-check d-flex align-items-start gap-2">
+											<input type="checkbox" name="accept_cgv" value="1" required>
+											<span class="basket-terms-text">
+												J'accepte les
+												<a href="#" target="_blank" rel="noopener noreferrer">
+													conditions générales de vente
+												</a>
+												et reconnais avoir pris connaissance des modalités de l’abonnement.
+											</span>
+										</label>
+									</div>
+									<form method="post" action="{{ path('app_user_offer_paiement') }}">
+										<input type="hidden" name="plan_id" value="{{ plan.id }}">
+										<input type="hidden" name="billing" value="{{ billing }}">
+										<input type="hidden" name="price_ht" value="{{ price }}">
+										
+										<button type="submit" class="btn basket-submit-btn w-100">
+											Continuer vers le paiement
+										</button>
+									</form>
+									<p class="basket-secure-note mb-0 mt-3">
 										Paiement sécurisé et traitement confidentiel de vos informations.
 									</p>
 								</div>
 							</div>
 						</div>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>
