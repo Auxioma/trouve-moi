@@ -20,7 +20,6 @@
 namespace App\Controller\User\Offer;
 
 use App\Repository\PlanRepository;
-use Stripe\Checkout\Session;
 use Stripe\Checkout\Session as StripeSession;
 use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,7 +42,7 @@ final class StripeController extends AbstractController
             throw $this->createNotFoundException('Aucun plan sélectionné.');
         }
 
-        if (!in_array($billing, ['monthly', 'yearly'], true)) {
+        if (!\in_array($billing, ['monthly', 'yearly'], true)) {
             throw $this->createNotFoundException('Périodicité invalide.');
         }
 
@@ -58,11 +57,11 @@ final class StripeController extends AbstractController
             'yearly' => $plan->getPriceYearly(),
         };
 
-        if ($price === null || $price <= 0) {
+        if (null === $price || $price <= 0) {
             throw new \RuntimeException('Le prix du plan est invalide.');
         }
 
-        $interval = $billing === 'monthly' ? 'month' : 'year';
+        $interval = 'monthly' === $billing ? 'month' : 'year';
 
         Stripe::setApiKey($this->getParameter('stripe_secret_key'));
 
@@ -70,7 +69,7 @@ final class StripeController extends AbstractController
             'stripe_success',
             [],
             UrlGeneratorInterface::ABSOLUTE_URL
-        ) . '?session_id={CHECKOUT_SESSION_ID}';
+        ).'?session_id={CHECKOUT_SESSION_ID}';
 
         $cancelUrl = $this->generateUrl(
             'stripe_cancel',
@@ -78,7 +77,7 @@ final class StripeController extends AbstractController
             UrlGeneratorInterface::ABSOLUTE_URL
         );
 
-        $session = \Stripe\Checkout\Session::create([
+        $session = StripeSession::create([
             'mode' => 'subscription',
             'payment_method_types' => ['card', 'sepa_debit'],
 
@@ -94,7 +93,7 @@ final class StripeController extends AbstractController
                     ],
                     'product_data' => [
                         'name' => $plan->getName(),
-                        'description' => $billing === 'monthly'
+                        'description' => 'monthly' === $billing
                             ? 'Abonnement mensuel'
                             : 'Abonnement annuel',
                     ],
@@ -110,7 +109,7 @@ final class StripeController extends AbstractController
 
         return $this->redirect($session->url, 303);
     }
-    
+
     #[Route('/user/offer/paiement/sucess', name: 'stripe_success')]
     public function success(Request $request): Response
     {
@@ -122,5 +121,4 @@ final class StripeController extends AbstractController
     {
         return $this->render('user/offer/package/success.html.twig');
     }
-
 }

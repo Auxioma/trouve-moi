@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Entity;
 
 use App\Repository\PaymentRepository;
@@ -37,23 +54,80 @@ class Payment
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $paidAt = null;
 
-    public function getId(): ?int { return $this->id; }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-    public function getSubscription(): ?Subscription { return $this->subscription; }
-    public function setSubscription(?Subscription $subscription): static { $this->subscription = $subscription; return $this; }
+    public function getSubscription(): ?Subscription
+    {
+        return $this->subscription;
+    }
 
-    public function getAmount(): ?string { return $this->amount; }
-    public function setAmount(string $amount): static { $this->amount = $amount; return $this; }
+    public function setSubscription(?Subscription $subscription): static
+    {
+        $this->subscription = $subscription;
 
-    public function getCurrency(): string { return $this->currency; }
-    public function setCurrency(string $currency): static { $this->currency = $currency; return $this; }
+        return $this;
+    }
 
-    public function getStatus(): string { return $this->status; }
-    public function setStatus(string $status): static { $this->status = $status; return $this; }
+    public function getAmount(): ?string
+    {
+        return $this->amount;
+    }
 
-    public function getProviderPaymentId(): ?string { return $this->providerPaymentId; }
-    public function setProviderPaymentId(?string $providerPaymentId): static { $this->providerPaymentId = $providerPaymentId; return $this; }
+    public function setAmount(string $amount): static
+    {
+        $this->amount = $amount;
 
-    public function getPaidAt(): ?\DateTimeImmutable { return $this->paidAt; }
-    public function setPaidAt(?\DateTimeImmutable $paidAt): static { $this->paidAt = $paidAt; return $this; }
+        return $this;
+    }
+
+    public function getCurrency(): string
+    {
+        return $this->currency;
+    }
+
+    public function setCurrency(string $currency): static
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getProviderPaymentId(): ?string
+    {
+        return $this->providerPaymentId;
+    }
+
+    public function setProviderPaymentId(?string $providerPaymentId): static
+    {
+        $this->providerPaymentId = $providerPaymentId;
+
+        return $this;
+    }
+
+    public function getPaidAt(): ?\DateTimeImmutable
+    {
+        return $this->paidAt;
+    }
+
+    public function setPaidAt(?\DateTimeImmutable $paidAt): static
+    {
+        $this->paidAt = $paidAt;
+
+        return $this;
+    }
 }

@@ -1,0 +1,702 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création de devis{% endblock %}
+
+{% block body %}
+<section class="inner-banner">
+	<div class="container">
+		<h2>Création de devis</h2>
+	</div>
+</section>
+
+<section class="devis-page py-5">
+	<div class="container">
+		<div class="row g-4">
+			{% include '_partials/nav_bar_artisant.html.twig' %}
+
+			<div class="col-xl-8">
+				<div class="devis-card">
+
+					<div class="devis-header">
+						<div class="devis-header-content">
+							<div>
+								<h3 class="devis-title mb-1">Créer un devis</h3>
+								<p class="devis-subtitle mb-0">
+									Choisissez la méthode la plus adaptée à votre besoin.
+								</p>
+							</div>
+
+							<div class="devis-header-badge">
+								Espace professionnel
+							</div>
+						</div>
+					</div>
+
+					<div class="devis-body">
+						<div class="devis-mode-switch">
+							<button type="button" class="devis-mode-btn active" data-mode="upload">
+								Importer un PDF
+							</button>
+							<button type="button" class="devis-mode-btn" data-mode="manual">
+								Créer en ligne
+							</button>
+						</div>
+
+						<div class="devis-mode-panel active" id="mode-upload">
+							<div class="devis-section-intro">
+								<h4 class="devis-section-title">Envoyer un devis déjà prêt</h4>
+								<p class="devis-section-text">
+									Vous avez déjà généré votre document ? Importez directement votre fichier PDF,
+									ajoutez quelques informations complémentaires puis envoyez-le au client.
+								</p>
+							</div>
+
+							<form method="post" action="#" enctype="multipart/form-data">
+								<div class="row g-4">
+									<div class="col-12">
+										<div class="upload-box">
+											<div class="upload-box-inner">
+												<div class="upload-box-top">
+													<h5 class="upload-box-title">Déposer un fichier PDF</h5>
+													<p class="upload-box-text mb-0">
+														Format accepté : PDF uniquement
+													</p>
+												</div>
+
+												<div class="upload-input-wrapper">
+													<input
+														type="file"
+														name="devis_pdf"
+														id="devis_pdf"
+														class="upload-input"
+														accept="application/pdf"
+														required
+													>
+													<label for="devis_pdf" class="upload-label">
+														Sélectionner un fichier
+													</label>
+													<span class="upload-file-name" id="uploadFileName">
+														Aucun fichier sélectionné
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<label class="form-label-premium">Nom du client</label>
+										<input type="text" name="client_name" class="form-control form-control-premium" placeholder="Nom et prénom ou société" required>
+									</div>
+
+									<div class="col-md-6">
+										<label class="form-label-premium">Email du client</label>
+										<input type="email" name="client_email" class="form-control form-control-premium" placeholder="client@email.com" required>
+									</div>
+
+									<div class="col-md-6">
+										<label class="form-label-premium">Téléphone</label>
+										<input type="text" name="client_phone" class="form-control form-control-premium" placeholder="+33 ...">
+									</div>
+
+									<div class="col-md-6">
+										<label class="form-label-premium">Référence devis</label>
+										<input type="text" name="quote_reference" class="form-control form-control-premium" placeholder="DEV-2026-001">
+									</div>
+
+									<div class="col-12">
+										<label class="form-label-premium">Objet du devis</label>
+										<input type="text" name="quote_title" class="form-control form-control-premium" placeholder="Exemple : Rénovation salle de bain" required>
+									</div>
+
+									<div class="col-12">
+										<label class="form-label-premium">Message complémentaire</label>
+										<textarea name="message" rows="5" class="form-control form-control-premium" placeholder="Ajoutez un message d’accompagnement au client..."></textarea>
+									</div>
+
+									<div class="col-12">
+										<div class="devis-actions">
+											<button type="submit" class="btn devis-primary-btn">
+												Envoyer le devis PDF
+											</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<div class="devis-mode-panel" id="mode-manual">
+							<div class="devis-section-intro">
+								<h4 class="devis-section-title">Créer un devis en ligne</h4>
+								<p class="devis-section-text">
+									Renseignez les informations principales de votre devis directement depuis votre espace.
+									Vous pourrez ensuite l’enregistrer, le générer en PDF ou l’envoyer au client.
+								</p>
+							</div>
+
+							<form method="post" action="#">
+								<div class="row g-4">
+
+									<div class="col-12">
+										<div class="section-block">
+											<h5 class="section-block-title">Informations client</h5>
+
+											<div class="row g-3">
+												<div class="col-md-6">
+													<label class="form-label-premium">Nom du client</label>
+													<input type="text" name="manual_client_name" class="form-control form-control-premium" placeholder="Nom et prénom ou société" required>
+												</div>
+
+												<div class="col-md-6">
+													<label class="form-label-premium">Email</label>
+													<input type="email" name="manual_client_email" class="form-control form-control-premium" placeholder="client@email.com" required>
+												</div>
+
+												<div class="col-md-6">
+													<label class="form-label-premium">Téléphone</label>
+													<input type="text" name="manual_client_phone" class="form-control form-control-premium" placeholder="+33 ...">
+												</div>
+
+												<div class="col-md-6">
+													<label class="form-label-premium">Adresse</label>
+													<input type="text" name="manual_client_address" class="form-control form-control-premium" placeholder="Adresse du client">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12">
+										<div class="section-block">
+											<h5 class="section-block-title">Informations devis</h5>
+
+											<div class="row g-3">
+												<div class="col-md-4">
+													<label class="form-label-premium">Référence</label>
+													<input type="text" name="manual_quote_reference" class="form-control form-control-premium" placeholder="DEV-2026-001">
+												</div>
+
+												<div class="col-md-4">
+													<label class="form-label-premium">Date du devis</label>
+													<input type="date" name="manual_quote_date" class="form-control form-control-premium" required>
+												</div>
+
+												<div class="col-md-4">
+													<label class="form-label-premium">Validité</label>
+													<input type="date" name="manual_quote_valid_until" class="form-control form-control-premium">
+												</div>
+
+												<div class="col-12">
+													<label class="form-label-premium">Objet</label>
+													<input type="text" name="manual_quote_title" class="form-control form-control-premium" placeholder="Exemple : Création d’une terrasse en bois" required>
+												</div>
+
+												<div class="col-12">
+													<label class="form-label-premium">Description des travaux / prestations</label>
+													<textarea name="manual_quote_description" rows="5" class="form-control form-control-premium" placeholder="Décrivez précisément la prestation..." required></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12">
+										<div class="section-block">
+											<h5 class="section-block-title">Ligne de prestation 1</h5>
+
+											<div class="row g-3">
+												<div class="col-md-5">
+													<label class="form-label-premium">Désignation</label>
+													<input type="text" name="item_1_label" class="form-control form-control-premium" placeholder="Prestation ou produit">
+												</div>
+
+												<div class="col-md-2">
+													<label class="form-label-premium">Qté</label>
+													<input type="number" step="1" min="1" name="item_1_quantity" class="form-control form-control-premium" placeholder="1">
+												</div>
+
+												<div class="col-md-2">
+													<label class="form-label-premium">Unité</label>
+													<input type="text" name="item_1_unit" class="form-control form-control-premium" placeholder="u, h, m²">
+												</div>
+
+												<div class="col-md-3">
+													<label class="form-label-premium">Prix unitaire HT</label>
+													<input type="number" step="0.01" min="0" name="item_1_unit_price" class="form-control form-control-premium" placeholder="0.00">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12">
+										<div class="section-block">
+											<h5 class="section-block-title">Ligne de prestation 2</h5>
+
+											<div class="row g-3">
+												<div class="col-md-5">
+													<label class="form-label-premium">Désignation</label>
+													<input type="text" name="item_2_label" class="form-control form-control-premium" placeholder="Prestation ou produit">
+												</div>
+
+												<div class="col-md-2">
+													<label class="form-label-premium">Qté</label>
+													<input type="number" step="1" min="1" name="item_2_quantity" class="form-control form-control-premium" placeholder="1">
+												</div>
+
+												<div class="col-md-2">
+													<label class="form-label-premium">Unité</label>
+													<input type="text" name="item_2_unit" class="form-control form-control-premium" placeholder="u, h, m²">
+												</div>
+
+												<div class="col-md-3">
+													<label class="form-label-premium">Prix unitaire HT</label>
+													<input type="number" step="0.01" min="0" name="item_2_unit_price" class="form-control form-control-premium" placeholder="0.00">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12">
+										<div class="section-block">
+											<h5 class="section-block-title">Montants</h5>
+
+											<div class="row g-3">
+												<div class="col-md-4">
+													<label class="form-label-premium">Sous-total HT</label>
+													<input type="number" step="0.01" min="0" name="subtotal_ht" class="form-control form-control-premium" placeholder="0.00">
+												</div>
+
+												<div class="col-md-4">
+													<label class="form-label-premium">TVA (%)</label>
+													<input type="number" step="0.01" min="0" name="tva_rate" class="form-control form-control-premium" placeholder="20">
+												</div>
+
+												<div class="col-md-4">
+													<label class="form-label-premium">Total TTC</label>
+													<input type="number" step="0.01" min="0" name="total_ttc" class="form-control form-control-premium" placeholder="0.00">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12">
+										<div class="section-block">
+											<h5 class="section-block-title">Conditions</h5>
+
+											<div class="row g-3">
+												<div class="col-md-6">
+													<label class="form-label-premium">Délai d’exécution</label>
+													<input type="text" name="execution_time" class="form-control form-control-premium" placeholder="Exemple : 3 semaines">
+												</div>
+
+												<div class="col-md-6">
+													<label class="form-label-premium">Modalités de paiement</label>
+													<input type="text" name="payment_terms" class="form-control form-control-premium" placeholder="Exemple : 40% acompte, solde à réception">
+												</div>
+
+												<div class="col-12">
+													<label class="form-label-premium">Notes / mentions légales</label>
+													<textarea name="legal_notes" rows="5" class="form-control form-control-premium" placeholder="Ajoutez vos conditions particulières..."></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12">
+										<div class="devis-actions devis-actions-multi">
+											<button type="submit" name="action" value="save" class="btn devis-secondary-btn">
+												Enregistrer le devis
+											</button>
+											<button type="submit" name="action" value="pdf" class="btn devis-primary-btn">
+												Générer le PDF
+											</button>
+											<button type="submit" name="action" value="send" class="btn devis-dark-btn">
+												Créer et envoyer
+											</button>
+										</div>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+.devis-page {
+	background: linear-gradient(180deg, #f8f5f1 0%, #fcfaf7 100%);
+	min-height: 100vh;
+}
+
+.devis-card {
+	background: rgba(255, 255, 255, 0.92);
+	border: 1px solid #e8ded5;
+	border-radius: 28px;
+	box-shadow: 0 18px 45px rgba(77, 55, 39, 0.08);
+	backdrop-filter: blur(14px);
+	overflow: hidden;
+}
+
+.devis-header {
+	padding: 28px 28px 22px;
+	border-bottom: 1px solid #efe5dc;
+	background: linear-gradient(135deg, rgba(165, 122, 90, 0.10), rgba(255, 255, 255, 0.75));
+}
+
+.devis-header-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.devis-title {
+	font-size: 28px;
+	font-weight: 700;
+	color: #2e241e;
+	letter-spacing: -0.02em;
+}
+
+.devis-subtitle {
+	font-size: 14px;
+	color: #7a6a5d;
+}
+
+.devis-header-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 16px;
+	border-radius: 999px;
+	background: rgba(165, 122, 90, 0.12);
+	color: #8d6548;
+	font-size: 13px;
+	font-weight: 700;
+	border: 1px solid rgba(165, 122, 90, 0.16);
+}
+
+.devis-body {
+	padding: 28px;
+}
+
+.devis-mode-switch {
+	display: inline-flex;
+	gap: 10px;
+	padding: 6px;
+	background: #f3ece6;
+	border: 1px solid #eadfd6;
+	border-radius: 18px;
+	margin-bottom: 28px;
+	flex-wrap: wrap;
+}
+
+.devis-mode-btn {
+	border: none;
+	background: transparent;
+	color: #7a6a5d;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 12px 18px;
+	border-radius: 14px;
+	transition: all 0.2s ease;
+}
+
+.devis-mode-btn.active {
+	background: #ffffff;
+	color: #2e241e;
+	box-shadow: 0 8px 20px rgba(77, 55, 39, 0.08);
+}
+
+.devis-mode-panel {
+	display: none;
+}
+
+.devis-mode-panel.active {
+	display: block;
+}
+
+.devis-section-intro {
+	margin-bottom: 24px;
+}
+
+.devis-section-title {
+	font-size: 22px;
+	font-weight: 700;
+	color: #2e241e;
+	margin-bottom: 8px;
+}
+
+.devis-section-text {
+	font-size: 14px;
+	color: #7a6a5d;
+	line-height: 1.7;
+	margin: 0;
+}
+
+.upload-box {
+	border: 1px dashed #c7a58a;
+	border-radius: 24px;
+	background: linear-gradient(135deg, rgba(165, 122, 90, 0.06), rgba(255,255,255,0.95));
+	padding: 24px;
+}
+
+.upload-box-inner {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.upload-box-title {
+	font-size: 18px;
+	font-weight: 700;
+	color: #2e241e;
+	margin-bottom: 6px;
+}
+
+.upload-box-text {
+	font-size: 14px;
+	color: #7a6a5d;
+}
+
+.upload-input-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 14px;
+}
+
+.upload-input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.upload-label {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 13px 18px;
+	border-radius: 14px;
+	background: #a57a5a;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	margin: 0;
+}
+
+.upload-label:hover {
+	background: #8d6548;
+}
+
+.upload-file-name {
+	font-size: 14px;
+	color: #7a6a5d;
+	font-weight: 500;
+}
+
+.section-block {
+	background: #fffdfa;
+	border: 1px solid #ece1d8;
+	border-radius: 22px;
+	padding: 22px;
+}
+
+.section-block-title {
+	font-size: 17px;
+	font-weight: 700;
+	color: #2e241e;
+	margin-bottom: 18px;
+}
+
+.form-label-premium {
+	font-size: 13px;
+	font-weight: 700;
+	color: #5f5146;
+	margin-bottom: 8px;
+	display: block;
+}
+
+.form-control-premium {
+	height: 52px;
+	border: 1px solid #e7dbd2;
+	border-radius: 16px;
+	background: #ffffff;
+	color: #2e241e;
+	padding: 0 16px;
+	box-shadow: none;
+}
+
+textarea.form-control-premium {
+	height: auto;
+	padding-top: 14px;
+	padding-bottom: 14px;
+}
+
+.form-control-premium:focus {
+	border-color: #a57a5a;
+	box-shadow: 0 0 0 0.2rem rgba(165, 122, 90, 0.10);
+}
+
+.devis-actions {
+	margin-top: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	gap: 14px;
+}
+
+.devis-actions-multi {
+	justify-content: space-between;
+}
+
+.devis-primary-btn,
+.devis-secondary-btn,
+.devis-dark-btn {
+	min-height: 52px;
+	padding: 0 22px;
+	border-radius: 16px;
+	font-size: 14px;
+	font-weight: 700;
+	border: none;
+	transition: all 0.2s ease;
+}
+
+.devis-primary-btn {
+	background: #a57a5a;
+	color: #ffffff;
+}
+
+.devis-primary-btn:hover {
+	background: #8d6548;
+	color: #ffffff;
+}
+
+.devis-secondary-btn {
+	background: #f2e8df;
+	color: #6b5544;
+}
+
+.devis-secondary-btn:hover {
+	background: #eadccd;
+	color: #4f3f33;
+}
+
+.devis-dark-btn {
+	background: #2e241e;
+	color: #ffffff;
+}
+
+.devis-dark-btn:hover {
+	background: #1f1814;
+	color: #ffffff;
+}
+
+.artisan-panel__avatar {
+	width: 50px;
+	height: 50px;
+}
+
+.artisan-panel__avatar img {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+}
+
+.avatar-placeholder {
+	width: 50px;
+	height: 50px;
+	background: #A57A5A;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 22px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+@media (max-width: 991.98px) {
+	.devis-body,
+	.devis-header {
+		padding: 20px;
+	}
+
+	.devis-title {
+		font-size: 24px;
+	}
+
+	.devis-actions-multi {
+		justify-content: flex-start;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.devis-mode-switch {
+		width: 100%;
+	}
+
+	.devis-mode-btn {
+		flex: 1 1 100%;
+		text-align: center;
+	}
+
+	.section-block {
+		padding: 18px;
+	}
+
+	.devis-title {
+		font-size: 22px;
+	}
+
+	.devis-section-title {
+		font-size: 20px;
+	}
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	const buttons = document.querySelectorAll('.devis-mode-btn');
+	const panels = document.querySelectorAll('.devis-mode-panel');
+	const pdfInput = document.getElementById('devis_pdf');
+	const fileName = document.getElementById('uploadFileName');
+
+	buttons.forEach(function (button) {
+		button.addEventListener('click', function () {
+			const mode = this.dataset.mode;
+
+			buttons.forEach(function (btn) {
+				btn.classList.remove('active');
+			});
+
+			panels.forEach(function (panel) {
+				panel.classList.remove('active');
+			});
+
+			this.classList.add('active');
+
+			const targetPanel = document.getElementById('mode-' + mode);
+			if (targetPanel) {
+				targetPanel.classList.add('active');
+			}
+		});
+	});
+
+	if (pdfInput && fileName) {
+		pdfInput.addEventListener('change', function () {
+			if (this.files && this.files.length > 0) {
+				fileName.textContent = this.files[0].name;
+			} else {
+				fileName.textContent = 'Aucun fichier sélectionné';
+			}
+		});
+	}
+});
+</script>
+{% endblock %}

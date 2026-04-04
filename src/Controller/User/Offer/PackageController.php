@@ -20,14 +20,9 @@
 namespace App\Controller\User\Offer;
 
 use App\Repository\PlanRepository;
-use Stripe\Checkout\Session;
-use Stripe\Checkout\Session as StripeSession;
-use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class PackageController extends AbstractController
@@ -37,7 +32,7 @@ final class PackageController extends AbstractController
         string $code,
         string $billing,
         int $id,
-        PlanRepository $planRepository
+        PlanRepository $planRepository,
     ): Response {
         $plan = $planRepository->find($id);
 
@@ -51,7 +46,7 @@ final class PackageController extends AbstractController
             default => null,
         };
 
-        if ($price === null) {
+        if (null === $price) {
             throw $this->createNotFoundException('Cette formule de facturation n’est pas disponible pour ce pack.');
         }
 
@@ -59,17 +54,17 @@ final class PackageController extends AbstractController
             'plan' => $plan,
             'billing' => $billing,
             'price' => $price,
-            'billingLabel' => $billing === 'monthly' ? 'Mensuel' : 'Annuel',
+            'billingLabel' => 'monthly' === $billing ? 'Mensuel' : 'Annuel',
             'features' => $plan->getFeatures() ?? [],
         ]);
     }
-    
+
     #[Route('/user/offer/package', name: 'app_user_offer_package')]
     #[IsGranted('ROLE_ARTISAN')]
     public function index(PlanRepository $planRepository): Response
     {
         return $this->render('user/offer/package/index.html.twig', [
-            'plans' => $planRepository->findAll()
+            'plans' => $planRepository->findAll(),
         ]);
     }
 }

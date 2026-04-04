@@ -1,9 +1,26 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Controller\Admin;
 
-use App\Entity\User;
 use App\Entity\Enum\UserProfileStatus;
+use App\Entity\User;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
@@ -21,8 +38,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\DateTimeFilter;
@@ -36,7 +53,7 @@ class UserCrudController extends AbstractCrudController
 {
     public function __construct(
         private RequestStack $requestStack,
-        private UploaderHelper $uploaderHelper
+        private UploaderHelper $uploaderHelper,
     ) {
     }
 
@@ -106,10 +123,10 @@ class UserCrudController extends AbstractCrudController
             ->add(Crud::PAGE_INDEX, $showAll)
             ->add(Crud::PAGE_INDEX, $showArtisans)
             ->add(Crud::PAGE_INDEX, $showUsers)
-            ->update(Crud::PAGE_INDEX, Action::NEW, fn (Action $action) => $action->setLabel('Ajouter'))
-            ->update(Crud::PAGE_INDEX, Action::DETAIL, fn (Action $action) => $action->setLabel('Voir'))
-            ->update(Crud::PAGE_INDEX, Action::EDIT, fn (Action $action) => $action->setLabel('Modifier'))
-            ->update(Crud::PAGE_INDEX, Action::DELETE, fn (Action $action) => $action->setLabel('Supprimer'));
+            ->update(Crud::PAGE_INDEX, Action::NEW, static fn (Action $action) => $action->setLabel('Ajouter'))
+            ->update(Crud::PAGE_INDEX, Action::DETAIL, static fn (Action $action) => $action->setLabel('Voir'))
+            ->update(Crud::PAGE_INDEX, Action::EDIT, static fn (Action $action) => $action->setLabel('Modifier'))
+            ->update(Crud::PAGE_INDEX, Action::DELETE, static fn (Action $action) => $action->setLabel('Supprimer'));
     }
 
     public function configureFilters(Filters $filters): Filters
@@ -143,7 +160,7 @@ class UserCrudController extends AbstractCrudController
                     return '<span style="color:#999;">—</span>';
                 }
 
-                return sprintf(
+                return \sprintf(
                     '<img src="%s" alt="Logo" style="height:56px;width:56px;object-fit:cover;border-radius:14px;border:1px solid #e5e7eb;">',
                     $url
                 );
@@ -264,7 +281,7 @@ class UserCrudController extends AbstractCrudController
                     return '<span style="color:#999;">Aucun logo</span>';
                 }
 
-                return sprintf(
+                return \sprintf(
                     '<img src="%s" alt="Logo" style="max-height:140px;border-radius:18px;border:1px solid #e5e7eb;">',
                     $url
                 );
@@ -310,7 +327,7 @@ class UserCrudController extends AbstractCrudController
         SearchDto $searchDto,
         EntityDto $entityDto,
         FieldCollection $fields,
-        FilterCollection $filters
+        FilterCollection $filters,
     ): QueryBuilder {
         $qb = $this->container
             ->get(EntityRepository::class)
@@ -319,12 +336,12 @@ class UserCrudController extends AbstractCrudController
         $request = $this->requestStack->getCurrentRequest();
         $roleFilter = $request?->query->get('roleFilter');
 
-        if ($roleFilter === 'artisan') {
+        if ('artisan' === $roleFilter) {
             $qb->andWhere('entity.roles LIKE :artisanRole')
                 ->setParameter('artisanRole', '%ROLE_ARTISAN%');
         }
 
-        if ($roleFilter === 'user') {
+        if ('user' === $roleFilter) {
             $qb->andWhere('entity.roles LIKE :userRole')
                 ->setParameter('userRole', '%ROLE_USER%')
                 ->andWhere('entity.roles NOT LIKE :artisanRole')

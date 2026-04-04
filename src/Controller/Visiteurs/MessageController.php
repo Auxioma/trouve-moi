@@ -72,7 +72,7 @@ final class MessageController extends AbstractController
                 'lastMessage' => $lastMessage,
             ];
         }
-        
+
         return $this->render('visiteurs/message/index.html.twig', [
             'discussions' => $discussions,
         ]);

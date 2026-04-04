@@ -45,12 +45,16 @@ class Conversation
     #[ORM\OrderBy(['createdAt' => 'ASC'])]
     private Collection $messages;
 
+    #[ORM\OneToMany(mappedBy: 'conversation', targetEntity: Quote::class)]
+    private Collection $quotes;
+
     public function __construct()
     {
         $this->participants = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+        $this->quotes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,6 +132,35 @@ class Conversation
         if ($this->messages->removeElement($message)) {
             if ($message->getConversation() === $this) {
                 $message->setConversation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Quote>
+     */
+    public function getQuotes(): Collection
+    {
+        return $this->quotes;
+    }
+
+    public function addQuote(Quote $quote): static
+    {
+        if (!$this->quotes->contains($quote)) {
+            $this->quotes->add($quote);
+            $quote->setConversation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuote(Quote $quote): static
+    {
+        if ($this->quotes->removeElement($quote)) {
+            if ($quote->getConversation() === $this) {
+                $quote->setConversation(null);
             }
         }
 

@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Entity;
 
 use App\Repository\SubscriptionRepository;
@@ -54,38 +71,140 @@ class Subscription
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $providerCustomerId = null;
 
-    public function getId(): ?int { return $this->id; }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-    public function getUser(): ?User { return $this->user; }
-    public function setUser(?User $user): static { $this->user = $user; return $this; }
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
 
-    public function getPlan(): ?Plan { return $this->plan; }
-    public function setPlan(?Plan $plan): static { $this->plan = $plan; return $this; }
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
-    public function getStatus(): string { return $this->status; }
-    public function setStatus(string $status): static { $this->status = $status; return $this; }
+        return $this;
+    }
 
-    public function getBillingCycle(): string { return $this->billingCycle; }
-    public function setBillingCycle(string $billingCycle): static { $this->billingCycle = $billingCycle; return $this; }
+    public function getPlan(): ?Plan
+    {
+        return $this->plan;
+    }
 
-    public function getStartedAt(): ?\DateTimeImmutable { return $this->startedAt; }
-    public function setStartedAt(?\DateTimeImmutable $startedAt): static { $this->startedAt = $startedAt; return $this; }
+    public function setPlan(?Plan $plan): static
+    {
+        $this->plan = $plan;
 
-    public function getEndsAt(): ?\DateTimeImmutable { return $this->endsAt; }
-    public function setEndsAt(?\DateTimeImmutable $endsAt): static { $this->endsAt = $endsAt; return $this; }
+        return $this;
+    }
 
-    public function getCanceledAt(): ?\DateTimeImmutable { return $this->canceledAt; }
-    public function setCanceledAt(?\DateTimeImmutable $canceledAt): static { $this->canceledAt = $canceledAt; return $this; }
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
 
-    public function isAutoRenew(): bool { return $this->autoRenew; }
-    public function setAutoRenew(bool $autoRenew): static { $this->autoRenew = $autoRenew; return $this; }
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
-    public function getProvider(): ?string { return $this->provider; }
-    public function setProvider(?string $provider): static { $this->provider = $provider; return $this; }
+        return $this;
+    }
 
-    public function getProviderSubscriptionId(): ?string { return $this->providerSubscriptionId; }
-    public function setProviderSubscriptionId(?string $providerSubscriptionId): static { $this->providerSubscriptionId = $providerSubscriptionId; return $this; }
+    public function getBillingCycle(): string
+    {
+        return $this->billingCycle;
+    }
 
-    public function getProviderCustomerId(): ?string { return $this->providerCustomerId; }
-    public function setProviderCustomerId(?string $providerCustomerId): static { $this->providerCustomerId = $providerCustomerId; return $this; }
+    public function setBillingCycle(string $billingCycle): static
+    {
+        $this->billingCycle = $billingCycle;
+
+        return $this;
+    }
+
+    public function getStartedAt(): ?\DateTimeImmutable
+    {
+        return $this->startedAt;
+    }
+
+    public function setStartedAt(?\DateTimeImmutable $startedAt): static
+    {
+        $this->startedAt = $startedAt;
+
+        return $this;
+    }
+
+    public function getEndsAt(): ?\DateTimeImmutable
+    {
+        return $this->endsAt;
+    }
+
+    public function setEndsAt(?\DateTimeImmutable $endsAt): static
+    {
+        $this->endsAt = $endsAt;
+
+        return $this;
+    }
+
+    public function getCanceledAt(): ?\DateTimeImmutable
+    {
+        return $this->canceledAt;
+    }
+
+    public function setCanceledAt(?\DateTimeImmutable $canceledAt): static
+    {
+        $this->canceledAt = $canceledAt;
+
+        return $this;
+    }
+
+    public function isAutoRenew(): bool
+    {
+        return $this->autoRenew;
+    }
+
+    public function setAutoRenew(bool $autoRenew): static
+    {
+        $this->autoRenew = $autoRenew;
+
+        return $this;
+    }
+
+    public function getProvider(): ?string
+    {
+        return $this->provider;
+    }
+
+    public function setProvider(?string $provider): static
+    {
+        $this->provider = $provider;
+
+        return $this;
+    }
+
+    public function getProviderSubscriptionId(): ?string
+    {
+        return $this->providerSubscriptionId;
+    }
+
+    public function setProviderSubscriptionId(?string $providerSubscriptionId): static
+    {
+        $this->providerSubscriptionId = $providerSubscriptionId;
+
+        return $this;
+    }
+
+    public function getProviderCustomerId(): ?string
+    {
+        return $this->providerCustomerId;
+    }
+
+    public function setProviderCustomerId(?string $providerCustomerId): static
+    {
+        $this->providerCustomerId = $providerCustomerId;
+
+        return $this;
+    }
 }
