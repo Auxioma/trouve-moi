@@ -191,7 +191,7 @@
 											</span>
 										</label>
 									</div>
-									<form method="post" action="{{ path('app_user_offer_paiement') }}">
+									<form method="post" action="{{ path('app_user_offer_paiement') }}" data-turbo="false">
 										<input type="hidden" name="plan_id" value="{{ plan.id }}">
 										<input type="hidden" name="billing" value="{{ billing }}">
 										<input type="hidden" name="price_ht" value="{{ price }}">

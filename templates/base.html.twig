@@ -28,8 +28,8 @@
     <div id="main-wrapper" class="main-wrapper overflow-hidden">
         <div id="scroll-container">
 
-            {% include ('_partials/preloader.html.twig') %}
-
+            {#{% include ('_partials/preloader.html.twig') %}#}
+            
             {{ render(controller('App\\Controller\\Api\\NavBarController::NavBar')) }}
 
             {% block body %}{% endblock %}
