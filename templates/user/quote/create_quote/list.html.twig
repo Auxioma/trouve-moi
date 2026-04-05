@@ -1,0 +1,282 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes devis{% endblock %}
+
+{% block body %}
+<section class="inner-banner">
+    <div class="container">
+        <h2>Mes devis</h2>
+    </div>
+</section>
+
+<section class="properties-detail bg-white p-100">
+    <div class="container">
+        <div class="row g-4">
+            {% include '_partials/nav_bar_artisant.html.twig' %}
+
+            <div class="col-xl-8">
+                <div class="house-detail mb-4">
+                    <div class="container">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="artisan-card">
+                                    <div class="artisan-section-header mb-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+                                        <div>
+                                            <h2>Liste des devis</h2>
+                                            <p>Tous les devis que vous avez créés pour vos clients.</p>
+                                        </div>
+
+                                        <div class="quote-count-badge">
+                                            {{ quotes|length }} devis
+                                        </div>
+                                    </div>
+
+                                    {% if quotes is not empty %}
+                                        <div class="table-responsive">
+                                            <table class="table artisan-quote-table align-middle">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Client</th>
+                                                        <th>Statut</th>
+                                                        <th>Date</th>
+                                                        <th class="text-end">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for quote in quotes %}
+                                                        <tr>
+                                                            <td>
+                                                                <div class="quote-client-block"
+                                                                    data-bs-toggle="tooltip"
+                                                                    data-bs-placement="top"
+                                                                    title="{{ quote.title ?: 'Sans titre' }}">
+
+                                                                    <div class="quote-client-name">
+                                                                        {{ quote.clientName ?: 'Client inconnu' }}
+                                                                    </div>
+
+                                                                    <div class="quote-client-email">
+                                                                        {{ quote.clientEmail ?: '—' }}
+                                                                    </div>
+
+                                                                    <div class="quote-client-email">
+                                                                        {{ quote.reference ?: '—' }}
+                                                                    </div>
+
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <span class="quote-badge quote-badge-{{ quote.status }}">
+                                                                    {% if quote.status == constant('App\\Entity\\Quote::STATUS_DRAFT') %}
+                                                                        Brouillon
+                                                                    {% elseif quote.status == constant('App\\Entity\\Quote::STATUS_SENT') %}
+                                                                        Envoyé
+                                                                    {% elseif quote.status == constant('App\\Entity\\Quote::STATUS_OPENED') %}
+                                                                        Ouvert
+                                                                    {% elseif quote.status == constant('App\\Entity\\Quote::STATUS_ACCEPTED') %}
+                                                                        Accepté
+                                                                    {% elseif quote.status == constant('App\\Entity\\Quote::STATUS_PAID') %}
+                                                                        Payé
+                                                                    {% elseif quote.status == constant('App\\Entity\\Quote::STATUS_REJECTED') %}
+                                                                        Refusé
+                                                                    {% else %}
+                                                                        {{ quote.status }}
+                                                                    {% endif %}
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                {{ quote.createdAt ? quote.createdAt|date('d/m/Y') : '—' }}
+                                                            </td>
+                                                            <td class="text-end">
+                                                                <a href="#" class="btn btn-dark rounded-pill px-3 py-2 btn-sm">
+                                                                    Voir
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <div class="empty-quote-state">
+                                            <h3>Aucun devis pour le moment</h3>
+                                            <p>Vous n’avez encore créé aucun devis pour vos clients.</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+</section>
+
+<style>
+.tooltip {
+    --bs-tooltip-bg: #2E241E;
+    --bs-tooltip-color: #ffffff;
+    --bs-tooltip-border-radius: 12px;
+    --bs-tooltip-padding-x: 14px;
+    --bs-tooltip-padding-y: 10px;
+    --bs-tooltip-font-size: 13px;
+    --bs-tooltip-max-width: 260px;
+}
+
+.tooltip-inner {
+    background: #2E241E;
+    color: #fff;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* Flèche */
+.tooltip .tooltip-arrow::before {
+    border-top-color: #2E241E !important;
+}
+.artisan-card {
+    background: #fff;
+    border: 1px solid #ebe7e2;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 18px 45px rgba(77, 55, 39, 0.08);
+}
+
+.artisan-section-header h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: #2E241E;
+}
+
+.artisan-section-header p {
+    margin-bottom: 0;
+    color: #7A6A5D;
+}
+
+.quote-count-badge {
+    background: #F7F3EE;
+    color: #8D6548;
+    border: 1px solid #E8DED5;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.artisan-quote-table {
+    margin: 0;
+}
+
+.artisan-quote-table thead th {
+    border-bottom: 1px solid #E8DED5;
+    color: #7A6A5D;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: 16px 12px;
+    white-space: nowrap;
+}
+
+.artisan-quote-table tbody td {
+    padding: 18px 12px;
+    border-bottom: 1px solid #F0EAE4;
+    vertical-align: middle;
+}
+
+.quote-client-name {
+    font-weight: 600;
+    color: #2E241E;
+    margin-bottom: 4px;
+}
+
+.quote-client-email {
+    font-size: 14px;
+    color: #7A6A5D;
+}
+
+.quote-title-cell {
+    font-weight: 500;
+    color: #2E241E;
+    min-width: 180px;
+}
+
+.quote-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.quote-badge-draft {
+    background: #f1f1f1;
+    color: #555;
+}
+
+.quote-badge-sent {
+    background: #e8f1fd;
+    color: #2f6db7;
+}
+
+.quote-badge-opened {
+    background: #fff4df;
+    color: #b7791f;
+}
+
+.quote-badge-accepted {
+    background: #e8f8ee;
+    color: #1f8a4c;
+}
+
+.quote-badge-paid {
+    background: #dff7e8;
+    color: #16784a;
+}
+
+.quote-badge-rejected {
+    background: #fdeaea;
+    color: #c0392b;
+}
+
+.empty-quote-state {
+    border: 1px dashed #d9cbbd;
+    border-radius: 20px;
+    padding: 40px 24px;
+    text-align: center;
+    background: #FCFAF7;
+}
+
+.empty-quote-state h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #2E241E;
+}
+
+.empty-quote-state p {
+    margin: 0;
+    color: #7A6A5D;
+}
+
+@media (max-width: 991px) {
+    .artisan-card {
+        padding: 20px;
+    }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+</script>
+{% endblock %}

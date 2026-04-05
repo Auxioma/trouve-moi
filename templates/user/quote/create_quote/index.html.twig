@@ -51,7 +51,7 @@
 								</p>
 							</div>
 
-							<form method="post" action="#" enctype="multipart/form-data">
+							{{ form_start(formQuotePdf, {'attr': {'enctype': 'multipart/form-data'}}) }}
 								<div class="row g-4">
 									<div class="col-12">
 										<div class="upload-box">
@@ -64,19 +64,13 @@
 												</div>
 
 												<div class="upload-input-wrapper">
-													<input
-														type="file"
-														name="devis_pdf"
-														id="devis_pdf"
-														class="upload-input"
-														accept="application/pdf"
-														required
-													>
-													<label for="devis_pdf" class="upload-label">
+													{{ form_widget(formQuotePdf.attachment, {'attr': {'class': 'upload-input', 'accept': 'application/pdf', 'required': 'required'}}) }}
+
+													<label for="quote_pdf_attachment" class="upload-label">
 														Sélectionner un fichier
 													</label>
 													<span class="upload-file-name" id="uploadFileName">
-														Aucun fichier sélectionné
+														Aucun fichier sélectionné 
 													</span>
 												</div>
 											</div>
@@ -85,32 +79,32 @@
 
 									<div class="col-md-6">
 										<label class="form-label-premium">Nom du client</label>
-										<input type="text" name="client_name" class="form-control form-control-premium" placeholder="Nom et prénom ou société" required>
+										{{ form_widget(formQuotePdf.clientName, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Nom et prénom ou société', 'required': 'required'}}) }}
 									</div>
 
 									<div class="col-md-6">
 										<label class="form-label-premium">Email du client</label>
-										<input type="email" name="client_email" class="form-control form-control-premium" placeholder="client@email.com" required>
+										{{ form_widget(formQuotePdf.clientEmail, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Nom et prénom ou société', 'required': 'required'}}) }}
 									</div>
 
 									<div class="col-md-6">
 										<label class="form-label-premium">Téléphone</label>
-										<input type="text" name="client_phone" class="form-control form-control-premium" placeholder="+33 ...">
+										{{ form_widget(formQuotePdf.clientPhone, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Nom et prénom ou société', 'required': 'required'}}) }}
 									</div>
 
 									<div class="col-md-6">
 										<label class="form-label-premium">Référence devis</label>
-										<input type="text" name="quote_reference" class="form-control form-control-premium" placeholder="DEV-2026-001">
+										{{ form_widget(formQuotePdf.reference, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Nom et prénom ou société', 'required': 'required'}}) }}
 									</div>
 
 									<div class="col-12">
 										<label class="form-label-premium">Objet du devis</label>
-										<input type="text" name="quote_title" class="form-control form-control-premium" placeholder="Exemple : Rénovation salle de bain" required>
+										{{ form_widget(formQuotePdf.title, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Nom et prénom ou société', 'required': 'required'}}) }}
 									</div>
 
 									<div class="col-12">
 										<label class="form-label-premium">Message complémentaire</label>
-										<textarea name="message" rows="5" class="form-control form-control-premium" placeholder="Ajoutez un message d’accompagnement au client..."></textarea>
+										{{ form_widget(formQuotePdf.message) }}
 									</div>
 
 									<div class="col-12">
@@ -121,7 +115,7 @@
 										</div>
 									</div>
 								</div>
-							</form>
+							{{ form_end(formQuotePdf) }}
 						</div>
 
 						<div class="devis-mode-panel" id="mode-manual">
@@ -163,95 +157,43 @@
 											</div>
 										</div>
 									</div>
-
 									<div class="col-12">
-										<div class="section-block">
-											<h5 class="section-block-title">Informations devis</h5>
-
-											<div class="row g-3">
-												<div class="col-md-4">
-													<label class="form-label-premium">Référence</label>
-													<input type="text" name="manual_quote_reference" class="form-control form-control-premium" placeholder="DEV-2026-001">
-												</div>
-
-												<div class="col-md-4">
-													<label class="form-label-premium">Date du devis</label>
-													<input type="date" name="manual_quote_date" class="form-control form-control-premium" required>
-												</div>
-
-												<div class="col-md-4">
-													<label class="form-label-premium">Validité</label>
-													<input type="date" name="manual_quote_valid_until" class="form-control form-control-premium">
-												</div>
-
-												<div class="col-12">
-													<label class="form-label-premium">Objet</label>
-													<input type="text" name="manual_quote_title" class="form-control form-control-premium" placeholder="Exemple : Création d’une terrasse en bois" required>
-												</div>
-
-												<div class="col-12">
-													<label class="form-label-premium">Description des travaux / prestations</label>
-													<textarea name="manual_quote_description" rows="5" class="form-control form-control-premium" placeholder="Décrivez précisément la prestation..." required></textarea>
-												</div>
-											</div>
-										</div>
+										<button type="button" id="addQuoteLine" class="btn-add-line">
+											+ Ajouter une ligne de prestation
+										</button>
 									</div>
 
-									<div class="col-12">
+									<div class="col-12 quote-line">
 										<div class="section-block">
-											<h5 class="section-block-title">Ligne de prestation 1</h5>
+											<h5 class="section-block-title">Ligne de prestation <span class="line-number">1</span></h5>
 
 											<div class="row g-3">
 												<div class="col-md-5">
 													<label class="form-label-premium">Désignation</label>
-													<input type="text" name="item_1_label" class="form-control form-control-premium" placeholder="Prestation ou produit">
+													<input type="text" name="items[0][label]" class="form-control form-control-premium" placeholder="Prestation ou produit">
 												</div>
 
 												<div class="col-md-2">
 													<label class="form-label-premium">Qté</label>
-													<input type="number" step="1" min="1" name="item_1_quantity" class="form-control form-control-premium" placeholder="1">
+													<input type="number" step="1" min="1" name="items[0][quantity]" class="form-control form-control-premium" placeholder="1">
 												</div>
 
 												<div class="col-md-2">
 													<label class="form-label-premium">Unité</label>
-													<input type="text" name="item_1_unit" class="form-control form-control-premium" placeholder="u, h, m²">
+													<input type="text" name="items[0][unit]" class="form-control form-control-premium" placeholder="u, h, m²">
 												</div>
 
 												<div class="col-md-3">
 													<label class="form-label-premium">Prix unitaire HT</label>
-													<input type="number" step="0.01" min="0" name="item_1_unit_price" class="form-control form-control-premium" placeholder="0.00">
+													<input type="number" step="0.01" min="0" name="items[0][unit_price]" class="form-control form-control-premium" placeholder="0.00">
 												</div>
 											</div>
 										</div>
 									</div>
 
-									<div class="col-12">
-										<div class="section-block">
-											<h5 class="section-block-title">Ligne de prestation 2</h5>
+									<div id="quoteLinesContainer"></div>
+								
 
-											<div class="row g-3">
-												<div class="col-md-5">
-													<label class="form-label-premium">Désignation</label>
-													<input type="text" name="item_2_label" class="form-control form-control-premium" placeholder="Prestation ou produit">
-												</div>
-
-												<div class="col-md-2">
-													<label class="form-label-premium">Qté</label>
-													<input type="number" step="1" min="1" name="item_2_quantity" class="form-control form-control-premium" placeholder="1">
-												</div>
-
-												<div class="col-md-2">
-													<label class="form-label-premium">Unité</label>
-													<input type="text" name="item_2_unit" class="form-control form-control-premium" placeholder="u, h, m²">
-												</div>
-
-												<div class="col-md-3">
-													<label class="form-label-premium">Prix unitaire HT</label>
-													<input type="number" step="0.01" min="0" name="item_2_unit_price" class="form-control form-control-premium" placeholder="0.00">
-												</div>
-											</div>
-										</div>
-									</div>
 
 									<div class="col-12">
 										<div class="section-block">
@@ -658,8 +600,54 @@ textarea.form-control-premium {
 		font-size: 20px;
 	}
 }
-</style>
+.btn-add-line {
+    background: linear-gradient(135deg, #A57A5A, #8D6548);
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+}
 
+.btn-add-line:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    let addBtn = document.getElementById("addQuoteLine");
+    let container = document.getElementById("quoteLinesContainer");
+
+    let lineIndex = 1;
+
+    addBtn.addEventListener("click", function () {
+
+        let firstLine = document.querySelector(".quote-line");
+        let newLine = firstLine.cloneNode(true);
+
+        lineIndex++;
+
+        // Update title
+        newLine.querySelector(".line-number").innerText = lineIndex;
+
+        // Update inputs names
+        newLine.querySelectorAll("input").forEach(function(input){
+            let name = input.getAttribute("name");
+            name = name.replace(/\d+/, lineIndex - 1);
+            input.setAttribute("name", name);
+            input.value = "";
+        });
+
+        container.appendChild(newLine);
+    });
+
+});
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 	const buttons = document.querySelectorAll('.devis-mode-btn');

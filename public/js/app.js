@@ -28,14 +28,14 @@
         (this._html = $("html"));
     },
     methods: function (e) {
-      Init.w();
+      /*Init.w();
       Init.preloader();
       Init.dropdown();
       Init.intializeSlick();
       Init.formValidation();
       Init.contactForm();
       Init.videoPlay();
-      Init.wow();
+      Init.wow();*/
     },
     w: function (e) {
       this._window.on("load", Init.l).on("scroll", Init.res);
