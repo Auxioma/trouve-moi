@@ -1,3 +1,5 @@
+{{ dump(app.user) }}
+
 			<div class="col-xl-3 col-lg-4">
 				<aside class="dashboard-lux-sidebar">
 
@@ -6,10 +8,13 @@
 
 						<div class="dashboard-lux-profile-content">
 							<div class="dashboard-lux-profile-avatar">
-								<img src="https://placehold.co/110x110" alt="Photo de profil">
+								<img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="Photo de profil" width="110" height="110">
 							</div>
 
-							<h3>Jean Dupont</h3>
+							<h3>
+								{{ user.firstName ?: 'Prénom' }}
+								{{ user.lastName ?: 'Nom' }}
+							</h3>
 							<p class="dashboard-lux-profile-subtitle">Compte personnel actif</p>
 
 							<div class="dashboard-lux-profile-details">
@@ -31,14 +36,14 @@
 
 					<nav class="dashboard-lux-nav">
 						<a href="{{ path('app_visiteurs_dashboard') }}" class="dashboard-lux-nav-item">Accueil</a>
-						<a href="{{ path('app_visiteurs_message') }}" class="dashboard-lux-nav-item active">Messagerie</a>
+                        <a href="{{ path('app_visiteurs_profile') }}" class="dashboard-lux-nav-item ">Mon profile</a>
+                        <a href="{{ path('app_visiteurs_message') }}" class="dashboard-lux-nav-item active">Messagerie</a>
 						<a href="#" class="dashboard-lux-nav-item">Mes demandes</a>
 						<a href="#" class="dashboard-lux-nav-item">Mon profil</a>
 						<a href="#" class="dashboard-lux-nav-item">Mes documents</a>
 						<a href="#" class="dashboard-lux-nav-item">Paramètres</a>
 						<a href="{{ path('app_logout') }}" class="dashboard-lux-nav-item">Deconnection</a>
 					</nav>
-
 					<div class="dashboard-lux-help-card">
 						<span class="dashboard-lux-kicker">Accompagnement</span>
 						<h4>Besoin d’aide ?</h4>

@@ -1,0 +1,266 @@
+        /* ================================
+           PROFIL UTILISATEUR - TROUVEMOI
+        ================================ */
+
+        .profile-lux-card {
+            position: relative;
+            background: var(--tm-white);
+            border: 1px solid var(--tm-border);
+            border-radius: 28px;
+            box-shadow: var(--tm-shadow);
+            overflow: hidden;
+        }
+
+        .profile-lux-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 6px;
+            background: linear-gradient(
+                90deg,
+                var(--tm-primary-dark),
+                var(--tm-primary),
+                var(--tm-primary-soft)
+            );
+        }
+
+        .profile-lux-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            padding: 32px 32px 28px;
+            border-bottom: 1px solid var(--tm-border);
+            background: linear-gradient(180deg, var(--tm-white) 0%, var(--tm-ivory) 100%);
+        }
+
+        .profile-lux-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: var(--tm-primary-pale);
+            color: var(--tm-primary-dark);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .profile-lux-card-title {
+            margin: 0 0 8px;
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--tm-text);
+        }
+
+        .profile-lux-card-subtitle {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--tm-text-soft);
+            max-width: 640px;
+        }
+
+        /* Avatar */
+
+        .profile-lux-avatar-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            min-width: 250px;
+            padding: 16px 18px;
+            border-radius: 22px;
+            background: var(--tm-ivory);
+            border: 1px solid var(--tm-border);
+        }
+
+        .profile-lux-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                135deg,
+                var(--tm-primary-dark),
+                var(--tm-primary)
+            );
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .profile-lux-avatar-text h5 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--tm-text);
+        }
+
+        .profile-lux-avatar-text p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--tm-text-soft);
+        }
+
+        /* Form */
+
+        .profile-lux-form {
+            padding: 32px;
+        }
+
+        .profile-lux-section {
+            background: var(--tm-white);
+            border: 1px solid var(--tm-border);
+            border-radius: 22px;
+            padding: 28px;
+        }
+
+        .profile-lux-section + .profile-lux-section {
+            margin-top: 28px;
+        }
+
+        .profile-lux-section-heading {
+            margin-bottom: 22px;
+        }
+
+        .profile-lux-section-heading h4 {
+            margin: 0 0 6px;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--tm-text);
+        }
+
+        .profile-lux-section-heading p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--tm-text-soft);
+        }
+
+        /* Inputs */
+
+        .profile-lux-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--tm-text);
+        }
+
+        .profile-lux-input,
+        .profile-lux-textarea,
+        .profile-lux-file-input {
+            width: 100%;
+            border: 1px solid var(--tm-border);
+            background: var(--tm-ivory);
+            border-radius: 14px;
+            padding: 13px 14px;
+            font-size: 15px;
+            color: var(--tm-text);
+            transition: 0.25s;
+        }
+
+        .profile-lux-input::placeholder,
+        .profile-lux-textarea::placeholder {
+            color: var(--tm-text-soft);
+        }
+
+        .profile-lux-input:focus,
+        .profile-lux-textarea:focus {
+            border-color: var(--tm-primary);
+            background: var(--tm-white);
+            box-shadow: 0 0 0 3px rgba(165, 122, 90, 0.12);
+        }
+
+        .profile-lux-textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        /* Upload */
+
+        .profile-lux-upload-box {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 22px;
+            border-radius: 20px;
+            border: 1px dashed var(--tm-primary-soft);
+            background: var(--tm-cream);
+        }
+
+        .profile-lux-upload-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--tm-white);
+            font-size: 26px;
+        }
+
+        .profile-lux-upload-content h5 {
+            margin: 0 0 4px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--tm-text);
+        }
+
+        .profile-lux-upload-content p {
+            margin: 0;
+            font-size: 14px;
+            color: var(--tm-text-soft);
+        }
+
+        /* Footer buttons */
+
+        .profile-lux-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .profile-lux-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 0 22px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            transition: 0.25s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .profile-lux-btn-light {
+            background: var(--tm-cream);
+            color: var(--tm-text);
+            border: 1px solid var(--tm-border);
+        }
+
+        .profile-lux-btn-light:hover {
+            background: var(--tm-primary-pale);
+        }
+
+        .profile-lux-btn-primary {
+            background: linear-gradient(
+                135deg,
+                var(--tm-primary-dark),
+                var(--tm-primary)
+            );
+            color: white;
+            box-shadow: 0 10px 25px rgba(165, 122, 90, 0.25);
+        }
+
+        .profile-lux-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(165, 122, 90, 0.35);
+        }

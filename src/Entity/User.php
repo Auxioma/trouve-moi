@@ -165,6 +165,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Subscription::class, mappedBy: 'user')]
     private Collection $subscriptions;
 
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -172,6 +175,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->writtenTestimonials = new ArrayCollection();
         $this->receivedTestimonials = new ArrayCollection();
         $this->subscriptions = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function __serialize(): array
@@ -647,6 +651,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $subscription->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

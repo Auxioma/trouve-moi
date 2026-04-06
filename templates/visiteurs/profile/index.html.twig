@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+
+    <section class="dashboard-lux-banner">
+        <div class="container">
+            <div class="dashboard-lux-banner-content">
+                <div class="dashboard-lux-banner-text">
+                    <span class="dashboard-lux-kicker">Espace utilisateur</span>
+                    <h1>Mon profil</h1>
+                    <p>
+                        Gérez vos informations personnelles, vos coordonnées et les détails visibles sur votre espace utilisateur.
+                    </p>
+                </div>
+
+                <div class="dashboard-lux-banner-actions">
+                    <a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline">Retour au tableau de bord</a>
+                    <a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary">Enregistrer les modifications</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard-lux-page">
+        <div class="container">
+            <div class="row g-4">
+
+                {% include '_partials/nav_bar_visiteur.html.twig' %}
+
+                <div class="col-xl-8 col-lg-8">
+                    <div class="profile-lux-layout">
+
+                        <div class="profile-lux-content">
+                            <div class="profile-lux-card">
+
+                                <div class="profile-lux-card-header">
+                                    <div>
+                                        <h3 class="profile-lux-card-title">Informations du profil</h3>
+                                        <p class="profile-lux-card-subtitle mb-0">
+                                            Mettez à jour vos informations personnelles et vos coordonnées.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {{ form_start(form, {
+                                    attr: {
+                                        class: 'profile-lux-form'
+                                    }
+                                }) }}
+
+                                    <div class="profile-lux-section">
+                                        <div class="profile-lux-section-heading">
+                                            <h4>Identité</h4>
+                                            <p>Vos informations principales affichées sur votre compte.</p>
+                                        </div>
+
+                                        <div class="row g-4">
+                                            <div class="col-md-6">
+                                                <label class="profile-lux-label">Nom</label>
+                                                {{ form_widget(form.lastName) }}
+                                                {{ form_errors(form.lastName) }}
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label class="profile-lux-label">Prénom</label>
+                                                {{ form_widget(form.firstName) }}
+                                                {{ form_errors(form.firstName) }}
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label class="profile-lux-label">Email</label>
+                                                {{ form_widget(form.email) }}
+                                                {{ form_errors(form.email) }}
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label class="profile-lux-label">Téléphone</label>
+                                                {{ form_widget(form.phoneNumber) }}
+                                                {{ form_errors(form.phoneNumber) }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-lux-section">
+                                        <div class="profile-lux-section-heading">
+                                            <h4>Adresse</h4>
+                                            <p>Complétez votre adresse pour une meilleure gestion de votre compte.</p>
+                                        </div>
+
+                                        <div class="row g-4">
+                                            <div class="col-12">
+                                                <label class="profile-lux-label">Adresse</label>
+                                                {{ form_widget(form.address) }}
+                                                {{ form_errors(form.address) }}
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="profile-lux-label">Code postal</label>
+                                                {{ form_widget(form.postalCode) }}
+                                                {{ form_errors(form.postalCode) }}
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="profile-lux-label">Ville</label>
+                                                {{ form_widget(form.city) }}
+                                                {{ form_errors(form.city) }}
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="profile-lux-label">Pays</label>
+                                                <input type="text" name="country" class="profile-lux-input" placeholder="France">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="profile-lux-section">
+                                        <div class="profile-lux-section-heading">
+                                            <h4>Photo de profil</h4>
+                                            <p>Importez une image pour personnaliser votre compte.</p>
+                                        </div>
+
+                                        <div class="profile-lux-upload-box">
+                                            <div class="profile-lux-upload-icon">📷</div>
+                                            <div class="profile-lux-upload-content">
+                                                <h5>Ajouter une image</h5>
+                                                <p>Formats recommandés : JPG, PNG – image carrée de préférence.</p>
+                                            </div>
+                                            <div class="profile-lux-upload-action">
+                                                {{ form_widget(form.imageFile) }}
+                                                {{ form_errors(form.imageFile) }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-lux-footer">
+                                        <button type="button" class="profile-lux-btn profile-lux-btn-light">
+                                            Annuler
+                                        </button>
+
+                                        <button type="submit" class="profile-lux-btn profile-lux-btn-primary">
+                                            Enregistrer mon profil
+                                        </button>
+                                    </div>
+
+                                {{ form_end(form) }}
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
