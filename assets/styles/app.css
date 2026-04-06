@@ -5,3 +5,14 @@
 @import "./visiteur/dashboard.css";
 @import "./visiteur/list-message.css";
 @import "./visiteur/detail-message.css";
+
+/**
+* CSS des artisans
+ */
+@import "./artisan/dashboard.css";
+@import "./artisan/messagerie-list.css";
+@import "./artisan/messagerie-show.css";
+@import "./artisan/billing.css";
+@import "./artisan/pack.css";
+@import "./artisan/profile.css";
+@import "./artisan/quote.css";

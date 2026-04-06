@@ -1,0 +1,349 @@
+.devis-page {
+    background: linear-gradient(180deg, #f8f5f1 0%, #fcfaf7 100%);
+    min-height: 100vh;
+}
+
+.devis-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #e8ded5;
+    border-radius: 28px;
+    box-shadow: 0 18px 45px rgba(77, 55, 39, 0.08);
+    backdrop-filter: blur(14px);
+    overflow: hidden;
+}
+
+.devis-header {
+    padding: 28px 28px 22px;
+    border-bottom: 1px solid #efe5dc;
+    background: linear-gradient(135deg, rgba(165, 122, 90, 0.10), rgba(255, 255, 255, 0.75));
+}
+
+.devis-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.devis-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2e241e;
+    letter-spacing: -0.02em;
+}
+
+.devis-subtitle {
+    font-size: 14px;
+    color: #7a6a5d;
+}
+
+.devis-header-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(165, 122, 90, 0.12);
+    color: #8d6548;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1px solid rgba(165, 122, 90, 0.16);
+}
+
+.devis-body {
+    padding: 28px;
+}
+
+.devis-mode-switch {
+    display: inline-flex;
+    gap: 10px;
+    padding: 6px;
+    background: #f3ece6;
+    border: 1px solid #eadfd6;
+    border-radius: 18px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.devis-mode-btn {
+    border: none;
+    background: transparent;
+    color: #7a6a5d;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 14px;
+    transition: all 0.2s ease;
+}
+
+.devis-mode-btn.active {
+    background: #ffffff;
+    color: #2e241e;
+    box-shadow: 0 8px 20px rgba(77, 55, 39, 0.08);
+}
+
+.devis-mode-panel {
+    display: none;
+}
+
+.devis-mode-panel.active {
+    display: block;
+}
+
+.devis-section-intro {
+    margin-bottom: 24px;
+}
+
+.devis-section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2e241e;
+    margin-bottom: 8px;
+}
+
+.devis-section-text {
+    font-size: 14px;
+    color: #7a6a5d;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.upload-box {
+    border: 1px dashed #c7a58a;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(165, 122, 90, 0.06), rgba(255,255,255,0.95));
+    padding: 24px;
+}
+
+.upload-box-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.upload-box-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2e241e;
+    margin-bottom: 6px;
+}
+
+.upload-box-text {
+    font-size: 14px;
+    color: #7a6a5d;
+}
+
+.upload-input-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.upload-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.upload-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 18px;
+    border-radius: 14px;
+    background: #a57a5a;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0;
+}
+
+.upload-label:hover {
+    background: #8d6548;
+}
+
+.upload-file-name {
+    font-size: 14px;
+    color: #7a6a5d;
+    font-weight: 500;
+}
+
+.section-block {
+    background: #fffdfa;
+    border: 1px solid #ece1d8;
+    border-radius: 22px;
+    padding: 22px;
+}
+
+.section-block-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #2e241e;
+    margin-bottom: 18px;
+}
+
+.form-label-premium {
+    font-size: 13px;
+    font-weight: 700;
+    color: #5f5146;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control-premium {
+    height: 52px;
+    border: 1px solid #e7dbd2;
+    border-radius: 16px;
+    background: #ffffff;
+    color: #2e241e;
+    padding: 0 16px;
+    box-shadow: none;
+}
+
+textarea.form-control-premium {
+    height: auto;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.form-control-premium:focus {
+    border-color: #a57a5a;
+    box-shadow: 0 0 0 0.2rem rgba(165, 122, 90, 0.10);
+}
+
+.devis-actions {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.devis-actions-multi {
+    justify-content: space-between;
+}
+
+.devis-primary-btn,
+.devis-secondary-btn,
+.devis-dark-btn {
+    min-height: 52px;
+    padding: 0 22px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.devis-primary-btn {
+    background: #a57a5a;
+    color: #ffffff;
+}
+
+.devis-primary-btn:hover {
+    background: #8d6548;
+    color: #ffffff;
+}
+
+.devis-secondary-btn {
+    background: #f2e8df;
+    color: #6b5544;
+}
+
+.devis-secondary-btn:hover {
+    background: #eadccd;
+    color: #4f3f33;
+}
+
+.devis-dark-btn {
+    background: #2e241e;
+    color: #ffffff;
+}
+
+.devis-dark-btn:hover {
+    background: #1f1814;
+    color: #ffffff;
+}
+
+.artisan-panel__avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.artisan-panel__avatar img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    width: 50px;
+    height: 50px;
+    background: #A57A5A;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+@media (max-width: 991.98px) {
+    .devis-body,
+    .devis-header {
+        padding: 20px;
+    }
+
+    .devis-title {
+        font-size: 24px;
+    }
+
+    .devis-actions-multi {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .devis-mode-switch {
+        width: 100%;
+    }
+
+    .devis-mode-btn {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+
+    .section-block {
+        padding: 18px;
+    }
+
+    .devis-title {
+        font-size: 22px;
+    }
+
+    .devis-section-title {
+        font-size: 20px;
+    }
+}
+.btn-add-line {
+    background: linear-gradient(135deg, #A57A5A, #8D6548);
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+}
+
+.btn-add-line:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}

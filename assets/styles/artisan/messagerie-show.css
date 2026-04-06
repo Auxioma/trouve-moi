@@ -1,0 +1,158 @@
+.messagerie-page {
+    background: #f7f8fc;
+    min-height: 100vh;
+}
+
+.messagerie-card {
+    background: #ffffff;
+    border: 1px solid #eceef3;
+    border-radius: 24px;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06);
+    overflow: hidden;
+}
+
+/* HEADER */
+.artisan-message-show-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #eff1f5;
+    background: #fff;
+}
+
+.artisan-message-show-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.artisan-message-show-user {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.artisan-message-show-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1f2937, #4b5563);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.artisan-message-show-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artisan-message-show-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.artisan-message-show-status {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.artisan-message-show-btn-devis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #A57A5A 0%, #8D6548 100%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 10px 20px rgba(165, 122, 90, 0.15);
+}
+
+/* BODY */
+.artisan-message-show-body {
+    padding: 24px;
+    background: #f9fafc;
+    min-height: 520px;
+    max-height: 520px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.artisan-message-show-row {
+    display: flex;
+    width: 100%;
+}
+
+.artisan-message-show-row.is-me {
+    justify-content: flex-end;
+}
+
+.artisan-message-show-row.is-other {
+    justify-content: flex-start;
+}
+
+.artisan-message-show-bubble {
+    max-width: 72%;
+    padding: 14px 16px;
+    border-radius: 18px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+}
+
+.artisan-message-show-row.is-me .artisan-message-show-bubble {
+    background: linear-gradient(135deg, rgb(165, 122, 90) 0%, rgb(140, 100, 72) 50%, rgb(115, 80, 58) 100%);
+    color: #ffffff;
+    border-bottom-right-radius: 6px;
+}
+
+.artisan-message-show-row.is-other .artisan-message-show-bubble {
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid #edf0f4;
+    border-bottom-left-radius: 6px;
+}
+
+/* FOOTER */
+.artisan-message-show-footer {
+    padding: 18px 24px 24px;
+    border-top: 1px solid #eff1f5;
+    background: #ffffff;
+}
+
+.artisan-message-show-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.artisan-message-show-textarea {
+    flex: 1;
+    border: 1px solid #dfe5ee;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 14px;
+    background: #f9fafc;
+    resize: none;
+    outline: none;
+    min-height: 56px;
+}
+
+.artisan-message-show-send-btn {
+    border: none;
+    background: #111827;
+    color: #ffffff;
+    padding: 14px 22px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 600;
+}

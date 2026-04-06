@@ -52,6 +52,16 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $passwordHolder = new User();
         $hashedPassword = $this->passwordHasher->hashPassword($passwordHolder, 'admin');
 
+        $superAdmin = new User();
+        $superAdmin->setEmail('admin@admin.admin');
+        $superAdmin->setRoles(['ROLE_ADMIN']);
+        $superAdmin->setPassword($hashedPassword);
+        $superAdmin->setIsVerified(true);
+        $superAdmin->setFirstName('Admin');
+        $superAdmin->setLastName('Admin');
+        $superAdmin->setUpdatedAt(new \DateTimeImmutable());
+        $manager->persist($superAdmin);
+
         // User fixe
         $adminActivity = $activities[array_rand($activities)];
         $adminServices = $adminActivity->getServices()->toArray();
