@@ -1,0 +1,7 @@
+/**
+* CSS de la parties des utiliateurs
+*/
+@import "./visiteur/navbar.css";
+@import "./visiteur/dashboard.css";
+@import "./visiteur/list-message.css";
+@import "./visiteur/detail-message.css";
