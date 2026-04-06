@@ -57,7 +57,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $adminServices = $adminActivity->getServices()->toArray();
 
         $admin = new User();
-        $admin->setEmail('admin@admin.admin');
+        $admin->setEmail('artisan@artisan.artisan');
         $admin->setRoles(['ROLE_ARTISAN']);
         $admin->setPassword($hashedPassword);
         $admin->setIsVerified(true);
@@ -163,8 +163,8 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $visiteur->setRoles(['ROLE_USER']);
         $visiteur->setPassword($this->passwordHasher->hashPassword($visiteur, 'user'));
         $visiteur->setIsVerified($faker->boolean(90));
-        $visiteur->setFirstName($faker->firstName());
-        $visiteur->setLastName($faker->lastName());
+        $visiteur->setFirstName('loic');
+        $visiteur->setLastName('Le barbu');
         $visiteur->setUpdatedAt(new \DateTimeImmutable());
         $manager->persist($visiteur);
 

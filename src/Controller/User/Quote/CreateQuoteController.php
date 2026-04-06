@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Controller\User\Quote;
 
 use App\Entity\Message;
@@ -26,7 +43,7 @@ final class CreateQuoteController extends AbstractController
         int $id,
         Request $request,
         ConversationRepository $conversationRepository,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
     ): Response {
         $conversation = $conversationRepository->find($id);
 
@@ -108,7 +125,7 @@ final class CreateQuoteController extends AbstractController
         Request $request,
         ConversationRepository $conversationRepository,
         EntityManagerInterface $em,
-        MailerInterface $mailer
+        MailerInterface $mailer,
     ): Response {
         $conversation = $conversationRepository->find($id);
 
@@ -169,25 +186,25 @@ final class CreateQuoteController extends AbstractController
                 $extension = $pdfFile->guessExtension() ?: 'pdf';
 
                 $conversationId = (string) $conversation->getId();
-                $parts = str_split($conversationId);
+                $parts = mb_str_split($conversationId);
 
-                $baseDir = $this->getParameter('kernel.project_dir') . '/public/devis';
+                $baseDir = $this->getParameter('kernel.project_dir').'/public/devis';
                 $relativeDir = implode('/', $parts);
-                $targetDir = $baseDir . '/' . $relativeDir;
+                $targetDir = $baseDir.'/'.$relativeDir;
 
                 if (!is_dir($targetDir)) {
                     mkdir($targetDir, 0775, true);
                 }
 
-                $safeName = pathinfo($originalName, PATHINFO_FILENAME);
+                $safeName = pathinfo($originalName, \PATHINFO_FILENAME);
                 $safeName = preg_replace('/[^A-Za-z0-9_-]/', '-', $safeName);
 
-                $fileName = $safeName . '-' . uniqid() . '.' . $extension;
+                $fileName = $safeName.'-'.uniqid().'.'.$extension;
 
                 $pdfFile->move($targetDir, $fileName);
 
-                $relativePath = 'devis/' . $relativeDir . '/' . $fileName;
-                $pdfUrl = $request->getSchemeAndHttpHost() . '/' . ltrim($relativePath, '/');
+                $relativePath = 'devis/'.$relativeDir.'/'.$fileName;
+                $pdfUrl = $request->getSchemeAndHttpHost().'/'.mb_ltrim($relativePath, '/');
 
                 $quote->setIsPdfUploaded(true);
                 $quote->setIsPdfGenerated(false);
@@ -206,10 +223,10 @@ final class CreateQuoteController extends AbstractController
                 $message = new Message();
                 $message->setConversation($conversation);
                 $message->setSender($user);
-                $message->setContent(sprintf(
+                $message->setContent(\sprintf(
                     'Un devis PDF a été envoyé : <a href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
                     $pdfUrl,
-                    htmlspecialchars($originalName, ENT_QUOTES, 'UTF-8')
+                    htmlspecialchars($originalName, \ENT_QUOTES, 'UTF-8')
                 ));
 
                 $em->persist($quote);

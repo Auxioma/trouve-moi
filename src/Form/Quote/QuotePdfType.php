@@ -40,10 +40,10 @@ class QuotePdfType extends AbstractType
                 'attr' => [
                     'rows' => 5,
                     'placeholder' => 'Ajoutez un message d’accompagnement au client...',
-                    'class' => 'form-control form-control-premium'
-                ]
+                    'class' => 'form-control form-control-premium',
+                ],
             ])
-            ->add('clientName') 
+            ->add('clientName')
             ->add('clientEmail')
             ->add('clientPhone')
             ->add('reference', null, [
@@ -63,8 +63,8 @@ class QuotePdfType extends AbstractType
 
         ;
 
-                // Générer la référence quand le formulaire est créé
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        // Générer la référence quand le formulaire est créé
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, static function (FormEvent $event) {
             $quote = $event->getData();
 
             if (!$quote || $quote->getReference()) {
@@ -72,10 +72,9 @@ class QuotePdfType extends AbstractType
             }
 
             $quote->setReference(
-                'DEV-' . date('Ymd-His') . '-' . strtoupper(substr(uniqid(), -4))
+                'DEV-'.date('Ymd-His').'-'.mb_strtoupper(mb_substr(uniqid(), -4))
             );
         });
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void

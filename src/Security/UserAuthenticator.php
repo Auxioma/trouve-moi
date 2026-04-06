@@ -73,23 +73,22 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         $roles = $user->getRoles();
 
         // ADMIN
-        if (in_array('ROLE_ADMIN', $roles)) {
+        if (\in_array('ROLE_ADMIN', $roles, true)) {
             return new RedirectResponse($this->urlGenerator->generate('admin'));
         }
 
         // ARTISAN
-        if (in_array('ROLE_ARTISAN', $roles)) {
+        if (\in_array('ROLE_ARTISAN', $roles, true)) {
             return new RedirectResponse($this->urlGenerator->generate('app_user_dashboard'));
         }
 
         // USER / CLIENT
-        if (in_array('ROLE_USER', $roles)) {
+        if (\in_array('ROLE_USER', $roles, true)) {
             return new RedirectResponse($this->urlGenerator->generate('app_visiteurs_dashboard'));
         }
 
         // Par défaut
         return new RedirectResponse($this->urlGenerator->generate('app_home'));
-
     }
 
     protected function getLoginUrl(Request $request): string

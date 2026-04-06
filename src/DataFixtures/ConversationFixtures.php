@@ -39,29 +39,107 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
             throw new \RuntimeException('Pas assez d\'utilisateurs. Vérifie UserFixtures.');
         }
 
-        // ── 1. CONVERSATIONS (60 paires uniques) ──────────────────────────────
-        $conversations = $this->createConversations($manager, $users);
+        $userRepository = $manager->getRepository(User::class);
 
-        // ── 2. MESSAGES (5-10 par conversation ≈ 375 messages) ────────────────
+        /** @var User|null $specificUser */
+        $specificUser = $userRepository->findOneBy(['email' => 'user@user.user']);
+
+        /** @var User|null $specificArtisan */
+        $specificArtisan = $userRepository->findOneBy(['email' => 'artisan@artisan.artisan']);
+
+        if (!$specificUser || !$specificArtisan) {
+            throw new \RuntimeException('Les utilisateurs user@user.user et artisan@artisan.artisan doivent exister dans UserFixtures.');
+        }
+
+        $conversations = [];
+
+        // 1. Conversation prioritaire entre les 2 comptes voulus
+        $priorityConversation = $this->createSpecificConversation(
+            $manager,
+            $specificUser,
+            $specificArtisan
+        );
+
+        $conversations[] = $priorityConversation;
+
+        // 2. Conversations aléatoires complémentaires
+        $randomConversations = $this->createConversations(
+            $manager,
+            $users,
+            [
+                $specificUser->getEmail().'|'.$specificArtisan->getEmail(),
+                $specificArtisan->getEmail().'|'.$specificUser->getEmail(),
+            ]
+        );
+
+        $conversations = array_merge($conversations, $randomConversations);
+
+        // 3. Messages : beaucoup pour la conversation spécifique
         $messages = $this->createMessages($manager, $conversations);
 
-        // ── 3. MESSAGE READS (~60 % des messages ≈ 140 entrées) ───────────────
+        // 4. Lectures des messages
         $this->createMessageReads($manager, $messages);
 
         $manager->flush();
     }
 
     // ──────────────────────────────────────────────────────────────────────────
-    // CONVERSATIONS
+    // CONVERSATION SPÉCIFIQUE
     // ──────────────────────────────────────────────────────────────────────────
 
-    private function createConversations(ObjectManager $manager, array $users): array
-    {
+    private function createSpecificConversation(
+        ObjectManager $manager,
+        User $user,
+        User $artisan,
+    ): array {
+        $createdAt = $this->randomDate('-6 months', '-2 months');
+        $updatedAt = $this->randomDate($createdAt->format('Y-m-d H:i:s'), 'now');
+
+        $conversation = new Conversation();
+        $conversation->setCreatedAt($createdAt);
+        $conversation->setUpdatedAt($updatedAt);
+
+        $participantA = new ConversationParticipant();
+        $participantA->setConversation($conversation);
+        $participantA->setUser($user);
+        $participantA->setJoinedAt($createdAt);
+
+        $participantB = new ConversationParticipant();
+        $participantB->setConversation($conversation);
+        $participantB->setUser($artisan);
+        $participantB->setJoinedAt($createdAt);
+
+        $manager->persist($conversation);
+        $manager->persist($participantA);
+        $manager->persist($participantB);
+
+        return [
+            'entity' => $conversation,
+            'userA' => $user,
+            'userB' => $artisan,
+            'createdAt' => $createdAt,
+            'isPriority' => true,
+        ];
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // CONVERSATIONS ALÉATOIRES
+    // ──────────────────────────────────────────────────────────────────────────
+
+    private function createConversations(
+        ObjectManager $manager,
+        array $users,
+        array $excludedPairs = [],
+    ): array {
         $conversations = [];
         $pairs = [];
 
+        foreach ($excludedPairs as $excludedPair) {
+            $pairs[$excludedPair] = true;
+        }
+
         $attempts = 0;
-        while (\count($conversations) < 60 && $attempts < 5000) {
+        while (\count($conversations) < 59 && $attempts < 5000) {
             ++$attempts;
 
             $aIdx = array_rand($users);
@@ -71,11 +149,18 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
                 continue;
             }
 
-            $pairKey = min($aIdx, $bIdx).'-'.max($aIdx, $bIdx);
-            if (isset($pairs[$pairKey])) {
+            $userA = $users[$aIdx];
+            $userB = $users[$bIdx];
+
+            $pairKey = $userA->getEmail().'|'.$userB->getEmail();
+            $reversePairKey = $userB->getEmail().'|'.$userA->getEmail();
+
+            if (isset($pairs[$pairKey]) || isset($pairs[$reversePairKey])) {
                 continue;
             }
+
             $pairs[$pairKey] = true;
+            $pairs[$reversePairKey] = true;
 
             $createdAt = $this->randomDate('-6 months', '-1 day');
             $updatedAt = $this->randomDate($createdAt->format('Y-m-d H:i:s'), 'now');
@@ -86,12 +171,12 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
 
             $participantA = new ConversationParticipant();
             $participantA->setConversation($conversation);
-            $participantA->setUser($users[$aIdx]);
+            $participantA->setUser($userA);
             $participantA->setJoinedAt($createdAt);
 
             $participantB = new ConversationParticipant();
             $participantB->setConversation($conversation);
-            $participantB->setUser($users[$bIdx]);
+            $participantB->setUser($userB);
             $participantB->setJoinedAt($createdAt);
 
             $manager->persist($conversation);
@@ -100,9 +185,10 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
 
             $conversations[] = [
                 'entity' => $conversation,
-                'userA' => $users[$aIdx],
-                'userB' => $users[$bIdx],
+                'userA' => $userA,
+                'userB' => $userB,
                 'createdAt' => $createdAt,
+                'isPriority' => false,
             ];
         }
 
@@ -121,20 +207,27 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
         foreach ($conversations as $conv) {
             /** @var Conversation $conversation */
             $conversation = $conv['entity'];
+            /** @var User $userA */
             $userA = $conv['userA'];
+            /** @var User $userB */
             $userB = $conv['userB'];
+
             $currentDate = clone $conv['createdAt'];
 
-            $msgCount = random_int(5, 10);
+            // Beaucoup de messages pour la conversation spécifique
+            $msgCount = !empty($conv['isPriority'])
+                ? random_int(80, 140)
+                : random_int(5, 10);
 
             for ($i = 0; $i < $msgCount; ++$i) {
                 $sender = (0 === $i % 2) ? $userA : $userB;
-                // Quelques envois consécutifs du même expéditeur
+
+                // Petite variation pour éviter un échange trop mécanique
                 if (1 === random_int(1, 5)) {
                     $sender = ($sender === $userA) ? $userB : $userA;
                 }
 
-                $currentDate = $currentDate->modify('+'.random_int(2, 1440).' minutes');
+                $currentDate = $currentDate->modify('+'.random_int(5, 720).' minutes');
 
                 $message = new Message();
                 $message->setConversation($conversation);
@@ -152,6 +245,9 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
                     'sentAt' => clone $currentDate,
                 ];
             }
+
+            // Met à jour la date de dernière activité de la conversation
+            $conversation->setUpdatedAt($currentDate);
         }
 
         return $allMessages;
@@ -166,22 +262,25 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
         $tracked = [];
 
         foreach ($messages as $msgData) {
-            if (random_int(1, 10) > 6) {
+            if (random_int(1, 10) > 7) {
                 continue;
             }
 
             /** @var Message $message */
             $message = $msgData['entity'];
+            /** @var User $sender */
             $sender = $msgData['sender'];
+            /** @var User $recipient */
             $recipient = ($sender === $msgData['userA']) ? $msgData['userB'] : $msgData['userA'];
 
             $key = spl_object_id($message).'-'.spl_object_id($recipient);
             if (isset($tracked[$key])) {
                 continue;
             }
+
             $tracked[$key] = true;
 
-            $readAt = $msgData['sentAt']->modify('+'.random_int(1, 720).' minutes');
+            $readAt = $msgData['sentAt']->modify('+'.random_int(1, 1440).' minutes');
 
             $read = new MessageRead();
             $read->setMessage($message);
@@ -208,14 +307,11 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
     private function messagePool(): array
     {
         return [
-            // Premier contact
             'Bonjour, je suis intéressé par vos services. Pouvez-vous me donner plus d\'informations ?',
             'Bonjour, j\'ai vu votre profil et je souhaiterais obtenir un devis.',
             'Bonsoir, êtes-vous disponible pour un travail dans ma région ?',
             'Bonjour, j\'aurais besoin de vos services rapidement. Comment puis-je vous contacter ?',
             'Bonjour ! Pouvez-vous m\'en dire plus sur votre expérience dans ce domaine ?',
-
-            // Devis / tarifs
             'Quel est votre tarif pour ce type de prestation ?',
             'Pouvez-vous m\'envoyer un devis détaillé dès que possible ?',
             'Je dispose d\'un budget de 3 000 €, est-ce que cela correspond à vos tarifs ?',
@@ -223,16 +319,12 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
             'Le devis est un peu au-dessus de mon budget, y a-t-il une marge de négociation ?',
             'Merci pour votre devis, je vais le comparer avec d\'autres propositions.',
             'Parfait, votre devis est accepté. Quelles sont les prochaines étapes ?',
-
-            // Disponibilités
             'Êtes-vous disponible la semaine prochaine pour un premier état des lieux ?',
             'Je suis disponible le mardi ou le jeudi après-midi, ça vous conviendrait ?',
             'Pouvez-vous passer un samedi matin ? C\'est plus pratique pour moi.',
             'Quels sont vos délais pour démarrer les travaux ?',
             'Nous sommes d\'accord pour le 15 du mois prochain, c\'est noté de mon côté.',
             'Je dois malheureusement reporter notre rendez-vous, pouvez-vous proposer une autre date ?',
-
-            // Description du chantier
             'Il s\'agit d\'une maison de 120 m², les travaux concernent principalement le salon et la cuisine.',
             'Le chantier est situé en centre-ville, l\'accès est facile avec du stationnement disponible.',
             'Ce sont des travaux de rénovation d\'une salle de bain complète, baignoire, douche et WC.',
@@ -241,31 +333,23 @@ class ConversationFixtures extends Fixture implements DependentFixtureInterface
             'Le parquet de mon salon fait 40 m², il est à poncer et vitrifier.',
             'Ma toiture présente des infiltrations au niveau du faîtage, pouvez-vous venir l\'inspecter ?',
             'Je souhaite installer une pergola bioclimatique dans mon jardin, environ 20 m².',
-
-            // Questions techniques
             'Utilisez-vous des matériaux certifiés ou des marques spécifiques ?',
             'Le devis inclut-il la fourniture et la pose ?',
             'Y a-t-il des garanties sur vos travaux ? Décennale ? Parfait achèvement ?',
             'Intervenez-vous avec votre propre équipe ou faites-vous appel à des sous-traitants ?',
             'Avez-vous des références de chantiers similaires que je pourrais voir ?',
             'L\'installation sera-t-elle conforme aux normes en vigueur ?',
-
-            // En cours de chantier
             'Tout se passe bien de notre côté, merci pour votre professionnalisme.',
             'Pouvez-vous me tenir informé de l\'avancement des travaux régulièrement ?',
             'Les livraisons de matériaux ont eu lieu ce matin, c\'est parfait.',
             'Il y a un petit souci sur la cloison nord, pouvez-vous y jeter un œil demain ?',
             'Super, la première phase est terminée. On peut attaquer la suite ?',
             'Je repasserai sur le chantier vendredi pour valider l\'avancement avec vous.',
-
-            // Fin de chantier
             'Les travaux sont terminés, je suis très satisfait du résultat !',
             'Félicitations pour la qualité du travail, je n\'hésiterai pas à vous recommander.',
             'Quelques retouches seraient appréciées sur les finitions de la porte d\'entrée.',
             'La réception définitive est programmée pour vendredi, tout vous convient ?',
             'Je vous laisse un excellent avis sur la plateforme, c\'était un plaisir de travailler avec vous.',
-
-            // Courtoisie
             'Merci pour votre réponse rapide !',
             'Parfait, je reviens vers vous dès que j\'ai les informations nécessaires.',
             'Pas de souci, prenez le temps qu\'il vous faut.',
