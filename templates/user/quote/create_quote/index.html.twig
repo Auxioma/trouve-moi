@@ -84,27 +84,27 @@
 
 									<div class="col-md-6">
 										<label class="form-label-premium">Email du client</label>
-										{{ form_widget(formQuotePdf.clientEmail, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Nom et prénom ou société', 'required': 'required'}}) }}
+										{{ form_widget(formQuotePdf.clientEmail, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'client@email.com', 'required': 'required'}}) }}
 									</div>
 
 									<div class="col-md-6">
 										<label class="form-label-premium">Téléphone</label>
-										{{ form_widget(formQuotePdf.clientPhone, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Nom et prénom ou société', 'required': 'required'}}) }}
+										{{ form_widget(formQuotePdf.clientPhone, {'attr': {'class': 'form-control form-control-premium', 'placeholder': '+33 ...', 'required': 'required'}}) }}
 									</div>
 
 									<div class="col-md-6">
 										<label class="form-label-premium">Référence devis</label>
-										{{ form_widget(formQuotePdf.reference, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Nom et prénom ou société', 'required': 'required'}}) }}
+										{{ form_widget(formQuotePdf.reference, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'DEV-2026-001', 'required': 'required'}}) }}
 									</div>
 
 									<div class="col-12">
 										<label class="form-label-premium">Objet du devis</label>
-										{{ form_widget(formQuotePdf.title, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Nom et prénom ou société', 'required': 'required'}}) }}
+										{{ form_widget(formQuotePdf.title, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Objet du devis', 'required': 'required'}}) }}
 									</div>
 
 									<div class="col-12">
 										<label class="form-label-premium">Message complémentaire</label>
-										{{ form_widget(formQuotePdf.message) }}
+										{{ form_widget(formQuotePdf.message, {'attr': {'class': 'form-control form-control-premium', 'rows': 5}}) }}
 									</div>
 
 									<div class="col-12">
@@ -157,43 +157,54 @@
 											</div>
 										</div>
 									</div>
+
 									<div class="col-12">
-										<button type="button" id="addQuoteLine" class="btn-add-line">
-											+ Ajouter une ligne de prestation
-										</button>
-									</div>
-
-									<div class="col-12 quote-line">
 										<div class="section-block">
-											<h5 class="section-block-title">Ligne de prestation <span class="line-number">1</span></h5>
-
-											<div class="row g-3">
-												<div class="col-md-5">
-													<label class="form-label-premium">Désignation</label>
-													<input type="text" name="items[0][label]" class="form-control form-control-premium" placeholder="Prestation ou produit">
+											<div class="quote-lines-head">
+												<div>
+													<h5 class="section-block-title mb-1">Lignes de prestation</h5>
+													<p class="devis-section-text mb-0">
+														Ajoutez les prestations une par une via la fenêtre dédiée.
+													</p>
 												</div>
 
-												<div class="col-md-2">
-													<label class="form-label-premium">Qté</label>
-													<input type="number" step="1" min="1" name="items[0][quantity]" class="form-control form-control-premium" placeholder="1">
-												</div>
-
-												<div class="col-md-2">
-													<label class="form-label-premium">Unité</label>
-													<input type="text" name="items[0][unit]" class="form-control form-control-premium" placeholder="u, h, m²">
-												</div>
-
-												<div class="col-md-3">
-													<label class="form-label-premium">Prix unitaire HT</label>
-													<input type="number" step="0.01" min="0" name="items[0][unit_price]" class="form-control form-control-premium" placeholder="0.00">
-												</div>
+												<button
+													type="button"
+													class="btn-add-line"
+													data-bs-toggle="modal"
+													data-bs-target="#quoteLineModal"
+												>
+													+ Ajouter une ligne de prestation
+												</button>
 											</div>
+
+											<div class="table-responsive mt-4">
+												<table class="table quote-lines-table align-middle mb-0">
+													<thead>
+														<tr>
+															<th style="width: 70px;">#</th>
+															<th>Désignation</th>
+															<th style="width: 90px;">Qté</th>
+															<th style="width: 100px;">Unité</th>
+															<th style="width: 120px;">TVA</th>
+															<th style="width: 140px;">Prix HT</th>
+															<th style="width: 150px;">Total HT</th>
+															<th style="width: 110px;" class="text-end">Action</th>
+														</tr>
+													</thead>
+													<tbody id="quoteLinesTableBody">
+														<tr id="quoteLinesEmptyRow">
+															<td colspan="8" class="text-center text-muted py-4">
+																Aucune ligne de prestation ajoutée.
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+
+											<div id="quoteLinesHiddenInputs"></div>
 										</div>
 									</div>
-
-									<div id="quoteLinesContainer"></div>
-
-
 
 									<div class="col-12">
 										<div class="section-block">
@@ -202,17 +213,17 @@
 											<div class="row g-3">
 												<div class="col-md-4">
 													<label class="form-label-premium">Sous-total HT</label>
-													<input type="number" step="0.01" min="0" name="subtotal_ht" class="form-control form-control-premium" placeholder="0.00">
+													<input type="number" step="0.01" min="0" name="subtotal_ht" id="subtotalHt" class="form-control form-control-premium" placeholder="0.00" readonly>
 												</div>
 
 												<div class="col-md-4">
-													<label class="form-label-premium">TVA (%)</label>
-													<input type="number" step="0.01" min="0" name="tva_rate" class="form-control form-control-premium" placeholder="20">
+													<label class="form-label-premium">Montant TVA</label>
+													<input type="number" step="0.01" min="0" name="tva_amount" id="tvaAmount" class="form-control form-control-premium" placeholder="0.00" readonly>
 												</div>
 
 												<div class="col-md-4">
 													<label class="form-label-premium">Total TTC</label>
-													<input type="number" step="0.01" min="0" name="total_ttc" class="form-control form-control-premium" placeholder="0.00">
+													<input type="number" step="0.01" min="0" name="total_ttc" id="totalTtc" class="form-control form-control-premium" placeholder="0.00" readonly>
 												</div>
 											</div>
 										</div>
@@ -266,46 +277,219 @@
 	</div>
 </section>
 
-<style>
+<div class="modal fade" id="quoteLineModal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl">
+		<div class="modal-content quote-modal">
 
-</style>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+			<div class="modal-header">
+				<h5 class="modal-title">Ajouter une ligne de prestation</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+			</div>
 
-    let addBtn = document.getElementById("addQuoteLine");
-    let container = document.getElementById("quoteLinesContainer");
+			<div class="modal-body">
+				<div class="row g-3">
+					<div class="col-md-5">
+						<label class="form-label">Désignation</label>
+						<input type="text" class="form-control" id="lineLabel" placeholder="Exemple : Pose de carrelage mural">
+					</div>
 
-    let lineIndex = 1;
+					<div class="col-md-1">
+						<label class="form-label">Quantité</label>
+						<input type="number" class="form-control" id="lineQuantity" value="1" min="1" step="1">
+					</div>
 
-    addBtn.addEventListener("click", function () {
+					<div class="col-md-1">
+						<label class="form-label">Unité</label>
+						<input type="text" class="form-control" id="lineUnit" placeholder="h">
+					</div>
 
-        let firstLine = document.querySelector(".quote-line");
-        let newLine = firstLine.cloneNode(true);
+					<div class="col-md-2">
+						<label class="form-label">TVA</label>
+						<select class="form-select" id="lineTva">
+							<option value="20">20%</option>
+							<option value="10">10%</option>
+							<option value="5.5">5.5%</option>
+							<option value="2.1">2.1%</option>
+							<option value="0">0%</option>
+						</select>
+					</div>
 
-        lineIndex++;
+					<div class="col-md-2">
+						<label class="form-label">Prix HT</label>
+						<input type="number" class="form-control" id="linePrice" min="0" step="0.01" placeholder="0.00">
+					</div>
 
-        // Update title
-        newLine.querySelector(".line-number").innerText = lineIndex;
+					<div class="col-md-1">
+						<label class="form-label"> </label>
+						<button type="button" class="btn btn-add-line-modal w-100" id="addLineModal">
+							+
+						</button>
+					</div>
+				</div>
+			</div>
 
-        // Update inputs names
-        newLine.querySelectorAll("input").forEach(function(input){
-            let name = input.getAttribute("name");
-            name = name.replace(/\d+/, lineIndex - 1);
-            input.setAttribute("name", name);
-            input.value = "";
-        });
+			<div class="modal-footer justify-content-between">
+				<span class="text-muted small">
+					Ajoutez vos lignes une par une, puis fermez la fenêtre quand vous avez terminé.
+				</span>
+				<button type="button" class="btn devis-secondary-btn" data-bs-dismiss="modal">
+					Terminer
+				</button>
+			</div>
 
-        container.appendChild(newLine);
-    });
+		</div>
+	</div>
+</div>
 
-});
-</script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 	const buttons = document.querySelectorAll('.devis-mode-btn');
 	const panels = document.querySelectorAll('.devis-mode-panel');
-	const pdfInput = document.getElementById('devis_pdf');
+	const pdfInput = document.getElementById('quote_pdf_attachment');
 	const fileName = document.getElementById('uploadFileName');
+
+	const quoteLinesTableBody = document.getElementById('quoteLinesTableBody');
+	const quoteLinesHiddenInputs = document.getElementById('quoteLinesHiddenInputs');
+
+	const subtotalHtInput = document.getElementById('subtotalHt');
+	const tvaAmountInput = document.getElementById('tvaAmount');
+	const totalTtcInput = document.getElementById('totalTtc');
+
+	const addLineModalBtn = document.getElementById('addLineModal');
+	const modalElement = document.getElementById('quoteLineModal');
+
+	const lineLabel = document.getElementById('lineLabel');
+	const lineQuantity = document.getElementById('lineQuantity');
+	const lineUnit = document.getElementById('lineUnit');
+	const lineTva = document.getElementById('lineTva');
+	const linePrice = document.getElementById('linePrice');
+
+	let lineIndex = 0;
+	let quoteLines = [];
+
+	function formatNumber(value) {
+		return Number(value).toFixed(2);
+	}
+
+	function escapeHtml(text) {
+		const map = {
+			'&': '&amp;',
+			'<': '&lt;',
+			'>': '&gt;',
+			'"': '&quot;',
+			"'": '&#039;'
+		};
+
+		return String(text).replace(/[&<>"']/g, function (m) {
+			return map[m];
+		});
+	}
+
+	function resetModalFields() {
+		lineLabel.value = '';
+		lineQuantity.value = 1;
+		lineUnit.value = '';
+		lineTva.value = '20';
+		linePrice.value = '';
+	}
+
+	function updateTotals() {
+		let subtotalHt = 0;
+		let totalTva = 0;
+		let totalTtc = 0;
+
+		quoteLines.forEach(function (line) {
+			const quantity = Number(line.quantity);
+			const price = Number(line.price);
+			const tva = Number(line.tva);
+
+			const lineTotalHt = quantity * price;
+			const lineTvaAmount = lineTotalHt * (tva / 100);
+			const lineTotalTtc = lineTotalHt + lineTvaAmount;
+
+			subtotalHt += lineTotalHt;
+			totalTva += lineTvaAmount;
+			totalTtc += lineTotalTtc;
+		});
+
+		if (subtotalHtInput) subtotalHtInput.value = formatNumber(subtotalHt);
+		if (tvaAmountInput) tvaAmountInput.value = formatNumber(totalTva);
+		if (totalTtcInput) totalTtcInput.value = formatNumber(totalTtc);
+	}
+
+	function renderHiddenInputs() {
+		if (!quoteLinesHiddenInputs) {
+			return;
+		}
+
+		quoteLinesHiddenInputs.innerHTML = '';
+
+		quoteLines.forEach(function (line, index) {
+			const fields = {
+				label: line.label,
+				quantity: line.quantity,
+				unit: line.unit,
+				tva: line.tva,
+				unit_price: line.price
+			};
+
+			Object.entries(fields).forEach(function ([key, value]) {
+				const input = document.createElement('input');
+				input.type = 'hidden';
+				input.name = 'items[' + index + '][' + key + ']';
+				input.value = value;
+				quoteLinesHiddenInputs.appendChild(input);
+			});
+		});
+	}
+
+	function renderRows() {
+		if (!quoteLinesTableBody) {
+			return;
+		}
+
+		quoteLinesTableBody.innerHTML = '';
+
+		if (quoteLines.length === 0) {
+			quoteLinesTableBody.innerHTML = `
+				<tr>
+					<td colspan="8" class="text-center text-muted py-4">
+						Aucune ligne de prestation ajoutée.
+					</td>
+				</tr>
+			`;
+			renderHiddenInputs();
+			updateTotals();
+			return;
+		}
+
+		quoteLines.forEach(function (line, index) {
+			const quantity = Number(line.quantity);
+			const price = Number(line.price);
+			const totalHt = quantity * price;
+
+			const row = document.createElement('tr');
+			row.innerHTML = `
+				<td>${index + 1}</td>
+				<td><strong>${escapeHtml(line.label)}</strong></td>
+				<td>${escapeHtml(line.quantity)}</td>
+				<td>${escapeHtml(line.unit || '—')}</td>
+				<td>${escapeHtml(line.tva)}%</td>
+				<td>${formatNumber(price)} €</td>
+				<td>${formatNumber(totalHt)} €</td>
+				<td class="text-end">
+					<button type="button" class="btn btn-sm btn-outline-danger delete-line-btn" data-index="${index}">
+						Supprimer
+					</button>
+				</td>
+			`;
+
+			quoteLinesTableBody.appendChild(row);
+		});
+
+		renderHiddenInputs();
+		updateTotals();
+	}
 
 	buttons.forEach(function (button) {
 		button.addEventListener('click', function () {
@@ -337,6 +521,68 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 		});
 	}
+
+	if (addLineModalBtn) {
+		addLineModalBtn.addEventListener('click', function () {
+			const label = lineLabel.value.trim();
+			const quantity = parseFloat(lineQuantity.value || 0);
+			const unit = lineUnit.value.trim();
+			const tva = parseFloat(lineTva.value || 0);
+			const price = parseFloat(linePrice.value || 0);
+
+			if (!label) {
+				lineLabel.focus();
+				return;
+			}
+
+			if (!quantity || quantity <= 0) {
+				lineQuantity.focus();
+				return;
+			}
+
+			if (linePrice.value === '' || price < 0) {
+				linePrice.focus();
+				return;
+			}
+
+			quoteLines.push({
+				id: lineIndex,
+				label: label,
+				quantity: quantity,
+				unit: unit,
+				tva: tva,
+				price: price
+			});
+
+			lineIndex++;
+			renderRows();
+			resetModalFields();
+		});
+	}
+
+	if (quoteLinesTableBody) {
+		quoteLinesTableBody.addEventListener('click', function (event) {
+			const deleteBtn = event.target.closest('.delete-line-btn');
+
+			if (!deleteBtn) {
+				return;
+			}
+
+			const index = parseInt(deleteBtn.dataset.index, 10);
+			quoteLines.splice(index, 1);
+			renderRows();
+		});
+	}
+
+	if (modalElement) {
+		modalElement.addEventListener('shown.bs.modal', function () {
+			if (lineLabel) {
+				lineLabel.focus();
+			}
+		});
+	}
+
+	renderRows();
 });
 </script>
 {% endblock %}
