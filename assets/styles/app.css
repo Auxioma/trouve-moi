@@ -5,6 +5,7 @@
 @import "./visiteur/dashboard.css";
 @import "./visiteur/list-message.css";
 @import "./visiteur/detail-message.css";
+@import "./visiteur/profile.css";
 
 /**
 * CSS des artisans
@@ -17,4 +18,4 @@
 @import "./artisan/profile.css";
 @import "./artisan/quote.css";
 @import "./artisan/calendar.css"; 
-@import "./artisan/profile.css";
+
