@@ -20,6 +20,7 @@
 namespace App\Entity;
 
 use App\Repository\QuoteItemRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: QuoteItemRepository::class)]
@@ -33,9 +34,6 @@ class QuoteItem
     #[ORM\ManyToOne(inversedBy: 'items')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Quote $quote = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $label = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description = null;
@@ -55,6 +53,9 @@ class QuoteItem
     #[ORM\Column]
     private ?int $position = 0;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private ?string $totalTtc = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,18 +69,6 @@ class QuoteItem
     public function setQuote(?Quote $quote): static
     {
         $this->quote = $quote;
-
-        return $this;
-    }
-
-    public function getLabel(): ?string
-    {
-        return $this->label;
-    }
-
-    public function setLabel(string $label): static
-    {
-        $this->label = $label;
 
         return $this;
     }
@@ -152,6 +141,18 @@ class QuoteItem
     public function setPosition(int $position): static
     {
         $this->position = $position;
+
+        return $this;
+    }
+
+    public function getTotalTtc(): ?string
+    {
+        return $this->totalTtc;
+    }
+
+    public function setTotalTtc(string $totalTtc): static
+    {
+        $this->totalTtc = $totalTtc;
 
         return $this;
     }
