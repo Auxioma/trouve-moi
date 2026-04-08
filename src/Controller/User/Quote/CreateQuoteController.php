@@ -318,7 +318,9 @@ public function createPdfLegacy(
     if (!$isParticipant) {
         throw $this->createAccessDeniedException('Vous n’avez pas accès à cette conversation.');
     }
-    // dd($request->request->all());
+
+    //dd($request->request->all());
+
     $now = new \DateTimeImmutable();
 
     $action = $request->request->get('action', 'draft');
@@ -370,9 +372,9 @@ public function createPdfLegacy(
             ->setDescription($itemData['label'])
             ->setQuantity((int) $itemData['quantity'])
             ->setUnit((float) $itemData['unit'])
-            //->setTotalHt((float) $itemData['total_ht'])
             ->setUnitPriceHt((float) $itemData['unit_price'])
             ->setTotalTtc((float) $itemData['total_ttc'])
+            ->setTotalHt((float) $itemData['total_ht'])
             ->setPosition($key)
         ;
 
