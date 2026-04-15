@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.theme.default.min.css') }}">
-    {# templates/base.html.twig #}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/deo7fww.css">
     {% block stylesheets %}
         {{ importmap('app') }}
     {% endblock %}
@@ -18,21 +18,27 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="{{ asset('plugin/owl/dist/owl.carousel.min.js') }}"></script>
     <script>
         $('.owl-carousel').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:true,
-            responsive:{
-                0:{
-                    items:1
+            loop: true,
+            margin: 32,
+            nav: false,
+
+            autoplay: true,
+            autoplayTimeout: 2000,      // durée entre les slides (3s)
+            autoplayHoverPause: true,   // pause au hover
+            smartSpeed: 800,            // vitesse de transition
+            responsive: {
+                0: {
+                    items: 1
                 },
-                600:{
-                    items:3
+                600: {
+                    items: 4
                 },
-                1440:{
-                    items:4
+                1440: {
+                    items: 4,
+                    stagePadding: 150
                 }
             }
-        })
+        });
     </script>
 </body>
 </html>

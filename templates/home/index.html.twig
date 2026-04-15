@@ -80,34 +80,49 @@
         </div>
 
         {# artisant de confiance #}
-        <div class="container">
-            <div class="row">
-                <h2>NOTRE SÉLECTION</h2>
-                <h3>Artisans de confiance</h3>
-                <div class="col-4">
-                    <div class="artisan">
-                        <div class="thumb">
-                            <img src="{{ asset('image/artisan/01.png') }}" alt="" class="img-fluid">
+        <div class="couleur-gris">
+            <div class="container notre-selection">
+                <div class="row">
+                    <h2>NOTRE SÉLECTION</h2>
+                    <h3>Artisans de confiance</h3>
+                    {% for i in 1..4 %}
+                        <div class="col-3">
+                            <div class="artisan">
+                                <div class="thumb">
+                                    <img src="{{ asset('image/artisan/01.png') }}" alt="" class="img-fluid" width="370" height="470">
+                                </div>
+                                <div class="thumb-info">
+                                    <span class="metier">ÉBÉNISTERIE</span>
+                                    <span class="service">QUALIBAT RGE</span>
+                                    <h2 class="nom-entreprise">Atelier Beaumont {{ i }}</h2>
+                                    <p class="description-ets">
+                                        Spécialiste du mobilier sur-mesure en chêne massif et
+                                        restauration de pièces anciennes.
+                                    </p>
+                                    <span class="localisation-ets">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        Paris, Île-de-France (50km)
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="thumb-info">
-                            <span>ÉBÉNISTERIE</span>
-                            <span>QUALIBAT RGE</span>
-                            <h2>Atelier Beaumont</h2>
-                            <p>Spécialiste du mobilier sur-mesure en chêne massif et
-                                restauration de pièces anciennes.</p>
-                            <span><i class="fas fa-map-marker-alt"></i> Paris, Île-de-France (50km)</span>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
 
+
         {# slider des avis clients #}
-        <div class="container">
+        <div class="container experiance">
             <div class="row">
                 <h2>EXPÉRIENCES</h2>
                 <h3>Ce qu'en disent nos clients</h3>
-                <div class="owl-carousel owl-theme"><div class="item">
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="owl-carousel owl-theme trouve-moi">
+                    <div class="item">
                         <h5>4.5</h5>
                         <p>
                             "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -123,21 +138,11 @@
 
                             <div>
                                 <h4 class="mb-0">Jojo</h4>
-                                <p class="mb-0 text-muted">Chômeur</p>
+                                <p class="mb-0 text-muted trouve-moi-p">Chômeur</p>
                             </div>
                         </div>
                     </div>
-                    <div class="item"><h4>2</h4></div>
-                    <div class="item"><h4>3</h4></div>
-                    <div class="item"><h4>4</h4></div>
-                    <div class="item"><h4>5</h4></div>
-                    <div class="item"><h4>6</h4></div>
-                    <div class="item"><h4>7</h4></div>
-                    <div class="item"><h4>8</h4></div>
-                    <div class="item"><h4>9</h4></div>
-                    <div class="item"><h4>10</h4></div>
-                    <div class="item"><h4>11</h4></div>
-                    <div class="item"><h4>12</h4></div>
+
                 </div>
 
 

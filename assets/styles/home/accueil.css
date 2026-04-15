@@ -306,3 +306,144 @@
     font-weight: 400;
     line-height: 26px; /* 162.5% */
 }
+.notre-selection h2 {
+    color: #003EC7;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+.notre-selection h3 {
+    color: #1A1C1C;
+    font-family: "Plus Jakarta Sans";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    margin-bottom: 64px;
+}
+.thumb {
+    margin-bottom: 24px;
+}
+.metier {
+    color: #1D4ED8;
+    font-family: Manrope;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px; /* 150% */
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    background: #EFF6FF;
+    padding: 0 8px;
+}
+.service {
+    color: #047857;
+    font-family: Manrope;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px; /* 150% */
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    background: #ECFDF5;
+    padding: 0 8px;
+}
+.nom-entreprise {
+    color: #1A1C1C!important;
+    font-family: "Plus Jakarta Sans"!important;
+    font-size: 20px!important;
+    font-style: normal!important;
+    font-weight: 700!important;
+    line-height: 28px!important;
+    margin: 0 0 12px 0;
+}
+.description-ets {
+    color: #434656;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22.75px; /* 162.5% */
+}
+.localisation-ets {
+    color: #737688;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+}
+.experiance {
+    margin-top: 94px;
+}
+.experiance h2 {
+    color: #003EC7;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+.experiance h3 {
+    color: #1A1C1C;
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px; /* 111.111% */
+    letter-spacing: -0.9px;
+    margin-bottom: 63px;
+}
+.trouve-moi .item {
+    padding:30px
+}
+.trouve-moi h4 {
+    color: #191C1F;
+    font-family: Aileron;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.trouve-moi h5 {
+    color: #191C1F;
+    font-family: Aileron;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 23px;
+}
+.trouve-moi p {
+    color: #888;
+    font-family: Aileron;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25.5px;
+    margin-bottom: 23px;
+}
+.trouve-moi img {
+    width: 50px;
+    height: 50px;
+    margin-right: 12px;
+}
+.trouve-moi-p {
+    color: #888;
+    font-family: Aileron;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
