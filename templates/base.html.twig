@@ -4,11 +4,34 @@
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.theme.default.min.css') }}">
+
     {% block stylesheets %}
         {{ importmap('app') }}
     {% endblock %}
 </head>
 <body>
-{% block body %}{% endblock %}
+    {{ render(controller('\\App\\Controller\\Api\\NavBarController::NavBar')) }}
+    {% block body %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="{{ asset('plugin/owl/dist/owl.carousel.min.js') }}"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:3
+                },
+                1440:{
+                    items:4
+                }
+            }
+        })
+    </script>
 </body>
 </html>

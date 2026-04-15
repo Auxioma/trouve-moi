@@ -1,0 +1,230 @@
+/**
+* Header
+ */
+.header {
+    background: url("../../image/cta/Grid.png");
+}
+
+/**
+* CTA
+ */
+.cta {
+    margin-top: 57px;
+}
+.cta h1 {
+    color: #1A1C1C;
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 100%; /* 64px */
+    letter-spacing: -3.6px;
+}
+.cta span {
+    color: #0052FF;
+    font-family: "Plus Jakarta Sans";
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 100%;
+}
+.cta p {
+    color: #5F5E5E;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    margin-top:24px;
+    margin: 0 85px;
+}
+.mb-24{
+    margin-bottom: 84px;
+}
+.mb-64 {
+    margin-bottom: 64px;
+}
+.recherche {
+    display: flex;
+    padding: 0 24px;
+    align-items: center;
+    gap: 16px;
+    flex: 1 0 0;
+    display: flex;
+    padding: 17px 12px 18px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 0 0;
+    color: #C3C5D9;
+    font-family: "Plus Jakarta Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: transparent;
+}
+.recherche-artisan {
+    position: relative;
+    width: 100%;
+}
+
+.recherche-artisan i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.recherche-artisan input {
+    width: 100%;
+    padding: 12px 15px 12px 45px; /* espace pour l'icône */
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+.br-32 {
+    border-radius: 32px;
+}
+.localisation {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    width: 100%;
+    position: relative;
+}
+
+.localisation .icon {
+    position: absolute;
+    left: 15px;
+    color: #999;
+}
+
+.localisation .localisation-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px 15px 12px 40px;
+    border-radius: 50px;
+    font-size: 14px;
+    background: transparent;
+}
+
+.localisation .localisation-btn {
+    display: flex;
+    padding: 20px 48px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #0052FF 0%, #003EC7 100%);
+    color: #FFF;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px; /* 155.556% */
+}
+
+.procedure {
+
+    border-radius: 36px;
+    background: linear-gradient(180deg, #003EC7 0%, #001E61 100%);
+    padding: 96px;
+}
+.procedure h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+.procedure h3 {
+    color: #FFF;
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px; /* 111.111% */
+    letter-spacing: -0.9px;
+}
+.mb-64 {
+    margin-bottom: 64px;
+}
+.cadre-procedure {
+
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 16px;
+    background: #FFF;
+}
+.mx-36 {
+    margin: 0 36px;
+}
+.procedure h4 {
+    color: #1A1C1C;
+    font-family: Manrope;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    margin: 16px 0;
+}
+.couleur-gris {
+    background: #F8F7F7;
+    padding-top: 85px;
+    padding-bottom: 85px;
+}
+.satisfaction {
+    padding: 96px 32px;
+}
+.mt-48 {
+    margin-top: 48px;
+}
+.garantie-decenal {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 16px;
+    border: 1px solid #E2E2E2;
+}
+.decenal {
+    color: #1A1C1C;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 150% */
+}
+.decenal-p {
+    color: #5F5E5E;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 133.333% */
+}
+.centpourcent {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    border-radius: 16px;
+    background: #0052FF;
+}

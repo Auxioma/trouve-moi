@@ -68,8 +68,8 @@ return [
         'type' => 'css',
     ],
     '@fortawesome/fontawesome-free/css/solid.min.css' => [
-    'version' => '7.2.0',
-    'type' => 'css',
+        'version' => '7.2.0',
+        'type' => 'css',
     ],
     '@fortawesome/fontawesome-free/css/regular.min.css' => [
         'version' => '7.2.0',

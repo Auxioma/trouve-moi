@@ -1,44 +1,101 @@
-            <header class="header main-menu">
-                <div class="container">
-                    <nav class="navigation">
-                        <a href="index.html" class="d-flex align-items-center">
-                            <img src="{{ asset('media/logo.png') }}" alt="/logo" class="header-logo">
-                        </a>
-                        <div class="menu-button-right">
-                            <div class="main-menu__nav">
-                                <ul class="main-menu__list">
-                                    <li>
-                                        <a href="{{ path('app_home') }}" class="active">Accueil</a>
-                                    </li>
-                                    <li><a href="about.html">Comment cela marche</a></li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0); ">Properties
-                                        </a>
-                                        <ul>
-                                            <li><a href="properties.html">Properties</a></li>
-                                            <li><a href="properties-detail.html">Properties detail</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0); ">Blogs
-                                        </a>
-                                        <ul>
-                                            <li><a href="blogs.html">Blogs</a></li>
-                                            <li><a href="blogs-detail.html">Blog Detail</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contact Us</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="main-menu__right">
-                            <div class=" d-xl-block d-none">
-                                <a href="{{ path('app_login') }}" class="phone-link"><i class="far fa-user"></i> Se connecter</a>
-                            </div>
-                            <a href="" class="d-xl-none d-flex main-menu__toggler mobile-nav__toggler">
-                                <img class="white" src="assets/media/menu-2.png" alt="">
-                            </a>
-                        </div>
-                    </nav>
+<div class="bg-bleu">
+    <header class="container header">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <a class="navbar-brand" href="{{ path('app_home') }}">
+                <img src="{{ asset('image/logo/logo.png') }}" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="auth">
+                <a href="#" class="btn-connection">Connexion</a>
+                <a href="#" class="btn-commencer">Commencer</a>
+            </div>
+        </nav>
+        {# Text pulicitaire CTA #}
+        <div class="container cta">
+            <div class="row">
+                <div class="col-7 mx-auto mb-24">
+                    <h1>L'excellence artisanale <span>à votre portée</span></h1>
+                    <p>Trouvez les meilleurs experts certifiés pour vos projets d'architecture et de rénovation. Une sélection rigoureuse pour une tranquillité d'esprit totale.</p>
                 </div>
-            </header>
+            </div>
+        </div>
+
+        {# les boutons de recherches #}
+        <div class="container d-flex align-items-center justify-content-center mb-64">
+            <div class="row w-100">
+                <div class="col-10 mx-auto">
+                    <form action="#" class="search-wrapper d-flex align-items-center bg-white border-5 br-32">
+
+                        <div class="recherche-artisan">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Quel artisan cherchez-vous ?" class="recherche">
+                        </div>
+
+                        <!-- Input 2 + bouton -->
+                        <div class="localisation">
+                            <i class="fas fa-map-marker-alt icon"></i>
+
+                            <input
+                                type="text"
+                                class="localisation-input"
+                                placeholder="Localisation"
+                            >
+
+                            <button type="submit" class="localisation-btn">
+                                <i class="bi bi-search"></i>
+                                Rechercher
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {# les 3 images de présentation #}
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-4">
+                    <img src="{{ asset('image/cta/01.png') }}" alt="" class="img-fluid">
+                </div>
+                <div class="col-4">
+                    <img src="{{ asset('image/cta/02.png') }}" alt="" class="img-fluid">
+                </div>
+                <div class="col-4">
+                    <img src="{{ asset('image/cta/03.png') }}" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+
+        {# les 3 petites images  #}
+        <div class="col-4 mx-auto pb-5">
+            <div class="d-flex align-items-center justify-content-center flex-nowrap text-center">
+                <div class="d-flex flex-shrink-0">
+                    <img src="{{ asset('image/cta/10.png') }}" class="rounded-circle border border-white" style="width:40px;">
+                    <img src="{{ asset('image/cta/11.png') }}" class="rounded-circle border border-white" style="width:40px; margin-left:-20px;">
+                    <img src="{{ asset('image/cta/11.png') }}" class="rounded-circle border border-white" style="width:40px; margin-left:-20px;">
+                </div>
+                <span class="ms-2">
+            1,200+ artisans vérifiés ce mois-ci
+        </span>
+            </div>
+        </div>
+    </header>
+</div>

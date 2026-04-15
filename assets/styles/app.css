@@ -1,4 +1,10 @@
 /**
+* Les true type
+ */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+/**
 * CSS de la parties des utiliateurs
 */
 @import "./visiteur/navbar.css";
@@ -17,5 +23,63 @@
 @import "./artisan/pack.css";
 @import "./artisan/profile.css";
 @import "./artisan/quote.css";
-@import "./artisan/calendar.css"; 
+@import "./artisan/calendar.css";
+
+/**
+* CSS du front
+ */
+@import "./home/accueil.css";
+
+
+nav {
+    margin: 16px 0;
+}
+.btn-connection {
+    border-radius: 12px;
+    border: 1px solid #EEE;
+    background: #FFF;
+    padding: 10px 22px;
+    align-items: center;
+    gap: 10px;
+    color: #1A1C1C;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    text-decoration: none;
+    margin-right: 14px;
+}
+.btn-commencer {
+    padding: 10px 22px;
+    border-radius: 12px;
+    background: #003EC7;
+    color: #FFF;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    text-decoration: none;
+}
+.nav-link {
+    color: #5F5E5E;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 19.2px */
+}
+
+    .bg-bleu {
+        background:
+            linear-gradient(166deg, #FFF 18.08%, #D0E0FE 107.32%),
+            url("../image/cta/Grid.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 

@@ -1,602 +1,189 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coming Soon Premium</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+{% extends 'base.html.twig' %}
 
-    :root {
-      --bg-1: #0a0810;
-      --bg-2: #16111d;
-      --bg-3: #211725;
-      --white: #ffffff;
-      --white-soft: rgba(255, 255, 255, 0.72);
-      --white-muted: rgba(255, 255, 255, 0.5);
-      --border: rgba(255, 255, 255, 0.1);
-      --glass: rgba(255, 255, 255, 0.05);
-      --primary: #c8a27f;
-      --primary-dark: #8f5f3f;
-      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 18px;
-    }
+{% block title %}Hello DashboardController!{% endblock %}
 
-    body {
-      font-family: Inter, Arial, sans-serif;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at top, rgba(200, 162, 127, 0.18), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.08), transparent 22%),
-        linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%);
-      color: var(--white);
-      overflow: hidden;
-      position: relative;
-    }
+{% block body %}
 
-    body::before,
-    body::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(90px);
-      opacity: 0.5;
-      pointer-events: none;
-      z-index: 0;
-    }
 
-    body::before {
-      width: 320px;
-      height: 320px;
-      top: 8%;
-      left: 8%;
-      background: rgba(200, 162, 127, 0.16);
-    }
-
-    body::after {
-      width: 380px;
-      height: 380px;
-      right: 8%;
-      bottom: 6%;
-      background: rgba(143, 95, 63, 0.14);
-    }
-
-    .coming-soon-page {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-    }
-
-    .coming-left {
-      display: flex;
-      align-items: center;
-      padding: 60px 70px;
-    }
-
-    .coming-content {
-      max-width: 700px;
-      animation: fadeUp 1s ease;
-    }
-
-    .badge-premium {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(18px);
-      color: var(--white-soft);
-      font-size: 13px;
-      letter-spacing: 0.02em;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .badge-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #f3dcc7);
-      box-shadow: 0 0 18px rgba(200, 162, 127, 0.8);
-    }
-
-    .coming-title {
-      font-size: 68px;
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-      font-weight: 700;
-      margin-bottom: 24px;
-      max-width: 680px;
-    }
-
-    .coming-description {
-      font-size: 18px;
-      line-height: 1.9;
-      color: var(--white-soft);
-      max-width: 590px;
-      margin-bottom: 36px;
-    }
-
-    .coming-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 38px;
-    }
-
-    .email-box {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px;
-      min-height: 74px;
-      width: 100%;
-      max-width: 520px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(22px);
-      box-shadow: var(--shadow);
-    }
-
-    .email-box input {
-      flex: 1;
-      height: 58px;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: var(--white);
-      padding: 0 18px;
-      font-size: 15px;
-    }
-
-    .email-box input::placeholder {
-      color: rgba(255, 255, 255, 0.32);
-    }
-
-    .btn-premium {
-      border: none;
-      outline: none;
-      cursor: pointer;
-      transition: 0.35s ease;
-      font-weight: 600;
-    }
-
-    .btn-notify {
-      height: 58px;
-      padding: 0 24px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--primary), #e5c4a8);
-      color: #231812;
-      box-shadow: 0 12px 35px rgba(200, 162, 127, 0.28);
-    }
-
-    .btn-notify:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 40px rgba(200, 162, 127, 0.38);
-    }
-
-    .btn-secondary {
-      height: 58px;
-      padding: 0 24px;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--white);
-      backdrop-filter: blur(18px);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.09);
-      transform: translateY(-2px);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      max-width: 660px;
-    }
-
-    .stat-card {
-      padding: 22px;
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
-    }
-
-    .stat-value {
-      font-size: 22px;
-      font-weight: 700;
-      color: #f4e5d7;
-      margin-bottom: 6px;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      color: var(--white-muted);
-      line-height: 1.6;
-    }
-
-    .coming-right {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: stretch;
-      justify-content: stretch;
-      padding: 24px;
-    }
-
-    .scene-wrap {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: calc(100vh - 48px);
-      border-radius: 36px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      box-shadow: var(--shadow);
-    }
-
-    #bg-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .scene-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at center, transparent 0%, rgba(10, 8, 16, 0.05) 45%, rgba(10, 8, 16, 0.35) 100%),
-        linear-gradient(to top, rgba(10, 8, 16, 0.45), rgba(10, 8, 16, 0.08));
-      pointer-events: none;
-    }
-
-    .scene-card {
-      position: absolute;
-      left: 28px;
-      right: 28px;
-      bottom: 28px;
-      padding: 24px;
-      border-radius: 26px;
-      border: 1px solid var(--border);
-      background: rgba(6, 6, 10, 0.28);
-      backdrop-filter: blur(22px);
-      box-shadow: var(--shadow);
-    }
-
-    .scene-card-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.32em;
-      color: rgba(255, 255, 255, 0.42);
-      margin-bottom: 10px;
-    }
-
-    .scene-card-text {
-      color: var(--white-soft);
-      line-height: 1.8;
-      font-size: 14px;
-      max-width: 500px;
-    }
-
-    .floating-coming {
-      position: absolute;
-      top: 40px;
-      right: 40px;
-      padding: 14px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(18px);
-      color: rgba(255, 255, 255, 0.75);
-      font-size: 12px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 1180px) {
-      .coming-soon-page {
-        grid-template-columns: 1fr;
-      }
-
-      .coming-left {
-        padding: 42px 26px 18px;
-      }
-
-      .coming-title {
-        font-size: 52px;
-      }
-
-      .coming-right {
-        min-height: 560px;
-        padding: 18px 26px 26px;
-      }
-
-      .scene-wrap {
-        min-height: 540px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      body {
-        overflow: auto;
-      }
-
-      .coming-title {
-        font-size: 42px;
-      }
-
-      .coming-description {
-        font-size: 16px;
-        line-height: 1.8;
-      }
-
-      .email-box {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 12px;
-        max-width: 100%;
-      }
-
-      .email-box input,
-      .btn-notify {
-        width: 100%;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .scene-card,
-      .floating-coming {
-        left: 16px;
-        right: 16px;
-      }
-
-      .floating-coming {
-        top: 16px;
-        right: 16px;
-        left: auto;
-        letter-spacing: 0.18em;
-      }
-    }
-  </style>
-</head>
-<body>
-  <section class="coming-soon-page">
-    <div class="coming-left">
-      <div class="coming-content">
-        <div class="badge-premium">
-          <span class="badge-dot"></span>
-          trouvemoi.eu arrive bientôt
+    {# Corps du template #}
+    <main>
+        <div class="couleur-gris">
+            <div class="container procedure">
+                <div class="row">
+                    <div class="col-12 mb-64">
+                        <h2>PROCESSUS SIMPLIFIÉ</h2>
+                        <h3>3 étapes pour trouver votre expert</h3>
+                    </div>
+                    <div class="col-4 cadre-procedure">
+                        <img src="{{ asset('image/icone/marteau.svg') }}" alt="" class="img-fluid">
+                        <h4>Réalisation</h4>
+                        <p>Travaillez avec un pro sereinement, protégé par nos garanties et notre suivi personnalisé.</p>
+                    </div>
+                    <div class="col-4 cadre-procedure mx-36">
+                        <img src="{{ asset('image/icone/loupe.svg') }}" alt="" class="img-fluid">
+                        <h4>Recherchez</h4>
+                        <p>Utilisez notre moteur intelligent pour cibler les artisans spécialisés selon vos besoins précis.</p>
+                    </div>
+                    <div class="col-4 cadre-procedure">
+                        <img src="{{ asset('image/icone/devis.svg') }}" alt="" class="img-fluid">
+                        <h4>Comparez les Devis</h4>
+                        <p>Recevez des propositions détaillées et transparentes en moins de 48 heures pour votre projet.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <h1 class="coming-title">trouvemoi.eu prépare une nouvelle façon de trouver le bon artisan.</h1>
 
-        <p class="coming-description">
-          trouvemoi.eu finalise une plateforme premium de mise en relation entre particuliers, clients,
-          artisans, commerçants et prestataires. L’objectif est de rendre la recherche d’un professionnel
-          plus simple, plus rapide et plus rassurante, avec une expérience plus élégante, une messagerie
-          intégrée et un environnement pensé pour les demandes, les devis et les échanges.
-        </p>
+        {# pourquoi nous choisir #}
+        <div class="container satisfaction">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6 mt-48">
+                            <img src="{{ asset('image/home/01.png') }}" alt="" class="img-fluid w-100">
+                            <div class="centpourcent">
+                                <span>100%</span>
+                                <p>Satisfaction Client</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="garantie-decenal mb-3">
+                                <img src="{{ asset('image/icone/choisir.svg') }}" alt="" class="img-fluid">
+                                <span class="decenal">Assurance Décennale</span>
+                                <p class="decenal-p">Tous nos partenaires sont couverts.</p>
+                            </div>
+                            <img src="{{ asset('image/home/02.png') }}" alt="" class="img-fluid w-100">
 
-        <div class="coming-actions">
-          <div class="email-box">
-            <input type="email" placeholder="Votre adresse email" />
-            <button class="btn-premium btn-notify">Être informé du lancement</button>
-          </div>
+                        </div>
 
-          <button class="btn-premium btn-secondary">Découvrir trouvemoi.eu</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h2>POURQUOI NOUS CHOISIR ?</h2>
+                    <h3>Plus qu'un simple annuaire, un gage de confiance</h3>
+                    <ul>
+                        <li>
+                            Vérification des diplômes
+                            <p>Chaque artisan passe un entretien rigoureux et voit ses diplômes authentifiés par nos experts.</p>
+                        </li>
+                        <li>
+                            Assurance décennale à jour
+                            <p>Nous vérifions mensuellement la validité des assurances
+                                professionnelles de nos membres.</p>
+                        </li>
+                        <li>
+                            Suivi personnalisé
+                            <p>Un conseiller dédié vous accompagne de la signature du devis à la
+                                réception de chantier.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-value">Particuliers & Pros</div>
-            <div class="stat-label">Une plateforme pensée pour connecter les clients avec les bons artisans et prestataires.</div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-value">Demandes & Devis</div>
-            <div class="stat-label">Un espace conçu pour faciliter les demandes, les réponses, les devis et les échanges.</div>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-value">Confiance & Simplicité</div>
-            <div class="stat-label">Une expérience plus claire pour aider chaque utilisateur à avancer sereinement dans son projet.</div>
-          </div>
+        {# artisant de confiance #}
+        <div class="container">
+            <div class="row">
+                <h2>NOTRE SÉLECTION</h2>
+                <h3>Artisans de confiance</h3>
+                <div class="col-4">
+                    <div class="artisan">
+                        <div class="thumb">
+                            <img src="{{ asset('image/artisan/01.png') }}" alt="" class="img-fluid">
+                        </div>
+                        <div class="thumb-info">
+                            <span>ÉBÉNISTERIE</span>
+                            <span>QUALIBAT RGE</span>
+                            <h2>Atelier Beaumont</h2>
+                            <p>Spécialiste du mobilier sur-mesure en chêne massif et
+                                restauration de pièces anciennes.</p>
+                            <span><i class="fas fa-map-marker-alt"></i> Paris, Île-de-France (50km)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="coming-right">
-      <div class="scene-wrap">
-        <div class="floating-coming">trouvemoi.eu</div>
-        <canvas id="bg-canvas"></canvas>
-        <div class="scene-overlay"></div>
+        {# slider des avis clients #}
+        <div class="container">
+            <div class="row">
+                <h2>EXPÉRIENCES</h2>
+                <h3>Ce qu'en disent nos clients</h3>
+                <div class="owl-carousel owl-theme"><div class="item">
+                        <h5>4.5</h5>
+                        <p>
+                            "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Atque culpa cum dolorem eos harum quae quidem quod totam ut veniam."
+                        </p>
+                        <div class="d-flex align-items-center mt-3">
+                            <!-- Image -->
+                            <img src="https://placehold.co/50x50"
+                                 alt=""
+                                 class="rounded-circle w-auto"
+                                 width="50" height="50"
+                            >
 
-        <div class="scene-card">
-          <div class="scene-card-label">Lancement premium</div>
-          <div class="scene-card-text">
-            trouvemoi.eu arrive avec une identité plus forte pour valoriser les artisans, rassurer les clients
-            et offrir une plateforme moderne dédiée à la mise en relation, aux échanges et à la création de devis.
-          </div>
+                            <div>
+                                <h4 class="mb-0">Jojo</h4>
+                                <p class="mb-0 text-muted">Chômeur</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item"><h4>2</h4></div>
+                    <div class="item"><h4>3</h4></div>
+                    <div class="item"><h4>4</h4></div>
+                    <div class="item"><h4>5</h4></div>
+                    <div class="item"><h4>6</h4></div>
+                    <div class="item"><h4>7</h4></div>
+                    <div class="item"><h4>8</h4></div>
+                    <div class="item"><h4>9</h4></div>
+                    <div class="item"><h4>10</h4></div>
+                    <div class="item"><h4>11</h4></div>
+                    <div class="item"><h4>12</h4></div>
+                </div>
+
+
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <script type="module">
-    import * as THREE from 'https://unpkg.com/three@0.161.0/build/three.module.js';
+        {# La FAQ #}
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    FAQ
+                </div>
+            </div>
+        </div>
 
-    const canvas = document.getElementById('bg-canvas');
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x0a0810, 8, 18);
+        {# BLOG #}
+        <div class="container">
+            <div class="row">
+                <h2>ACTUALITÉS</h2>
+                <h3>Le Journal de l'Artisanat</h3>
+                <div class="col-4">qsqs</div>
+                <div class="col-4">qsqs</div>
+                <div class="col-4">qsq</div>
+            </div>
+        </div>
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      antialias: true,
-      alpha: true
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
+        {# redirection vers le login #}
+        <div class="container">
+            <div class="row">
+                div.col-12
+                paralax devenez prestaire
+            </div>
+        </div>
+    </main>
 
-    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
-    camera.position.set(0, 0, 7);
+    {# footer #}
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col-4"> logo</div>
+            <div class="col-2">az</div>
+            <div class="col-2">ze</div>
+            <div class="col-2">ze</div>
+            <div class="col-2">ze</div>
+        </div>
+    </footer>
 
-    const group = new THREE.Group();
-    scene.add(group);
-
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-    scene.add(ambientLight);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 2.6);
-    directionalLight.position.set(3, 4, 3);
-    scene.add(directionalLight);
-
-    const pointLight1 = new THREE.PointLight(0xc8a27f, 12, 20, 2);
-    pointLight1.position.set(-3, 1, 4);
-    scene.add(pointLight1);
-
-    const pointLight2 = new THREE.PointLight(0xffffff, 8, 18, 2);
-    pointLight2.position.set(3, -2, 2);
-    scene.add(pointLight2);
-
-    const torusConfigs = [
-      { radius: 1.35, tube: 0.06, color: 0xf3e3d5, emissive: 0x6f5645, x: 0, y: 0, z: 0, rx: 0.3, ry: 0.2, rz: 0.1 },
-      { radius: 1.95, tube: 0.05, color: 0xc8a27f, emissive: 0x8f5f3f, x: 0.05, y: -0.08, z: -0.25, rx: 1.1, ry: 0.6, rz: 0.35 },
-      { radius: 2.55, tube: 0.045, color: 0xe9d2bf, emissive: 0x5f4637, x: -0.08, y: 0.08, z: 0.2, rx: 0.5, ry: 1.0, rz: 0.25 }
-    ];
-
-    const rings = [];
-
-    torusConfigs.forEach((cfg) => {
-      const geometry = new THREE.TorusGeometry(cfg.radius, cfg.tube, 32, 220);
-      const material = new THREE.MeshPhysicalMaterial({
-        color: cfg.color,
-        emissive: cfg.emissive,
-        emissiveIntensity: 0.35,
-        metalness: 0.92,
-        roughness: 0.12,
-        clearcoat: 1,
-        clearcoatRoughness: 0.08,
-        transparent: true,
-        opacity: 0.96
-      });
-
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.set(cfg.x, cfg.y, cfg.z);
-      mesh.rotation.set(cfg.rx, cfg.ry, cfg.rz);
-      group.add(mesh);
-      rings.push(mesh);
-    });
-
-    const coreGeometry = new THREE.IcosahedronGeometry(0.75, 8);
-    const coreMaterial = new THREE.MeshPhysicalMaterial({
-      color: 0xffffff,
-      emissive: 0xc8a27f,
-      emissiveIntensity: 0.45,
-      metalness: 0.55,
-      roughness: 0.08,
-      transparent: true,
-      opacity: 0.96,
-      transmission: 0.2,
-      thickness: 1.2,
-      clearcoat: 1
-    });
-    const core = new THREE.Mesh(coreGeometry, coreMaterial);
-    group.add(core);
-
-    const particlesCount = 1400;
-    const positions = new Float32Array(particlesCount * 3);
-
-    for (let i = 0; i < particlesCount; i++) {
-      const radius = 6 + Math.random() * 6;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos((Math.random() * 2) - 1);
-
-      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      positions[i * 3 + 2] = radius * Math.cos(phi);
-    }
-
-    const particleGeometry = new THREE.BufferGeometry();
-    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const particleMaterial = new THREE.PointsMaterial({
-      color: 0xffffff,
-      size: 0.025,
-      transparent: true,
-      opacity: 0.7
-    });
-
-    const stars = new THREE.Points(particleGeometry, particleMaterial);
-    scene.add(stars);
-
-    function resizeRenderer() {
-      const wrap = canvas.parentElement;
-      const width = wrap.clientWidth;
-      const height = wrap.clientHeight;
-
-      renderer.setSize(width, height, false);
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-    }
-
-    resizeRenderer();
-    window.addEventListener('resize', resizeRenderer);
-
-    const clock = new THREE.Clock();
-
-    function animate() {
-      const elapsed = clock.getElapsedTime();
-
-      group.rotation.y += 0.0035;
-      group.rotation.x = Math.sin(elapsed * 0.45) * 0.12;
-
-      rings[0].rotation.z += 0.003;
-      rings[1].rotation.x += 0.004;
-      rings[2].rotation.y += 0.0032;
-
-      core.rotation.x += 0.005;
-      core.rotation.y += 0.006;
-      core.position.y = Math.sin(elapsed * 1.3) * 0.12;
-
-      stars.rotation.y = elapsed * 0.015;
-      stars.rotation.x = Math.sin(elapsed * 0.08) * 0.08;
-
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
-</body>
-</html>
+{% endblock %}
