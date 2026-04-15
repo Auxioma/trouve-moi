@@ -60,23 +60,4 @@ return [
         'version' => '5.3.8',
         'type' => 'css',
     ],
-    '@fortawesome/fontawesome-free' => [
-        'version' => '7.2.0',
-    ],
-    '@fortawesome/fontawesome-free/css/fontawesome.min.css' => [
-        'version' => '7.2.0',
-        'type' => 'css',
-    ],
-    '@fortawesome/fontawesome-free/css/solid.min.css' => [
-        'version' => '7.2.0',
-        'type' => 'css',
-    ],
-    '@fortawesome/fontawesome-free/css/regular.min.css' => [
-        'version' => '7.2.0',
-        'type' => 'css',
-    ],
-    '@fortawesome/fontawesome-free/css/brands.min.css' => [
-        'version' => '7.2.0',
-        'type' => 'css',
-    ],
 ];

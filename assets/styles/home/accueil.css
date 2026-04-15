@@ -228,3 +228,81 @@
     border-radius: 16px;
     background: #0052FF;
 }
+.clt100 {
+    color: #FFF;
+    font-family: Manrope;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px; /* 120% */
+}
+.satisfaction-client {
+    color: #FFF;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+}
+.pourquoi-nous-choisir h2 {
+    color: #003EC7;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+.pourquoi-nous-choisir h3 {
+    color: #1A1C1C;
+    font-family: "Plus Jakarta Sans";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 40px; /* 111.111% */
+    letter-spacing: -0.9px;
+}
+.pourquoi-nous-choisir ul {
+    margin-top: 25px;
+}
+.pourquoi-nous-choisir li {
+    color: #1A1C1C;
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px; /* 155.556% */
+    margin-bottom: 24px;
+    list-style: none;
+}
+.pourquoi-nous-choisir li {
+    list-style: none;
+    position: relative;
+    padding-left: 50px;
+}
+
+.pourquoi-nous-choisir li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    color: #0052FF;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    border-radius: 9999px;
+    background: #DCFCE7;
+    display: flex;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.pourquoi-nous-choisir li p {
+    color: #5F5E5E;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 162.5% */
+}
