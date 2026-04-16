@@ -447,3 +447,178 @@
     font-weight: 400;
     line-height: normal;
 }
+.degrade-bleu {
+    background: linear-gradient(144deg, #FFF 20.93%, #D0E0FE 96.65%);
+    padding: 94px 0;
+}
+.degrade-bleu h2 {
+    color: #1A1C1C;
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px; /* 111.111% */
+    letter-spacing: -0.9px;
+}
+.accordion-button:not(.collapsed) {
+    background: #003EC7;
+    color: #FFF;
+}
+.accordion-button:not(.collapsed)::after {
+    color: #FFF!important;
+}
+.degrade-bleu .show {
+    background: #003EC7;
+}
+.degrade-bleu .accordion-body {
+    color: #FFF!important;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 162.5% */
+}
+.accordion-button:not(.collapsed) {
+    box-shadow: initial!important;
+}
+.mt-74 {
+    margin-top:74px;
+}
+.pt-74 {
+    padding-top:74px;
+}
+.blog h2 {
+    color: #003EC7;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+.blog h3 {
+    color: #1A1C1C;
+    font-family: "Plus Jakarta Sans";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px; /* 111.111% */
+    letter-spacing: -0.9px;
+}
+.mb-64 {
+    margin-bottom: 64px;
+}
+.bg-gris {
+    background: #F8F7F7;
+}
+.txt .metiers {
+    color: #737688;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 133.333% */
+}
+.txt .temps-lecture {
+    color: #737688;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px; /* 133.333% */
+}
+.txt h2 {
+    margin-top:12px;
+    margin-bottom: 12px;
+    color: #1A1C1C;
+    font-family: Manrope;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 27.5px; /* 137.5% */
+}
+.txt p {
+    color: #5F5E5E;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 24px;
+}
+.txt a {
+    color: #003EC7;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    text-decoration: none;
+}
+.pb-74 {
+    padding-bottom: 74px;
+}
+.parallax-section {
+    background-image: url("../../image/paralax/01.jpg");
+    height: 600px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-attachment: fixed; /* 🔥 effet parallax */
+
+    position: relative;
+}
+
+/* Option overlay premium */
+.parallax-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.parallax-section > div {
+    position: relative;
+    z-index: 2;
+}
+.parallax-section h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 100%; /* 64px */
+}
+.parallax-section p {
+    color: #FFF;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 24px */
+}
+.parallax-section a {
+    display: flex;
+    padding: 20px 48px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #0052FF 0%, #003EC7 100%);
+    color: #FFF;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    max-width: 203px;
+    margin: 0 auto;
+    text-decoration: none;
+}

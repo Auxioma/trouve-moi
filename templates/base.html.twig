@@ -17,7 +17,7 @@
     {% block body %}{% endblock %}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="{{ asset('plugin/owl/dist/owl.carousel.min.js') }}"></script>
     <script>
-        $('.owl-carousel').owlCarousel({
+        $('.haut').owlCarousel({
             loop: true,
             margin: 32,
             nav: false,
@@ -38,6 +38,40 @@
                     stagePadding: 150
                 }
             }
+        });
+    </script>
+    <script>
+        document.addEventListener('turbo:load', () => {
+            const owl = $('.bas');
+
+            owl.owlCarousel({
+                loop: true,
+                margin: 32,
+                nav: false,
+
+                autoplay: true,
+                autoplayTimeout: 2000,
+                autoplayHoverPause: true,
+                smartSpeed: 800,
+
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1024: {
+                        items: 3
+                    },
+                    1440: {
+                        items: 5
+                    }
+                }
+            });
+
+            // 🔥 force le démarrage autoplay
+            owl.trigger('play.owl.autoplay', [2000]);
         });
     </script>
 </body>

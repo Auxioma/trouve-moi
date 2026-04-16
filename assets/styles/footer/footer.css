@@ -1,0 +1,13 @@
+footer {
+    margin-top: 100px;
+    margin-bottom: 64px;
+}
+
+footer .pub {
+    color: #64748B;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22.75px; /* 162.5% */
+}
