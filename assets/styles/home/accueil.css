@@ -134,14 +134,15 @@
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
-    line-height: 28px; /* 155.556% */
+    line-height: 28px;
+    border: 1px;
 }
 
 .procedure {
 
     border-radius: 36px;
     background: linear-gradient(180deg, #003EC7 0%, #001E61 100%);
-    padding: 96px;
+    padding: clamp(20px, calc(20px + 76 * ((100vw - 375px) / 1065)), 96px);
 }
 .procedure h2 {
     color: #FFF;
