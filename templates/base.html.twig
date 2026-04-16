@@ -200,14 +200,23 @@ document.addEventListener('turbo:load', updateBreakpointIndicator);
                 0: {
                     items: 1
                 },
-                600: {
-                    items: 4
+                425: {
+                    items: 1
                 },
-                1440: {
-                    items: 4,
-                    stagePadding: 150
+                576: {
+                    items: 2
+                },
+                768: {
+                    items: 2
+                },
+                992: {
+                    items: 3
+                },
+                1200: {
+                    items: 4
                 }
             }
+
         });
     </script>
     <script>
@@ -223,24 +232,27 @@ document.addEventListener('turbo:load', updateBreakpointIndicator);
                 autoplayTimeout: 2000,
                 autoplayHoverPause: true,
                 smartSpeed: 800,
-
                 responsive: {
                     0: {
                         items: 1
                     },
-                    600: {
+                    425: {
+                        items: 1
+                    },
+                    576: {
                         items: 2
                     },
-                    1024: {
+                    768: {
+                        items: 2
+                    },
+                    992: {
                         items: 3
                     },
-                    1440: {
-                        items: 5
+                    1200: {
+                        items: 4
                     }
                 }
             });
-
-            // 🔥 force le démarrage autoplay
             owl.trigger('play.owl.autoplay', [2000]);
         });
     </script>

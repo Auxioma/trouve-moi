@@ -1,42 +1,58 @@
 /**
 * Header
- */
+*/
 .header {
     background: url("../../image/cta/Grid.png");
 }
 
 /**
 * CTA
- */
+*/
+.header,
+.couleur-gris,
+.bg-gris,
+.degrade-bleu,
+.parallax-section {
+    overflow: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .cta {
     margin-top: 57px;
 }
+
 .cta h1 {
     color: #1A1C1C;
     text-align: center;
     font-family: "Plus Jakarta Sans";
     font-size: clamp(
-    35px,
-    calc(35px + (64 - 35) * ((100vw - 375px) / (1440 - 375))),
-    64px
-);
+        35px,
+        calc(35px + (64 - 35) * ((100vw - 375px) / (1440 - 375))),
+        64px
+    );
     font-style: normal;
     font-weight: 800;
-    line-height: 100%; /* 64px */
+    line-height: 100%;
     letter-spacing: -3.6px;
 }
+
 .cta span {
     color: #0052FF;
     font-family: "Plus Jakarta Sans";
     font-size: clamp(
-    35px,
-    calc(35px + (64 - 35) * ((100vw - 375px) / (1440 - 375))),
-    64px
-);
+        35px,
+        calc(35px + (64 - 35) * ((100vw - 375px) / (1440 - 375))),
+        64px
+    );
     font-style: normal;
     font-weight: 800;
     line-height: 100%;
 }
+
 .cta p {
     color: #5F5E5E;
     text-align: center;
@@ -45,15 +61,18 @@
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
-    margin-top:24px;
+    margin-top: 24px;
     margin: 0 clamp(10px, calc(10px + 75 * ((100vw - 375px) / 1065)), 85px);
 }
-.mb-24{
+
+.mb-24 {
     margin-bottom: 84px;
 }
+
 .mb-64 {
     margin-bottom: 64px;
 }
+
 .recherche {
     display: flex;
     padding: 0 24px;
@@ -73,6 +92,7 @@
     line-height: normal;
     background: transparent;
 }
+
 .recherche-artisan {
     position: relative;
     width: 100%;
@@ -88,14 +108,16 @@
 
 .recherche-artisan input {
     width: 100%;
-    padding: 12px 15px 12px 45px; /* espace pour l'icône */
+    padding: 12px 15px 12px 45px;
     border: none;
     outline: none;
     font-size: 14px;
 }
+
 .br-32 {
     border-radius: 32px;
 }
+
 .localisation {
     display: flex;
     align-items: center;
@@ -139,11 +161,11 @@
 }
 
 .procedure {
-
     border-radius: 36px;
     background: linear-gradient(180deg, #003EC7 0%, #001E61 100%);
     padding: clamp(20px, calc(20px + 76 * ((100vw - 375px) / 1065)), 96px);
 }
+
 .procedure h2 {
     color: #FFF;
     text-align: center;
@@ -151,10 +173,11 @@
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
 }
+
 .procedure h3 {
     color: #FFF;
     text-align: center;
@@ -162,14 +185,11 @@
     font-size: 36px;
     font-style: normal;
     font-weight: 700;
-    line-height: 40px; /* 111.111% */
+    line-height: 40px;
     letter-spacing: -0.9px;
 }
-.mb-64 {
-    margin-bottom: 64px;
-}
-.cadre-procedure {
 
+.cadre-procedure {
     padding: 24px;
     flex-direction: column;
     align-items: flex-start;
@@ -179,9 +199,11 @@
     border-radius: 16px;
     background: #FFF;
 }
+
 .mx-36 {
     margin: 0 36px;
 }
+
 .procedure h4 {
     color: #1A1C1C;
     font-family: Manrope;
@@ -191,17 +213,21 @@
     line-height: 28px;
     margin: 16px 0;
 }
+
 .couleur-gris {
     background: #F8F7F7;
     padding-top: 85px;
     padding-bottom: 85px;
 }
+
 .satisfaction {
     padding: 96px 32px;
 }
+
 .mt-48 {
     margin-top: 48px;
 }
+
 .garantie-decenal {
     display: flex;
     padding: 24px;
@@ -212,22 +238,25 @@
     border-radius: 16px;
     border: 1px solid #E2E2E2;
 }
+
 .decenal {
     color: #1A1C1C;
     font-family: Manrope;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
-    line-height: 24px; /* 150% */
+    line-height: 24px;
 }
+
 .decenal-p {
     color: #5F5E5E;
     font-family: Manrope;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px;
 }
+
 .centpourcent {
     display: flex;
     padding: 24px;
@@ -237,55 +266,58 @@
     border-radius: 16px;
     background: #0052FF;
 }
+
 .clt100 {
     color: #FFF;
     font-family: Manrope;
     font-size: 30px;
     font-style: normal;
     font-weight: 700;
-    line-height: 36px; /* 120% */
+    line-height: 36px;
 }
+
 .satisfaction-client {
     color: #FFF;
     font-family: Manrope;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px; /* 142.857% */
+    line-height: 20px;
 }
+
 .pourquoi-nous-choisir h2 {
     color: #003EC7;
     font-family: Manrope;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
 }
+
 .pourquoi-nous-choisir h3 {
     color: #1A1C1C;
     font-family: "Plus Jakarta Sans";
     font-size: 36px;
     font-style: normal;
     font-weight: 800;
-    line-height: 40px; /* 111.111% */
+    line-height: 40px;
     letter-spacing: -0.9px;
 }
+
 .pourquoi-nous-choisir ul {
     margin-top: 25px;
 }
+
 .pourquoi-nous-choisir li {
     color: #1A1C1C;
     font-family: Manrope;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
-    line-height: 28px; /* 155.556% */
+    line-height: 28px;
     margin-bottom: 24px;
-    list-style: none;
-}
-.pourquoi-nous-choisir li {
     list-style: none;
     position: relative;
     padding-left: 50px;
@@ -307,24 +339,27 @@
     align-items: center;
     padding: 10px;
 }
+
 .pourquoi-nous-choisir li p {
     color: #5F5E5E;
     font-family: Manrope;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 26px; /* 162.5% */
+    line-height: 26px;
 }
+
 .notre-selection h2 {
     color: #003EC7;
     font-family: Manrope;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
 }
+
 .notre-selection h3 {
     color: #1A1C1C;
     font-family: "Plus Jakarta Sans";
@@ -334,75 +369,83 @@
     line-height: 40px;
     margin-bottom: 64px;
 }
+
 .thumb {
     margin-bottom: 24px;
 }
+
 .metier {
     color: #1D4ED8;
     font-family: Manrope;
     font-size: 10px;
     font-style: normal;
     font-weight: 700;
-    line-height: 15px; /* 150% */
+    line-height: 15px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     border-radius: 4px;
     background: #EFF6FF;
     padding: 0 8px;
 }
+
 .service {
     color: #047857;
     font-family: Manrope;
     font-size: 10px;
     font-style: normal;
     font-weight: 700;
-    line-height: 15px; /* 150% */
+    line-height: 15px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     border-radius: 4px;
     background: #ECFDF5;
     padding: 0 8px;
 }
+
 .nom-entreprise {
-    color: #1A1C1C!important;
-    font-family: "Plus Jakarta Sans"!important;
-    font-size: 20px!important;
-    font-style: normal!important;
-    font-weight: 700!important;
-    line-height: 28px!important;
+    color: #1A1C1C !important;
+    font-family: "Plus Jakarta Sans" !important;
+    font-size: 20px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 28px !important;
     margin: 0 0 12px 0;
 }
+
 .description-ets {
     color: #434656;
     font-family: Manrope;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 22.75px; /* 162.5% */
+    line-height: 22.75px;
 }
+
 .localisation-ets {
     color: #737688;
     font-family: Manrope;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
-    line-height: 20px; /* 142.857% */
+    line-height: 20px;
 }
+
 .experiance {
     margin-top: 94px;
 }
+
 .experiance h2 {
     color: #003EC7;
     font-family: Manrope;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     text-align: center;
-
 }
+
 .experiance h3 {
     color: #1A1C1C;
     text-align: center;
@@ -410,13 +453,15 @@
     font-size: 36px;
     font-style: normal;
     font-weight: 700;
-    line-height: 40px; /* 111.111% */
+    line-height: 40px;
     letter-spacing: -0.9px;
     margin-bottom: 63px;
 }
+
 .trouve-moi .item {
-    padding:30px
+    padding: 30px;
 }
+
 .trouve-moi h4 {
     color: #191C1F;
     font-family: Aileron;
@@ -425,6 +470,7 @@
     font-weight: 600;
     line-height: normal;
 }
+
 .trouve-moi h5 {
     color: #191C1F;
     font-family: Aileron;
@@ -434,6 +480,7 @@
     line-height: normal;
     margin-bottom: 23px;
 }
+
 .trouve-moi p {
     color: #888;
     font-family: Aileron;
@@ -443,11 +490,13 @@
     line-height: 25.5px;
     margin-bottom: 23px;
 }
+
 .trouve-moi img {
     width: 50px;
     height: 50px;
     margin-right: 12px;
 }
+
 .trouve-moi-p {
     color: #888;
     font-family: Aileron;
@@ -456,10 +505,12 @@
     font-weight: 400;
     line-height: normal;
 }
+
 .degrade-bleu {
     background: linear-gradient(144deg, #FFF 20.93%, #D0E0FE 96.65%);
     padding: 94px 0;
 }
+
 .degrade-bleu h2 {
     color: #1A1C1C;
     text-align: center;
@@ -467,87 +518,98 @@
     font-size: 36px;
     font-style: normal;
     font-weight: 700;
-    line-height: 40px; /* 111.111% */
+    line-height: 40px;
     letter-spacing: -0.9px;
 }
+
 .accordion-button:not(.collapsed) {
     background: #003EC7;
     color: #FFF;
 }
+
 .accordion-button:not(.collapsed)::after {
-    color: #FFF!important;
+    color: #FFF !important;
 }
+
 .degrade-bleu .show {
     background: #003EC7;
 }
+
 .degrade-bleu .accordion-body {
-    color: #FFF!important;
+    color: #FFF !important;
     font-family: Manrope;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 26px; /* 162.5% */
+    line-height: 26px;
 }
+
 .accordion-button:not(.collapsed) {
-    box-shadow: initial!important;
+    box-shadow: initial !important;
 }
+
 .mt-74 {
-    margin-top:74px;
+    margin-top: 74px;
 }
+
 .pt-74 {
-    padding-top:74px;
+    padding-top: 74px;
 }
+
 .blog h2 {
     color: #003EC7;
     font-family: Manrope;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
 }
+
 .blog h3 {
     color: #1A1C1C;
     font-family: "Plus Jakarta Sans";
     font-size: 36px;
     font-style: normal;
     font-weight: 700;
-    line-height: 40px; /* 111.111% */
+    line-height: 40px;
     letter-spacing: -0.9px;
 }
-.mb-64 {
-    margin-bottom: 64px;
-}
+
 .bg-gris {
     background: #F8F7F7;
 }
+
 .txt .metiers {
     color: #737688;
     font-family: Manrope;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px;
 }
+
 .txt .temps-lecture {
     color: #737688;
     font-family: Manrope;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
-    line-height: 16px; /* 133.333% */
+    line-height: 16px;
 }
+
 .txt h2 {
-    margin-top:12px;
+    margin-top: 12px;
     margin-bottom: 12px;
     color: #1A1C1C;
     font-family: Manrope;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
-    line-height: 27.5px; /* 137.5% */
+    line-height: 27.5px;
 }
+
 .txt p {
     color: #5F5E5E;
     font-family: Manrope;
@@ -557,6 +619,7 @@
     line-height: 20px;
     margin-bottom: 24px;
 }
+
 .txt a {
     color: #003EC7;
     font-family: Manrope;
@@ -566,23 +629,21 @@
     line-height: 20px;
     text-decoration: none;
 }
+
 .pb-74 {
     padding-bottom: 74px;
 }
+
 .parallax-section {
     background-image: url("../../image/paralax/01.jpg");
     height: 600px;
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    background-attachment: fixed; /* 🔥 effet parallax */
-
+    background-attachment: fixed;
     position: relative;
 }
 
-/* Option overlay premium */
 .parallax-section::before {
     content: "";
     position: absolute;
@@ -594,6 +655,7 @@
     position: relative;
     z-index: 2;
 }
+
 .parallax-section h2 {
     color: #FFF;
     text-align: center;
@@ -601,8 +663,9 @@
     font-size: 64px;
     font-style: normal;
     font-weight: 800;
-    line-height: 100%; /* 64px */
+    line-height: 100%;
 }
+
 .parallax-section p {
     color: #FFF;
     text-align: center;
@@ -610,8 +673,9 @@
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 120%; /* 24px */
+    line-height: 120%;
 }
+
 .parallax-section a {
     display: flex;
     padding: 20px 48px;
@@ -631,6 +695,7 @@
     margin: 0 auto;
     text-decoration: none;
 }
+
 .search-wrapper {
     display: flex;
     flex-direction: column;
@@ -638,7 +703,6 @@
     padding: 12px;
 }
 
-/* blocs */
 .recherche-artisan,
 .localisation {
     display: flex;
@@ -646,20 +710,17 @@
     width: 100%;
 }
 
-/* recherche */
 .recherche-artisan {
     padding: 0 20px;
     min-height: 64px;
 }
 
-/* localisation */
 .localisation {
-    flex-wrap: wrap; /* 🔥 clé */
+    flex-wrap: wrap;
     padding: 12px 20px;
     gap: 10px;
 }
 
-/* input prend toute la largeur */
 .localisation-input {
     flex: 1 1 100%;
     border: 0;
@@ -667,7 +728,6 @@
     background: transparent;
 }
 
-/* bouton en dessous */
 .localisation-btn {
     width: 100%;
 }
@@ -688,7 +748,7 @@
 
     .localisation {
         width: 55%;
-        flex-wrap: nowrap; /* 🔥 reset */
+        flex-wrap: nowrap;
         padding: 0 12px 0 20px;
     }
 
@@ -698,5 +758,789 @@
 
     .localisation-btn {
         width: auto;
+    }
+}
+
+/* TABLETTE */
+@media (max-width: 991.98px) {
+    .cta {
+        margin-top: 40px;
+    }
+
+    .cta h1,
+    .cta span {
+        font-size: 48px;
+        line-height: 110%;
+        letter-spacing: -2px;
+    }
+
+    .cta p {
+        margin: 24px 20px 0 20px;
+        line-height: 140%;
+    }
+
+    .mb-24 {
+        margin-bottom: 56px;
+    }
+
+    .mb-64 {
+        margin-bottom: 48px;
+    }
+
+    .couleur-gris {
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
+
+    .procedure {
+        padding: 48px 32px;
+        border-radius: 24px;
+    }
+
+    .procedure h3,
+    .pourquoi-nous-choisir h3,
+    .notre-selection h3,
+    .experiance h3,
+    .degrade-bleu h2,
+    .blog h3 {
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .satisfaction {
+        padding: 72px 20px;
+    }
+
+    .pourquoi-nous-choisir {
+        margin-top: 32px;
+    }
+
+    .experiance {
+        margin-top: 72px;
+    }
+
+    .degrade-bleu {
+        padding: 72px 0;
+    }
+
+    .pt-74 {
+        padding-top: 56px;
+    }
+
+    .pb-74 {
+        padding-bottom: 56px;
+    }
+
+    .parallax-section {
+        height: auto;
+        min-height: 500px;
+        padding: 80px 20px;
+        background-attachment: scroll;
+    }
+
+    .parallax-section h2 {
+        font-size: 42px;
+        line-height: 110%;
+    }
+
+    .parallax-section p {
+        font-size: 18px;
+        line-height: 140%;
+    }
+
+    .parallax-section a {
+        padding: 18px 36px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .trouve-moi .item {
+        padding: 24px;
+    }
+
+    .trouve-moi p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 767.98px) {
+    .cta {
+        margin-top: 32px;
+    }
+
+    .cta h1,
+    .cta span {
+        font-size: 36px;
+        line-height: 110%;
+        letter-spacing: -1.5px;
+    }
+
+    .cta p {
+        font-size: 14px;
+        margin: 16px 12px 0 12px;
+        line-height: 140%;
+    }
+
+    .mb-24 {
+        margin-bottom: 40px;
+    }
+
+    .mb-64 {
+        margin-bottom: 32px;
+    }
+
+    .mt-48 {
+        margin-top: 32px;
+    }
+
+    .couleur-gris {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+
+    .procedure {
+        padding: 32px 20px;
+        border-radius: 20px;
+    }
+
+    .cadre-procedure {
+        padding: 20px;
+    }
+
+    .procedure h3,
+    .pourquoi-nous-choisir h3,
+    .notre-selection h3,
+    .experiance h3,
+    .degrade-bleu h2,
+    .blog h3 {
+        font-size: 24px;
+        line-height: 30px;
+        letter-spacing: -0.5px;
+    }
+
+    .procedure h4 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .satisfaction {
+        padding: 48px 12px;
+    }
+
+    .garantie-decenal,
+    .centpourcent {
+        padding: 18px;
+    }
+
+    .clt100 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    .pourquoi-nous-choisir ul {
+        margin-top: 20px;
+        padding-left: 0;
+    }
+
+    .pourquoi-nous-choisir li {
+        font-size: 16px;
+        line-height: 24px;
+        padding-left: 42px;
+        margin-bottom: 20px;
+    }
+
+    .pourquoi-nous-choisir li::before {
+        width: 28px;
+        height: 28px;
+        top: 0;
+    }
+
+    .pourquoi-nous-choisir li p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .thumb {
+        margin-bottom: 16px;
+    }
+
+    .nom-entreprise {
+        font-size: 18px !important;
+        line-height: 24px !important;
+    }
+
+    .description-ets,
+    .localisation-ets,
+    .txt p,
+    .degrade-bleu .accordion-body {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .experiance {
+        margin-top: 48px;
+    }
+
+    .experiance h3 {
+        margin-bottom: 40px;
+    }
+
+    .trouve-moi .item {
+        padding: 20px;
+    }
+
+    .trouve-moi h5 {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+
+    .trouve-moi h4 {
+        font-size: 15px;
+    }
+
+    .trouve-moi p {
+        font-size: 15px;
+        line-height: 22px;
+        margin-bottom: 16px;
+    }
+
+    .trouve-moi-p {
+        font-size: 14px;
+    }
+
+    .degrade-bleu {
+        padding: 56px 0;
+    }
+
+    .accordion-button {
+        font-size: 15px;
+        line-height: 22px;
+        padding: 16px;
+    }
+
+    .pt-74 {
+        padding-top: 48px;
+    }
+
+    .pb-74 {
+        padding-bottom: 48px;
+    }
+
+    .txt h2 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .parallax-section {
+        min-height: 420px;
+        padding: 64px 16px;
+        background-attachment: scroll;
+    }
+
+    .parallax-section h2 {
+        font-size: 30px;
+        line-height: 110%;
+    }
+
+    .parallax-section p {
+        font-size: 16px;
+        line-height: 140%;
+    }
+
+    .parallax-section a {
+        padding: 16px 24px;
+        font-size: 16px;
+        line-height: 24px;
+        width: 100%;
+        max-width: 203px;
+    }
+
+    .search-wrapper {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .recherche-artisan {
+        min-height: 56px;
+        padding: 0 16px;
+    }
+
+    .recherche-artisan input {
+        font-size: 14px;
+    }
+
+    .localisation {
+        padding: 10px 16px;
+        gap: 10px;
+    }
+
+    .localisation .localisation-input {
+        font-size: 14px;
+        padding: 12px 15px 12px 36px;
+    }
+
+    .localisation .localisation-btn {
+        width: 100%;
+        padding: 16px 24px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+/* PETIT MOBILE */
+@media (max-width: 575.98px) {
+    .cta h1,
+    .cta span {
+        font-size: 32px;
+    }
+
+    .procedure h3,
+    .pourquoi-nous-choisir h3,
+    .notre-selection h3,
+    .experiance h3,
+    .degrade-bleu h2,
+    .blog h3 {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .procedure {
+        padding: 24px 16px;
+    }
+
+    .satisfaction {
+        padding: 40px 8px;
+    }
+
+    .couleur-gris {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .parallax-section {
+        min-height: 360px;
+        padding: 48px 12px;
+    }
+
+    .parallax-section h2 {
+        font-size: 26px;
+    }
+
+    .parallax-section p {
+        font-size: 15px;
+    }
+}
+/* TRÈS PETITS ÉCRANS */
+@media (max-width: 425px) {
+    .cta {
+        margin-top: 24px;
+    }
+
+    .cta h1,
+    .cta span {
+        font-size: 28px;
+        line-height: 110%;
+        letter-spacing: -1px;
+    }
+
+    .cta p {
+        font-size: 13px;
+        line-height: 20px;
+        margin: 12px 8px 0 8px;
+    }
+
+    .mb-24 {
+        margin-bottom: 32px;
+    }
+
+    .mb-64 {
+        margin-bottom: 24px;
+    }
+
+    .mt-48 {
+        margin-top: 24px;
+    }
+
+    .couleur-gris {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .procedure {
+        padding: 20px 12px;
+        border-radius: 16px;
+    }
+
+    .procedure h2,
+    .pourquoi-nous-choisir h2,
+    .notre-selection h2,
+    .experiance h2,
+    .blog h2 {
+        font-size: 11px;
+        line-height: 14px;
+    }
+
+    .procedure h3,
+    .pourquoi-nous-choisir h3,
+    .notre-selection h3,
+    .experiance h3,
+    .degrade-bleu h2,
+    .blog h3 {
+        font-size: 20px;
+        line-height: 26px;
+        letter-spacing: -0.4px;
+    }
+
+    .procedure h4 {
+        font-size: 16px;
+        line-height: 22px;
+        margin: 12px 0;
+    }
+
+    .cadre-procedure {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .satisfaction {
+        padding: 32px 6px;
+    }
+
+    .garantie-decenal,
+    .centpourcent {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .decenal {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .decenal-p,
+    .satisfaction-client {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .clt100 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    .pourquoi-nous-choisir ul {
+        margin-top: 16px;
+    }
+
+    .pourquoi-nous-choisir li {
+        font-size: 15px;
+        line-height: 22px;
+        padding-left: 36px;
+        margin-bottom: 16px;
+    }
+
+    .pourquoi-nous-choisir li::before {
+        width: 24px;
+        height: 24px;
+        padding: 6px;
+        top: 1px;
+    }
+
+    .pourquoi-nous-choisir li p {
+        font-size: 13px;
+        line-height: 20px;
+        margin-top: 6px;
+    }
+
+    .thumb {
+        margin-bottom: 12px;
+    }
+
+    .metier,
+    .service {
+        font-size: 9px;
+        line-height: 14px;
+        padding: 0 6px;
+    }
+
+    .nom-entreprise {
+        font-size: 16px !important;
+        line-height: 22px !important;
+        margin-bottom: 8px;
+    }
+
+    .description-ets,
+    .localisation-ets,
+    .txt p,
+    .degrade-bleu .accordion-body {
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .experiance {
+        margin-top: 36px;
+    }
+
+    .experiance h3 {
+        margin-bottom: 28px;
+    }
+
+    .trouve-moi .item {
+        padding: 16px;
+    }
+
+    .trouve-moi h5 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .trouve-moi h4 {
+        font-size: 14px;
+    }
+
+    .trouve-moi p {
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 12px;
+    }
+
+    .trouve-moi img {
+        width: 42px;
+        height: 42px;
+        margin-right: 10px;
+    }
+
+    .trouve-moi-p {
+        font-size: 13px;
+    }
+
+    .degrade-bleu {
+        padding: 40px 0;
+    }
+
+    .accordion-button {
+        font-size: 14px;
+        line-height: 20px;
+        padding: 14px;
+    }
+
+    .degrade-bleu .accordion-body {
+        padding: 14px;
+    }
+
+    .pt-74 {
+        padding-top: 36px;
+    }
+
+    .pb-74 {
+        padding-bottom: 36px;
+    }
+
+    .txt h2 {
+        font-size: 16px;
+        line-height: 22px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .txt a {
+        font-size: 13px;
+        line-height: 18px;
+    }
+
+    .parallax-section {
+        min-height: 320px;
+        padding: 40px 10px;
+    }
+
+    .parallax-section h2 {
+        font-size: 22px;
+        line-height: 110%;
+    }
+
+    .parallax-section p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .parallax-section a {
+        padding: 14px 18px;
+        font-size: 14px;
+        line-height: 20px;
+        border-radius: 16px;
+        max-width: 180px;
+    }
+
+    .search-wrapper {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .recherche-artisan {
+        min-height: 52px;
+        padding: 0 12px;
+    }
+
+    .recherche-artisan i {
+        left: 12px;
+    }
+
+    .recherche-artisan input {
+        padding: 10px 12px 10px 36px;
+        font-size: 13px;
+    }
+
+    .localisation {
+        padding: 8px 12px;
+        gap: 8px;
+    }
+
+    .localisation .icon {
+        left: 12px;
+    }
+
+    .localisation .localisation-input {
+        font-size: 13px;
+        padding: 10px 12px 10px 32px;
+    }
+
+    .localisation .localisation-btn {
+        padding: 14px 18px;
+        font-size: 14px;
+        line-height: 20px;
+        border-radius: 16px;
+    }
+}
+@media (max-width: 375px) {
+    .cta h1,
+    .cta span {
+        font-size: 26px;
+    }
+
+    .procedure h3,
+    .pourquoi-nous-choisir h3,
+    .notre-selection h3,
+    .experiance h3,
+    .degrade-bleu h2,
+    .blog h3 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .parallax-section h2 {
+        font-size: 20px;
+    }
+
+    .parallax-section p,
+    .description-ets,
+    .localisation-ets,
+    .txt p,
+    .degrade-bleu .accordion-body,
+    .trouve-moi p {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .nom-entreprise {
+        font-size: 15px !important;
+        line-height: 20px !important;
+    }
+}
+.footer-custom {
+    padding-top: 48px;
+    padding-bottom: 32px;
+}
+
+.footer-custom ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.footer-custom ul li {
+    margin-bottom: 8px;
+}
+
+.footer-custom .pub {
+    color: #5F5E5E;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+@media (max-width: 767.98px) {
+    .footer-custom {
+        padding-top: 40px;
+        padding-bottom: 24px;
+    }
+
+    .footer-custom .accordion-button {
+        font-family: Manrope;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 22px;
+        padding: 16px;
+    }
+
+    .footer-custom .accordion-body {
+        padding: 16px;
+    }
+
+    .footer-custom .accordion-body ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .footer-custom .accordion-body li {
+        margin-bottom: 10px;
+        color: #5F5E5E;
+        font-family: Manrope;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+}
+.trouve-moi .item {
+    padding: 30px;
+    background: #fff;
+    border-radius: 16px;
+}
+
+/* ligne du bas décalée */
+.owl-carousel.bas {
+    margin-top: 24px;
+    padding-left: 140px;
+}
+
+/* tablette */
+@media (max-width: 991.98px) {
+    .owl-carousel.bas {
+        padding-left: 80px;
+    }
+}
+
+/* mobile */
+@media (max-width: 767.98px) {
+    .owl-carousel.bas {
+        padding-left: 0;
+        margin-top: 16px;
+    }
+
+    .trouve-moi .item {
+        padding: 20px;
+    }
+}
+
+/* très petit mobile */
+@media (max-width: 425px) {
+    .trouve-moi .item {
+        padding: 16px;
     }
 }
