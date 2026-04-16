@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+    <div class="bg-gris">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-12 liste-des-filtres">
+                            <a href="#">Catégories</a>
+                            <a href="#">Localisation</a>
+                            <a href="#">Disponibilité</a>
+                            <a href="#">Filtres</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="assenceur">
+                        {% for i in 1..20 %}
+                            <div class="col-12 mb-3">
+                                <div class="category-card">
+                                    <div class="category-card-image">
+                                        <img src="{{ asset('image/category/01.jpg') }}" alt="">
+                                    </div>
+
+                                    <div class="category-card-content">
+                                        <h3>Plombier {{ i }}</h3>
+                                        <p>Spécialiste Maison Connectée</p>
+
+                                        <div class="category-card-tags">
+                                            <span>ÉBÉNISTERIE</span>
+                                            <span>QUALIBAT RGE</span>
+                                        </div>
+
+                                        <div class="category-card-infos">
+                                            <div>€70/hr</div>
+                                            <div>1,4 km</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mt-36">
+                    <div id="map" style="height: 100%; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+{% endblock %}
+{% block javascripts %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const paris = [48.8566, 2.3522];
+
+            const map = L.map('map').setView(paris, 10);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            const points = [
+                [48.8566, 2.3522],
+                [48.9021, 2.4892],
+                [48.8049, 2.1204],
+                [48.6921, 2.1872],
+                [48.5734, 2.3349],
+                [49.0365, 2.0781],
+                [48.7761, 2.1983],
+                [48.9475, 2.2478],
+                [48.6153, 2.4157],
+                [48.7916, 2.4556],
+                [48.9833, 2.6167],
+                [48.7597, 2.6053],
+                [48.7069, 2.4382],
+                [48.9356, 2.3539],
+                [48.8402, 2.5624],
+                [48.6682, 2.5690],
+                [48.7284, 2.2588],
+                [48.9983, 2.2775],
+                [48.8560, 2.6816],
+                [48.6317, 2.4405],
+                [48.7448, 2.3971],
+                [48.8897, 2.2060],
+                [48.8212, 2.2068],
+                [48.9530, 2.1452],
+                [48.7300, 2.3282],
+                [48.6186, 2.5480],
+                [48.9744, 2.5200],
+                [48.7869, 2.2293],
+                [48.8609, 2.4370],
+                [48.7004, 2.1342]
+            ];
+
+            const bounds = [];
+
+            points.forEach((point, index) => {
+                L.marker(point)
+                    .addTo(map)
+                    .bindPopup(index === 0 ? 'Paris centre' : 'Artisan #' + index);
+
+                bounds.push(point);
+            });
+
+            L.circle(paris, {
+                radius: 50000,
+                color: '#003EC7',
+                fillColor: '#003EC7',
+                fillOpacity: 0.08
+            }).addTo(map);
+
+            map.fitBounds(bounds, {
+                padding: [50, 50]
+            });
+        });
+    </script>
+{% endblock %}

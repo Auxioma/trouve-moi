@@ -30,6 +30,12 @@
  */
 @import "./header/header.css";
 @import "./home/accueil.css";
+@import "./category/category.css";
+
+
+/**
+* Footer
+ */
 @import "./footer/footer.css";
 
 
