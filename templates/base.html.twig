@@ -13,6 +13,176 @@
     {% endblock %}
 </head>
 <body>
+
+    {% if app.environment == 'dev' %}
+        <div id="dev-breakpoint-indicator" class="dev-breakpoint-indicator">
+            <div class="dev-breakpoint-main">
+                <span class="dev-breakpoint-badge" id="dev-breakpoint-name">xs</span>
+                <span class="dev-breakpoint-dimensions" id="dev-breakpoint-dimensions">0 × 0</span>
+            </div>
+            <div class="dev-breakpoint-meta">
+                <span id="dev-breakpoint-ratio">DPR 1</span>
+                <span id="dev-breakpoint-orientation">portrait</span>
+            </div>
+        </div>
+        <style>
+.dev-breakpoint-indicator {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 180px;
+    max-width: 240px;
+    padding: 12px 14px;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.92);
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.2;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dev-breakpoint-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.dev-breakpoint-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+    background: #6c757d;
+    flex-shrink: 0;
+}
+
+.dev-breakpoint-dimensions {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    white-space: nowrap;
+}
+
+.dev-breakpoint-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 575.98px) {
+    .dev-breakpoint-indicator {
+        right: 10px;
+        bottom: 10px;
+        min-width: 160px;
+        padding: 10px 12px;
+    }
+
+    .dev-breakpoint-dimensions {
+        font-size: 12px;
+    }
+}
+        </style>
+        <script>
+function getBreakpointData(width) {
+    if (width >= 1400) {
+        return {
+            name: 'xxl',
+            color: '#6f42c1'
+        };
+    }
+
+    if (width >= 1200) {
+        return {
+            name: 'xl',
+            color: '#198754'
+        };
+    }
+
+    if (width >= 992) {
+        return {
+            name: 'lg',
+            color: '#0d6efd'
+        };
+    }
+
+    if (width >= 768) {
+        return {
+            name: 'md',
+            color: '#fd7e14'
+        };
+    }
+
+    if (width >= 576) {
+        return {
+            name: 'sm',
+            color: '#dc3545'
+        };
+    }
+
+    return {
+        name: 'xs',
+        color: '#6c757d'
+    };
+}
+
+function getOrientation(width, height) {
+    return width >= height ? 'landscape' : 'portrait';
+}
+
+function updateBreakpointIndicator() {
+    const indicator = document.getElementById('dev-breakpoint-indicator');
+
+    if (!indicator) {
+        return;
+    }
+
+    const breakpointName = document.getElementById('dev-breakpoint-name');
+    const dimensions = document.getElementById('dev-breakpoint-dimensions');
+    const ratio = document.getElementById('dev-breakpoint-ratio');
+    const orientation = document.getElementById('dev-breakpoint-orientation');
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+
+    const breakpoint = getBreakpointData(width);
+
+    breakpointName.textContent = breakpoint.name;
+    breakpointName.style.backgroundColor = breakpoint.color;
+
+    dimensions.textContent = `${width} × ${height}`;
+    ratio.textContent = `DPR ${dpr}`;
+    orientation.textContent = getOrientation(width, height);
+}
+
+window.addEventListener('load', updateBreakpointIndicator);
+window.addEventListener('resize', updateBreakpointIndicator);
+window.addEventListener('orientationchange', updateBreakpointIndicator);
+
+document.addEventListener('turbo:load', updateBreakpointIndicator);
+        </script>
+    {% endif %}
     {{ render(controller('\\App\\Controller\\Api\\NavBarController::NavBar')) }}
     {% block body %}{% endblock %}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="{{ asset('plugin/owl/dist/owl.carousel.min.js') }}"></script>

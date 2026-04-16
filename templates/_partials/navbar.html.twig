@@ -1,5 +1,6 @@
 <div class="bg-bleu">
     <header class="container header">
+    {# Navbar #}
         <nav class="navbar navbar-expand-lg navbar-light p-0">
             <a class="navbar-brand" href="{{ path('app_home') }}">
                 <img src="{{ asset('image/logo/logo.png') }}" alt="">
@@ -23,7 +24,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="auth">
+            <div class="auth d-none d-lg-block">
                 <a href="#" class="btn-connection">Connexion</a>
                 <a href="#" class="btn-commencer">Commencer</a>
             </div>
@@ -38,7 +39,7 @@
             </div>
         </div>
 
-        {# les boutons de recherches #}
+        {# les boutons de recherches
         <div class="container d-flex align-items-center justify-content-center mb-64">
             <div class="row w-100">
                 <div class="col-10 mx-auto">
@@ -68,8 +69,8 @@
                 </div>
             </div>
         </div>
-
-        {# les 3 images de présentation #}
+ #}
+        {# les 3 images de présentation
         <div class="container pb-5">
             <div class="row">
                 <div class="col-4">
@@ -83,8 +84,8 @@
                 </div>
             </div>
         </div>
-
-        {# les 3 petites images  #}
+ #}
+        {# les 3 petites images 
         <div class="col-4 mx-auto pb-5">
             <div class="d-flex align-items-center justify-content-center flex-nowrap text-center">
                 <div class="d-flex flex-shrink-0">
@@ -93,9 +94,9 @@
                     <img src="{{ asset('image/cta/11.png') }}" class="rounded-circle border border-white" style="width:40px; margin-left:-20px;">
                 </div>
                 <span class="ms-2">
-            1,200+ artisans vérifiés ce mois-ci
-        </span>
+                    1,200+ artisans vérifiés ce mois-ci
+                </span>
             </div>
-        </div>
+        </div> #}
     </header>
 </div>
