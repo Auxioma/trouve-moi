@@ -96,3 +96,82 @@
 .mt-36 {
     margin-top: 36px;
 }
+
+.category-card-content h3 {
+    color: #1A1C1C;
+    font-family: "Plus Jakarta Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.category-card-content p {
+    color: #5F5E5E;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; 
+}
+/* Style général pour tous les tags */
+.category-card-tags span {
+    display: flex;
+    padding: 2px 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    border-radius: 4px;
+    font-family: Manrope;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* 1er enfant */
+.category-card-tags span::nth-child(1) {
+    background: #EFF6FF;
+    color: #1D4ED8;
+}
+
+/* 2e enfant */
+.category-card-tags span:nth-child(2) {
+    background: #ECFDF5;
+    color: #047857;
+}
+.prix {
+    color: #5F5E5E;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 0.3px;
+}
+.distance {
+    color: #94A3B8;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 0.3px;
+}
+.category-card-infos {
+    display: flex;
+    justify-content: space-between; /* push gauche / droite */
+    align-items: center;
+}
+
+/* optionnel : aligner proprement icône + texte */
+.category-card-infos .prix,
+.category-card-infos .distance {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.category-card {
+    margin:14px
+}
