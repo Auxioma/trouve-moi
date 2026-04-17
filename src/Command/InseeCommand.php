@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\User;
+use App\Repository\ActivityRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -27,6 +28,7 @@ class InseeCommand extends Command
         private readonly EntityManagerInterface $em,
         private readonly UserRepository $repo,
         private readonly UserPasswordHasherInterface $passwordHasher,
+        private readonly ActivityRepository $activityRepo,
     ) {
         parent::__construct();
     }
@@ -43,7 +45,7 @@ class InseeCommand extends Command
         $radius = 100;
 
         // Code NAF plomberie, chauffage et conditionnement d'air
-        $naf = '43.22A';
+        $naf = '43.21A';
 
         // Rayon par appel API
         $apiRadius = 50;
@@ -131,6 +133,8 @@ class InseeCommand extends Command
                         continue;
                     }
 
+                    $acticity = $this->activityRepo->find(2);
+
                     $entity = new User();
 
                     $email = sprintf('%s@import.local', uniqid('user_', true));
@@ -150,7 +154,9 @@ class InseeCommand extends Command
                         ->setCity($company['siege']['libelle_commune'] ?? null)
                         ->setLatitude($coords['lat'])
                         ->setLongitude($coords['long'])
-                        ->setSiret($siret);
+                        ->setSiret($siret)
+                        ->setActivity($acticity)
+                    ;
 
                     $this->em->persist($entity);
                     $seenSirets[$siret] = true;
