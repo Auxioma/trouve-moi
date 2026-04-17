@@ -5,7 +5,7 @@
 {% block body %}
     <div class="bg-gris">
         <div class="container">
-            <div class="row">
+            <div class="row pb-4">
                 <div class="col-6">
                     <div class="row">
                         <div class="col-12 liste-des-filtres">
@@ -23,16 +23,13 @@
                                     <div class="category-card-image">
                                         <img src="{{ asset('image/category/01.jpg') }}" alt="">
                                     </div>
-
                                     <div class="category-card-content">
                                         <h3>Plombier {{ i }}</h3>
                                         <p>Spécialiste Maison Connectée</p>
-
                                         <div class="category-card-tags">
                                             <span>ÉBÉNISTERIE</span>
                                             <span>QUALIBAT RGE</span>
                                         </div>
-
                                         <div class="category-card-infos">
                                             <div>€70/hr</div>
                                             <div>1,4 km</div>
@@ -50,6 +47,22 @@
             </div>
         </div>
     </div>
+
+            <div class="container-fluid g-0 mt-5">
+            <div class="parallax-section d-flex align-items-center justify-content-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-7 mx-auto">
+                            <div class="text-center text-white">
+                                <h2>Devenez prestataire sur trouvemoi</h2>
+                                <p>Inscrivez-vous et trouvez des nouveaux clients, développez votre notoriété et commencez à optimisez vos revenus dès maintenant.</p>
+                                <a href="#">Commencer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}
 {% block css %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />

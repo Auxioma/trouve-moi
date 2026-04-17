@@ -37,7 +37,7 @@ final class HomeController extends AbstractController
         /* Je vais prendre les 10 derniers utilisateurs créés pour les afficher sur la page d'accueil */
         $latestUsers = $this->userRepository->findLatestArtisans(10);
 
-        return $this->render('home/index.html.twig', [
+        return $this->render('home/home.html.twig', [
             'lastUser' => $latestUsers,
         ]);
     }

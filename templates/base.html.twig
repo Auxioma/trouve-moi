@@ -16,6 +16,7 @@
 <body>
     {{ render(controller('\\App\\Controller\\Api\\NavBarController::NavBar')) }}
     {% block body %}{% endblock %}
+    {{ include('_partials/footer.html.twig') }}
     {% block javascripts %}{% endblock %}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="{{ asset('plugin/owl/dist/owl.carousel.min.js') }}"></script>
     <script>
@@ -25,9 +26,9 @@
             nav: false,
 
             autoplay: true,
-            autoplayTimeout: 2000,      // durée entre les slides (3s)
-            autoplayHoverPause: true,   // pause au hover
-            smartSpeed: 800,            // vitesse de transition
+            autoplayTimeout: 2000,      
+            autoplayHoverPause: true,   
+            smartSpeed: 800,        
             responsive: {
                 0: {
                     items: 1

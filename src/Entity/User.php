@@ -168,6 +168,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $siret = null;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -184,7 +187,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             'id' => $this->id,
             'email' => $this->email,
             'password' => $this->password,
-            'roles' => $this->roles,
+            'roles' => $this->roles, 
         ];
     }
 
@@ -663,6 +666,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getSiret(): ?string
+    {
+        return $this->siret;
+    }
+
+    public function setSiret(string $siret): static
+    {
+        $this->siret = $siret;
 
         return $this;
     }
