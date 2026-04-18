@@ -20,12 +20,29 @@
 namespace App\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
 final class NavBarController extends AbstractController
 {
+
+    public function __construct(
+        private RequestStack $requestStack
+    ) {}
+
     public function NavBar(): Response
     {
-        return $this->render('_partials/navbar.html.twig');
+        $request = $this->requestStack->getMainRequest();
+        $route = $request?->attributes->get('_route');
+
+        if ($route === 'app_home') {
+            return $this->render('_partials/navbar.html.twig', [
+                'isHome' => true,
+            ]);
+        }
+
+        return $this->render('_partials/navbar.html.twig',[
+            'isHome' => false,
+        ]);
     }
 }

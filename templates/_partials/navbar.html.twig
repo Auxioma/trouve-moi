@@ -29,7 +29,7 @@
                 <a href="#" class="btn-commencer">Commencer</a>
             </div>
         </nav>
-        {% if app.request.attributes.get('_route') == 'app_home' %}
+        {% if isHome is defined and isHome %}
             {# Text pulicitaire CTA #}
             <div class="container cta">
                 <div class="row">
