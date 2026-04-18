@@ -169,3 +169,75 @@ nav {
 .ts-control {
     margin-left: 20px;
 }
+
+
+.recherche-artisan {
+    position: relative;
+}
+
+.autocomplete-results {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    z-index: 999;
+    overflow: hidden;
+    display: none;
+}
+
+.autocomplete-item {
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #C3C5D9;
+}
+
+.autocomplete-item:hover {
+    background: #f5f7fb;
+    color: #7A7FA8;
+}
+
+.localisation-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.localisation-input {
+    width: 100%;
+}
+
+/* La dropdown */
+.localisation-results {
+    position: absolute;
+    top: 100%;
+    /* juste en dessous */
+    left: 0;
+    width: 100%;
+    margin-top: 5px;
+
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    z-index: 9999;
+
+    display: none;
+}
+
+/* Items */
+.localisation-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #C3C5D9;
+}
+
+.localisation-item:hover {
+    background: #f5f5f5;
+    color: #7A7FA8
+}

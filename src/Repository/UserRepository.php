@@ -62,4 +62,21 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getResult();
     }
+
+    public function findDistinctCitiesByTerm(string $term): array
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->select('DISTINCT u.city AS city')
+            ->where('u.city IS NOT NULL')
+            ->andWhere('u.city != :empty')
+            ->andWhere('LOWER(u.city) LIKE LOWER(:term)')
+            ->setParameter('empty', '')
+            ->setParameter('term', '%' . $term . '%')
+            ->orderBy('u.city', 'ASC')
+            ->setMaxResults(10);
+
+        $results = $qb->getQuery()->getArrayResult();
+
+        return array_map(static fn(array $row) => $row['city'], $results);
+    }
 }

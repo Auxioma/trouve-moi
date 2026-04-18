@@ -1,103 +1,262 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.theme.default.min.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/deo7fww.css">
-    {% block css %}{% endblock %}
-    {% block stylesheets %}
-        {{ importmap('app') }}
-    {% endblock %}
-</head>
-<body>
-    {{ render(controller('\\App\\Controller\\Api\\NavBarController::NavBar')) }}
-    {% block body %}{% endblock %}
-    {{ include('_partials/footer.html.twig') }}
-    {% block javascripts %}{% endblock %}
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="{{ asset('plugin/owl/dist/owl.carousel.min.js') }}"></script>
-    <script>
-        $('.haut').owlCarousel({
-            loop: false,
-            dots: false,
-            margin: 32,
-            nav: false,
-            autoplay: true,
-            autoplayTimeout: 3000,      
-            autoplayHoverPause: true,   
-            smartSpeed: 800,      
-            responsive: {
-                0: {
-                    items: 1
-                },
-                425: {
-                    items: 1
-                },
-                576: {
-                    items: 2
-                },
-                768: {
-                    items: 2
-                },
-                992: {
-                    items: 3
-                },
-                1200: {
-                    items: 4
-                }
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.carousel.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.theme.default.min.css') }}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<link rel="stylesheet" href="https://use.typekit.net/deo7fww.css"> {% block css %}{% endblock %}
+
+		{% block stylesheets %}
+			{{ importmap('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		{{ render(controller('\\App\\Controller\\Api\\NavBarController::NavBar')) }}
+
+		{% block body %}{% endblock %}
+
+		{{ include('_partials/footer.html.twig') }}
+
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<script src="{{ asset('plugin/owl/dist/owl.carousel.min.js') }}"></script>
+		{% block javascripts %}
+			<script>
+				document.addEventListener('turbo:load', function () {
+const haut = $('.haut');
+const bas = $('.bas');
+
+if (haut.length) {
+if (haut.hasClass('owl-loaded')) {
+haut.trigger('destroy.owl.carousel');
+haut.removeClass('owl-loaded');
+haut.find('.owl-stage-outer').children().unwrap();
+}
+
+haut.owlCarousel({
+loop: false,
+dots: false,
+margin: 32,
+nav: false,
+autoplay: true,
+autoplayTimeout: 3000,
+autoplayHoverPause: true,
+smartSpeed: 800,
+responsive: {
+0: {
+items: 1
+},
+425: {
+items: 1
+},
+576: {
+items: 2
+},
+768: {
+items: 2
+},
+992: {
+items: 3
+},
+1200: {
+items: 4
+}
+}
+});
+}
+
+if (bas.length) {
+if (bas.hasClass('owl-loaded')) {
+bas.trigger('destroy.owl.carousel');
+bas.removeClass('owl-loaded');
+bas.find('.owl-stage-outer').children().unwrap();
+}
+
+bas.owlCarousel({
+loop: false,
+dots: false,
+margin: 32,
+nav: false,
+autoplay: true,
+autoplayTimeout: 3000,
+autoplayHoverPause: true,
+smartSpeed: 800,
+responsive: {
+0: {
+items: 1
+},
+425: {
+items: 1
+},
+576: {
+items: 2
+},
+768: {
+items: 2
+},
+992: {
+items: 3
+},
+1200: {
+items: 4
+}
+}
+});
+}
+
+$('.play-haut').off('click').on('click', function () {
+haut.trigger('play.owl.autoplay', [1000]);
+});
+
+$('.stop-haut').off('click').on('click', function () {
+haut.trigger('stop.owl.autoplay');
+});
+
+$('.play-bas').off('click').on('click', function () {
+bas.trigger('play.owl.autoplay', [1000]);
+});
+
+$('.stop-bas').off('click').on('click', function () {
+bas.trigger('stop.owl.autoplay');
+});
+});
+			</script>
+
+			<script>
+				document.addEventListener('turbo:load', function () {
+const input = document.getElementById('search-activity');
+const resultsBox = document.getElementById('activity-results');
+
+if (! input || ! resultsBox) {
+return;
+}
+
+let debounceTimer;
+
+input.addEventListener('input', function () {
+const query = this.value.trim();
+
+clearTimeout(debounceTimer);
+
+if (query.length < 2) {
+resultsBox.innerHTML = '';
+resultsBox.style.display = 'none';
+return;
+}
+
+debounceTimer = setTimeout(() => {
+fetch (`/ajax/search/activity?q=${
+encodeURIComponent(query)
+}`, {
+headers: {
+'X-Requested-With': 'XMLHttpRequest'
+}
+}).then(response => response.json()).then(data => {
+resultsBox.innerHTML = '';
+
+if (!data.length) {
+resultsBox.style.display = 'none';
+return;
+}
+
+data.forEach(item => {
+const div = document.createElement('div');
+div.classList.add('autocomplete-item');
+div.textContent = item.name;
+
+div.addEventListener('click', function () {
+input.value = item.name;
+resultsBox.innerHTML = '';
+resultsBox.style.display = 'none';
+
+// Si tu veux rediriger vers la page métier :
+// window.location.href = '/activite/' + item.slug;
+});
+
+resultsBox.appendChild(div);
+});
+
+resultsBox.style.display = 'block';
+}).catch(error => {
+console.error('Erreur AJAX :', error);
+resultsBox.innerHTML = '';
+resultsBox.style.display = 'none';
+});
+}, 300);
+});
+
+document.addEventListener('click', function (e) {
+if (! input.contains(e.target) && ! resultsBox.contains(e.target)) {
+resultsBox.innerHTML = '';
+resultsBox.style.display = 'none';
+}
+});
+});
+			</script>
+ <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.localisation-input');
+    const resultsBox = document.querySelector('.localisation-results');
+
+    if (!input || !resultsBox) {
+        return;
+    }
+
+    input.addEventListener('input', async function () {
+        const query = this.value.trim();
+
+        if (query.length < 2) {
+            resultsBox.innerHTML = '';
+            resultsBox.style.display = 'none';
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/cities?q=${encodeURIComponent(query)}`);
+            const cities = await response.json();
+
+            resultsBox.innerHTML = '';
+
+            if (cities.length === 0) {
+                resultsBox.style.display = 'none';
+                return;
             }
 
-        });
-        $('.play').on('click',function(){
-            owl.trigger('play.owl.autoplay',[1000])
-        })
-        $('.stop').on('click',function(){
-            owl.trigger('stop.owl.autoplay')
-        })
-    </script>
-    <script>
-        document.addEventListener('turbo:load', () => {
-            const owl = $('.bas');
-            owl.owlCarousel({
-                loop: false,
-                dots: false,
-                margin: 32,
-                nav: false,
-                autoplay: true,
-                autoplayTimeout: 3000,      
-                autoplayHoverPause: true,   
-                smartSpeed: 800,  
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    425: {
-                        items: 1
-                    },
-                    576: {
-                        items: 2
-                    },
-                    768: {
-                        items: 2
-                    },
-                    992: {
-                        items: 3
-                    },
-                    1200: {
-                        items: 4
-                    }
-                }
+            cities.forEach(city => {
+                const item = document.createElement('div');
+                item.classList.add('localisation-item');
+                item.textContent = city;
+
+                item.addEventListener('click', function () {
+                    input.value = city;
+                    resultsBox.innerHTML = '';
+                    resultsBox.style.display = 'none';
+                });
+
+                resultsBox.appendChild(item);
             });
-        });
-        $('.play').on('click',function(){
-            owl.trigger('play.owl.autoplay',[1000])
-        })
-        $('.stop').on('click',function(){
-            owl.trigger('stop.owl.autoplay')
-        })
-    </script>
-</body>
+
+            resultsBox.style.display = 'block';
+        } catch (error) {
+            console.error('Erreur AJAX villes :', error);
+        }
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!input.contains(e.target) && !resultsBox.contains(e.target)) {
+            resultsBox.innerHTML = '';
+            resultsBox.style.display = 'none';
+        }
+    });
+});
+</script>
+    {% endblock %}
+	</body>
 </html>
+
