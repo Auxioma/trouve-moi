@@ -19,29 +19,16 @@
 
 namespace App\Controller;
 
-use App\Dto\QuoteRequestDto;
-use App\Entity\Conversation;
-use App\Entity\ConversationParticipant;
-use App\Entity\Message;
-use App\Entity\User;
-use App\Form\QuoteRequestType;
-use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class CompanyController extends AbstractController
 {
-    public function __construct(
-        private readonly UserRepository $userRepository,
-    ) {
+    public function __construct() {
     }
 
-    #[Route('/entreprise', name: 'app_ask_quote')]
+    #[Route('/{category}/{city}/{slug}', name: 'deail_entreprise')]
     public function askQuote(): Response {
 
         return $this->render('entreprise/index.html.twig');

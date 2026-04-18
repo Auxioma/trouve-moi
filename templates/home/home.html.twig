@@ -111,7 +111,16 @@
                                 <div class="thumb-info">
                                     <span class="metier">{{ item.activity.name }}</span>
                                     <span class="service">QUALIBAT RGE</span>
-                                    <h2 class="nom-entreprise">{{ item.compagny }}</h2>
+                                    <h2 class="nom-entreprise">
+                                        <a href="{{ path('deail_entreprise', { 
+                                                            category: item.activity.slug, 
+                                                            city: item.city|slug|lower, 
+                                                            slug: item.slug 
+                                                  }) }}"
+                                        >
+                                           {{ item.compagny }}
+                                        </a>
+                                    </h2>
                                     <p class="description-ets">
                                         {{ item.description|u.truncate(100) }} ...
                                     </p>
