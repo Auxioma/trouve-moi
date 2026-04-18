@@ -12,7 +12,7 @@
     <section class="devis-page py-5">
         <div class="container">
             <div class="row g-4">
-                {% include '_partials/nav_bar_artisant.html.twig' %}
+                {{ include('_partials/nav_bar_artisant.html.twig') }}
 
                 <div class="col-xl-8">
                     <div class="devis-card">
@@ -51,7 +51,7 @@
                                     </p>
                                 </div>
 
-                                {{ form_start(formQuotePdf, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                                {{ form_start(formQuotePdf, { attr: { enctype: 'multipart/form-data' } }) }}
                                 <div class="row g-4">
                                     <div class="col-12">
                                         <div class="upload-box">
@@ -64,14 +64,14 @@
                                                 </div>
 
                                                 <div class="upload-input-wrapper">
-                                                    {{ form_widget(formQuotePdf.attachment, {'attr': {'class': 'upload-input', 'accept': 'application/pdf', 'required': 'required'}}) }}
+                                                    {{ form_widget(formQuotePdf.attachment, { attr: { class: 'upload-input', accept: 'application/pdf', required: 'required' } }) }}
 
                                                     <label for="quote_pdf_attachment" class="upload-label">
                                                         Sélectionner un fichier
                                                     </label>
                                                     <span class="upload-file-name" id="uploadFileName">
-														Aucun fichier sélectionné
-													</span>
+                                                        Aucun fichier sélectionné
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -79,32 +79,32 @@
 
                                     <div class="col-md-6">
                                         <label class="form-label-premium">Nom du client</label>
-                                        {{ form_widget(formQuotePdf.clientName, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Nom et prénom ou société', 'required': 'required'}}) }}
+                                        {{ form_widget(formQuotePdf.clientName, { attr: { class: 'form-control form-control-premium', placeholder: 'Nom et prénom ou société', required: 'required' } }) }}
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label-premium">Email du client</label>
-                                        {{ form_widget(formQuotePdf.clientEmail, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'client@email.com', 'required': 'required'}}) }}
+                                        {{ form_widget(formQuotePdf.clientEmail, { attr: { class: 'form-control form-control-premium', placeholder: 'client@email.com', required: 'required' } }) }}
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label-premium">Téléphone</label>
-                                        {{ form_widget(formQuotePdf.clientPhone, {'attr': {'class': 'form-control form-control-premium', 'placeholder': '+33 ...', 'required': 'required'}}) }}
+                                        {{ form_widget(formQuotePdf.clientPhone, { attr: { class: 'form-control form-control-premium', placeholder: '+33 ...', required: 'required' } }) }}
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label-premium">Référence devis</label>
-                                        {{ form_widget(formQuotePdf.reference, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'DEV-2026-001', 'required': 'required'}}) }}
+                                        {{ form_widget(formQuotePdf.reference, { attr: { class: 'form-control form-control-premium', placeholder: 'DEV-2026-001', required: 'required' } }) }}
                                     </div>
 
                                     <div class="col-12">
                                         <label class="form-label-premium">Objet du devis</label>
-                                        {{ form_widget(formQuotePdf.title, {'attr': {'class': 'form-control form-control-premium', 'placeholder': 'Objet du devis', 'required': 'required'}}) }}
+                                        {{ form_widget(formQuotePdf.title, { attr: { class: 'form-control form-control-premium', placeholder: 'Objet du devis', required: 'required' } }) }}
                                     </div>
 
                                     <div class="col-12">
                                         <label class="form-label-premium">Message complémentaire</label>
-                                        {{ form_widget(formQuotePdf.message, {'attr': {'class': 'form-control form-control-premium', 'rows': 5}}) }}
+                                        {{ form_widget(formQuotePdf.message, { attr: { class: 'form-control form-control-premium', rows: 5 } }) }}
                                     </div>
 
                                     <div class="col-12">
@@ -127,7 +127,7 @@
                                     </p>
                                 </div>
 
-                                <form method="post" action="{{ path('app_user_quote_create_pdf_post', {'id': conversation.id}) }}">
+                                <form method="post" action="{{ path('app_user_quote_create_pdf_post', { id: conversation.id }) }}">
                                     <div class="row g-4">
 
                                         <div class="col-12">
@@ -332,9 +332,9 @@
                 </div>
 
                 <div class="modal-footer justify-content-between">
-				<span class="text-muted small">
-					Ajoutez vos lignes une par une, puis fermez la fenêtre quand vous avez terminé.
-				</span>
+                <span class="text-muted small">
+                    Ajoutez vos lignes une par une, puis fermez la fenêtre quand vous avez terminé.
+                </span>
                     <button type="button" class="btn devis-secondary-btn" data-bs-dismiss="modal">
                         Terminer
                     </button>
@@ -487,12 +487,12 @@
 
                     if (quoteLines.length === 0) {
                         quoteLinesTableBody.innerHTML = `
-					<tr>
-						<td colspan="8" class="text-center text-muted py-4">
-							Aucune ligne de prestation ajoutée.
-						</td>
-					</tr>
-				`;
+                    <tr>
+                        <td colspan="8" class="text-center text-muted py-4">
+                            Aucune ligne de prestation ajoutée.
+                        </td>
+                    </tr>
+                `;
                         renderHiddenInputs();
                         updateTotals();
                         return;
@@ -505,19 +505,19 @@
 
                         const row = document.createElement('tr');
                         row.innerHTML = `
-					<td>${index + 1}</td>
-					<td><strong>${escapeHtml(line.label)}</strong></td>
-					<td>${escapeHtml(line.quantity)}</td>
-					<td>${escapeHtml(line.unit || '—')}</td>
-					<td>${escapeHtml(line.tva)}%</td>
-					<td>${formatNumber(price)} €</td>
-					<td>${formatNumber(totalHt)} €</td>
-					<td class="text-end">
-						<button type="button" class="btn btn-sm btn-outline-danger delete-line-btn" data-index="${index}">
-							Supprimer
-						</button>
-					</td>
-				`;
+                    <td>${index + 1}</td>
+                    <td><strong>${escapeHtml(line.label)}</strong></td>
+                    <td>${escapeHtml(line.quantity)}</td>
+                    <td>${escapeHtml(line.unit || '—')}</td>
+                    <td>${escapeHtml(line.tva)}%</td>
+                    <td>${formatNumber(price)} €</td>
+                    <td>${formatNumber(totalHt)} €</td>
+                    <td class="text-end">
+                        <button type="button" class="btn btn-sm btn-outline-danger delete-line-btn" data-index="${index}">
+                            Supprimer
+                        </button>
+                    </td>
+                `;
 
                         quoteLinesTableBody.appendChild(row);
                     });

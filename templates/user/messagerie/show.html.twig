@@ -12,7 +12,7 @@
     <section class="messagerie-page py-5">
         <div class="container">
             <div class="row g-4">
-                {% include '_partials/nav_bar_artisant.html.twig' %}
+                {{ include('_partials/nav_bar_artisant.html.twig') }}
 
                 <div class="col-xl-8">
                     <div class="messagerie-layout">
@@ -39,8 +39,8 @@
                                                         <img src="{{ asset('uploads/users/' ~ currentDiscussion.user.logo) }}">
                                                     {% elseif currentDiscussion %}
                                                         <span>
-														{{ currentDiscussion.user.firstName|default('U')|slice(0, 1)|upper }}
-													</span>
+                                                        {{ currentDiscussion.user.firstName|default('U')|slice(0, 1)|upper }}
+                                                    </span>
                                                     {% else %}
                                                         <span>U</span>
                                                     {% endif %}
@@ -66,7 +66,7 @@
                                             </div>
 
                                             <div class="artisan-message-show-actions">
-                                                <a href="{{ path('app_user_quote_create_quote', {id: conversation.id } ) }}" class="artisan-message-show-btn-devis">
+                                                <a href="{{ path('app_user_quote_create_quote', { id: conversation.id }) }}" class="artisan-message-show-btn-devis">
                                                     Créer un devis
                                                 </a>
                                             </div>
@@ -79,11 +79,11 @@
                                             <div class="artisan-message-show-row {{ message.sender.id == app.user.id ? 'is-me' : 'is-other' }}">
                                                 <div class="artisan-message-show-bubble">
                                                     <p class="artisan-message-show-text mb-1">
-                                                        {{ message.content|replace({"\n": "<br>"})|raw }}
+                                                        {{ message.content|replace({ '\n': '<br>' })|raw }}
                                                     </p>
                                                     <span class="artisan-message-show-date">
-													{{ message.createdAt|date('d/m/Y H:i') }}
-												</span>
+                                                    {{ message.createdAt|date('d/m/Y H:i') }}
+                                                </span>
                                                 </div>
                                             </div>
                                         {% else %}
@@ -97,7 +97,7 @@
 
                                     <div class="artisan-message-show-footer">
                                         <form method="post" class="artisan-message-show-form">
-										<textarea
+                                        <textarea
                                             name="content"
                                             class="artisan-message-show-textarea"
                                             rows="2"

@@ -12,15 +12,15 @@
     <section class="properties-detail bg-white p-100">
         <div class="container">
             <div class="row g-4">
-                {% include '_partials/nav_bar_artisant.html.twig' %}
+                {{ include('_partials/nav_bar_artisant.html.twig') }}
 
                 <div class="col-xl-8">
                     {{ form_start(form, {
                         attr: {
                             class: 'artisan-form-page',
                             'data-controller': 'profile-services',
-                            'data-profile-services-url-value': path('ajax_services_by_activity', { id: '__ID__' })
-                        }
+                            'data-profile-services-url-value': path('ajax_services_by_activity', { id: '__ID__' }),
+                        },
                     }) }}
 
                     <div class="house-detail mb-4">

@@ -112,10 +112,10 @@
                                     <span class="metier">{{ item.activity.name }}</span>
                                     <span class="service">QUALIBAT RGE</span>
                                     <h2 class="nom-entreprise">
-                                        <a href="{{ path('deail_entreprise', { 
-                                                            category: item.activity.slug, 
-                                                            city: item.city|slug|lower, 
-                                                            slug: item.slug 
+                                        <a href="{{ path('deail_entreprise', {
+                                                            category: item.activity.slug,
+                                                            city: item.city|slug|lower,
+                                                            slug: item.slug,
                                                   }) }}"
                                         >
                                            {{ item.compagny }}
@@ -176,7 +176,7 @@
                                     </div>
                                 </div>
                             </div>
-                        {% endfor %}                        
+                        {% endfor %}
                     </div>
                 </div>
 
@@ -207,7 +207,7 @@
                                     </div>
                                 </div>
                             </div>
-                        {% endfor %}  
+                        {% endfor %}
                     </div>
                 </div>
             </div>

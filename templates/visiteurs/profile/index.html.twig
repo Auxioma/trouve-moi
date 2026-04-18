@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row g-4">
 
-                {% include '_partials/nav_bar_visiteur.html.twig' %}
+                {{ include('_partials/nav_bar_visiteur.html.twig') }}
 
                 <div class="col-xl-8 col-lg-8">
                     <div class="profile-lux-layout">
@@ -46,8 +46,8 @@
 
                                 {{ form_start(form, {
                                     attr: {
-                                        class: 'profile-lux-form'
-                                    }
+                                        class: 'profile-lux-form',
+                                    },
                                 }) }}
 
                                     <div class="profile-lux-section">

@@ -4,243 +4,243 @@
 
 {% block body %}
 <section class="dashboard-lux-banner">
-	<div class="container">
-		<div class="dashboard-lux-banner-content">
-			<div class="dashboard-lux-banner-text">
-				<span class="dashboard-lux-kicker">Espace personnel</span>
-				<h1>Bienvenue sur votre tableau de bord</h1>
-				<p>
-					Retrouvez vos échanges, le suivi de vos demandes, vos informations personnelles et toutes vos actions importantes depuis une interface claire, élégante et haut de gamme.
-				</p>
-			</div>
+    <div class="container">
+        <div class="dashboard-lux-banner-content">
+            <div class="dashboard-lux-banner-text">
+                <span class="dashboard-lux-kicker">Espace personnel</span>
+                <h1>Bienvenue sur votre tableau de bord</h1>
+                <p>
+                    Retrouvez vos échanges, le suivi de vos demandes, vos informations personnelles et toutes vos actions importantes depuis une interface claire, élégante et haut de gamme.
+                </p>
+            </div>
 
-			<div class="dashboard-lux-banner-actions">
-				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary">Accéder à la messagerie</a>
-				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline">Mettre à jour mon profil</a>
-			</div>
-		</div>
-	</div>
+            <div class="dashboard-lux-banner-actions">
+                <a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary">Accéder à la messagerie</a>
+                <a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline">Mettre à jour mon profil</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="dashboard-lux-page">
-	<div class="container">
-		<div class="row g-4">
+    <div class="container">
+        <div class="row g-4">
 
-			{% include '_partials/nav_bar_visiteur.html.twig' %}
+            {{ include('_partials/nav_bar_visiteur.html.twig') }}
 
-			<div class="col-xl-9 col-lg-8">
-				<div class="dashboard-lux-main">
+            <div class="col-xl-9 col-lg-8">
+                <div class="dashboard-lux-main">
 
-					<section class="dashboard-lux-intro-card">
-						<div class="dashboard-lux-intro-text">
-							<span class="dashboard-lux-kicker">Vue d’ensemble</span>
-							<h2>Un espace conçu pour une gestion simple et fluide</h2>
-							<p>
-								Accédez rapidement à vos informations clés, suivez vos projets en cours et gardez le contrôle sur l’ensemble de votre activité depuis une interface pensée pour la clarté et l’efficacité.
-							</p>
-						</div>
+                    <section class="dashboard-lux-intro-card">
+                        <div class="dashboard-lux-intro-text">
+                            <span class="dashboard-lux-kicker">Vue d’ensemble</span>
+                            <h2>Un espace conçu pour une gestion simple et fluide</h2>
+                            <p>
+                                Accédez rapidement à vos informations clés, suivez vos projets en cours et gardez le contrôle sur l’ensemble de votre activité depuis une interface pensée pour la clarté et l’efficacité.
+                            </p>
+                        </div>
 
-						<div class="dashboard-lux-completion-card">
-							<div class="dashboard-lux-completion-top">
-								<span>Complétion du profil</span>
-								<strong>82%</strong>
-							</div>
-							<div class="dashboard-lux-progress">
-								<div class="dashboard-lux-progress-bar" style="width: 82%;"></div>
-							</div>
-							<a href="#" class="dashboard-lux-inline-link">Finaliser mon profil</a>
-						</div>
-					</section>
+                        <div class="dashboard-lux-completion-card">
+                            <div class="dashboard-lux-completion-top">
+                                <span>Complétion du profil</span>
+                                <strong>82%</strong>
+                            </div>
+                            <div class="dashboard-lux-progress">
+                                <div class="dashboard-lux-progress-bar" style="width: 82%;"></div>
+                            </div>
+                            <a href="#" class="dashboard-lux-inline-link">Finaliser mon profil</a>
+                        </div>
+                    </section>
 
-					<section class="dashboard-lux-stats">
-						<div class="dashboard-lux-stat-card">
-							<span class="dashboard-lux-stat-label">Messages</span>
-							<h3>12</h3>
-							<p>Conversations actives actuellement disponibles.</p>
-						</div>
+                    <section class="dashboard-lux-stats">
+                        <div class="dashboard-lux-stat-card">
+                            <span class="dashboard-lux-stat-label">Messages</span>
+                            <h3>12</h3>
+                            <p>Conversations actives actuellement disponibles.</p>
+                        </div>
 
-						<div class="dashboard-lux-stat-card">
-							<span class="dashboard-lux-stat-label">Demandes</span>
-							<h3>05</h3>
-							<p>Demandes et projets en cours de traitement.</p>
-						</div>
+                        <div class="dashboard-lux-stat-card">
+                            <span class="dashboard-lux-stat-label">Demandes</span>
+                            <h3>05</h3>
+                            <p>Demandes et projets en cours de traitement.</p>
+                        </div>
 
-						<div class="dashboard-lux-stat-card">
-							<span class="dashboard-lux-stat-label">Projets validés</span>
-							<h3>08</h3>
-							<p>Dossiers confirmés et finalisés avec succès.</p>
-						</div>
+                        <div class="dashboard-lux-stat-card">
+                            <span class="dashboard-lux-stat-label">Projets validés</span>
+                            <h3>08</h3>
+                            <p>Dossiers confirmés et finalisés avec succès.</p>
+                        </div>
 
-						<div class="dashboard-lux-stat-card">
-							<span class="dashboard-lux-stat-label">Avis reçus</span>
-							<h3>14</h3>
-							<p>Évaluations déposées sur votre activité.</p>
-						</div>
-					</section>
+                        <div class="dashboard-lux-stat-card">
+                            <span class="dashboard-lux-stat-label">Avis reçus</span>
+                            <h3>14</h3>
+                            <p>Évaluations déposées sur votre activité.</p>
+                        </div>
+                    </section>
 
-					<div class="row g-4">
-						<div class="col-lg-7">
-							<section class="dashboard-lux-panel">
-								<div class="dashboard-lux-panel-head">
-									<div>
-										<span class="dashboard-lux-kicker">Activité récente</span>
-										<h3>Derniers échanges</h3>
-									</div>
-									<a href="#" class="dashboard-lux-panel-link">Voir tout</a>
-								</div>
+                    <div class="row g-4">
+                        <div class="col-lg-7">
+                            <section class="dashboard-lux-panel">
+                                <div class="dashboard-lux-panel-head">
+                                    <div>
+                                        <span class="dashboard-lux-kicker">Activité récente</span>
+                                        <h3>Derniers échanges</h3>
+                                    </div>
+                                    <a href="#" class="dashboard-lux-panel-link">Voir tout</a>
+                                </div>
 
-								<div class="dashboard-lux-panel-body">
-									<a href="#" class="dashboard-lux-message-card">
-										<div class="dashboard-lux-message-avatar">
-											<img src="https://placehold.co/58x58" alt="Utilisateur">
-										</div>
-										<div class="dashboard-lux-message-content">
-											<div class="dashboard-lux-message-head">
-												<h4>Marie Laurent</h4>
-												<span>12 mars 2026</span>
-											</div>
-											<p>Bonjour, nous avons bien reçu votre demande et revenons vers vous avec une proposition détaillée dans les meilleurs délais.</p>
-										</div>
-									</a>
+                                <div class="dashboard-lux-panel-body">
+                                    <a href="#" class="dashboard-lux-message-card">
+                                        <div class="dashboard-lux-message-avatar">
+                                            <img src="https://placehold.co/58x58" alt="Utilisateur">
+                                        </div>
+                                        <div class="dashboard-lux-message-content">
+                                            <div class="dashboard-lux-message-head">
+                                                <h4>Marie Laurent</h4>
+                                                <span>12 mars 2026</span>
+                                            </div>
+                                            <p>Bonjour, nous avons bien reçu votre demande et revenons vers vous avec une proposition détaillée dans les meilleurs délais.</p>
+                                        </div>
+                                    </a>
 
-									<a href="#" class="dashboard-lux-message-card">
-										<div class="dashboard-lux-message-avatar">
-											<img src="https://placehold.co/58x58" alt="Utilisateur">
-										</div>
-										<div class="dashboard-lux-message-content">
-											<div class="dashboard-lux-message-head">
-												<h4>Thomas Bernard</h4>
-												<span>10 mars 2026</span>
-											</div>
-											<p>Merci pour votre retour. Votre dossier est bien pris en compte et nous restons disponibles pour tout complément.</p>
-										</div>
-									</a>
+                                    <a href="#" class="dashboard-lux-message-card">
+                                        <div class="dashboard-lux-message-avatar">
+                                            <img src="https://placehold.co/58x58" alt="Utilisateur">
+                                        </div>
+                                        <div class="dashboard-lux-message-content">
+                                            <div class="dashboard-lux-message-head">
+                                                <h4>Thomas Bernard</h4>
+                                                <span>10 mars 2026</span>
+                                            </div>
+                                            <p>Merci pour votre retour. Votre dossier est bien pris en compte et nous restons disponibles pour tout complément.</p>
+                                        </div>
+                                    </a>
 
-									<a href="#" class="dashboard-lux-message-card">
-										<div class="dashboard-lux-message-avatar">
-											<img src="https://placehold.co/58x58" alt="Utilisateur">
-										</div>
-										<div class="dashboard-lux-message-content">
-											<div class="dashboard-lux-message-head">
-												<h4>Sophie Martin</h4>
-												<span>08 mars 2026</span>
-											</div>
-											<p>Votre projet est en cours d’étude. Une nouvelle mise à jour sera disponible très prochainement depuis votre espace personnel.</p>
-										</div>
-									</a>
-								</div>
-							</section>
-						</div>
+                                    <a href="#" class="dashboard-lux-message-card">
+                                        <div class="dashboard-lux-message-avatar">
+                                            <img src="https://placehold.co/58x58" alt="Utilisateur">
+                                        </div>
+                                        <div class="dashboard-lux-message-content">
+                                            <div class="dashboard-lux-message-head">
+                                                <h4>Sophie Martin</h4>
+                                                <span>08 mars 2026</span>
+                                            </div>
+                                            <p>Votre projet est en cours d’étude. Une nouvelle mise à jour sera disponible très prochainement depuis votre espace personnel.</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </section>
+                        </div>
 
-						<div class="col-lg-5">
-							<section class="dashboard-lux-panel">
-								<div class="dashboard-lux-panel-head">
-									<div>
-										<span class="dashboard-lux-kicker">Accès rapide</span>
-										<h3>Actions principales</h3>
-									</div>
-								</div>
+                        <div class="col-lg-5">
+                            <section class="dashboard-lux-panel">
+                                <div class="dashboard-lux-panel-head">
+                                    <div>
+                                        <span class="dashboard-lux-kicker">Accès rapide</span>
+                                        <h3>Actions principales</h3>
+                                    </div>
+                                </div>
 
-								<div class="dashboard-lux-panel-body">
-									<div class="dashboard-lux-action-list">
-										<a href="#" class="dashboard-lux-action-card">
-											<div>
-												<h4>Consulter la messagerie</h4>
-												<p>Retrouver toutes vos conversations et réponses récentes.</p>
-											</div>
-											<span>→</span>
-										</a>
+                                <div class="dashboard-lux-panel-body">
+                                    <div class="dashboard-lux-action-list">
+                                        <a href="#" class="dashboard-lux-action-card">
+                                            <div>
+                                                <h4>Consulter la messagerie</h4>
+                                                <p>Retrouver toutes vos conversations et réponses récentes.</p>
+                                            </div>
+                                            <span>→</span>
+                                        </a>
 
-										<a href="#" class="dashboard-lux-action-card">
-											<div>
-												<h4>Suivre mes demandes</h4>
-												<p>Accéder à l’évolution de vos dossiers et projets en cours.</p>
-											</div>
-											<span>→</span>
-										</a>
+                                        <a href="#" class="dashboard-lux-action-card">
+                                            <div>
+                                                <h4>Suivre mes demandes</h4>
+                                                <p>Accéder à l’évolution de vos dossiers et projets en cours.</p>
+                                            </div>
+                                            <span>→</span>
+                                        </a>
 
-										<a href="#" class="dashboard-lux-action-card">
-											<div>
-												<h4>Modifier mon profil</h4>
-												<p>Mettre à jour vos informations personnelles et votre présentation.</p>
-											</div>
-											<span>→</span>
-										</a>
+                                        <a href="#" class="dashboard-lux-action-card">
+                                            <div>
+                                                <h4>Modifier mon profil</h4>
+                                                <p>Mettre à jour vos informations personnelles et votre présentation.</p>
+                                            </div>
+                                            <span>→</span>
+                                        </a>
 
-										<a href="#" class="dashboard-lux-action-card">
-											<div>
-												<h4>Gérer les paramètres</h4>
-												<p>Configurer vos préférences et sécuriser votre compte.</p>
-											</div>
-											<span>→</span>
-										</a>
-									</div>
-								</div>
-							</section>
-						</div>
-					</div>
+                                        <a href="#" class="dashboard-lux-action-card">
+                                            <div>
+                                                <h4>Gérer les paramètres</h4>
+                                                <p>Configurer vos préférences et sécuriser votre compte.</p>
+                                            </div>
+                                            <span>→</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
 
-					<section class="dashboard-lux-panel">
-						<div class="dashboard-lux-panel-head">
-							<div>
-								<span class="dashboard-lux-kicker">Suivi</span>
-								<h3>Mes demandes récentes</h3>
-							</div>
-							<a href="#" class="dashboard-lux-panel-link">Voir tout</a>
-						</div>
+                    <section class="dashboard-lux-panel">
+                        <div class="dashboard-lux-panel-head">
+                            <div>
+                                <span class="dashboard-lux-kicker">Suivi</span>
+                                <h3>Mes demandes récentes</h3>
+                            </div>
+                            <a href="#" class="dashboard-lux-panel-link">Voir tout</a>
+                        </div>
 
-						<div class="dashboard-lux-panel-body dashboard-lux-table-wrap">
-							<div class="table-responsive">
-								<table class="table dashboard-lux-table mb-0">
-									<thead>
-										<tr>
-											<th>Projet</th>
-											<th>Catégorie</th>
-											<th>Statut</th>
-											<th>Date</th>
-											<th class="text-end">Détail</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Rénovation salle de bain</td>
-											<td>Rénovation</td>
-											<td><span class="dashboard-lux-badge dashboard-lux-badge-pending">En attente</span></td>
-											<td>11/03/2026</td>
-											<td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
-										</tr>
-										<tr>
-											<td>Peinture intérieure</td>
-											<td>Travaux</td>
-											<td><span class="dashboard-lux-badge dashboard-lux-badge-progress">En cours</span></td>
-											<td>09/03/2026</td>
-											<td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
-										</tr>
-										<tr>
-											<td>Pose de carrelage</td>
-											<td>Aménagement</td>
-											<td><span class="dashboard-lux-badge dashboard-lux-badge-valid">Validé</span></td>
-											<td>05/03/2026</td>
-											<td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
-										</tr>
-										<tr>
-											<td>Installation électrique</td>
-											<td>Électricité</td>
-											<td><span class="dashboard-lux-badge dashboard-lux-badge-cancel">Annulé</span></td>
-											<td>28/02/2026</td>
-											<td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</section>
+                        <div class="dashboard-lux-panel-body dashboard-lux-table-wrap">
+                            <div class="table-responsive">
+                                <table class="table dashboard-lux-table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Projet</th>
+                                            <th>Catégorie</th>
+                                            <th>Statut</th>
+                                            <th>Date</th>
+                                            <th class="text-end">Détail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Rénovation salle de bain</td>
+                                            <td>Rénovation</td>
+                                            <td><span class="dashboard-lux-badge dashboard-lux-badge-pending">En attente</span></td>
+                                            <td>11/03/2026</td>
+                                            <td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Peinture intérieure</td>
+                                            <td>Travaux</td>
+                                            <td><span class="dashboard-lux-badge dashboard-lux-badge-progress">En cours</span></td>
+                                            <td>09/03/2026</td>
+                                            <td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pose de carrelage</td>
+                                            <td>Aménagement</td>
+                                            <td><span class="dashboard-lux-badge dashboard-lux-badge-valid">Validé</span></td>
+                                            <td>05/03/2026</td>
+                                            <td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Installation électrique</td>
+                                            <td>Électricité</td>
+                                            <td><span class="dashboard-lux-badge dashboard-lux-badge-cancel">Annulé</span></td>
+                                            <td>28/02/2026</td>
+                                            <td class="text-end"><a href="#" class="dashboard-lux-table-link">Voir</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </section>
 
 <style>

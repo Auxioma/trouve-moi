@@ -25,13 +25,13 @@
                                 </div>
 
                                 <div class="billing-toggle-wrap">
-								<span
+                                <span
                                     class="billing-label billing-label-monthly active"
                                     data-billing-toggle-target="monthlyLabel"
                                     data-action="click->billing-toggle#setMonthly"
                                 >
-									Mensuel
-								</span>
+                                    Mensuel
+                                </span>
 
                                     <button
                                         type="button"
@@ -48,9 +48,9 @@
                                         data-billing-toggle-target="yearlyLabel"
                                         data-action="click->billing-toggle#setYearly"
                                     >
-									Annuel
-									<span class="billing-save">Économisez</span>
-								</span>
+                                    Annuel
+                                    <span class="billing-save">Économisez</span>
+                                </span>
                                 </div>
                             </div>
                         </div>
@@ -76,8 +76,8 @@
                                             {% endif %}
 
                                             <div class="pack-top">
-											<span class="pack-label {{ isFeatured ? 'pack-label-featured' : '' }}">
-												{% if plan.code == 'free' %}
+                                            <span class="pack-label {{ isFeatured ? 'pack-label-featured' : '' }}">
+                                                {% if plan.code == 'free' %}
                                                     Découverte
                                                 {% elseif plan.code == 'pro' %}
                                                     Recommandé
@@ -86,7 +86,7 @@
                                                 {% else %}
                                                     Offre
                                                 {% endif %}
-											</span>
+                                            </span>
 
                                                 <h4 class="pack-name">{{ plan.name }}</h4>
 
@@ -104,18 +104,18 @@
 
                                                 <div class="pack-price-block">
                                                     <div class="pack-price">
-													<span class="price-value monthly-price" data-billing-toggle-target="monthlyPrice">
-														{{ plan.priceMonthly|number_format(0, ',', ' ') }}€
-													</span>
+                                                    <span class="price-value monthly-price" data-billing-toggle-target="monthlyPrice">
+                                                        {{ plan.priceMonthly|number_format(0, ',', ' ') }}€
+                                                    </span>
 
                                                         {% if hasYearly %}
                                                             <span class="price-value yearly-price d-none" data-billing-toggle-target="yearlyPrice">
-															{{ (plan.priceYearly / 12)|number_format(0, ',', ' ') }}€
-														</span>
+                                                            {{ (plan.priceYearly / 12)|number_format(0, ',', ' ') }}€
+                                                        </span>
                                                         {% else %}
                                                             <span class="price-value yearly-price d-none" data-billing-toggle-target="yearlyPrice">
-															{{ plan.priceMonthly|number_format(0, ',', ' ') }}€
-														</span>
+                                                            {{ plan.priceMonthly|number_format(0, ',', ' ') }}€
+                                                        </span>
                                                         {% endif %}
 
                                                         <span class="price-period monthly-period" data-billing-toggle-target="monthlyPeriod">/mois</span>
@@ -132,8 +132,8 @@
                                                                 Facturé {{ plan.priceYearly|number_format(0, ',', ' ') }}€ /an
                                                                 {% if yearlySavings > 0 %}
                                                                     <span class="pack-saving">
-																	Économie de {{ yearlySavings|number_format(0, ',', ' ') }}€
-																</span>
+                                                                    Économie de {{ yearlySavings|number_format(0, ',', ' ') }}€
+                                                                </span>
                                                                 {% endif %}
                                                             {% else %}
                                                                 Formule annuelle indisponible pour cette offre

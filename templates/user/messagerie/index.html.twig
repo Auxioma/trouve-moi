@@ -12,7 +12,7 @@
     <section class="messagerie-page py-5">
         <div class="container">
             <div class="row g-4">
-                {% include '_partials/nav_bar_artisant.html.twig' %}
+                {{ include('_partials/nav_bar_artisant.html.twig') }}
 
                 <div class="col-xl-8">
                     <div class="messagerie-card">
@@ -40,8 +40,8 @@
                                                 >
                                             {% else %}
                                                 <span>
-												{{ discussion.user.firstName|default('U')|slice(0, 1)|upper }}
-											</span>
+                                                {{ discussion.user.firstName|default('U')|slice(0, 1)|upper }}
+                                            </span>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -49,23 +49,23 @@
                                     <div class="artisan-message-list-main">
                                         <div class="artisan-message-list-topline">
                                             <p class="artisan-message-list-title">
-											<span class="artisan-message-list-user-name">
-												{{ discussion.user.firstName|default('') }} {{ discussion.user.lastName|default('') }}
-											</span>
+                                            <span class="artisan-message-list-user-name">
+                                                {{ discussion.user.firstName|default('') }} {{ discussion.user.lastName|default('') }}
+                                            </span>
 
                                                 {% if discussion.conversation.title is defined and discussion.conversation.title %}
                                                     <span class="artisan-message-list-separator">•</span>
                                                     <span class="artisan-message-list-project-title">
-													{{ discussion.conversation.title }}
-												</span>
+                                                    {{ discussion.conversation.title }}
+                                                </span>
                                                 {% endif %}
                                             </p>
 
                                             <span class="artisan-message-list-date">
-											{% if discussion.lastMessage and discussion.lastMessage.createdAt %}
+                                            {% if discussion.lastMessage and discussion.lastMessage.createdAt %}
                                                 {{ discussion.lastMessage.createdAt|date('d M') }}
                                             {% endif %}
-										</span>
+                                        </span>
                                         </div>
 
                                         <div class="artisan-message-list-bottomline">

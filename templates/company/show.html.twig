@@ -4,369 +4,366 @@
 {% endblock %}
 
 {% block body %}
-	<!-- inner banner Area start -->
-	<section class="inner-banner">
-		<div class="container">
-			<h2>Property Details</h2>
-		</div>
-	</section>
-	<!-- inner banner Area end -->
+    <!-- inner banner Area start -->
+    <section class="inner-banner">
+        <div class="container">
+            <h2>Property Details</h2>
+        </div>
+    </section>
+    <!-- inner banner Area end -->
 
-	<!-- properties detail Area start -->
-	<section class="properties-detail bg-white p-100">
-		<div class="container">
-			<div class="row">
-				<div class="col-8">
-					<div class="d-flex align-items-center gap-3">
-						{% set logo = item.imageName
-							? vich_uploader_asset(item, 'imageFile')
-							: asset('images/resource/user.png')
-						%}
+    <!-- properties detail Area start -->
+    <section class="properties-detail bg-white p-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <div class="d-flex align-items-center gap-3">
+                        {% set logo = item.imageName
+                            ? vich_uploader_asset(item, 'imageFile')
+                            : asset('images/resource/user.png')
+                        %}
 
-						<img
-							src="{{ logo }}"
-							alt="{{ item.compagny ?: 'Logo utilisateur' }}"
-							class="rounded-circle"
-							height="128"
-							width="128"
-						>
-						<div>
-							<h2 class="mb-1 titre-compagny">{{ item.compagny }}</h2>
-							<p class="mb-0 city-compagny"> <i class="fas-solid fa-map-pin"></i> {{ item.city }}, France</p>
-						</div>
-					</div>
+                        <img
+                            src="{{ logo }}"
+                            alt="{{ item.compagny ?: 'Logo utilisateur' }}"
+                            class="rounded-circle"
+                            height="128"
+                            width="128"
+                        >
+                        <div>
+                            <h2 class="mb-1 titre-compagny">{{ item.compagny }}</h2>
+                            <p class="mb-0 city-compagny"> <i class="fas-solid fa-map-pin"></i> {{ item.city }}, France</p>
+                        </div>
+                    </div>
 
-					<h3 class="mt-3 titre-services">{{ item.services|first.name }}</h3>
-					<p class="paragraphe-service">{{ item.description }}</p>
-					<ul class="service-link my-5">
-						{% for service in item.services %}
-							<li>
-								<a href="#">
-									{{ service.name }}
-								</a>	
-							</li>
-						{% endfor %}
-					</ul>
-				</div>
-				<div class="col-3">
-					<div class="text-center">
-						<a class="block-avis" href="">
-							<div class="">
-								<div>
-									<span class="note">
-									{% set total = 0 %}
-									{% set count = item.receivedTestimonials|length %}
+                    <h3 class="mt-3 titre-services">{{ item.services|first.name }}</h3>
+                    <p class="paragraphe-service">{{ item.description }}</p>
+                    <ul class="service-link my-5">
+                        {% for service in item.services %}
+                            <li>
+                                <a href="#">
+                                    {{ service.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <div class="text-center">
+                        <a class="block-avis" href="">
+                            <div class="">
+                                <div>
+                                    <span class="note">
+                                    {% set total = 0 %}
+                                    {% set count = item.receivedTestimonials|length %}
 
-									{% for testimonial in item.receivedTestimonials %}
-										{% set total = total + testimonial.review %}
-									{% endfor %}
+                                    {% for testimonial in item.receivedTestimonials %}
+                                        {% set total = total + testimonial.review %}
+                                    {% endfor %}
 
-									{% if count > 0 %}
-										{% set average = total / count %}
-										{{ average|number_format(1, ',', ' ') }}
-									{% else %}
-										0
-									{% endif %}
-									</span>
-									<span class="sur-cinq">/5</span>
-								</div>
-								<div class="text-center mt-3">
-									<span class="m-0">
-										<span class="relative-etoile">	
-										{% set total = 0 %}
-										{% set count = item.receivedTestimonials|length %}
+                                    {% if count > 0 %}
+                                        {% set average = total / count %}
+                                        {{ average|number_format(1, ',', ' ') }}
+                                    {% else %}
+                                        0
+                                    {% endif %}
+                                    </span>
+                                    <span class="sur-cinq">/5</span>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <span class="m-0">
+                                        <span class="relative-etoile">
+                                        {% set total = 0 %}
+                                        {% set count = item.receivedTestimonials|length %}
 
-										{% for testimonial in item.receivedTestimonials %}
-											{% set total = total + testimonial.review %}
-										{% endfor %}
+                                        {% for testimonial in item.receivedTestimonials %}
+                                            {% set total = total + testimonial.review %}
+                                        {% endfor %}
 
-										{% set average = count > 0 ? (total / count) : 0 %}
+                                        {% set average = count > 0 ? (total / count) : 0 %}
 
-											{% for i in 1..5 %}
-												{% if i <= average %}
-													<!-- étoile pleine -->
-													<svg width="16" height="16" viewBox="0 0 640 640" fill="#FFC107">
-														<path d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z"/>
-													</svg>
-												{% else %}
-													<!-- étoile vide -->
-													<svg width="16" height="16" viewBox="0 0 640 640" fill="#E0E0E0">
-														<path d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z"/>
-													</svg>
-												{% endif %}
-											{% endfor %}
-										</span>
-									</span>
-								</div>
-								<div class="">
-									{% if item.receivedTestimonials|length > 0 %}
-										{{ item.receivedTestimonials|length }} avis
-									{% else %}
-										Aucun avis
-									{% endif %}
-								</div>
-							</div>
-						</a>
-						<div class="recevoir-devis mt-5">
-							<a href="{{ path('app_ask_quote', {
-							codePostal: item.postalCode,
-							ville: item.city|lower|replace({' ': '-'}),
-							slug: item.slug
-						}) }}">Recevoir un devis</a>
-						</div>
-						<div class="derniere-connexion mt-4 d-flex justify-content-center align-items-center">
-							<span class="pins-connection mr-2"></span>
-							<span class="temps-connexion m-0">
-								dernière connection: 
-								{% if item.lastLogin %}
-									{% set diff = date().timestamp - item.lastLogin.timestamp %}
+                                            {% for i in 1..5 %}
+                                                {% if i <= average %}
+                                                    <!-- étoile pleine -->
+                                                    <svg width="16" height="16" viewBox="0 0 640 640" fill="#FFC107">
+                                                        <path d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z"/>
+                                                    </svg>
+                                                {% else %}
+                                                    <!-- étoile vide -->
+                                                    <svg width="16" height="16" viewBox="0 0 640 640" fill="#E0E0E0">
+                                                        <path d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z"/>
+                                                    </svg>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="">
+                                    {% if item.receivedTestimonials|length > 0 %}
+                                        {{ item.receivedTestimonials|length }} avis
+                                    {% else %}
+                                        Aucun avis
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                        <div class="recevoir-devis mt-5">
+                            <a href="{{ path('app_ask_quote', {
+                            codePostal: item.postalCode,
+                            ville: item.city|lower|replace({ ' ': '-' }),
+                            slug: item.slug,
+                        }) }}">Recevoir un devis</a>
+                        </div>
+                        <div class="derniere-connexion mt-4 d-flex justify-content-center align-items-center">
+                            <span class="pins-connection mr-2"></span>
+                            <span class="temps-connexion m-0">
+                                dernière connection:
+                                {% if item.lastLogin %}
+                                    {% set diff = date().timestamp - item.lastLogin.timestamp %}
 
-									{% if diff < 3600 %}
-										Il y a {{ (diff / 60)|round(0, 'floor') }} min
+                                    {% if diff < 3600 %}
+                                        Il y a {{ (diff / 60)|round(0, 'floor') }} min
 
-									{% elseif diff < 86400 %}
-										Il y a {{ (diff / 3600)|round(0, 'floor') }} h
+                                    {% elseif diff < 86400 %}
+                                        Il y a {{ (diff / 3600)|round(0, 'floor') }} h
 
-									{% elseif diff < 2592000 %}
-										Il y a {{ (diff / 86400)|round(0, 'floor') }} jours
+                                    {% elseif diff < 2592000 %}
+                                        Il y a {{ (diff / 86400)|round(0, 'floor') }} jours
 
-									{% elseif diff < 31536000 %}
-										Il y a {{ (diff / 2592000)|round(0, 'floor') }} mois
+                                    {% elseif diff < 31536000 %}
+                                        Il y a {{ (diff / 2592000)|round(0, 'floor') }} mois
 
-									{% else %}
-										Il y a {{ (diff / 31536000)|round(0, 'floor') }} ans
-									{% endif %}
-								{% else %}
-									jamais
-								{% endif %}
-							</span>
-						</div>
-					</div>
+                                    {% else %}
+                                        Il y a {{ (diff / 31536000)|round(0, 'floor') }} ans
+                                    {% endif %}
+                                {% else %}
+                                    jamais
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
 
-				</div>
-				<div class="col-12"></div>
+                </div>
+                <div class="col-12"></div>
 
-			</div>
-			<div class="row">
+            </div>
+            <div class="row">
 
-				<div class="col-xl-8">
+                <div class="col-xl-8">
 
+                    <div class="tab-pane fade show active" id="home">
+                        <div class="house-detail">
+                            <h2 class="mb-16">À propos de {{ item.compagny }}</h2>
+                            <p class="mb-0">{{ item.grandeDescription }}</p>
+                        </div>
 
-					<div class="tab-pane fade show active" id="home">
-						<div class="house-detail">
-							<h2 class="mb-16">À propos de {{ item.compagny }}</h2>
-							<p class="mb-0">{{ item.grandeDescription }}</p>
-						</div>
+                        <div class="house-detail">
+                            <h2 class="mb-16">Évaluations vérifiées</h2>
 
+                            {% for testimonial in item.receivedTestimonials %}
 
-						<div class="house-detail">
-							<h2 class="mb-16">Évaluations vérifiées</h2>
+                            <div class="review border-0 mb-32">
+                                <div class="d-flex align-items-center justify-content-between mb-16">
+                                    <div class="user">
+                                        <img src="/media/user/img-8.png" alt="">
+                                        <div class="content">
+                                            <h4>{{ testimonial.author.firstName }} {{ testimonial.author.lastName }}</h4>
+                                            <p>{{ testimonial.createdAt|format_datetime(locale: 'fr', pattern: 'd MMMM yyyy à HH:mm') }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="stars">
+                                        {% for i in 1..testimonial.review %}
+                                        <i class="fas fa-star"></i>
+                                        {% endfor %}
 
-							{% for testimonial in item.receivedTestimonials %}
+                                    </div>
+                                </div>
+                                <p>{{ testimonial.description }}</p>
+                            </div>
 
-							<div class="review border-0 mb-32">
-								<div class="d-flex align-items-center justify-content-between mb-16">
-									<div class="user">
-										<img src="/media/user/img-8.png" alt="">
-										<div class="content">
-											<h4>{{ testimonial.author.firstName }} {{ testimonial.author.lastName }}</h4>
-											<p>{{ testimonial.createdAt|format_datetime(locale='fr', pattern="d MMMM yyyy à HH:mm") }}</p>
-										</div>
-									</div>
-									<div class="stars">
-										{% for i in 1..testimonial.review %}
-										<i class="fas fa-star"></i>
-										{% endfor %}
-										
-									</div>
-								</div>
-								<p>{{ testimonial.description }}</p>
-							</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
 
-							{% endfor %}
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-4">
+                    <div class="col-xl-12">
+                        <div class="detail bg-gray radius-10 mb-24 pt-32 pb-32 px-4">
+                            <h5 class="fw-5 fs-23 color-dark-2 font-sec mb-24 text-center">
+                                À propos de remi_web
+                            </h5>
 
-					<div class="col-xl-12">
-						<div class="detail bg-gray radius-10 mb-24 pt-32 pb-32 px-4">
-							<h5 class="fw-5 fs-23 color-dark-2 font-sec mb-24 text-center">
-								À propos de remi_web
-							</h5>
+                            <div class="row mb-2">
+                                <div class="col-6 text-start fw-semibold section-titre-droite">
+                                    Localisation
+                                </div>
+                                <div class="col-6 text-end section-titre-droite">
+                                    De Paris
+                                </div>
+                            </div>
 
-							<div class="row mb-2">
-								<div class="col-6 text-start fw-semibold section-titre-droite">
-									Localisation
-								</div>
-								<div class="col-6 text-end section-titre-droite">
-									De Paris
-								</div>
-							</div>
+                            <div class="row">
+                                <div class="col-6 text-start fw-semibold section-titre-droite">
+                                    Sur trouve moi depuis
+                                </div>
+                                <div class="col-6 text-end section-titre-droite">
+                                    mars 2025
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="detail bg-gray radius-10 mb-24 pt-32 pb-32 px-4">
+                            <h5 class="fw-5 fs-23 color-dark-2 font-sec mb-24 text-center">
+                                Statistiques
+                            </h5>
 
-							<div class="row">
-								<div class="col-6 text-start fw-semibold section-titre-droite">
-									Sur trouve moi depuis 
-								</div>
-								<div class="col-6 text-end section-titre-droite">
-									mars 2025
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-12">
-						<div class="detail bg-gray radius-10 mb-24 pt-32 pb-32 px-4">
-							<h5 class="fw-5 fs-23 color-dark-2 font-sec mb-24 text-center">
-								Statistiques
-							</h5>
+                            <div class="stats-row">
+                                <div class="stats-label">Commandes terminées</div>
+                                <div class="stats-value">124</div>
+                            </div>
 
-							<div class="stats-row">
-								<div class="stats-label">Commandes terminées</div>
-								<div class="stats-value">124</div>
-							</div>
+                            <div class="stats-row">
+                                <div class="stats-label">Note moyenne attribuée</div>
+                                <div class="stats-value">4.8 / 5</div>
+                            </div>
 
-							<div class="stats-row">
-								<div class="stats-label">Note moyenne attribuée</div>
-								<div class="stats-value">4.8 / 5</div>
-							</div>
+                            <div class="stats-row">
+                                <div class="stats-label">Prix moyen des commandes</div>
+                                <div class="stats-value">42 €</div>
+                            </div>
 
-							<div class="stats-row">
-								<div class="stats-label">Prix moyen des commandes</div>
-								<div class="stats-value">42 €</div>
-							</div>
+                            <div class="stats-row">
+                                <div class="stats-label">Fréquence de pourboires</div>
+                                <div class="stats-value">65 %</div>
+                            </div>
 
-							<div class="stats-row">
-								<div class="stats-label">Fréquence de pourboires</div>
-								<div class="stats-value">65 %</div>
-							</div>
+                            <div class="stats-row">
+                                <div class="stats-label">Taux de commande répétée</div>
+                                <div class="stats-value">38 %</div>
+                            </div>
 
-							<div class="stats-row">
-								<div class="stats-label">Taux de commande répétée</div>
-								<div class="stats-value">38 %</div>
-							</div>
+                            <div class="stats-row">
+                                <div class="stats-label">Taux d'exécution des commandes</div>
+                                <div class="stats-value">97 %</div>
+                            </div>
 
-							<div class="stats-row">
-								<div class="stats-label">Taux d'exécution des commandes</div>
-								<div class="stats-value">97 %</div>
-							</div>
+                            <div class="stats-row">
+                                <div class="stats-label">Date de la dernière commande</div>
+                                <div class="stats-value">12 mars 2026</div>
+                            </div>
 
-							<div class="stats-row">
-								<div class="stats-label">Date de la dernière commande</div>
-								<div class="stats-value">12 mars 2026</div>
-							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- properties detail Area end -->
 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- properties detail Area end -->
+    <!-- footer Area start -->
+    <footer class="footer">
+        <div class="container">
+            <div class="main">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 text-center  mb-5">
+                        <h2 class="fw-6 fs-40 lh-120 text-uppercase color-white mb-16">Find Your Dream Home Today with Our Extensive Property Collection</h2>
+                        <a href="./properties.html" class="real-btn dark mb-lg-0 mb-32">View Properties</a>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-12 mb-5">
+                        <h4 class="title">Location</h4>
+                        <p class="fs-19 lh-130 color-gray mb-12 font-sec">123 Street, Your City, State and Country.</p>
+                        <p class="fs-19 lh-130 color-gray mb-24 font-sec mb-5">123 Street, Your City, State and Country.</p>
+                        <h4 class="title">Timing</h4>
+                        <p class="fw-5 fs-19 lh-130 ls-2 color-gray mb-12 font-sec">Mon-Sat, 9AM - 5PM</p>
+                        <p class="fw-5 fs-19 lh-130 ls-2 color-gray mb-0 font-sec">Sunday Off</p>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 offset-lg-1 col-sm-8 mb-5 newsletter">
+                        <h2 class="title">Subscribe Our Newsletter</h2>
+                        <form action="./index.html">
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="email" name="email" required placeholder="Your Email">
+                                <button type="submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 offset-xl-2 offset-lg-1 col-12 mb-5 ">
+                        <h4 class="title">Contact Us</h4>
+                        <a href="" class="fw-6 fs-19 color-gray mb-12 d-block color-hover font-sec">+1 123 456 789</a>
+                        <a href="" class="fw-6 fs-19 color-gray mb-12 d-block color-hover font-sec">+1 123 456 789</a>
+                        <a href="" class="fw-4 fs-19 color-gray mb-24 color-hover text-lowercase font-sec  mb-5">info@homelyexample.com</a>
+                        <h4 class="title">Follow Us</h4>
+                        <ul class="footer-social-icon list-unstyled">
+                            <li>
+                                <a href="" class="ms-lg-0">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fal fa-basketball-ball"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12">
+                        <p class="fw-4 fs-19 color-gray font-sec m-0 text-center">©2024 Homely, All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer Area end -->
 
-
-	<!-- footer Area start -->
-	<footer class="footer">
-		<div class="container">
-			<div class="main">
-				<div class="row">
-					<div class="col-lg-8 offset-lg-2 text-center  mb-5">
-						<h2 class="fw-6 fs-40 lh-120 text-uppercase color-white mb-16">Find Your Dream Home Today with Our Extensive Property Collection</h2>
-						<a href="./properties.html" class="real-btn dark mb-lg-0 mb-32">View Properties</a>
-					</div>
-					<div class="col-xl-3 col-lg-3 col-12 mb-5">
-						<h4 class="title">Location</h4>
-						<p class="fs-19 lh-130 color-gray mb-12 font-sec">123 Street, Your City, State and Country.</p>
-						<p class="fs-19 lh-130 color-gray mb-24 font-sec mb-5">123 Street, Your City, State and Country.</p>
-						<h4 class="title">Timing</h4>
-						<p class="fw-5 fs-19 lh-130 ls-2 color-gray mb-12 font-sec">Mon-Sat, 9AM - 5PM</p>
-						<p class="fw-5 fs-19 lh-130 ls-2 color-gray mb-0 font-sec">Sunday Off</p>
-					</div>
-					<div class="col-xl-4 col-lg-4 offset-lg-1 col-sm-8 mb-5 newsletter">
-						<h2 class="title">Subscribe Our Newsletter</h2>
-						<form action="./index.html">
-							<div class="input-group">
-								<input type="email" class="form-control" id="email" name="email" required placeholder="Your Email">
-								<button type="submit">
-									<i class="fas fa-paper-plane"></i>
-								</button>
-							</div>
-						</form>
-					</div>
-					<div class="col-xl-2 col-lg-3 offset-xl-2 offset-lg-1 col-12 mb-5 ">
-						<h4 class="title">Contact Us</h4>
-						<a href="" class="fw-6 fs-19 color-gray mb-12 d-block color-hover font-sec">+1 123 456 789</a>
-						<a href="" class="fw-6 fs-19 color-gray mb-12 d-block color-hover font-sec">+1 123 456 789</a>
-						<a href="" class="fw-4 fs-19 color-gray mb-24 color-hover text-lowercase font-sec  mb-5">info@homelyexample.com</a>
-						<h4 class="title">Follow Us</h4>
-						<ul class="footer-social-icon list-unstyled">
-							<li>
-								<a href="" class="ms-lg-0">
-									<i class="fab fa-facebook-f"></i>
-								</a>
-							</li>
-							<li>
-								<a href="">
-									<i class="fab fa-instagram"></i>
-								</a>
-							</li>
-							<li>
-								<a href="">
-									<i class="fab fa-youtube"></i>
-								</a>
-							</li>
-							<li>
-								<a href="">
-									<i class="fal fa-basketball-ball"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-12">
-						<p class="fw-4 fs-19 color-gray font-sec m-0 text-center">©2024 Homely, All Rights Reserved.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- footer Area end -->
-
-	<!-- Mobile Menu Start -->
-	<div class="mobile-nav__wrapper">
-		<div class="mobile-nav__overlay mobile-nav__toggler"></div>
-		<div class="mobile-nav__content">
-			<span class="mobile-nav__close mobile-nav__toggler">
-				<i class="fa fa-times"></i>
-			</span>
-			<div class="logo-box">
-				<a href="index.html" aria-label="logo image"><img src="media/logo.png" alt=""></a>
-			</div>
-			<div class="mobile-nav__container"></div>
-			<ul class="mobile-nav__contact list-unstyled">
-				<li>
-					<i>
-						<svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewbox="0 0 33 32" fill="none">
-							<g clip-path="url(#clip0_9532_881)">
-								<path d="M29.6875 4.75H3.3125C1.75856 4.75 0.5 6.01637 0.5 7.5625V24.4375C0.5 25.9928 1.76781 27.25 3.3125 27.25H29.6875C31.2284 27.25 32.5 25.9981 32.5 24.4375V7.5625C32.5 6.01912 31.2464 4.75 29.6875 4.75ZM29.2936 6.625C28.719 7.19656 18.8302 17.0333 18.4888 17.3729C17.9575 17.9042 17.2512 18.1967 16.5 18.1967C15.7487 18.1967 15.0425 17.9041 14.5095 17.3712C14.2799 17.1427 4.50019 7.41462 3.70637 6.625H29.2936ZM2.375 24.0559V7.94531L10.4774 16.005L2.375 24.0559ZM3.70756 25.375L11.8068 17.3273L13.1854 18.6987C14.0708 19.5841 15.2479 20.0717 16.5 20.0717C17.7521 20.0717 18.9292 19.5841 19.8128 18.7005L21.1933 17.3273L29.2924 25.375H3.70756ZM30.625 24.0559L22.5226 16.005L30.625 7.94531V24.0559Z" fill="#141516"/>
-							</g>
-							<defs>
-								<clipPath id="clip0_9532_881">
-									<rect width="32" height="32" fill="white" transform="translate(0.5)"/>
-								</clipPath>
-							</defs>
-						</svg>
-					</i>
-					<a href="mailto:example@company.com">example@company.com</a>
-				</li>
-				<li>
-					<i>
-						<svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewbox="0 0 33 32" fill="none">
-							<path d="M26.4984 24.8486L25.831 23.7343C24.6308 21.7554 22.9744 19.4841 20.8017 19.4841C20.3991 19.4841 20.0005 19.5651 19.6059 19.729L18.4398 20.2291C18.3332 20.2733 18.2298 20.3235 18.1202 20.3768C17.8217 20.522 17.4833 20.6864 17.1352 20.6864C16.2764 20.6864 15.2814 19.5688 14.3339 17.5398C13.404 15.5482 13.4634 14.5041 13.6768 13.9788C13.9124 13.3992 14.4601 13.1514 15.0485 12.9287C15.1303 12.8976 15.2042 12.8695 15.2761 12.8399L16.457 12.3427C19.5335 11.0562 18.389 6.56023 18.0137 5.08622L17.6955 3.81889C17.4234 2.77439 16.7021 0 14.3094 0C13.8665 0 13.3939 0.103194 12.9054 0.306839C12.5848 0.434135 8.17364 2.23476 6.57551 5.39811C4.66549 9.16346 5.01866 14.2127 7.62419 20.4025C10.2102 26.6 13.5637 30.3908 17.5914 31.6692C18.2823 31.8887 19.0631 31.9999 19.9123 31.9999H19.9128C22.6923 31.9999 25.4361 30.8172 25.6588 30.7191C26.6172 30.3131 27.2366 29.6961 27.4999 28.8851C27.9461 27.5098 27.1975 26.0031 26.4984 24.8486ZM25.4405 28.2169C25.3793 28.4054 25.1665 28.5774 24.8086 28.7281C24.8027 28.7307 24.7955 28.7337 24.7894 28.7365C24.7646 28.7475 22.281 29.8352 19.9122 29.8351C19.2855 29.8351 18.7251 29.758 18.2465 29.6059C14.8532 28.5288 11.9517 25.152 9.62066 19.5658C7.27232 13.9866 6.89707 9.54939 8.50689 6.37593C9.75691 3.90173 13.6703 2.33218 13.7087 2.31717C13.7165 2.31399 13.7242 2.31096 13.7318 2.30779C13.9547 2.21426 14.1544 2.1649 14.3094 2.1649C14.7864 2.1649 15.2205 2.90472 15.5978 4.35477L15.9146 5.61677C16.5981 8.30125 16.4941 9.98034 15.619 10.3464L14.4438 10.8414C14.397 10.8607 14.3423 10.8811 14.282 10.904C13.6328 11.1498 12.2819 11.661 11.671 13.1638C11.1166 14.5274 11.3461 16.2584 12.3718 18.4559C13.7533 21.4136 15.3113 22.8514 17.1349 22.8514C17.9812 22.8514 18.6606 22.5212 19.0664 22.324C19.1412 22.2877 19.208 22.2543 19.2799 22.2246L20.4478 21.7238C20.5683 21.6736 20.684 21.6492 20.8015 21.6492C21.3637 21.6492 22.3716 22.2058 23.9769 24.8519L24.6438 25.9656C25.4657 27.3227 25.5307 27.9389 25.4405 28.2169Z" fill="#141516"/>
-						</svg>
-					</i>
-					<a href="tel:+12345678">+123 (4567) -890</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<!-- Mobile Menu End -->
+    <!-- Mobile Menu Start -->
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler">
+                <i class="fa fa-times"></i>
+            </span>
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="media/logo.png" alt=""></a>
+            </div>
+            <div class="mobile-nav__container"></div>
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewbox="0 0 33 32" fill="none">
+                            <g clip-path="url(#clip0_9532_881)">
+                                <path d="M29.6875 4.75H3.3125C1.75856 4.75 0.5 6.01637 0.5 7.5625V24.4375C0.5 25.9928 1.76781 27.25 3.3125 27.25H29.6875C31.2284 27.25 32.5 25.9981 32.5 24.4375V7.5625C32.5 6.01912 31.2464 4.75 29.6875 4.75ZM29.2936 6.625C28.719 7.19656 18.8302 17.0333 18.4888 17.3729C17.9575 17.9042 17.2512 18.1967 16.5 18.1967C15.7487 18.1967 15.0425 17.9041 14.5095 17.3712C14.2799 17.1427 4.50019 7.41462 3.70637 6.625H29.2936ZM2.375 24.0559V7.94531L10.4774 16.005L2.375 24.0559ZM3.70756 25.375L11.8068 17.3273L13.1854 18.6987C14.0708 19.5841 15.2479 20.0717 16.5 20.0717C17.7521 20.0717 18.9292 19.5841 19.8128 18.7005L21.1933 17.3273L29.2924 25.375H3.70756ZM30.625 24.0559L22.5226 16.005L30.625 7.94531V24.0559Z" fill="#141516"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_9532_881">
+                                    <rect width="32" height="32" fill="white" transform="translate(0.5)"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </i>
+                    <a href="mailto:example@company.com">example@company.com</a>
+                </li>
+                <li>
+                    <i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewbox="0 0 33 32" fill="none">
+                            <path d="M26.4984 24.8486L25.831 23.7343C24.6308 21.7554 22.9744 19.4841 20.8017 19.4841C20.3991 19.4841 20.0005 19.5651 19.6059 19.729L18.4398 20.2291C18.3332 20.2733 18.2298 20.3235 18.1202 20.3768C17.8217 20.522 17.4833 20.6864 17.1352 20.6864C16.2764 20.6864 15.2814 19.5688 14.3339 17.5398C13.404 15.5482 13.4634 14.5041 13.6768 13.9788C13.9124 13.3992 14.4601 13.1514 15.0485 12.9287C15.1303 12.8976 15.2042 12.8695 15.2761 12.8399L16.457 12.3427C19.5335 11.0562 18.389 6.56023 18.0137 5.08622L17.6955 3.81889C17.4234 2.77439 16.7021 0 14.3094 0C13.8665 0 13.3939 0.103194 12.9054 0.306839C12.5848 0.434135 8.17364 2.23476 6.57551 5.39811C4.66549 9.16346 5.01866 14.2127 7.62419 20.4025C10.2102 26.6 13.5637 30.3908 17.5914 31.6692C18.2823 31.8887 19.0631 31.9999 19.9123 31.9999H19.9128C22.6923 31.9999 25.4361 30.8172 25.6588 30.7191C26.6172 30.3131 27.2366 29.6961 27.4999 28.8851C27.9461 27.5098 27.1975 26.0031 26.4984 24.8486ZM25.4405 28.2169C25.3793 28.4054 25.1665 28.5774 24.8086 28.7281C24.8027 28.7307 24.7955 28.7337 24.7894 28.7365C24.7646 28.7475 22.281 29.8352 19.9122 29.8351C19.2855 29.8351 18.7251 29.758 18.2465 29.6059C14.8532 28.5288 11.9517 25.152 9.62066 19.5658C7.27232 13.9866 6.89707 9.54939 8.50689 6.37593C9.75691 3.90173 13.6703 2.33218 13.7087 2.31717C13.7165 2.31399 13.7242 2.31096 13.7318 2.30779C13.9547 2.21426 14.1544 2.1649 14.3094 2.1649C14.7864 2.1649 15.2205 2.90472 15.5978 4.35477L15.9146 5.61677C16.5981 8.30125 16.4941 9.98034 15.619 10.3464L14.4438 10.8414C14.397 10.8607 14.3423 10.8811 14.282 10.904C13.6328 11.1498 12.2819 11.661 11.671 13.1638C11.1166 14.5274 11.3461 16.2584 12.3718 18.4559C13.7533 21.4136 15.3113 22.8514 17.1349 22.8514C17.9812 22.8514 18.6606 22.5212 19.0664 22.324C19.1412 22.2877 19.208 22.2543 19.2799 22.2246L20.4478 21.7238C20.5683 21.6736 20.684 21.6492 20.8015 21.6492C21.3637 21.6492 22.3716 22.2058 23.9769 24.8519L24.6438 25.9656C25.4657 27.3227 25.5307 27.9389 25.4405 28.2169Z" fill="#141516"/>
+                        </svg>
+                    </i>
+                    <a href="tel:+12345678">+123 (4567) -890</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Mobile Menu End -->
 </div></div>{% endblock %}

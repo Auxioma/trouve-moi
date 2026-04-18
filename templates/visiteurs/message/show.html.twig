@@ -5,133 +5,133 @@
 {% block body %}
 
 <section class="dashboard-lux-banner">
-	<div class="container">
-		<div class="dashboard-lux-banner-content">
-			<div class="dashboard-lux-banner-text">
-				<span class="dashboard-lux-kicker">Espace artisan</span>
-				<h1>Messagerie</h1>
-				<p>
-					Gérez vos échanges avec vos clients, consultez vos conversations et répondez rapidement depuis votre espace professionnel.
-				</p>
-			</div>
+    <div class="container">
+        <div class="dashboard-lux-banner-content">
+            <div class="dashboard-lux-banner-text">
+                <span class="dashboard-lux-kicker">Espace artisan</span>
+                <h1>Messagerie</h1>
+                <p>
+                    Gérez vos échanges avec vos clients, consultez vos conversations et répondez rapidement depuis votre espace professionnel.
+                </p>
+            </div>
 
-			<div class="dashboard-lux-banner-actions">
-				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline">Mes demandes</a>
-				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary">Nouvelle réponse</a>
-			</div>
-		</div>
-	</div>
+            <div class="dashboard-lux-banner-actions">
+                <a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline">Mes demandes</a>
+                <a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary">Nouvelle réponse</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="dashboard-lux-page">
-	<div class="container">
-		<div class="row g-4">
+    <div class="container">
+        <div class="row g-4">
 
-			{% include '_partials/nav_bar_visiteur.html.twig' %}
+            {{ include('_partials/nav_bar_visiteur.html.twig') }}
 
-			<div class="col-xl-8 col-lg-8">
-				<div class="messagerie-layout">
+            <div class="col-xl-8 col-lg-8">
+                <div class="messagerie-layout">
 
-					<div class="messagerie-content">
-						<div class="messagerie-card h-100">
-							{% if conversation is defined and conversation %}
-								{% set currentDiscussion = null %}
-								{% for discussion in discussions %}
-									{% if discussion.conversation.id == conversation.id %}
-										{% set currentDiscussion = discussion %}
-									{% endif %}
-								{% endfor %}
+                    <div class="messagerie-content">
+                        <div class="messagerie-card h-100">
+                            {% if conversation is defined and conversation %}
+                                {% set currentDiscussion = null %}
+                                {% for discussion in discussions %}
+                                    {% if discussion.conversation.id == conversation.id %}
+                                        {% set currentDiscussion = discussion %}
+                                    {% endif %}
+                                {% endfor %}
 
-								<div class="conversation-header">
-									<div class="conversation-user">
-										<div class="conversation-avatar">
-											{% if currentDiscussion and currentDiscussion.user.imageName is defined and currentDiscussion.user.imageName %}
-												<img
-													src="{{ asset('uploads/users/' ~ currentDiscussion.user.imageName) }}"
-													alt="{{ currentDiscussion.user.firstName }}"
-												>
-											{% elseif currentDiscussion and currentDiscussion.user.logo is defined and currentDiscussion.user.logo %}
-												<img
-													src="{{ asset('uploads/users/' ~ currentDiscussion.user.logo) }}"
-													alt="{{ currentDiscussion.user.firstName }}"
-												>
-											{% elseif currentDiscussion %}
-												<span>
-													{{ currentDiscussion.user.firstName|default('U')|slice(0, 1)|upper }}
-												</span>
-											{% else %}
-												<span>U</span>
-											{% endif %}
-										</div>
+                                <div class="conversation-header">
+                                    <div class="conversation-user">
+                                        <div class="conversation-avatar">
+                                            {% if currentDiscussion and currentDiscussion.user.imageName is defined and currentDiscussion.user.imageName %}
+                                                <img
+                                                    src="{{ asset('uploads/users/' ~ currentDiscussion.user.imageName) }}"
+                                                    alt="{{ currentDiscussion.user.firstName }}"
+                                                >
+                                            {% elseif currentDiscussion and currentDiscussion.user.logo is defined and currentDiscussion.user.logo %}
+                                                <img
+                                                    src="{{ asset('uploads/users/' ~ currentDiscussion.user.logo) }}"
+                                                    alt="{{ currentDiscussion.user.firstName }}"
+                                                >
+                                            {% elseif currentDiscussion %}
+                                                <span>
+                                                    {{ currentDiscussion.user.firstName|default('U')|slice(0, 1)|upper }}
+                                                </span>
+                                            {% else %}
+                                                <span>U</span>
+                                            {% endif %}
+                                        </div>
 
-										<div>
-											<h4 class="conversation-name mb-1">
-												{% if currentDiscussion %}
-													{{ currentDiscussion.user.firstName|default('') }} {{ currentDiscussion.user.lastName|default('') }}
-												{% else %}
-													Conversation
-												{% endif %}
-											</h4>
+                                        <div>
+                                            <h4 class="conversation-name mb-1">
+                                                {% if currentDiscussion %}
+                                                    {{ currentDiscussion.user.firstName|default('') }} {{ currentDiscussion.user.lastName|default('') }}
+                                                {% else %}
+                                                    Conversation
+                                                {% endif %}
+                                            </h4>
 
-											<p class="conversation-status mb-0">
-												{% if currentDiscussion and currentDiscussion.user.compagny is defined and currentDiscussion.user.compagny %}
-													{{ currentDiscussion.user.compagny }}
-												{% else %}
-													Discussion en cours
-												{% endif %}
-											</p>
-										</div>
-									</div>
-								</div>
+                                            <p class="conversation-status mb-0">
+                                                {% if currentDiscussion and currentDiscussion.user.compagny is defined and currentDiscussion.user.compagny %}
+                                                    {{ currentDiscussion.user.compagny }}
+                                                {% else %}
+                                                    Discussion en cours
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
 
-								<div class="conversation-body">
-									{% for message in messages %}
-										<div class="conversation-row {{ message.sender.id == app.user.id ? 'is-me' : 'is-other' }}">
-											<div class="conversation-bubble">
-												<p class="conversation-text mb-1">
-													{{ message.content }}
-												</p>
-												<span class="conversation-date">
-													{{ message.createdAt|date('d/m/Y H:i') }}
-												</span>
-											</div>
-										</div>
-									{% else %}
-										<div class="messagerie-empty">
-											<div class="messagerie-empty-icon">💬</div>
-											<h4>Aucun message</h4>
-											<p class="mb-0">Cette conversation ne contient pas encore de message.</p>
-										</div>
-									{% endfor %}
-								</div>
+                                <div class="conversation-body">
+                                    {% for message in messages %}
+                                        <div class="conversation-row {{ message.sender.id == app.user.id ? 'is-me' : 'is-other' }}">
+                                            <div class="conversation-bubble">
+                                                <p class="conversation-text mb-1">
+                                                    {{ message.content }}
+                                                </p>
+                                                <span class="conversation-date">
+                                                    {{ message.createdAt|date('d/m/Y H:i') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="messagerie-empty">
+                                            <div class="messagerie-empty-icon">💬</div>
+                                            <h4>Aucun message</h4>
+                                            <p class="mb-0">Cette conversation ne contient pas encore de message.</p>
+                                        </div>
+                                    {% endfor %}
+                                </div>
 
-								<div class="conversation-footer">
-									<form method="post" class="conversation-form">
-										<textarea
-											name="content"
-											class="conversation-textarea"
-											rows="2"
-											placeholder="Écrire votre message..."
-										></textarea>
-										<button type="submit" class="conversation-send-btn">
-											Envoyer
-										</button>
-									</form>
-								</div>
-							{% else %}
-								<div class="messagerie-empty full-height">
-									<div class="messagerie-empty-icon">📩</div>
-									<h4>Sélectionnez une discussion</h4>
-									<p class="mb-0">Choisissez une conversation dans votre liste pour afficher les messages.</p>
-								</div>
-							{% endif %}
-						</div>
-					</div>
+                                <div class="conversation-footer">
+                                    <form method="post" class="conversation-form">
+                                        <textarea
+                                            name="content"
+                                            class="conversation-textarea"
+                                            rows="2"
+                                            placeholder="Écrire votre message..."
+                                        ></textarea>
+                                        <button type="submit" class="conversation-send-btn">
+                                            Envoyer
+                                        </button>
+                                    </form>
+                                </div>
+                            {% else %}
+                                <div class="messagerie-empty full-height">
+                                    <div class="messagerie-empty-icon">📩</div>
+                                    <h4>Sélectionnez une discussion</h4>
+                                    <p class="mb-0">Choisissez une conversation dans votre liste pour afficher les messages.</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </section>
 {% endblock %}

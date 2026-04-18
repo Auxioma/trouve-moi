@@ -4,211 +4,210 @@
 
 {% block body %}
 <section class="inner-banner">
-	<div class="container">
-		<h2>Logo et images</h2>
-	</div>
+    <div class="container">
+        <h2>Logo et images</h2>
+    </div>
 </section>
 
 <section class="basket-page-section">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-xl-12">
-					{% set priceHt = price %}
-					{% set tvaRate = 20 %}
-					{% set discountAmount = discountAmount is defined ? discountAmount : 0 %}
-					{% set subtotalAfterDiscount = priceHt - discountAmount %}
-					{% set tvaAmount = subtotalAfterDiscount * tvaRate / 100 %}
-					{% set totalTtc = subtotalAfterDiscount + tvaAmount %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-12">
+                    {% set priceHt = price %}
+                    {% set tvaRate = 20 %}
+                    {% set discountAmount = discountAmount is defined ? discountAmount : 0 %}
+                    {% set subtotalAfterDiscount = priceHt - discountAmount %}
+                    {% set tvaAmount = subtotalAfterDiscount * tvaRate / 100 %}
+                    {% set totalTtc = subtotalAfterDiscount + tvaAmount %}
 
-					<div class="basket-shell">
-						<div class="basket-shell-head">
-							<div>
-								<span class="basket-section-mini-title">Récapitulatif</span>
-								<h2 class="basket-main-title">Votre panier</h2>
-								<p class="basket-main-text">
-									Vérifiez les informations ci-dessous avant de continuer vers le paiement.
-								</p>
-							</div>
+                    <div class="basket-shell">
+                        <div class="basket-shell-head">
+                            <div>
+                                <span class="basket-section-mini-title">Récapitulatif</span>
+                                <h2 class="basket-main-title">Votre panier</h2>
+                                <p class="basket-main-text">
+                                    Vérifiez les informations ci-dessous avant de continuer vers le paiement.
+                                </p>
+                            </div>
 
-							<div class="basket-period-chip">
-								{{ billing == 'yearly' ? 'Facturation annuelle' : 'Facturation mensuelle' }}
-							</div>
-						</div>
+                            <div class="basket-period-chip">
+                                {{ billing == 'yearly' ? 'Facturation annuelle' : 'Facturation mensuelle' }}
+                            </div>
+                        </div>
 
-						<div class="row g-4 align-items-stretch">
-							<div class="col-lg-8">
-								<div class="basket-card-premium h-100">
-									<div class="basket-plan-box mb-4">
-										<div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
-											<div>
-												<h3 class="basket-plan-title mb-1">{{ plan.name }}</h3>
-												<p class="basket-plan-subtitle mb-0">
-													{{ billing == 'yearly' ? 'Abonnement annuel' : 'Abonnement mensuel' }}
-												</p>
-											</div>
+                        <div class="row g-4 align-items-stretch">
+                            <div class="col-lg-8">
+                                <div class="basket-card-premium h-100">
+                                    <div class="basket-plan-box mb-4">
+                                        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+                                            <div>
+                                                <h3 class="basket-plan-title mb-1">{{ plan.name }}</h3>
+                                                <p class="basket-plan-subtitle mb-0">
+                                                    {{ billing == 'yearly' ? 'Abonnement annuel' : 'Abonnement mensuel' }}
+                                                </p>
+                                            </div>
 
-											<span class="basket-plan-badge">
-												{{ billing == 'yearly' ? 'Annuel' : 'Mensuel' }}
-											</span>
-										</div>
-									</div>
+                                            <span class="basket-plan-badge">
+                                                {{ billing == 'yearly' ? 'Annuel' : 'Mensuel' }}
+                                            </span>
+                                        </div>
+                                    </div>
 
-									<div class="basket-detail-list mb-4">
-										<div class="basket-detail-line">
-											<span>Montant HT</span>
-											<strong>{{ priceHt|number_format(2, ',', ' ') }} €</strong>
-										</div>
+                                    <div class="basket-detail-list mb-4">
+                                        <div class="basket-detail-line">
+                                            <span>Montant HT</span>
+                                            <strong>{{ priceHt|number_format(2, ',', ' ') }} €</strong>
+                                        </div>
 
-										{% if discountAmount > 0 %}
-											<div class="basket-detail-line basket-detail-line-discount">
-												<span>Bon de réduction</span>
-												<strong>- {{ discountAmount|number_format(2, ',', ' ') }} €</strong>
-											</div>
-										{% endif %}
+                                        {% if discountAmount > 0 %}
+                                            <div class="basket-detail-line basket-detail-line-discount">
+                                                <span>Bon de réduction</span>
+                                                <strong>- {{ discountAmount|number_format(2, ',', ' ') }} €</strong>
+                                            </div>
+                                        {% endif %}
 
-										<div class="basket-detail-line">
-											<span>TVA ({{ tvaRate }}%)</span>
-											<strong>{{ tvaAmount|number_format(2, ',', ' ') }} €</strong>
-										</div>
+                                        <div class="basket-detail-line">
+                                            <span>TVA ({{ tvaRate }}%)</span>
+                                            <strong>{{ tvaAmount|number_format(2, ',', ' ') }} €</strong>
+                                        </div>
 
-										<div class="basket-detail-line basket-detail-line-total">
-											<span>Total TTC</span>
-											<strong>{{ totalTtc|number_format(2, ',', ' ') }} €</strong>
-										</div>
-									</div>
+                                        <div class="basket-detail-line basket-detail-line-total">
+                                            <span>Total TTC</span>
+                                            <strong>{{ totalTtc|number_format(2, ',', ' ') }} €</strong>
+                                        </div>
+                                    </div>
 
-									<div class="row g-4">
-										<div class="col-md-6">
-											<label for="discount_code" class="form-label basket-label">Bon de réduction</label>
-											<div class="basket-input-group">
-												<input
-													type="text"
-													id="discount_code"
-													name="discount_code"
-													class="form-control basket-input"
-													placeholder="Entrez votre code promo"
-													value="{{ discountCode is defined ? discountCode : '' }}"
-												>
-												<button type="submit" name="apply_discount" value="1" class="basket-apply-btn">
-													Appliquer
-												</button>
-											</div>
-										</div>
+                                    <div class="row g-4">
+                                        <div class="col-md-6">
+                                            <label for="discount_code" class="form-label basket-label">Bon de réduction</label>
+                                            <div class="basket-input-group">
+                                                <input
+                                                    type="text"
+                                                    id="discount_code"
+                                                    name="discount_code"
+                                                    class="form-control basket-input"
+                                                    placeholder="Entrez votre code promo"
+                                                    value="{{ discountCode is defined ? discountCode : '' }}"
+                                                >
+                                                <button type="submit" name="apply_discount" value="1" class="basket-apply-btn">
+                                                    Appliquer
+                                                </button>
+                                            </div>
+                                        </div>
 
-										<div class="col-md-6">
-											<label class="form-label basket-label">Choisissez votre mode de paiement</label>
+                                        <div class="col-md-6">
+                                            <label class="form-label basket-label">Choisissez votre mode de paiement</label>
 
-											<div class="basket-payment-methods">
-												<label class="basket-payment-option">
-													<input
-														type="radio"
-														name="payment_method"
-														value="stripe"
-														class="basket-payment-radio"
-														{{ paymentMethod is defined and paymentMethod == 'stripe' ? 'checked' : '' }}
-													>
-													<span class="basket-payment-card">
-														<span class="basket-payment-icon">S</span>
-														<span class="basket-payment-content">
-															<span class="basket-payment-title">Stripe</span>
-															<span class="basket-payment-text">Paiement sécurisé par carte bancaire.</span>
-														</span>
-													</span>
-												</label>
+                                            <div class="basket-payment-methods">
+                                                <label class="basket-payment-option">
+                                                    <input
+                                                        type="radio"
+                                                        name="payment_method"
+                                                        value="stripe"
+                                                        class="basket-payment-radio"
+                                                        {{ paymentMethod is defined and paymentMethod == 'stripe' ? 'checked' : '' }}
+                                                    >
+                                                    <span class="basket-payment-card">
+                                                        <span class="basket-payment-icon">S</span>
+                                                        <span class="basket-payment-content">
+                                                            <span class="basket-payment-title">Stripe</span>
+                                                            <span class="basket-payment-text">Paiement sécurisé par carte bancaire.</span>
+                                                        </span>
+                                                    </span>
+                                                </label>
 
-												<label class="basket-payment-option">
-													<input
-														type="radio"
-														name="payment_method"
-														value="paypal"
-														class="basket-payment-radio"
-														{{ paymentMethod is defined and paymentMethod == 'paypal' ? 'checked' : '' }}
-													>
-													<span class="basket-payment-card">
-														<span class="basket-payment-icon basket-payment-icon-paypal">P</span>
-														<span class="basket-payment-content">
-															<span class="basket-payment-title">PayPal</span>
-															<span class="basket-payment-text">Paiement rapide via votre compte PayPal.</span>
-														</span>
-													</span>
-												</label>
-											</div>
-										</div>
-									</div>
+                                                <label class="basket-payment-option">
+                                                    <input
+                                                        type="radio"
+                                                        name="payment_method"
+                                                        value="paypal"
+                                                        class="basket-payment-radio"
+                                                        {{ paymentMethod is defined and paymentMethod == 'paypal' ? 'checked' : '' }}
+                                                    >
+                                                    <span class="basket-payment-card">
+                                                        <span class="basket-payment-icon basket-payment-icon-paypal">P</span>
+                                                        <span class="basket-payment-content">
+                                                            <span class="basket-payment-title">PayPal</span>
+                                                            <span class="basket-payment-text">Paiement rapide via votre compte PayPal.</span>
+                                                        </span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
 
-									<input type="hidden" name="plan_id" value="{{ plan.id }}">
-									<input type="hidden" name="billing" value="{{ billing }}">
-								</div>
-							</div>
+                                    <input type="hidden" name="plan_id" value="{{ plan.id }}">
+                                    <input type="hidden" name="billing" value="{{ billing }}">
+                                </div>
+                            </div>
 
-							<div class="col-lg-4">
-								<div class="basket-sidebar-card h-100">
-									<div class="basket-sidebar-top">
-										<span class="basket-sidebar-label">Montant à payer</span>
-										<div class="basket-sidebar-price">
-											{{ totalTtc|number_format(2, ',', ' ') }} €
-										</div>
-										<p class="basket-sidebar-note">
-											TVA incluse. Votre formule est affichée de manière claire avant validation.
-										</p>
-									</div>
+                            <div class="col-lg-4">
+                                <div class="basket-sidebar-card h-100">
+                                    <div class="basket-sidebar-top">
+                                        <span class="basket-sidebar-label">Montant à payer</span>
+                                        <div class="basket-sidebar-price">
+                                            {{ totalTtc|number_format(2, ',', ' ') }} €
+                                        </div>
+                                        <p class="basket-sidebar-note">
+                                            TVA incluse. Votre formule est affichée de manière claire avant validation.
+                                        </p>
+                                    </div>
 
-									<div class="basket-sidebar-summary">
-										<div class="basket-sidebar-row">
-											<span>Pack</span>
-											<strong>{{ plan.name }}</strong>
-										</div>
-										<div class="basket-sidebar-row">
-											<span>Période</span>
-											<strong>{{ billing == 'yearly' ? 'Annuel' : 'Mensuel' }}</strong>
-										</div>
-										<div class="basket-sidebar-row">
-											<span>HT</span>
-											<strong>{{ priceHt|number_format(2, ',', ' ') }} €</strong>
-										</div>
-										<div class="basket-sidebar-row">
-											<span>TVA</span>
-											<strong>{{ tvaAmount|number_format(2, ',', ' ') }} €</strong>
-										</div>
-										{% if discountAmount > 0 %}
-											<div class="basket-sidebar-row">
-												<span>Réduction</span>
-												<strong>- {{ discountAmount|number_format(2, ',', ' ') }} €</strong>
-											</div>
-										{% endif %}
-									</div>
+                                    <div class="basket-sidebar-summary">
+                                        <div class="basket-sidebar-row">
+                                            <span>Pack</span>
+                                            <strong>{{ plan.name }}</strong>
+                                        </div>
+                                        <div class="basket-sidebar-row">
+                                            <span>Période</span>
+                                            <strong>{{ billing == 'yearly' ? 'Annuel' : 'Mensuel' }}</strong>
+                                        </div>
+                                        <div class="basket-sidebar-row">
+                                            <span>HT</span>
+                                            <strong>{{ priceHt|number_format(2, ',', ' ') }} €</strong>
+                                        </div>
+                                        <div class="basket-sidebar-row">
+                                            <span>TVA</span>
+                                            <strong>{{ tvaAmount|number_format(2, ',', ' ') }} €</strong>
+                                        </div>
+                                        {% if discountAmount > 0 %}
+                                            <div class="basket-sidebar-row">
+                                                <span>Réduction</span>
+                                                <strong>- {{ discountAmount|number_format(2, ',', ' ') }} €</strong>
+                                            </div>
+                                        {% endif %}
+                                    </div>
 
+                                    <div class="basket-terms mb-3">
+                                        <label class="basket-terms-check d-flex align-items-start gap-2">
+                                            <input type="checkbox" name="accept_cgv" value="1" required>
+                                            <span class="basket-terms-text">
+                                                J'accepte les
+                                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                                    conditions générales de vente
+                                                </a>
+                                                et reconnais avoir pris connaissance des modalités de l’abonnement.
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <form method="post" action="{{ path('app_user_offer_paiement') }}" data-turbo="false">
+                                        <input type="hidden" name="plan_id" value="{{ plan.id }}">
+                                        <input type="hidden" name="billing" value="{{ billing }}">
+                                        <input type="hidden" name="price_ht" value="{{ price }}">
 
-									<div class="basket-terms mb-3">
-										<label class="basket-terms-check d-flex align-items-start gap-2">
-											<input type="checkbox" name="accept_cgv" value="1" required>
-											<span class="basket-terms-text">
-												J'accepte les
-												<a href="#" target="_blank" rel="noopener noreferrer">
-													conditions générales de vente
-												</a>
-												et reconnais avoir pris connaissance des modalités de l’abonnement.
-											</span>
-										</label>
-									</div>
-									<form method="post" action="{{ path('app_user_offer_paiement') }}" data-turbo="false">
-										<input type="hidden" name="plan_id" value="{{ plan.id }}">
-										<input type="hidden" name="billing" value="{{ billing }}">
-										<input type="hidden" name="price_ht" value="{{ price }}">
-
-										<button type="submit" class="btn basket-submit-btn w-100">
-											Continuer vers le paiement
-										</button>
-									</form>
-									<p class="basket-secure-note mb-0 mt-3">
-										Paiement sécurisé et traitement confidentiel de vos informations.
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
-		</div>
-	</div>
+                                        <button type="submit" class="btn basket-submit-btn w-100">
+                                            Continuer vers le paiement
+                                        </button>
+                                    </form>
+                                    <p class="basket-secure-note mb-0 mt-3">
+                                        Paiement sécurisé et traitement confidentiel de vos informations.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}

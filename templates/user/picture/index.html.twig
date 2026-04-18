@@ -4,125 +4,125 @@
 
 {% block body %}
 <section class="inner-banner">
-	<div class="container">
-		<h2>Logo et images</h2>
-	</div>
+    <div class="container">
+        <h2>Logo et images</h2>
+    </div>
 </section>
 
 <section class="properties-detail bg-white p-100">
-	<div class="container">
-		<div class="row g-4">
-			{% include '_partials/nav_bar_artisant.html.twig' %}
+    <div class="container">
+        <div class="row g-4">
+            {{ include('_partials/nav_bar_artisant.html.twig') }}
 
-			<div class="col-xl-8">
-				{{ form_start(form, {
-					attr: {
-						class: 'artisan-form-page'
-					}
-				}) }}
+            <div class="col-xl-8">
+                {{ form_start(form, {
+                    attr: {
+                        class: 'artisan-form-page',
+                    },
+                }) }}
 
-				{# =========================
-				   LOGO
-				========================= #}
-				<div class="house-detail mb-4">
-					<div class="container p-0">
-						<div class="row g-4">
-							<div class="col-12">
-								<div class="artisan-card p-4">
+                {# =========================
+                   LOGO
+                ========================= #}
+                <div class="house-detail mb-4">
+                    <div class="container p-0">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="artisan-card p-4">
 
-									<div class="image-upload-container">
-										{{ form_widget(form.imageFile.file, {
-											attr: {
-												class: 'file-input-hidden',
-												accept: 'image/jpeg,image/png,image/webp'
-											}
-										}) }}
+                                    <div class="image-upload-container">
+                                        {{ form_widget(form.imageFile.file, {
+                                            attr: {
+                                                class: 'file-input-hidden',
+                                                accept: 'image/jpeg,image/png,image/webp',
+                                            },
+                                        }) }}
 
-										<div class="image-upload-box js-logo-box">
-											<div class="upload-content" id="upload-content">
-												<div class="upload-icon">📷</div>
-												<p class="upload-text">Ajouter votre logo</p>
-												<span class="upload-subtext">ou glissez-déposez ici</span>
-											</div>
+                                        <div class="image-upload-box js-logo-box">
+                                            <div class="upload-content" id="upload-content">
+                                                <div class="upload-icon">📷</div>
+                                                <p class="upload-text">Ajouter votre logo</p>
+                                                <span class="upload-subtext">ou glissez-déposez ici</span>
+                                            </div>
 
-											<div id="preview-container" class="preview-container"></div>
-										</div>
+                                            <div id="preview-container" class="preview-container"></div>
+                                        </div>
 
-										{{ form_errors(form.imageFile) }}
-									</div>
+                                        {{ form_errors(form.imageFile) }}
+                                    </div>
 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-				{# =========================
-				   PICTURES COLLECTION
-				========================= #}
-				<div class="house-detail mb-4">
-					<div class="container p-0">
-						<div class="row g-4">
-							<div class="col-12">
-								<div class="artisan-card p-4">
+                {# =========================
+                   PICTURES COLLECTION
+                ========================= #}
+                <div class="house-detail mb-4">
+                    <div class="container p-0">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="artisan-card p-4">
 
-									<div
-										class="multi-image-upload-container"
-										id="pictures-collection"
-										data-index="{{ form.pictures|length > 0 ? form.pictures|last.vars.name + 1 : 0 }}"
-										data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}"
-									>
-										<div class="d-flex justify-content-between align-items-center mb-3">
-											<h4 class="mb-0">Vos images</h4>
-											<button type="button" class="btn btn-dark rounded-pill px-3" id="add-picture-btn">
-												Ajouter une image
-											</button>
-										</div>
+                                    <div
+                                        class="multi-image-upload-container"
+                                        id="pictures-collection"
+                                        data-index="{{ form.pictures|length > 0 ? form.pictures|last.vars.name + 1 : 0 }}"
+                                        data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}"
+                                    >
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h4 class="mb-0">Vos images</h4>
+                                            <button type="button" class="btn btn-dark rounded-pill px-3" id="add-picture-btn">
+                                                Ajouter une image
+                                            </button>
+                                        </div>
 
-										<div id="pictures-items" class="row g-3">
-											{% for pictureForm in form.pictures %}
-												<div class="col-12 col-md-6 picture-item">
-													<div class="picture-card border rounded-4 p-3 h-100 position-relative">
-														<button type="button" class="btn btn-sm btn-danger remove-picture-btn position-absolute top-0 end-0 m-2">
-															×
-														</button>
+                                        <div id="pictures-items" class="row g-3">
+                                            {% for pictureForm in form.pictures %}
+                                                <div class="col-12 col-md-6 picture-item">
+                                                    <div class="picture-card border rounded-4 p-3 h-100 position-relative">
+                                                        <button type="button" class="btn btn-sm btn-danger remove-picture-btn position-absolute top-0 end-0 m-2">
+                                                            ×
+                                                        </button>
 
-														<div class="picture-preview-wrapper">
-															{{ form_row(pictureForm.imageFile) }}
-														</div>
+                                                        <div class="picture-preview-wrapper">
+                                                            {{ form_row(pictureForm.imageFile) }}
+                                                        </div>
 
-														{{ form_errors(pictureForm) }}
-													</div>
-												</div>
-											{% endfor %}
-										</div>
+                                                        {{ form_errors(pictureForm) }}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
 
-										{{ form_errors(form.pictures) }}
-									</div>
+                                        {{ form_errors(form.pictures) }}
+                                    </div>
 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="d-flex justify-content-end">
-					<button type="submit" class="btn btn-dark rounded-pill px-4 py-2">
-						Enregistrer
-					</button>
-				</div>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-dark rounded-pill px-4 py-2">
+                        Enregistrer
+                    </button>
+                </div>
 
-				{{ form_end(form) }}
-			</div>
-		</div>
-	</div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 </section>
 
 <style>
 .image-upload-container,
 .multi-image-upload-container {
-	width: 100%;
-	position: relative;
+    width: 100%;
+    position: relative;
 }
 .artisan-panel__avatar {
 width: 50px;
@@ -148,355 +148,355 @@ width: 50px;
     text-transform: uppercase;
 }
 .file-input-hidden {
-	position: absolute !important;
-	left: -9999px !important;
-	width: 1px !important;
-	height: 1px !important;
-	opacity: 0 !important;
-	pointer-events: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 .image-upload-box {
-	display: block;
-	width: 100%;
-	border: 2px dashed #d9d9d9;
-	border-radius: 16px;
-	padding: 32px 24px;
-	text-align: center;
-	cursor: pointer;
-	transition: all 0.25s ease;
-	background: #fafafa;
+    display: block;
+    width: 100%;
+    border: 2px dashed #d9d9d9;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: #fafafa;
 }
 
 .image-upload-box:hover {
-	border-color: #ff6e14;
-	background: #fff7f2;
+    border-color: #ff6e14;
+    background: #fff7f2;
 }
 
 .image-upload-box.is-dragover {
-	border-color: #ff6e14;
-	background: #fff1e8;
+    border-color: #ff6e14;
+    background: #fff1e8;
 }
 
 .upload-content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .upload-icon {
-	font-size: 42px;
-	line-height: 1;
-	margin-bottom: 12px;
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: 12px;
 }
 
 .upload-text {
-	margin: 0 0 6px 0;
-	font-size: 16px;
-	font-weight: 700;
-	color: #1f1f1f;
+    margin: 0 0 6px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f1f1f;
 }
 
 .upload-subtext {
-	font-size: 13px;
-	color: #777;
+    font-size: 13px;
+    color: #777;
 }
 
 /* PREVIEW SIMPLE */
 .preview-container {
-	display: none;
-	margin-top: 20px;
-	justify-content: center;
+    display: none;
+    margin-top: 20px;
+    justify-content: center;
 }
 
 .preview-container.has-image {
-	display: flex;
+    display: flex;
 }
 
 .preview-item {
-	position: relative;
-	width: 180px;
-	height: 180px;
-	border-radius: 16px;
-	overflow: hidden;
-	border: 1px solid #e8e8e8;
-	background: #fff;
-	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    position: relative;
+    width: 180px;
+    height: 180px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    background: #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 .preview-item img {
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .remove-btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 30px;
-	height: 30px;
-	border: 0;
-	border-radius: 50%;
-	background: rgba(0, 0, 0, 0.75);
-	color: #fff;
-	font-size: 18px;
-	line-height: 1;
-	cursor: pointer;
-	z-index: 2;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
 }
 
 /* PICTURES */
 .picture-card {
-	background: #fff;
-	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 .picture-card .vich-image {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .picture-card .vich-image a {
-	display: block;
+    display: block;
 }
 
 .picture-card .vich-image img,
 .picture-card .js-inline-preview {
-	display: block;
-	width: 100%;
-	height: 220px;
-	object-fit: cover;
-	border-radius: 14px;
-	border: 1px solid #e8e8e8;
-	background: #f8f8f8;
-	margin-bottom: 12px;
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid #e8e8e8;
+    background: #f8f8f8;
+    margin-bottom: 12px;
 }
 
 .picture-card input[type="file"] {
-	width: 100%;
+    width: 100%;
 }
 
 .picture-preview-wrapper .form-group,
 .picture-preview-wrapper .mb-3 {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 @media (max-width: 767.98px) {
-	.preview-item {
-		width: 150px;
-		height: 150px;
-	}
+    .preview-item {
+        width: 150px;
+        height: 150px;
+    }
 
-	.picture-card .vich-image img,
-	.picture-card .js-inline-preview {
-		height: 180px;
-	}
+    .picture-card .vich-image img,
+    .picture-card .js-inline-preview {
+        height: 180px;
+    }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-	/* =========================
-	   LOGO SIMPLE
-	========================= */
-	const logoInput = document.getElementById('{{ form.imageFile.file.vars.id }}');
-	const logoBox = document.querySelector('.js-logo-box');
-	const logoPreviewContainer = document.getElementById('preview-container');
-	const logoUploadContent = document.getElementById('upload-content');
+    /* =========================
+       LOGO SIMPLE
+    ========================= */
+    const logoInput = document.getElementById('{{ form.imageFile.file.vars.id }}');
+    const logoBox = document.querySelector('.js-logo-box');
+    const logoPreviewContainer = document.getElementById('preview-container');
+    const logoUploadContent = document.getElementById('upload-content');
 
-	if (logoInput && logoBox && logoPreviewContainer && logoUploadContent) {
-		logoBox.addEventListener('click', function (event) {
-			if (event.target.closest('.remove-btn')) {
-				return;
-			}
-			logoInput.click();
-		});
+    if (logoInput && logoBox && logoPreviewContainer && logoUploadContent) {
+        logoBox.addEventListener('click', function (event) {
+            if (event.target.closest('.remove-btn')) {
+                return;
+            }
+            logoInput.click();
+        });
 
-		function resetLogoPreview() {
-			logoPreviewContainer.innerHTML = '';
-			logoPreviewContainer.classList.remove('has-image');
-			logoUploadContent.style.display = 'flex';
-			logoInput.value = '';
-		}
+        function resetLogoPreview() {
+            logoPreviewContainer.innerHTML = '';
+            logoPreviewContainer.classList.remove('has-image');
+            logoUploadContent.style.display = 'flex';
+            logoInput.value = '';
+        }
 
-		function showLogoPreview(file) {
-			if (!file || !file.type.startsWith('image/')) {
-				resetLogoPreview();
-				return;
-			}
+        function showLogoPreview(file) {
+            if (!file || !file.type.startsWith('image/')) {
+                resetLogoPreview();
+                return;
+            }
 
-			const reader = new FileReader();
+            const reader = new FileReader();
 
-			reader.onload = function (e) {
-				logoPreviewContainer.innerHTML = '';
+            reader.onload = function (e) {
+                logoPreviewContainer.innerHTML = '';
 
-				const previewItem = document.createElement('div');
-				previewItem.classList.add('preview-item');
+                const previewItem = document.createElement('div');
+                previewItem.classList.add('preview-item');
 
-				const img = document.createElement('img');
-				img.src = e.target.result;
-				img.alt = 'Aperçu logo';
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Aperçu logo';
 
-				const removeBtn = document.createElement('button');
-				removeBtn.type = 'button';
-				removeBtn.classList.add('remove-btn');
-				removeBtn.innerHTML = '&times;';
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.classList.add('remove-btn');
+                removeBtn.innerHTML = '&times;';
 
-				removeBtn.addEventListener('click', function (event) {
-					event.preventDefault();
-					event.stopPropagation();
-					resetLogoPreview();
-				});
+                removeBtn.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    resetLogoPreview();
+                });
 
-				previewItem.appendChild(img);
-				previewItem.appendChild(removeBtn);
-				logoPreviewContainer.appendChild(previewItem);
+                previewItem.appendChild(img);
+                previewItem.appendChild(removeBtn);
+                logoPreviewContainer.appendChild(previewItem);
 
-				logoPreviewContainer.classList.add('has-image');
-				logoUploadContent.style.display = 'none';
-			};
+                logoPreviewContainer.classList.add('has-image');
+                logoUploadContent.style.display = 'none';
+            };
 
-			reader.readAsDataURL(file);
-		}
+            reader.readAsDataURL(file);
+        }
 
-		logoInput.addEventListener('change', function () {
-			const file = this.files && this.files[0] ? this.files[0] : null;
-			showLogoPreview(file);
-		});
+        logoInput.addEventListener('change', function () {
+            const file = this.files && this.files[0] ? this.files[0] : null;
+            showLogoPreview(file);
+        });
 
-		logoBox.addEventListener('dragover', function (e) {
-			e.preventDefault();
-			logoBox.classList.add('is-dragover');
-		});
+        logoBox.addEventListener('dragover', function (e) {
+            e.preventDefault();
+            logoBox.classList.add('is-dragover');
+        });
 
-		logoBox.addEventListener('dragleave', function () {
-			logoBox.classList.remove('is-dragover');
-		});
+        logoBox.addEventListener('dragleave', function () {
+            logoBox.classList.remove('is-dragover');
+        });
 
-		logoBox.addEventListener('drop', function (e) {
-			e.preventDefault();
-			logoBox.classList.remove('is-dragover');
+        logoBox.addEventListener('drop', function (e) {
+            e.preventDefault();
+            logoBox.classList.remove('is-dragover');
 
-			const files = e.dataTransfer.files;
-			if (!files || !files.length) {
-				return;
-			}
+            const files = e.dataTransfer.files;
+            if (!files || !files.length) {
+                return;
+            }
 
-			const file = files[0];
-			const dataTransfer = new DataTransfer();
-			dataTransfer.items.add(file);
-			logoInput.files = dataTransfer.files;
-			logoInput.dispatchEvent(new Event('change'));
-		});
-	}
+            const file = files[0];
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            logoInput.files = dataTransfer.files;
+            logoInput.dispatchEvent(new Event('change'));
+        });
+    }
 
-	/* =========================
-	   COLLECTION PICTURES
-	========================= */
-	const collectionHolder = document.getElementById('pictures-collection');
-	const addButton = document.getElementById('add-picture-btn');
-	const itemsContainer = document.getElementById('pictures-items');
+    /* =========================
+       COLLECTION PICTURES
+    ========================= */
+    const collectionHolder = document.getElementById('pictures-collection');
+    const addButton = document.getElementById('add-picture-btn');
+    const itemsContainer = document.getElementById('pictures-items');
 
-	if (!collectionHolder || !addButton || !itemsContainer) {
-		return;
-	}
+    if (!collectionHolder || !addButton || !itemsContainer) {
+        return;
+    }
 
-	function bindRemoveButtons(scope) {
-		scope.querySelectorAll('.remove-picture-btn').forEach(function (button) {
-			if (button.dataset.bound === '1') {
-				return;
-			}
+    function bindRemoveButtons(scope) {
+        scope.querySelectorAll('.remove-picture-btn').forEach(function (button) {
+            if (button.dataset.bound === '1') {
+                return;
+            }
 
-			button.dataset.bound = '1';
+            button.dataset.bound = '1';
 
-			button.addEventListener('click', function () {
-				const item = button.closest('.picture-item');
-				if (item) {
-					item.remove();
-				}
-			});
-		});
-	}
+            button.addEventListener('click', function () {
+                const item = button.closest('.picture-item');
+                if (item) {
+                    item.remove();
+                }
+            });
+        });
+    }
 
-	function bindPreview(scope) {
-		scope.querySelectorAll('input[type="file"]').forEach(function (input) {
-			if (input.dataset.previewBound === '1') {
-				return;
-			}
+    function bindPreview(scope) {
+        scope.querySelectorAll('input[type="file"]').forEach(function (input) {
+            if (input.dataset.previewBound === '1') {
+                return;
+            }
 
-			if (input.id === '{{ form.imageFile.file.vars.id }}') {
-				return;
-			}
+            if (input.id === '{{ form.imageFile.file.vars.id }}') {
+                return;
+            }
 
-			input.dataset.previewBound = '1';
+            input.dataset.previewBound = '1';
 
-			input.addEventListener('change', function () {
-				const file = this.files && this.files[0] ? this.files[0] : null;
+            input.addEventListener('change', function () {
+                const file = this.files && this.files[0] ? this.files[0] : null;
 
-				if (!file || !file.type.startsWith('image/')) {
-					return;
-				}
+                if (!file || !file.type.startsWith('image/')) {
+                    return;
+                }
 
-				const card = this.closest('.picture-card');
-				if (!card) {
-					return;
-				}
+                const card = this.closest('.picture-card');
+                if (!card) {
+                    return;
+                }
 
-				let preview = card.querySelector('.js-inline-preview');
+                let preview = card.querySelector('.js-inline-preview');
 
-				if (!preview) {
-					preview = document.createElement('img');
-					preview.classList.add('js-inline-preview');
+                if (!preview) {
+                    preview = document.createElement('img');
+                    preview.classList.add('js-inline-preview');
 
-					const wrapper = card.querySelector('.picture-preview-wrapper');
-					if (wrapper) {
-						wrapper.prepend(preview);
-					}
-				}
+                    const wrapper = card.querySelector('.picture-preview-wrapper');
+                    if (wrapper) {
+                        wrapper.prepend(preview);
+                    }
+                }
 
-				const reader = new FileReader();
+                const reader = new FileReader();
 
-				reader.onload = function (e) {
-					preview.src = e.target.result;
-				};
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                };
 
-				reader.readAsDataURL(file);
-			});
-		});
-	}
+                reader.readAsDataURL(file);
+            });
+        });
+    }
 
-	addButton.addEventListener('click', function () {
-		const prototype = collectionHolder.dataset.prototype;
-		const index = collectionHolder.dataset.index;
+    addButton.addEventListener('click', function () {
+        const prototype = collectionHolder.dataset.prototype;
+        const index = collectionHolder.dataset.index;
 
-		const newForm = prototype.replace(/__name__/g, index);
-		collectionHolder.dataset.index = parseInt(index, 10) + 1;
+        const newForm = prototype.replace(/__name__/g, index);
+        collectionHolder.dataset.index = parseInt(index, 10) + 1;
 
-		const col = document.createElement('div');
-		col.classList.add('col-12', 'col-md-6', 'picture-item');
-		col.innerHTML = `
-			<div class="picture-card border rounded-4 p-3 h-100 position-relative">
-				<button type="button" class="btn btn-sm btn-danger remove-picture-btn position-absolute top-0 end-0 m-2">×</button>
-				<div class="picture-preview-wrapper">
-					${newForm}
-				</div>
-			</div>
-		`;
+        const col = document.createElement('div');
+        col.classList.add('col-12', 'col-md-6', 'picture-item');
+        col.innerHTML = `
+            <div class="picture-card border rounded-4 p-3 h-100 position-relative">
+                <button type="button" class="btn btn-sm btn-danger remove-picture-btn position-absolute top-0 end-0 m-2">×</button>
+                <div class="picture-preview-wrapper">
+                    ${newForm}
+                </div>
+            </div>
+        `;
 
-		itemsContainer.appendChild(col);
-		bindRemoveButtons(col);
-		bindPreview(col);
-	});
+        itemsContainer.appendChild(col);
+        bindRemoveButtons(col);
+        bindPreview(col);
+    });
 
-	bindRemoveButtons(document);
-	bindPreview(document);
+    bindRemoveButtons(document);
+    bindPreview(document);
 });
 </script>
 {% endblock %}

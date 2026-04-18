@@ -5,139 +5,139 @@
 {% block body %}
 
 <section class="dashboard-lux-banner">
-	<div class="container">
-		<div class="dashboard-lux-banner-content">
-			<div class="dashboard-lux-banner-text">
-				<span class="dashboard-lux-kicker">Espace personnel</span>
-				<h1>Messagerie</h1>
-				<p>
-					Retrouvez toutes vos conversations avec les artisans et suivez facilement l’avancement de vos échanges depuis votre espace personnel.
-				</p>
-			</div>
+    <div class="container">
+        <div class="dashboard-lux-banner-content">
+            <div class="dashboard-lux-banner-text">
+                <span class="dashboard-lux-kicker">Espace personnel</span>
+                <h1>Messagerie</h1>
+                <p>
+                    Retrouvez toutes vos conversations avec les artisans et suivez facilement l’avancement de vos échanges depuis votre espace personnel.
+                </p>
+            </div>
 
-			<div class="dashboard-lux-banner-actions">
-				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline">Mes demandes</a>
-				<a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary">Nouvelle demande</a>
-			</div>
-		</div>
-	</div>
+            <div class="dashboard-lux-banner-actions">
+                <a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline">Mes demandes</a>
+                <a href="#" class="dashboard-lux-btn dashboard-lux-btn-primary">Nouvelle demande</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section class="dashboard-lux-page">
-	<div class="container">
-		<div class="row g-4">
+    <div class="container">
+        <div class="row g-4">
 
-			{% include '_partials/nav_bar_visiteur.html.twig' %}
+            {{ include('_partials/nav_bar_visiteur.html.twig') }}
 
-			<div class="col-xl-9 col-lg-8">
-				<div class="messagerie-card">
+            <div class="col-xl-9 col-lg-8">
+                <div class="messagerie-card">
 
-					<div class="messagerie-header">
-						<div class="messagerie-header-left">
-							<span class="messagerie-kicker">Boîte de réception</span>
-							<h3 class="messagerie-title mb-1">Vos conversations récentes</h3>
-							<p class="messagerie-subtitle mb-0">
-								{{ discussions|length }} discussion{% if discussions|length > 1 %}s{% endif %} disponible{% if discussions|length > 1 %}s{% endif %}
-							</p>
-						</div>
+                    <div class="messagerie-header">
+                        <div class="messagerie-header-left">
+                            <span class="messagerie-kicker">Boîte de réception</span>
+                            <h3 class="messagerie-title mb-1">Vos conversations récentes</h3>
+                            <p class="messagerie-subtitle mb-0">
+                                {{ discussions|length }} discussion{% if discussions|length > 1 %}s{% endif %} disponible{% if discussions|length > 1 %}s{% endif %}
+                            </p>
+                        </div>
 
-						<div class="messagerie-header-right">
-							<a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline messagerie-filter-btn">Tous les messages</a>
-						</div>
-					</div>
+                        <div class="messagerie-header-right">
+                            <a href="#" class="dashboard-lux-btn dashboard-lux-btn-outline messagerie-filter-btn">Tous les messages</a>
+                        </div>
+                    </div>
 
-					<div class="messagerie-list">
-						{% if discussions is not empty %}
-							{% for discussion in discussions %}
-								{% set otherUser = discussion.user %}
-								{% set conversation = discussion.conversation %}
-								{% set lastMessage = discussion.lastMessage %}
+                    <div class="messagerie-list">
+                        {% if discussions is not empty %}
+                            {% for discussion in discussions %}
+                                {% set otherUser = discussion.user %}
+                                {% set conversation = discussion.conversation %}
+                                {% set lastMessage = discussion.lastMessage %}
 
-								<a href="{{ path('app_conversation_show', {id: conversation.id}) }}" class="message-item {% if lastMessage and lastMessage.isRead is defined and not lastMessage.isRead %}unread{% endif %}">
-									<div class="message-avatar-wrapper">
-										{% if otherUser.photo is defined and otherUser.photo %}
-											<div class="message-avatar">
-												<img src="{{ asset(otherUser.photo) }}" alt="{{ otherUser.fullName ?? otherUser.nom ?? otherUser.email }}">
-											</div>
-										{% else %}
-											<div class="message-avatar message-avatar-letter">
-												<span>
-													{{ (otherUser.firstname ?? otherUser.prenom ?? otherUser.nom ?? otherUser.email)|first|upper }}
-												</span>
-											</div>
-										{% endif %}
-									</div>
+                                <a href="{{ path('app_conversation_show', { id: conversation.id }) }}" class="message-item {% if lastMessage and lastMessage.isRead is defined and not lastMessage.isRead %}unread{% endif %}">
+                                    <div class="message-avatar-wrapper">
+                                        {% if otherUser.photo is defined and otherUser.photo %}
+                                            <div class="message-avatar">
+                                                <img src="{{ asset(otherUser.photo) }}" alt="{{ otherUser.fullName ?? otherUser.nom ?? otherUser.email }}">
+                                            </div>
+                                        {% else %}
+                                            <div class="message-avatar message-avatar-letter">
+                                                <span>
+                                                    {{ (otherUser.firstname ?? otherUser.prenom ?? otherUser.nom ?? otherUser.email)|first|upper }}
+                                                </span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
 
-									<div class="message-main">
-										<div class="message-topline">
-											<p class="message-title">
-												<span class="message-user-name">
-													{{ otherUser.fullName ?? ((otherUser.firstname ?? otherUser.prenom ?? '') ~ ' ' ~ (otherUser.lastname ?? otherUser.nom ?? ''))|trim ?: otherUser.email }}
-												</span>
+                                    <div class="message-main">
+                                        <div class="message-topline">
+                                            <p class="message-title">
+                                                <span class="message-user-name">
+                                                    {{ otherUser.fullName ?? ((otherUser.firstname ?? otherUser.prenom ?? '') ~ ' ' ~ (otherUser.lastname ?? otherUser.nom ?? ''))|trim ?: otherUser.email }}
+                                                </span>
 
-												{% if conversation.title is defined and conversation.title %}
-													<span class="message-separator">•</span>
-													<span class="message-project-title">{{ conversation.title }}</span>
-												{% endif %}
-											</p>
+                                                {% if conversation.title is defined and conversation.title %}
+                                                    <span class="message-separator">•</span>
+                                                    <span class="message-project-title">{{ conversation.title }}</span>
+                                                {% endif %}
+                                            </p>
 
-											<span class="message-date">
-												{% if lastMessage and lastMessage.createdAt %}
-													{{ lastMessage.createdAt|date('d M') }}
-												{% else %}
-													-
-												{% endif %}
-											</span>
-										</div>
+                                            <span class="message-date">
+                                                {% if lastMessage and lastMessage.createdAt %}
+                                                    {{ lastMessage.createdAt|date('d M') }}
+                                                {% else %}
+                                                    -
+                                                {% endif %}
+                                            </span>
+                                        </div>
 
-										<div class="message-bottomline">
-											<p class="message-preview">
-												{% if lastMessage and lastMessage.content %}
-													{{ lastMessage.content|u.truncate(90, '...') }}
-												{% else %}
-													Aucun message pour le moment.
-												{% endif %}
-											</p>
+                                        <div class="message-bottomline">
+                                            <p class="message-preview">
+                                                {% if lastMessage and lastMessage.content %}
+                                                    {{ lastMessage.content|u.truncate(90, '...') }}
+                                                {% else %}
+                                                    Aucun message pour le moment.
+                                                {% endif %}
+                                            </p>
 
-											{% if lastMessage and lastMessage.isRead is defined and not lastMessage.isRead %}
-												<span class="message-meta">
-													<span class="message-unread-dot"></span>
-												</span>
-											{% endif %}
-										</div>
-									</div>
-								</a>
-							{% endfor %}
-						{% else %}
-							<div class="message-item">
-								<div class="message-avatar-wrapper">
-									<div class="message-avatar message-avatar-letter">
-										<span>?</span>
-									</div>
-								</div>
+                                            {% if lastMessage and lastMessage.isRead is defined and not lastMessage.isRead %}
+                                                <span class="message-meta">
+                                                    <span class="message-unread-dot"></span>
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <div class="message-item">
+                                <div class="message-avatar-wrapper">
+                                    <div class="message-avatar message-avatar-letter">
+                                        <span>?</span>
+                                    </div>
+                                </div>
 
-								<div class="message-main">
-									<div class="message-topline">
-										<p class="message-title">
-											<span class="message-user-name">Aucune conversation</span>
-										</p>
-									</div>
+                                <div class="message-main">
+                                    <div class="message-topline">
+                                        <p class="message-title">
+                                            <span class="message-user-name">Aucune conversation</span>
+                                        </p>
+                                    </div>
 
-									<div class="message-bottomline">
-										<p class="message-preview">
-											Vous n’avez encore aucune discussion dans votre messagerie.
-										</p>
-									</div>
-								</div>
-							</div>
-						{% endif %}
-					</div>
+                                    <div class="message-bottomline">
+                                        <p class="message-preview">
+                                            Vous n’avez encore aucune discussion dans votre messagerie.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </section>
 
 <style>

@@ -4,331 +4,331 @@
 
 {% block body %}
 <section class="inner-banner">
-	<div class="container">
-		<h2>Calendrier de rendez-vous</h2>
-	</div>
+    <div class="container">
+        <h2>Calendrier de rendez-vous</h2>
+    </div>
 </section>
 
 <section class="calendar-page py-5">
-	<div class="container">
-		<div class="row g-4">
-			{% include '_partials/nav_bar_artisant.html.twig' %}
+    <div class="container">
+        <div class="row g-4">
+            {{ include('_partials/nav_bar_artisant.html.twig') }}
 
-			<div class="col-xl-8">
-				<div class="calendar-card">
-					<div class="calendar-header">
-						<div>
-							<h3 class="calendar-title mb-1">Disponibilités sur 12 mois</h3>
-							<p class="calendar-subtitle mb-0">
-								Cliquez sur une date pour choisir un créneau de rendez-vous.
-							</p>
-						</div>
-					</div>
+            <div class="col-xl-8">
+                <div class="calendar-card">
+                    <div class="calendar-header">
+                        <div>
+                            <h3 class="calendar-title mb-1">Disponibilités sur 12 mois</h3>
+                            <p class="calendar-subtitle mb-0">
+                                Cliquez sur une date pour choisir un créneau de rendez-vous.
+                            </p>
+                        </div>
+                    </div>
 
-					<div class="calendar-body">
-						<div id="calendarGrid" class="calendar-grid"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                    <div class="calendar-body">
+                        <div id="calendarGrid" class="calendar-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <div id="appointmentModal" class="appointment-modal" aria-hidden="true">
-	<div class="appointment-modal-backdrop"></div>
+    <div class="appointment-modal-backdrop"></div>
 
-	<div class="appointment-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="appointmentModalTitle">
-		<button type="button" class="appointment-modal-close" id="closeAppointmentModal" aria-label="Fermer">
-			✕
-		</button>
+    <div class="appointment-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="appointmentModalTitle">
+        <button type="button" class="appointment-modal-close" id="closeAppointmentModal" aria-label="Fermer">
+            ✕
+        </button>
 
-		<div class="appointment-modal-header">
-			<h4 id="appointmentModalTitle" class="appointment-modal-title">Prise de rendez-vous</h4>
-			<p id="selectedDateLabel" class="appointment-modal-date mb-0"></p>
-		</div>
+        <div class="appointment-modal-header">
+            <h4 id="appointmentModalTitle" class="appointment-modal-title">Prise de rendez-vous</h4>
+            <p id="selectedDateLabel" class="appointment-modal-date mb-0"></p>
+        </div>
 
-		<div class="appointment-modal-body">
-			<div class="slots-header">
-				<h5 class="slots-title">Choisissez un horaire</h5>
-				<p class="slots-subtitle mb-0">Créneaux disponibles de 06h00 à 20h00, toutes les 30 minutes.</p>
-			</div>
+        <div class="appointment-modal-body">
+            <div class="slots-header">
+                <h5 class="slots-title">Choisissez un horaire</h5>
+                <p class="slots-subtitle mb-0">Créneaux disponibles de 06h00 à 20h00, toutes les 30 minutes.</p>
+            </div>
 
-			<div id="timeSlots" class="time-slots"></div>
+            <div id="timeSlots" class="time-slots"></div>
 
-			<form id="appointmentForm" class="appointment-form mt-4">
-				<input type="hidden" name="appointment_date" id="appointmentDateInput">
-				<input type="hidden" name="appointment_time" id="appointmentTimeInput">
+            <form id="appointmentForm" class="appointment-form mt-4">
+                <input type="hidden" name="appointment_date" id="appointmentDateInput">
+                <input type="hidden" name="appointment_time" id="appointmentTimeInput">
 
-				<div class="selected-slot-box">
-					<span class="selected-slot-label">Créneau sélectionné :</span>
-					<strong id="selectedSlotText">Aucun créneau sélectionné</strong>
-				</div>
+                <div class="selected-slot-box">
+                    <span class="selected-slot-label">Créneau sélectionné :</span>
+                    <strong id="selectedSlotText">Aucun créneau sélectionné</strong>
+                </div>
 
-				<div class="appointment-actions">
-					<button type="button" class="btn-cancel" id="cancelAppointmentBtn">Annuler</button>
-					<button type="submit" class="btn-confirm">Confirmer le rendez-vous</button>
-				</div>
-			</form>
-		</div>
-	</div>
+                <div class="appointment-actions">
+                    <button type="button" class="btn-cancel" id="cancelAppointmentBtn">Annuler</button>
+                    <button type="submit" class="btn-confirm">Confirmer le rendez-vous</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-	const calendarGrid = document.getElementById('calendarGrid');
-	const modal = document.getElementById('appointmentModal');
-	const modalBackdrop = modal.querySelector('.appointment-modal-backdrop');
-	const closeModalBtn = document.getElementById('closeAppointmentModal');
-	const cancelAppointmentBtn = document.getElementById('cancelAppointmentBtn');
-	const selectedDateLabel = document.getElementById('selectedDateLabel');
-	const timeSlotsContainer = document.getElementById('timeSlots');
-	const appointmentDateInput = document.getElementById('appointmentDateInput');
-	const appointmentTimeInput = document.getElementById('appointmentTimeInput');
-	const selectedSlotText = document.getElementById('selectedSlotText');
-	const appointmentForm = document.getElementById('appointmentForm');
+    const calendarGrid = document.getElementById('calendarGrid');
+    const modal = document.getElementById('appointmentModal');
+    const modalBackdrop = modal.querySelector('.appointment-modal-backdrop');
+    const closeModalBtn = document.getElementById('closeAppointmentModal');
+    const cancelAppointmentBtn = document.getElementById('cancelAppointmentBtn');
+    const selectedDateLabel = document.getElementById('selectedDateLabel');
+    const timeSlotsContainer = document.getElementById('timeSlots');
+    const appointmentDateInput = document.getElementById('appointmentDateInput');
+    const appointmentTimeInput = document.getElementById('appointmentTimeInput');
+    const selectedSlotText = document.getElementById('selectedSlotText');
+    const appointmentForm = document.getElementById('appointmentForm');
 
-	const monthNames = [
-		'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-		'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
-	];
+    const monthNames = [
+        'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+        'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    ];
 
-	const weekdayNames = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+    const weekdayNames = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 
-	const today = new Date();
-	const todayNoTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-	const startDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+    const today = new Date();
+    const todayNoTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const startDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
 
-	let currentSelectedDayButton = null;
-	let currentSelectedSlotButton = null;
+    let currentSelectedDayButton = null;
+    let currentSelectedSlotButton = null;
 
-	/*
-	 * Exemple de créneaux déjà réservés.
-	 * Plus tard, tu pourras générer ça depuis Symfony/Twig avec tes rendez-vous en base.
-	 */
-	const bookedSlots = {
-		'2026-03-31': ['09:00', '09:30', '14:00'],
-		'2026-04-02': ['10:00', '10:30', '11:00'],
-		'2026-04-05': ['15:30', '16:00']
-	};
+    /*
+     * Exemple de créneaux déjà réservés.
+     * Plus tard, tu pourras générer ça depuis Symfony/Twig avec tes rendez-vous en base.
+     */
+    const bookedSlots = {
+        '2026-03-31': ['09:00', '09:30', '14:00'],
+        '2026-04-02': ['10:00', '10:30', '11:00'],
+        '2026-04-05': ['15:30', '16:00']
+    };
 
-	function formatDateToYmd(date) {
-		const year = date.getFullYear();
-		const month = String(date.getMonth() + 1).padStart(2, '0');
-		const day = String(date.getDate()).padStart(2, '0');
-		return `${year}-${month}-${day}`;
-	}
+    function formatDateToYmd(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
 
-	function formatDateFr(date) {
-		return date.toLocaleDateString('fr-FR', {
-			weekday: 'long',
-			day: '2-digit',
-			month: 'long',
-			year: 'numeric'
-		});
-	}
+    function formatDateFr(date) {
+        return date.toLocaleDateString('fr-FR', {
+            weekday: 'long',
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        });
+    }
 
-	function getMondayFirstDayIndex(jsDay) {
-		return jsDay === 0 ? 6 : jsDay - 1;
-	}
+    function getMondayFirstDayIndex(jsDay) {
+        return jsDay === 0 ? 6 : jsDay - 1;
+    }
 
-	function isBooked(dateString, time) {
-		return bookedSlots[dateString] && bookedSlots[dateString].includes(time);
-	}
+    function isBooked(dateString, time) {
+        return bookedSlots[dateString] && bookedSlots[dateString].includes(time);
+    }
 
-	function createTimeSlots() {
-		timeSlotsContainer.innerHTML = '';
-		currentSelectedSlotButton = null;
-		appointmentTimeInput.value = '';
-		selectedSlotText.textContent = 'Aucun créneau sélectionné';
+    function createTimeSlots() {
+        timeSlotsContainer.innerHTML = '';
+        currentSelectedSlotButton = null;
+        appointmentTimeInput.value = '';
+        selectedSlotText.textContent = 'Aucun créneau sélectionné';
 
-		const selectedDate = appointmentDateInput.value;
+        const selectedDate = appointmentDateInput.value;
 
-		for (let hour = 6; hour < 20; hour++) {
-			['00', '30'].forEach(minute => {
-				const time = `${String(hour).padStart(2, '0')}:${minute}`;
+        for (let hour = 6; hour < 20; hour++) {
+            ['00', '30'].forEach(minute => {
+                const time = `${String(hour).padStart(2, '0')}:${minute}`;
 
-				const slotBtn = document.createElement('button');
-				slotBtn.type = 'button';
-				slotBtn.className = 'time-slot-btn';
-				slotBtn.textContent = time;
+                const slotBtn = document.createElement('button');
+                slotBtn.type = 'button';
+                slotBtn.className = 'time-slot-btn';
+                slotBtn.textContent = time;
 
-				if (isBooked(selectedDate, time)) {
-					slotBtn.classList.add('booked-slot');
-					slotBtn.disabled = true;
-				} else {
-					slotBtn.addEventListener('click', function () {
-						if (currentSelectedSlotButton) {
-							currentSelectedSlotButton.classList.remove('active');
-						}
+                if (isBooked(selectedDate, time)) {
+                    slotBtn.classList.add('booked-slot');
+                    slotBtn.disabled = true;
+                } else {
+                    slotBtn.addEventListener('click', function () {
+                        if (currentSelectedSlotButton) {
+                            currentSelectedSlotButton.classList.remove('active');
+                        }
 
-						slotBtn.classList.add('active');
-						currentSelectedSlotButton = slotBtn;
-						appointmentTimeInput.value = time;
-						selectedSlotText.textContent = `${appointmentDateInput.value} à ${time}`;
-					});
-				}
+                        slotBtn.classList.add('active');
+                        currentSelectedSlotButton = slotBtn;
+                        appointmentTimeInput.value = time;
+                        selectedSlotText.textContent = `${appointmentDateInput.value} à ${time}`;
+                    });
+                }
 
-				timeSlotsContainer.appendChild(slotBtn);
-			});
-		}
+                timeSlotsContainer.appendChild(slotBtn);
+            });
+        }
 
-		const lastTime = '20:00';
-		const lastSlot = document.createElement('button');
-		lastSlot.type = 'button';
-		lastSlot.className = 'time-slot-btn';
-		lastSlot.textContent = lastTime;
+        const lastTime = '20:00';
+        const lastSlot = document.createElement('button');
+        lastSlot.type = 'button';
+        lastSlot.className = 'time-slot-btn';
+        lastSlot.textContent = lastTime;
 
-		if (isBooked(selectedDate, lastTime)) {
-			lastSlot.classList.add('booked-slot');
-			lastSlot.disabled = true;
-		} else {
-			lastSlot.addEventListener('click', function () {
-				if (currentSelectedSlotButton) {
-					currentSelectedSlotButton.classList.remove('active');
-				}
+        if (isBooked(selectedDate, lastTime)) {
+            lastSlot.classList.add('booked-slot');
+            lastSlot.disabled = true;
+        } else {
+            lastSlot.addEventListener('click', function () {
+                if (currentSelectedSlotButton) {
+                    currentSelectedSlotButton.classList.remove('active');
+                }
 
-				lastSlot.classList.add('active');
-				currentSelectedSlotButton = lastSlot;
-				appointmentTimeInput.value = lastTime;
-				selectedSlotText.textContent = `${appointmentDateInput.value} à ${lastTime}`;
-			});
-		}
+                lastSlot.classList.add('active');
+                currentSelectedSlotButton = lastSlot;
+                appointmentTimeInput.value = lastTime;
+                selectedSlotText.textContent = `${appointmentDateInput.value} à ${lastTime}`;
+            });
+        }
 
-		timeSlotsContainer.appendChild(lastSlot);
-	}
+        timeSlotsContainer.appendChild(lastSlot);
+    }
 
-	function openModal(date) {
-		appointmentDateInput.value = formatDateToYmd(date);
-		selectedDateLabel.textContent = formatDateFr(date);
-		createTimeSlots();
+    function openModal(date) {
+        appointmentDateInput.value = formatDateToYmd(date);
+        selectedDateLabel.textContent = formatDateFr(date);
+        createTimeSlots();
 
-		modal.classList.add('is-open');
-		modal.setAttribute('aria-hidden', 'false');
-		document.body.style.overflow = 'hidden';
-	}
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
 
-	function closeModal() {
-		modal.classList.remove('is-open');
-		modal.setAttribute('aria-hidden', 'true');
-		document.body.style.overflow = '';
-	}
+    function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
 
-	function generateMonth(year, month) {
-		const monthCard = document.createElement('div');
-		monthCard.className = 'month-card';
+    function generateMonth(year, month) {
+        const monthCard = document.createElement('div');
+        monthCard.className = 'month-card';
 
-		const monthHeader = document.createElement('div');
-		monthHeader.className = 'month-header';
+        const monthHeader = document.createElement('div');
+        monthHeader.className = 'month-header';
 
-		const monthTitle = document.createElement('h4');
-		monthTitle.className = 'month-title';
-		monthTitle.textContent = `${monthNames[month]} ${year}`;
+        const monthTitle = document.createElement('h4');
+        monthTitle.className = 'month-title';
+        monthTitle.textContent = `${monthNames[month]} ${year}`;
 
-		monthHeader.appendChild(monthTitle);
-		monthCard.appendChild(monthHeader);
+        monthHeader.appendChild(monthTitle);
+        monthCard.appendChild(monthHeader);
 
-		const weekdaysRow = document.createElement('div');
-		weekdaysRow.className = 'month-weekdays';
+        const weekdaysRow = document.createElement('div');
+        weekdaysRow.className = 'month-weekdays';
 
-		weekdayNames.forEach(dayName => {
-			const weekday = document.createElement('div');
-			weekday.className = 'weekday';
-			weekday.textContent = dayName;
-			weekdaysRow.appendChild(weekday);
-		});
+        weekdayNames.forEach(dayName => {
+            const weekday = document.createElement('div');
+            weekday.className = 'weekday';
+            weekday.textContent = dayName;
+            weekdaysRow.appendChild(weekday);
+        });
 
-		monthCard.appendChild(weekdaysRow);
+        monthCard.appendChild(weekdaysRow);
 
-		const monthDays = document.createElement('div');
-		monthDays.className = 'month-days';
+        const monthDays = document.createElement('div');
+        monthDays.className = 'month-days';
 
-		const firstDay = new Date(year, month, 1);
-		const lastDay = new Date(year, month + 1, 0);
-		const firstDayIndex = getMondayFirstDayIndex(firstDay.getDay());
-		const daysInMonth = lastDay.getDate();
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const firstDayIndex = getMondayFirstDayIndex(firstDay.getDay());
+        const daysInMonth = lastDay.getDate();
 
-		for (let i = 0; i < firstDayIndex; i++) {
-			const emptyCell = document.createElement('div');
-			emptyCell.className = 'day-cell-empty';
-			monthDays.appendChild(emptyCell);
-		}
+        for (let i = 0; i < firstDayIndex; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.className = 'day-cell-empty';
+            monthDays.appendChild(emptyCell);
+        }
 
-		for (let day = 1; day <= daysInMonth; day++) {
-			const date = new Date(year, month, day);
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(year, month, day);
 
-			const dayCell = document.createElement('div');
-			dayCell.className = 'day-cell';
+            const dayCell = document.createElement('div');
+            dayCell.className = 'day-cell';
 
-			const dayBtn = document.createElement('button');
-			dayBtn.type = 'button';
-			dayBtn.className = 'day-btn';
-			dayBtn.textContent = day;
+            const dayBtn = document.createElement('button');
+            dayBtn.type = 'button';
+            dayBtn.className = 'day-btn';
+            dayBtn.textContent = day;
 
-			const isToday =
-				date.getFullYear() === today.getFullYear() &&
-				date.getMonth() === today.getMonth() &&
-				date.getDate() === today.getDate();
+            const isToday =
+                date.getFullYear() === today.getFullYear() &&
+                date.getMonth() === today.getMonth() &&
+                date.getDate() === today.getDate();
 
-			if (isToday) {
-				dayBtn.classList.add('today');
-			}
+            if (isToday) {
+                dayBtn.classList.add('today');
+            }
 
-			if (date < todayNoTime) {
-				dayBtn.classList.add('disabled-day');
-				dayBtn.disabled = true;
-			} else {
-				dayBtn.addEventListener('click', function () {
-					if (currentSelectedDayButton) {
-						currentSelectedDayButton.classList.remove('selected-day');
-					}
+            if (date < todayNoTime) {
+                dayBtn.classList.add('disabled-day');
+                dayBtn.disabled = true;
+            } else {
+                dayBtn.addEventListener('click', function () {
+                    if (currentSelectedDayButton) {
+                        currentSelectedDayButton.classList.remove('selected-day');
+                    }
 
-					dayBtn.classList.add('selected-day');
-					currentSelectedDayButton = dayBtn;
-					openModal(date);
-				});
-			}
+                    dayBtn.classList.add('selected-day');
+                    currentSelectedDayButton = dayBtn;
+                    openModal(date);
+                });
+            }
 
-			dayCell.appendChild(dayBtn);
-			monthDays.appendChild(dayCell);
-		}
+            dayCell.appendChild(dayBtn);
+            monthDays.appendChild(dayCell);
+        }
 
-		monthCard.appendChild(monthDays);
-		return monthCard;
-	}
+        monthCard.appendChild(monthDays);
+        return monthCard;
+    }
 
-	function render12Months() {
-		calendarGrid.innerHTML = '';
+    function render12Months() {
+        calendarGrid.innerHTML = '';
 
-		for (let i = 0; i < 12; i++) {
-			const date = new Date(startDate.getFullYear(), startDate.getMonth() + i, 1);
-			const monthElement = generateMonth(date.getFullYear(), date.getMonth());
-			calendarGrid.appendChild(monthElement);
-		}
-	}
+        for (let i = 0; i < 12; i++) {
+            const date = new Date(startDate.getFullYear(), startDate.getMonth() + i, 1);
+            const monthElement = generateMonth(date.getFullYear(), date.getMonth());
+            calendarGrid.appendChild(monthElement);
+        }
+    }
 
-	closeModalBtn.addEventListener('click', closeModal);
-	cancelAppointmentBtn.addEventListener('click', closeModal);
-	modalBackdrop.addEventListener('click', closeModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    cancelAppointmentBtn.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', closeModal);
 
-	document.addEventListener('keydown', function (event) {
-		if (event.key === 'Escape' && modal.classList.contains('is-open')) {
-			closeModal();
-		}
-	});
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+            closeModal();
+        }
+    });
 
-	appointmentForm.addEventListener('submit', function (event) {
-		event.preventDefault();
+    appointmentForm.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-		if (!appointmentDateInput.value || !appointmentTimeInput.value) {
-			alert('Veuillez sélectionner une date et un horaire.');
-			return;
-		}
+        if (!appointmentDateInput.value || !appointmentTimeInput.value) {
+            alert('Veuillez sélectionner une date et un horaire.');
+            return;
+        }
 
-		alert(`Rendez-vous sélectionné : ${appointmentDateInput.value} à ${appointmentTimeInput.value}`);
-		closeModal();
-	});
+        alert(`Rendez-vous sélectionné : ${appointmentDateInput.value} à ${appointmentTimeInput.value}`);
+        closeModal();
+    });
 
-	render12Months();
+    render12Months();
 });
 </script>
 {% endblock %}
