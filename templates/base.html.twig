@@ -199,21 +199,34 @@ resultsBox.style.display = 'none';
 });
 });
 			</script>
+
  <script>
 document.addEventListener('DOMContentLoaded', function () {
     const input = document.querySelector('.localisation-input');
     const resultsBox = document.querySelector('.localisation-results');
+    const latInput = document.getElementById('latitude');
+    const lngInput = document.getElementById('longitude');
+
+    console.log('input:', input);
+    console.log('resultsBox:', resultsBox);
 
     if (!input || !resultsBox) {
+        console.error('Champ ou boîte de résultats introuvable.');
         return;
     }
 
     input.addEventListener('input', async function () {
         const query = this.value.trim();
 
+        console.log('query:', query);
+
         if (query.length < 2) {
             resultsBox.innerHTML = '';
             resultsBox.style.display = 'none';
+
+            if (latInput) latInput.value = '';
+            if (lngInput) lngInput.value = '';
+
             return;
         }
 
@@ -221,9 +234,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const response = await fetch(`/api/cities?q=${encodeURIComponent(query)}`);
             const cities = await response.json();
 
+            console.log('cities:', cities);
+
             resultsBox.innerHTML = '';
 
-            if (cities.length === 0) {
+            if (!Array.isArray(cities) || cities.length === 0) {
                 resultsBox.style.display = 'none';
                 return;
             }
@@ -231,12 +246,28 @@ document.addEventListener('DOMContentLoaded', function () {
             cities.forEach(city => {
                 const item = document.createElement('div');
                 item.classList.add('localisation-item');
-                item.textContent = city;
+
+                item.textContent = city.label ?? city.city ?? city.value ?? '';
 
                 item.addEventListener('click', function () {
-                    input.value = city;
+                    input.value = city.value ?? city.city ?? city.label ?? '';
+
+                    if (latInput) {
+                        latInput.value = city.latitude ?? city.lat ?? '';
+                    }
+
+                    if (lngInput) {
+                        lngInput.value = city.longitude ?? city.lng ?? '';
+                    }
+
                     resultsBox.innerHTML = '';
                     resultsBox.style.display = 'none';
+
+                    console.log('Ville sélectionnée :', {
+                        city: input.value,
+                        latitude: latInput ? latInput.value : null,
+                        longitude: lngInput ? lngInput.value : null
+                    });
                 });
 
                 resultsBox.appendChild(item);
@@ -256,6 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+
     {% endblock %}
 	</body>
 </html>

@@ -19,15 +19,34 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class CategoryController extends AbstractController
 {
-    #[Route('/category', name: 'app_category')]
-    public function index(): Response
+    public function __construct(
+        private readonly UserRepository $userRepository
+    )
+    {}
+    #[Route('/recherche', name: 'app_category')]
+    public function index(Request $request): Response
     {
+
+        $array = $request->query->all();
+       
+        $activity = $array['activity'] ?? null;
+        $ville = $array['location'] ?? null;
+        $latitude = $array['latitude'] ?? null;
+        $longitude = $array['longitude'] ?? null;
+
+        // je vais chercher les utilisateurs qui ont une activité et une ville correspondante
+        $users = $this->userRepository->findByActivityAndCity($activity, $ville, $latitude, $longitude);
+
+        dd($users);
+
         return $this->render('category/category.html.twig', [
             'controller_name' => 'CategoryController',
         ]);
