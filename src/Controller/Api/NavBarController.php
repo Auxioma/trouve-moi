@@ -25,23 +25,23 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class NavBarController extends AbstractController
 {
-
     public function __construct(
-        private RequestStack $requestStack
-    ) {}
+        private RequestStack $requestStack,
+    ) {
+    }
 
     public function NavBar(): Response
     {
         $request = $this->requestStack->getMainRequest();
         $route = $request?->attributes->get('_route');
 
-        if ($route === 'app_home') {
+        if ('app_home' === $route) {
             return $this->render('_partials/navbar.html.twig', [
                 'isHome' => true,
             ]);
         }
 
-        return $this->render('_partials/navbar.html.twig',[
+        return $this->render('_partials/navbar.html.twig', [
             'isHome' => false,
         ]);
     }

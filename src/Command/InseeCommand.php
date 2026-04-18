@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
 namespace App\Command;
 
 use App\Entity\User;
@@ -68,7 +85,7 @@ class InseeCommand extends Command
         $seenSirets = [];
 
         foreach ($points as $i => $point) {
-            $io->section(sprintf(
+            $io->section(\sprintf(
                 'Zone #%d (lat: %s, long: %s)',
                 $i + 1,
                 $point['lat'],
@@ -82,7 +99,7 @@ class InseeCommand extends Command
                 try {
                     [$data, $headers] = $this->requestWithRateLimit($point['lat'], $point['long'], $apiRadius, $naf, $page, $io);
                 } catch (\Throwable $e) {
-                    $io->error('Erreur API : ' . $e->getMessage());
+                    $io->error('Erreur API : '.$e->getMessage());
                     break;
                 }
 
@@ -94,7 +111,7 @@ class InseeCommand extends Command
                     $coords = $this->extractCoordinates($company);
 
                     if (!$coords) {
-                        $totalWithoutCoords++;
+                        ++$totalWithoutCoords;
                         continue;
                     }
 
@@ -106,7 +123,7 @@ class InseeCommand extends Command
                     );
 
                     if ($distance > $radius) {
-                        $totalOutOfRadius++;
+                        ++$totalOutOfRadius;
                         continue;
                     }
 
@@ -115,13 +132,13 @@ class InseeCommand extends Command
                         ?? null;
 
                     if (!$siret) {
-                        $totalWithoutSiret++;
+                        ++$totalWithoutSiret;
                         continue;
                     }
 
                     // Anti-doublon dans le même run
                     if (isset($seenSirets[$siret])) {
-                        $totalSkippedRun++;
+                        ++$totalSkippedRun;
                         continue;
                     }
 
@@ -129,7 +146,7 @@ class InseeCommand extends Command
                     $existing = $this->repo->findOneBy(['siret' => $siret]);
                     if ($existing) {
                         $seenSirets[$siret] = true;
-                        $totalSkippedDb++;
+                        ++$totalSkippedDb;
                         continue;
                     }
 
@@ -137,7 +154,7 @@ class InseeCommand extends Command
 
                     $entity = new User();
 
-                    $email = sprintf('%s@import.local', uniqid('user_', true));
+                    $email = \sprintf('%s@import.local', uniqid('user_', true));
                     $plainPassword = 'TempPassword!123';
 
                     $entity
@@ -160,9 +177,9 @@ class InseeCommand extends Command
 
                     $this->em->persist($entity);
                     $seenSirets[$siret] = true;
-                    $totalInserted++;
+                    ++$totalInserted;
 
-                    if ($totalInserted % 50 === 0) {
+                    if (0 === $totalInserted % 50) {
                         $this->em->flush();
                         $this->em->clear();
                         $io->text("Flush batch : {$totalInserted} insertions");
@@ -170,14 +187,14 @@ class InseeCommand extends Command
                 }
 
                 $totalPages = $data['total_pages'] ?? 1;
-                $page++;
+                ++$page;
 
                 // Tempo de sécurité entre appels
                 usleep($baseSleepMs * 1000);
 
                 // Si on est proche de la limite, on ralentit encore
                 $remaining = isset($headers['ratelimit-remaining'][0]) ? (int) $headers['ratelimit-remaining'][0] : null;
-                if ($remaining !== null && $remaining < 5) {
+                if (null !== $remaining && $remaining < 5) {
                     $io->warning("Rate limit presque atteint (remaining: {$remaining}), pause de sécurité...");
                     sleep(5);
                 }
@@ -213,12 +230,12 @@ class InseeCommand extends Command
         string $naf,
         int $page,
         SymfonyStyle $io,
-        int $maxRetries = 5
+        int $maxRetries = 5,
     ): array {
         $attempt = 0;
 
         while ($attempt < $maxRetries) {
-            $attempt++;
+            ++$attempt;
 
             try {
                 $response = $this->httpClient->request('GET', self::API_URL, [
@@ -236,14 +253,14 @@ class InseeCommand extends Command
                 $statusCode = $response->getStatusCode();
                 $headers = $response->getHeaders(false);
 
-                if ($statusCode === 429) {
+                if (429 === $statusCode) {
                     $retryAfter = isset($headers['retry-after'][0]) ? (int) $headers['retry-after'][0] : 10;
                     $io->warning("429 reçu. Pause de {$retryAfter}s avant retry (tentative {$attempt}/{$maxRetries}).");
                     sleep($retryAfter);
                     continue;
                 }
 
-                if ($statusCode !== 200) {
+                if (200 !== $statusCode) {
                     throw new \RuntimeException("Erreur API HTTP {$statusCode}");
                 }
 

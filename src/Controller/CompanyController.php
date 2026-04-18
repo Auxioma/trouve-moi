@@ -25,12 +25,13 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class CompanyController extends AbstractController
 {
-    public function __construct() {
+    public function __construct()
+    {
     }
 
     #[Route('/{category}/{city}/{slug}', name: 'deail_entreprise')]
-    public function askQuote(): Response {
-
+    public function askQuote(): Response
+    {
         return $this->render('entreprise/index.html.twig');
     }
 }

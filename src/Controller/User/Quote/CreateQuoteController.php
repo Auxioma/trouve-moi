@@ -93,10 +93,10 @@ final class CreateQuoteController extends AbstractController
         }
 
         /**
-         * Formulaire avec envoie de PDF personnalisé par l'artisan
+         * Formulaire avec envoie de PDF personnalisé par l'artisan.
          */
         $form = $this->createForm(QuotePdfType::class, $quote, [
-                'action' => $this->generateUrl('app_user_quote_create_pdf_post', [
+            'action' => $this->generateUrl('app_user_quote_create_pdf_post', [
                 'id' => $conversation->getId(),
             ]),
             'method' => 'POST',
@@ -278,117 +278,116 @@ final class CreateQuoteController extends AbstractController
         ]);
     }
 
-#[Route('/user/quote/create/pdf/{id}', name: 'app_user_quote_create_pdf_post', methods: ['POST'])]
-public function createPdfLegacy(
-    int $id,
-    Request $request,
-    ConversationRepository $conversationRepository,
-    EntityManagerInterface $em,
-): Response {
-    $conversation = $conversationRepository->find($id);
+    #[Route('/user/quote/create/pdf/{id}', name: 'app_user_quote_create_pdf_post', methods: ['POST'])]
+    public function createPdfLegacy(
+        int $id,
+        Request $request,
+        ConversationRepository $conversationRepository,
+        EntityManagerInterface $em,
+    ): Response {
+        $conversation = $conversationRepository->find($id);
 
-    if (!$conversation) {
-        throw $this->createNotFoundException('Conversation introuvable.');
-    }
-
-    /** @var User|null $user */
-    $user = $this->getUser();
-
-    if (!$user instanceof User) {
-        throw $this->createAccessDeniedException('Vous devez être connecté.');
-    }
-
-    $isParticipant = false;
-    $clientUser = null;
-
-    foreach ($conversation->getParticipants() as $participant) {
-        $participantUser = $participant->getUser();
-
-        if (!$participantUser instanceof User) {
-            continue;
+        if (!$conversation) {
+            throw $this->createNotFoundException('Conversation introuvable.');
         }
 
-        if ($participantUser->getId() === $user->getId()) {
-            $isParticipant = true;
-        } else {
-            $clientUser = $participantUser;
+        /** @var User|null $user */
+        $user = $this->getUser();
+
+        if (!$user instanceof User) {
+            throw $this->createAccessDeniedException('Vous devez être connecté.');
         }
-    }
 
-    if (!$isParticipant) {
-        throw $this->createAccessDeniedException('Vous n’avez pas accès à cette conversation.');
-    }
+        $isParticipant = false;
+        $clientUser = null;
 
-    //dd($request->request->all());
+        foreach ($conversation->getParticipants() as $participant) {
+            $participantUser = $participant->getUser();
 
-    $now = new \DateTimeImmutable();
+            if (!$participantUser instanceof User) {
+                continue;
+            }
 
-    $action = $request->request->get('action', 'draft');
+            if ($participantUser->getId() === $user->getId()) {
+                $isParticipant = true;
+            } else {
+                $clientUser = $participantUser;
+            }
+        }
 
-    $status = $action === 'send'
-        ? Quote::STATUS_SENT
-        : Quote::STATUS_DRAFT;
+        if (!$isParticipant) {
+            throw $this->createAccessDeniedException('Vous n’avez pas accès à cette conversation.');
+        }
 
-    $devis = new Quote();
+        // dd($request->request->all());
 
-    $devis
-        ->setReference('DEVIS-' . strtoupper(uniqid()))
-        ->setType(Quote::TYPE_MANUAL)
-        ->setArtisan($user)
-        ->setClientUser($clientUser)
-        ->setConversation($conversation)
-        ->setStatus($status)
-        ->setTitle('Devis travaux')
-        ->setDescription('Création du devis pour la conversation en cours')
-        ->setClientName((string) $request->request->get('manual_client_name', ''))
-        ->setClientEmail((string) $request->request->get('manual_client_email', ''))
-        ->setClientPhone($request->request->get('manual_client_phone'))
-        ->setClientAddress($request->request->get('manual_client_address'))
-        ->setQuoteDate($now)
-        ->setValidUntil($now->modify('+30 days'))
-        ->setSubtotalHt((float) $request->request->get('subtotal_ht'))
-        ->setTvaAmount((float) $request->request->get('tva_amount'))
-        ->setTotalTtc((float) $request->request->get('total_ttc'))
-        ->setExecutionTime($request->request->get('execution_time'))
-        ->setPaymentTerms($request->request->get('payment_terms'))
-        ->setLegalNotes($request->request->get('legal_notes'))
-        ->setIsPdfUploaded(false)
-        ->setIsPdfGenerated(false)
-        ->setCreatedAt($now)
-        ->setUpdatedAt($now)
-        ->setSentAt($now)
-    ;
+        $now = new \DateTimeImmutable();
 
-    $items = $request->request->all('items');
+        $action = $request->request->get('action', 'draft');
 
-        if (!is_array($items)) {
+        $status = 'send' === $action
+            ? Quote::STATUS_SENT
+            : Quote::STATUS_DRAFT;
+
+        $devis = new Quote();
+
+        $devis
+            ->setReference('DEVIS-'.mb_strtoupper(uniqid()))
+            ->setType(Quote::TYPE_MANUAL)
+            ->setArtisan($user)
+            ->setClientUser($clientUser)
+            ->setConversation($conversation)
+            ->setStatus($status)
+            ->setTitle('Devis travaux')
+            ->setDescription('Création du devis pour la conversation en cours')
+            ->setClientName((string) $request->request->get('manual_client_name', ''))
+            ->setClientEmail((string) $request->request->get('manual_client_email', ''))
+            ->setClientPhone($request->request->get('manual_client_phone'))
+            ->setClientAddress($request->request->get('manual_client_address'))
+            ->setQuoteDate($now)
+            ->setValidUntil($now->modify('+30 days'))
+            ->setSubtotalHt((float) $request->request->get('subtotal_ht'))
+            ->setTvaAmount((float) $request->request->get('tva_amount'))
+            ->setTotalTtc((float) $request->request->get('total_ttc'))
+            ->setExecutionTime($request->request->get('execution_time'))
+            ->setPaymentTerms($request->request->get('payment_terms'))
+            ->setLegalNotes($request->request->get('legal_notes'))
+            ->setIsPdfUploaded(false)
+            ->setIsPdfGenerated(false)
+            ->setCreatedAt($now)
+            ->setUpdatedAt($now)
+            ->setSentAt($now)
+        ;
+
+        $items = $request->request->all('items');
+
+        if (!\is_array($items)) {
             throw new \InvalidArgumentException('Les items doivent être un tableau.');
         }
 
+        foreach ($items as $key => $itemData) {
+            $line = new QuoteItem();
+            $line
+                ->setDescription($itemData['label'])
+                ->setQuantity((int) $itemData['quantity'])
+                ->setUnit((float) $itemData['unit'])
+                ->setUnitPriceHt((float) $itemData['unit_price'])
+                ->setTotalTtc((float) $itemData['total_ttc'])
+                ->setTotalHt((float) $itemData['total_ht'])
+                ->setPosition($key)
+            ;
 
-    foreach ($items as $key => $itemData) {
-        $line = new QuoteItem();
-        $line
-            ->setDescription($itemData['label'])
-            ->setQuantity((int) $itemData['quantity'])
-            ->setUnit((float) $itemData['unit'])
-            ->setUnitPriceHt((float) $itemData['unit_price'])
-            ->setTotalTtc((float) $itemData['total_ttc'])
-            ->setTotalHt((float) $itemData['total_ht'])
-            ->setPosition($key)
-        ;
+            $devis->addItem($line);
+            $em->persist($line);
+        }
 
-        $devis->addItem($line);
-        $em->persist($line);
+        $em->persist($devis);
+        $em->flush();
+
+        return $this->redirectToRoute('app_user_quote_create_list', [
+            'id' => $conversation->getId(),
+        ]);
     }
-
-    $em->persist($devis);
-    $em->flush();
-
-    return $this->redirectToRoute('app_user_quote_create_list', [
-        'id' => $conversation->getId(),
-    ]);
-}
 
     #[Route('/user/quote', name: 'app_user_quote_create_list')]
     public function list(QuoteRepository $quoteRepository): Response

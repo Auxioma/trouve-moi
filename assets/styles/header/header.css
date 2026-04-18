@@ -49,3 +49,123 @@ nav {
     background-position: center;
     background-repeat: no-repeat;
 }
+/* ===============================
+   RESET TOTAL TOM SELECT
+   =============================== */
+
+.ts-wrapper,
+.ts-wrapper.form-select {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* ===============================
+   CONTENEUR (TON DESIGN PREND LE RELAIS)
+   =============================== */
+
+.ts-wrapper .ts-control {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+
+    width: 100%;
+    min-height: 48px;
+
+    padding: 0; /* important */
+
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    overflow: hidden;
+}
+
+/* ===============================
+   TEXTE SELECTIONNE
+   =============================== */
+
+.ts-wrapper.single .ts-control .item {
+    background: transparent !important;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    padding: 12px 15px 12px 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ===============================
+   INPUT INTERNE (TRANSPARENT)
+   =============================== */
+
+.ts-wrapper.single .ts-control input {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+
+    color: inherit;
+    font: inherit;
+
+    flex: 1;
+    min-width: 0;
+
+    padding: 0;
+    margin: 0;
+}
+
+/* ===============================
+   PLACEHOLDER
+   =============================== */
+
+.ts-wrapper .ts-control .placeholder {
+    color: inherit;
+    opacity: 0.6;
+    font: inherit;
+    padding-left:20px;
+}
+
+/* ===============================
+   FOCUS (désactivé pour laisser TON design)
+   =============================== */
+
+.ts-wrapper.focus .ts-control {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ===============================
+   DROPDOWN (tu peux garder ou styliser)
+   =============================== */
+
+.ts-dropdown {
+    border-radius: 12px;
+    border: 1px solid #EEE;
+    background: #FFF;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin-top: 8px;
+    z-index: 9999;
+}
+
+.ts-dropdown .option {
+    padding: 10px 14px;
+    font-family: Manrope;
+    cursor: pointer;
+}
+
+.ts-dropdown .option:hover {
+    background: #F5F7FA;
+}
+
+.ts-dropdown .active {
+    background: #003EC7;
+    color: #fff;
+}
+.ts-control {
+    margin-left: 20px;
+}

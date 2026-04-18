@@ -188,7 +188,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             'id' => $this->id,
             'email' => $this->email,
             'password' => $this->password,
-            'roles' => $this->roles, 
+            'roles' => $this->roles,
         ];
     }
 
