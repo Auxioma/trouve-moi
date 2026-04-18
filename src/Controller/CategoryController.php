@@ -28,15 +28,15 @@ use Symfony\Component\Routing\Attribute\Route;
 final class CategoryController extends AbstractController
 {
     public function __construct(
-        private readonly UserRepository $userRepository
-    )
-    {}
+        private readonly UserRepository $userRepository,
+    ) {
+    }
+
     #[Route('/recherche', name: 'app_category')]
     public function index(Request $request): Response
     {
-
         $array = $request->query->all();
-       
+
         $activity = $array['activity'] ?? null;
         $ville = $array['location'] ?? null;
         $latitude = $array['latitude'] ?? null;

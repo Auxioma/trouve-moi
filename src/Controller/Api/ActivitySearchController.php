@@ -61,7 +61,7 @@ final class ActivitySearchController extends AbstractController
     #[Route('/api/cities', name: 'api_cities', methods: ['GET'])]
     public function cities(Request $request, UserRepository $userRepository): JsonResponse
     {
-        $term = trim((string) $request->query->get('q', ''));
+        $term = mb_trim((string) $request->query->get('q', ''));
 
         if (mb_strlen($term) < 2) {
             return $this->json([]);
@@ -71,5 +71,4 @@ final class ActivitySearchController extends AbstractController
 
         return $this->json($cities);
     }
-
 }

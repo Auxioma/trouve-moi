@@ -71,7 +71,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->andWhere('u.latitude IS NOT NULL')
             ->andWhere('u.longitude IS NOT NULL')
             ->andWhere('LOWER(u.city) LIKE LOWER(:term)')
-            ->setParameter('term', '%' . $term . '%')
+            ->setParameter('term', '%'.$term.'%')
             ->groupBy('u.city')
             ->orderBy('u.city', 'ASC')
             ->setMaxResults(10)
@@ -79,38 +79,36 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getArrayResult();
     }
 
-        public function findByActivityAndCity($activity, $city, $latitude, $longitude): array
-        {
-            $qb = $this->createQueryBuilder('u')
-                //->andWhere('u.isVerified = :verified')
-                //->setParameter('verified', true)
-            ;
+    public function findByActivityAndCity($activity, $city, $latitude, $longitude): array
+    {
+        $qb = $this->createQueryBuilder('u')
+            // ->andWhere('u.isVerified = :verified')
+            // ->setParameter('verified', true)
+        ;
 
-                if (!empty($activity)) {
-                    $qb->leftJoin('u.activity', 'a')
-                        ->andWhere('LOWER(a.name) = LOWER(:activity)')
-                        ->setParameter('activity', mb_trim($activity));
-                }
+        if (!empty($activity)) {
+            $qb->leftJoin('u.activity', 'a')
+                ->andWhere('LOWER(a.name) = LOWER(:activity)')
+                ->setParameter('activity', mb_trim($activity));
+        }
 
-
-            if ($latitude && $longitude) {
-
-                $qb->addSelect(
-                    '(6371 * acos(
+        if ($latitude && $longitude) {
+            $qb->addSelect(
+                '(6371 * acos(
                         cos(radians(:lat)) 
                         * cos(radians(u.latitude)) 
                         * cos(radians(u.longitude) - radians(:lng)) 
                         + sin(radians(:lat)) 
                         * sin(radians(u.latitude))
                     )) AS HIDDEN distance'
-                )
-                ->having('distance <= :radius')
-                ->setParameter('lat', $latitude)
-                ->setParameter('lng', $longitude)
-                ->setParameter('radius', 50)
-                ->orderBy('distance', 'ASC');
-            }
-
-            return $qb->getQuery()->getResult();
+            )
+            ->having('distance <= :radius')
+            ->setParameter('lat', $latitude)
+            ->setParameter('lng', $longitude)
+            ->setParameter('radius', 50)
+            ->orderBy('distance', 'ASC');
         }
+
+        return $qb->getQuery()->getResult();
+    }
 }
