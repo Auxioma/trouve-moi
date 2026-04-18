@@ -19,6 +19,7 @@
 
 namespace App\Controller;
 
+use App\Repository\TestimonialRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,17 +29,22 @@ final class HomeController extends AbstractController
 {
     public function __construct(
         private readonly UserRepository $userRepository,
+        private readonly TestimonialRepository $testimonialRepository,
     ) {
     }
 
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        /* Je vais prendre les 10 derniers utilisateurs créés pour les afficher sur la page d'accueil */
-        $latestUsers = $this->userRepository->findLatestArtisans(10);
+        /* Je vais prendre les 4 derniers utilisateurs créés pour les afficher sur la page d'accueil */
+        $latestUsers = $this->userRepository->findLatestArtisans(4);
+
+        /* Je vais affiché les 20 dernier avis des utilisateurs pour les afficher sur la page d'accueil */
+        $testimonials = $this->testimonialRepository->findBy([], ['createdAt' => 'DESC'], 20);
 
         return $this->render('home/home.html.twig', [
-            'lastUser' => $latestUsers,
+            'localisationArtisants' => $latestUsers,
+            'testimonials' => $testimonials,
         ]);
     }
 }

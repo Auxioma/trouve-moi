@@ -45,7 +45,7 @@ class InseeCommand extends Command
         $radius = 100;
 
         // Code NAF plomberie, chauffage et conditionnement d'air
-        $naf = '43.21A';
+        $naf = '43.22A';
 
         // Rayon par appel API
         $apiRadius = 50;
@@ -133,7 +133,7 @@ class InseeCommand extends Command
                         continue;
                     }
 
-                    $acticity = $this->activityRepo->find(2);
+                    $acticity = $this->activityRepo->find(1);
 
                     $entity = new User();
 

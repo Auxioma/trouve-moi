@@ -53,8 +53,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function findLatestArtisans(int $limit = 10): array
     {
         return $this->createQueryBuilder('u')
-            ->leftJoin('u.pictures', 'p')
-            ->addSelect('p')
             ->andWhere('u.isVerified = :verified')
             ->andWhere('u.roles LIKE :role')
             ->setParameter('verified', true)

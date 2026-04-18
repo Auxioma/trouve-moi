@@ -21,14 +21,14 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    <script src="{{ asset('plugin/owl/dist/owl.carousel.min.js') }}"></script>
     <script>
         $('.haut').owlCarousel({
-            loop: true,
+            loop: false,
+            dots: false,
             margin: 32,
             nav: false,
-
             autoplay: true,
-            autoplayTimeout: 2000,      
+            autoplayTimeout: 3000,      
             autoplayHoverPause: true,   
-            smartSpeed: 800,        
+            smartSpeed: 800,      
             responsive: {
                 0: {
                     items: 1
@@ -51,20 +51,25 @@
             }
 
         });
+        $('.play').on('click',function(){
+            owl.trigger('play.owl.autoplay',[1000])
+        })
+        $('.stop').on('click',function(){
+            owl.trigger('stop.owl.autoplay')
+        })
     </script>
     <script>
         document.addEventListener('turbo:load', () => {
             const owl = $('.bas');
-
             owl.owlCarousel({
-                loop: true,
+                loop: false,
+                dots: false,
                 margin: 32,
                 nav: false,
-
                 autoplay: true,
-                autoplayTimeout: 2000,
-                autoplayHoverPause: true,
-                smartSpeed: 800,
+                autoplayTimeout: 3000,      
+                autoplayHoverPause: true,   
+                smartSpeed: 800,  
                 responsive: {
                     0: {
                         items: 1
@@ -86,8 +91,13 @@
                     }
                 }
             });
-            owl.trigger('play.owl.autoplay', [2000]);
         });
+        $('.play').on('click',function(){
+            owl.trigger('play.owl.autoplay',[1000])
+        })
+        $('.stop').on('click',function(){
+            owl.trigger('stop.owl.autoplay')
+        })
     </script>
 </body>
 </html>

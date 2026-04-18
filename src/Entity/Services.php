@@ -23,7 +23,7 @@ use App\Repository\ServicesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 #[ORM\Entity(repositoryClass: ServicesRepository::class)]
 class Services
 {
@@ -43,6 +43,10 @@ class Services
      */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'services')]
     private Collection $users;
+
+    #[ORM\Column(length: 255)]
+    #[Gedmo\Slug(fields: ['name'], unique: true)]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -101,6 +105,18 @@ class Services
         if ($this->users->removeElement($user)) {
             $user->removeService($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

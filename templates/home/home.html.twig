@@ -96,19 +96,24 @@
                         <h3>Artisans de confiance</h3>
                     </div>
 
-                    {% for i in 1..4 %}
+                    {% for item in localisationArtisants %}
                         <div class="col-12 col-sm-6 col-lg-3 mb-4">
                             <div class="artisan h-100">
                                 <div class="thumb">
-                                    <img src="{{ asset('image/artisan/01.png') }}" alt="" class="img-fluid w-100" width="370" height="470">
+                                    <img
+                                    src="{{ vich_uploader_asset(item, 'imageFile') ?: asset('image/artisan/01.png') }}"
+                                    alt="{{ item.name ?? 'Artisan' }}"
+                                    class="img-fluid w-100"
+                                    width="370"
+                                    height="470"
+                                >
                                 </div>
                                 <div class="thumb-info">
-                                    <span class="metier">ÉBÉNISTERIE</span>
+                                    <span class="metier">{{ item.activity.name }}</span>
                                     <span class="service">QUALIBAT RGE</span>
-                                    <h2 class="nom-entreprise">Atelier Beaumont {{ i }}</h2>
+                                    <h2 class="nom-entreprise">{{ item.compagny }}</h2>
                                     <p class="description-ets">
-                                        Spécialiste du mobilier sur-mesure en chêne massif et
-                                        restauration de pièces anciennes.
+                                        {{ item.description|u.truncate(100) }} ...
                                     </p>
                                     <span class="localisation-ets">
                                         <i class="fas fa-map-marker-alt"></i>
@@ -136,47 +141,64 @@
             <div class="row g-0">
                 <div class="col-12">
                     <div class="owl-carousel haut owl-theme trouve-moi">
-                        <div class="item">
-                            <h5>4.5</h5>
-                            <p>
-                                "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Atque culpa cum dolorem eos harum quae quidem quod totam ut veniam."
-                            </p>
-                            <div class="d-flex align-items-center mt-3">
-                                <img src="https://placehold.co/50x50"
-                                     alt=""
-                                     class="rounded-circle w-auto"
-                                     width="50" height="50">
 
-                                <div>
-                                    <h4 class="mb-0">Jojo</h4>
-                                    <p class="mb-0 text-muted trouve-moi-p">Chômeur</p>
+                        {% for item in testimonials|slice(0, 10) %}
+                            <div class="item">
+                                {% set note = item.review ?? 0 %}
+                                <h5>
+                                    {% for i in 1..5 %}
+                                        <span class="star {{ i <= note ? 'filled' : '' }}">
+                                            <i class="fas fa-star"></i>
+                                        </span>
+                                    {% endfor %}
+                                </h5>
+                                <p>
+                                    "{{ item.description }}"
+                                </p>
+                                <div class="d-flex align-items-center mt-3">
+                                    <img src="{{ vich_uploader_asset(item.artisan, 'imageFile') ?: asset('image/artisan/01.png') }}"
+                                         alt="{{ item.user.name ?? 'Client' }}"
+                                         class="rounded-circle w-auto"
+                                         width="50" height="50">
+
+                                    <div>
+                                        <h4 class="mb-0">{{ item.artisan.compagny }}</h4>
+                                        <p class="mb-0 text-muted trouve-moi-p">{{ item.artisan.activity.name ?? '' }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endfor %}                        
                     </div>
                 </div>
 
                 <div class="col-12">
                     <div class="owl-carousel bas owl-theme trouve-moi mt-48">
-                        <div class="item">
-                            <h5>4.5</h5>
-                            <p>
-                                "Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Atque culpa cum dolorem eos harum quae quidem quod totam ut veniam."
-                            </p>
-                            <div class="d-flex align-items-center mt-3">
-                                <img src="https://placehold.co/50x50"
-                                     alt=""
-                                     class="rounded-circle w-auto"
-                                     width="50" height="50">
+                        {% for item in testimonials|slice(11, 20) %}
+                            <div class="item">
+                                {% set note = item.review ?? 0 %}
+                                <h5>
+                                    {% for i in 1..5 %}
+                                        <span class="star {{ i <= note ? 'filled' : '' }}">
+                                            <i class="fas fa-star"></i>
+                                        </span>
+                                    {% endfor %}
+                                </h5>
+                                <p>
+                                    "{{ item.description }}"
+                                </p>
+                                <div class="d-flex align-items-center mt-3">
+                                    <img src="{{ vich_uploader_asset(item.artisan, 'imageFile') ?: asset('image/artisan/01.png') }}"
+                                         alt="{{ item.user.name ?? 'Client' }}"
+                                         class="rounded-circle w-auto"
+                                         width="50" height="50">
 
-                                <div>
-                                    <h4 class="mb-0">Jojo</h4>
-                                    <p class="mb-0 text-muted trouve-moi-p">Chômeur</p>
+                                    <div>
+                                        <h4 class="mb-0">{{ item.artisan.compagny }}</h4>
+                                        <p class="mb-0 text-muted trouve-moi-p">{{ item.artisan.activity.name ?? '' }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endfor %}  
                     </div>
                 </div>
             </div>

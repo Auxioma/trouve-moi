@@ -1544,3 +1544,40 @@ img {
         padding: 16px;
     }
 }
+.review-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* étoiles */
+.rating {
+    display: flex;
+    gap: 3px;
+}
+
+.star i {
+    font-size: 16px;
+}
+
+/* étoiles remplies */
+.star.filled i {
+    color: #FFD700;
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+}
+
+/* étoiles vides (bleu gradient) */
+.star:not(.filled) i {
+    background: linear-gradient(180deg, #003EC7 0%, #001E61 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.5;
+}
+
+/* texte note */
+.review-text {
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+    color: #001E61;
+}
