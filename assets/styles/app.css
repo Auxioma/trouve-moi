@@ -7,15 +7,16 @@
 /**
 * CSS de la parties des utiliateurs
 */
-@import "./visiteur/navbar.css";
+/*@import "./visiteur/navbar.css";
 @import "./visiteur/dashboard.css";
 @import "./visiteur/list-message.css";
 @import "./visiteur/detail-message.css";
-@import "./visiteur/profile.css";
+@import "./visiteur/profile.css";*/
 
 /**
 * CSS des artisans
  */
+/*
 @import "./artisan/dashboard.css";
 @import "./artisan/messagerie-list.css";
 @import "./artisan/messagerie-show.css";
@@ -24,6 +25,7 @@
 @import "./artisan/profile.css";
 @import "./artisan/quote.css";
 @import "./artisan/calendar.css";
+*/
 
 /**
 * CSS du front

@@ -1,3 +1,28 @@
+.category-card {
+    border-radius: 12px;
+    background: #FFF;
+}
+.artisan-card {
+    max-width: 70%;
+    width: 70%;
+}
+.category-card h3 {
+    color: #1A1C1C;
+    font-family: "Plus Jakarta Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.category-card p {
+    color: #5F5E5E;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
 .liste-des-filtres {
     margin-top: 36px;
     margin-bottom: 36px;

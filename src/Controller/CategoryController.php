@@ -45,10 +45,11 @@ final class CategoryController extends AbstractController
         // je vais chercher les utilisateurs qui ont une activité et une ville correspondante
         $users = $this->userRepository->findByActivityAndCity($activity, $ville, $latitude, $longitude);
 
-        dd($users);
 
         return $this->render('category/category.html.twig', [
-            'controller_name' => 'CategoryController',
+            'search' => $users,
+            'clientLatitude' => $latitude,
+            'clientLongitude' => $longitude,
         ]);
     }
 }
