@@ -19,20 +19,23 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class CompanyController extends AbstractController
 {
-    public function __construct()
-    {
-    }
+    public function __construct(
+        private readonly UserRepository $userRepository,
+    ){}
 
     #[Route('/{category}/{city}/{slug}', name: 'deail_entreprise')]
     #[Route('/nnnnnnnnnnnnnnnnn', name: 'deail_entqsqsqsqsreprise')]
-    public function askQuote(): Response
+    public function detailCompagny(string $slug): Response
     {
-        return $this->render('entreprise/show.html.twig');
+        return $this->render('entreprise/show.html.twig', [
+            'item' => $this->userRepository->findOneBy(['slug' => $slug]),
+        ]);
     }
 }
