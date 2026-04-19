@@ -20,6 +20,8 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +35,7 @@ final class CategoryController extends AbstractController
     }
 
     #[Route('/recherche', name: 'app_category')]
-    public function index(Request $request): Response
+    public function index(Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
     {
         $array = $request->query->all();
 
@@ -45,9 +47,15 @@ final class CategoryController extends AbstractController
         // je vais chercher les utilisateurs qui ont une activité et une ville correspondante
         $users = $this->userRepository->findByActivityAndCity($activity, $ville, $latitude, $longitude);
 
+        $pagination = $paginator->paginate(
+            $users,
+            $request->query->getInt('page', 1), /* page number */
+            30 /* limit per page */
+        );
+
 
         return $this->render('category/category.html.twig', [
-            'search' => $users,
+            'search' => $pagination,
             'clientLatitude' => $latitude,
             'clientLongitude' => $longitude,
         ]);

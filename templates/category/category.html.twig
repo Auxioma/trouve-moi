@@ -20,6 +20,12 @@
 
                     <div class="row">
                         <div class="assenceur">
+                            <div class="col-12 mb-1">
+                                <div class="category-card mb-3">
+                                    <p>Nous avons trouvé {{ search.getTotalItemCount }} prestataires pour votre recherche.</p>
+                                </div>
+                            </div>
+
                             {% for item in search %}
                                 <div class="col-12 mb-1">
                                     <div class="category-card">
@@ -28,20 +34,26 @@
                                         </div>
 
                                         <div class="artisan-card js-artisan-distance"
-                                            data-id="{{ item.id }}"
-                                            data-client-lat="{{ clientLatitude|default('') }}"
-                                            data-client-lng="{{ clientLongitude|default('') }}"
-                                            data-artisan-lat="{{ item.latitude|default('') }}"
-                                            data-artisan-lng="{{ item.longitude|default('') }}">
+                                             data-id="{{ item.id }}"
+                                             data-client-lat="{{ clientLatitude|default('') }}"
+                                             data-client-lng="{{ clientLongitude|default('') }}"
+                                             data-artisan-lat="{{ item.latitude|default('') }}"
+                                             data-artisan-lng="{{ item.longitude|default('') }}"
+                                             data-company="{% if item.compagny is not empty and item.compagny != 'N/A' %}{{ item.compagny|e('html_attr') }}{% else %}{{ item.firstname|trim|e('html_attr') }}{% endif %}">
                                             <h3>
-                                                {% if item.compagny is not empty %}
-                                                    {% if item.compagny != 'N/A' %}
+                                                <a href="{{ path('deail_entreprise', {
+                                                    category: item.activity.slug,
+                                                    city: item.city|slug|lower,
+                                                    slug: item.slug
+                                                }) }}">
+                                                    {% if item.compagny is not empty and item.compagny != 'N/A' %}
                                                         {{ item.compagny|u.truncate(25, '...') }}
                                                     {% else %}
-                                                        {{ item.firstname }} 
+                                                        {{ item.firstname }}
                                                     {% endif %}
-                                                {% endif %}                                            
+                                                </a>
                                             </h3>
+
                                             <p>Spécialiste Maison Connectée</p>
 
                                             <div class="category-card-tags">
@@ -62,13 +74,16 @@
                                                         <path d="M6 7.5C6.4125 7.5 6.76562 7.35312 7.05937 7.05937C7.35312 6.76562 7.5 6.4125 7.5 6C7.5 5.5875 7.35312 5.23438 7.05937 4.94063C6.76562 4.64688 6.4125 4.5 6 4.5C5.5875 4.5 5.23438 4.64688 4.94063 4.94063C4.64688 5.23438 4.5 5.5875 4.5 6C4.5 6.4125 4.64688 6.76562 4.94063 7.05937C5.23438 7.35312 5.5875 7.5 6 7.5ZM6 13.0125C7.525 11.6125 8.65625 10.3406 9.39375 9.19687C10.1313 8.05312 10.5 7.0375 10.5 6.15C10.5 4.7875 10.0656 3.67188 9.19687 2.80312C8.32812 1.93437 7.2625 1.5 6 1.5C4.7375 1.5 3.67188 1.93437 2.80312 2.80312C1.93437 3.67188 1.5 4.7875 1.5 6.15C1.5 7.0375 1.86875 8.05312 2.60625 9.19687C3.34375 10.3406 4.475 11.6125 6 13.0125ZM6 15C3.9875 13.2875 2.48438 11.6969 1.49063 10.2281C0.496875 8.75937 0 7.4 0 6.15C0 4.275 0.603125 2.78125 1.80938 1.66875C3.01562 0.55625 4.4125 0 6 0C7.5875 0 8.98438 0.55625 10.1906 1.66875C11.3969 2.78125 12 4.275 12 6.15C12 7.4 11.5031 8.75937 10.5094 10.2281C9.51562 11.6969 8.0125 13.2875 6 15Z" fill="#94A3B8"/>
                                                     </svg>
                                                     <span id="distance-{{ item.id }}">Calcul en cours...</span>
-                                                    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             {% endfor %}
+
+                            <div class="navigation">
+                                {{ knp_pagination_render(search) }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,13 +134,14 @@
     </div>
 
     {# MODAL CARTE MOBILE #}
-    <div class="modal fade" id="mobileMapModal" tabindex="-1" aria-labelledby="mobileMapModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg">
+    <div class="modal fade" id="mobileMapModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content mobile-map-modal-content">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title" id="mobileMapModalLabel">Carte</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    <h5 class="modal-title">Carte</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+
                 <div class="modal-body p-0">
                     <div id="mobile-map"></div>
                 </div>
@@ -177,42 +193,85 @@
 {% block javascripts %}
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const artisanCards = document.querySelectorAll('.js-artisan-distance');
+    <script>
+        let desktopMap = null;
+        let mobileMap = null;
+        let mobileModalInitialized = false;
 
-        if (!artisanCards.length) {
-            return;
+        function distanceKm(lat1, lon1, lat2, lon2) {
+            const earthRadius = 6371;
+
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) *
+                Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            return earthRadius * c;
         }
 
-        const points = [];
-        let clientPosition = null;
-
-        artisanCards.forEach((card, index) => {
-            const clientLat = parseFloat(card.dataset.clientLat);
-            const clientLng = parseFloat(card.dataset.clientLng);
-            const artisanLat = parseFloat(card.dataset.artisanLat);
-            const artisanLng = parseFloat(card.dataset.artisanLng);
-            const artisanId = card.dataset.id;
-
-            if (!isNaN(clientLat) && !isNaN(clientLng) && !clientPosition) {
-                clientPosition = [clientLat, clientLng];
+        function destroyMapIfExists(mapInstance) {
+            if (mapInstance) {
+                mapInstance.remove();
             }
 
-            if (!isNaN(artisanLat) && !isNaN(artisanLng)) {
-                points.push({
-                    id: artisanId,
-                    coords: [artisanLat, artisanLng]
-                });
-            }
-        });
-
-        if (!clientPosition || !points.length) {
-            return;
+            return null;
         }
 
-        function buildMap(containerId) {
-            const map = L.map(containerId).setView(clientPosition, 10);
+        function getMapData() {
+            const artisanCards = document.querySelectorAll('.js-artisan-distance');
+
+            if (!artisanCards.length) {
+                return null;
+            }
+
+            const points = [];
+            let clientPosition = null;
+
+            artisanCards.forEach((card) => {
+                const clientLat = parseFloat(card.dataset.clientLat);
+                const clientLng = parseFloat(card.dataset.clientLng);
+                const artisanLat = parseFloat(card.dataset.artisanLat);
+                const artisanLng = parseFloat(card.dataset.artisanLng);
+                const artisanId = card.dataset.id;
+                const company = card.dataset.company || ('Artisan #' + artisanId);
+
+                if (!isNaN(clientLat) && !isNaN(clientLng) && !clientPosition) {
+                    clientPosition = [clientLat, clientLng];
+                }
+
+                if (!isNaN(artisanLat) && !isNaN(artisanLng)) {
+                    points.push({
+                        id: artisanId,
+                        coords: [artisanLat, artisanLng],
+                        company: company
+                    });
+                }
+            });
+
+            if (!clientPosition || !points.length) {
+                return null;
+            }
+
+            return {
+                clientPosition,
+                points
+            };
+        }
+
+        function buildMap(containerId, data) {
+            const container = document.getElementById(containerId);
+
+            if (!container) {
+                return null;
+            }
+
+            const map = L.map(containerId).setView(data.clientPosition, 10);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
@@ -220,24 +279,21 @@
 
             const bounds = [];
 
-            // Marker client
-            L.marker(clientPosition)
+            L.marker(data.clientPosition)
                 .addTo(map)
                 .bindPopup('Votre position');
 
-            bounds.push(clientPosition);
+            bounds.push(data.clientPosition);
 
-            // Markers artisans
-            points.forEach((point, index) => {
+            data.points.forEach((point) => {
                 L.marker(point.coords)
                     .addTo(map)
-                    .bindPopup('Artisan #' + point.id);
+                    .bindPopup(point.company);
 
                 bounds.push(point.coords);
             });
 
-            // Cercle de 50 km autour du client
-            L.circle(clientPosition, {
+            L.circle(data.clientPosition, {
                 radius: 50000,
                 color: '#003EC7',
                 fillColor: '#003EC7',
@@ -248,73 +304,84 @@
                 padding: [50, 50]
             });
 
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 100);
+
             return map;
         }
 
-        let mobileMap = null;
+        function initDistances() {
+            const cards = document.querySelectorAll('.js-artisan-distance');
 
-        if (document.getElementById('map')) {
-            buildMap('map');
-        }
+            cards.forEach((card) => {
+                const id = card.dataset.id;
+                const clientLat = parseFloat(card.dataset.clientLat);
+                const clientLng = parseFloat(card.dataset.clientLng);
+                const artisanLat = parseFloat(card.dataset.artisanLat);
+                const artisanLng = parseFloat(card.dataset.artisanLng);
 
-        const mobileModal = document.getElementById('mobileMapModal');
+                const distanceElement = document.getElementById('distance-' + id);
 
-        if (mobileModal) {
-            mobileModal.addEventListener('shown.bs.modal', function () {
-                if (!mobileMap) {
-                    mobileMap = buildMap('mobile-map');
+                if (!distanceElement) {
+                    return;
                 }
 
-                setTimeout(() => {
-                    mobileMap.invalidateSize();
-                }, 200);
+                if (
+                    !isNaN(clientLat) &&
+                    !isNaN(clientLng) &&
+                    !isNaN(artisanLat) &&
+                    !isNaN(artisanLng)
+                ) {
+                    const distance = distanceKm(clientLat, clientLng, artisanLat, artisanLng);
+                    distanceElement.textContent = distance.toFixed(1) + ' km';
+                } else {
+                    distanceElement.textContent = 'Distance indisponible';
+                }
             });
         }
-    });
-</script>
 
-    <script>
-    function distanceKm(lat1, lon1, lat2, lon2) {
-        const earthRadius = 6371;
+        function initMaps() {
+            const data = getMapData();
 
-        const dLat = (lat2 - lat1) * Math.PI / 180;
-        const dLon = (lon2 - lon1) * Math.PI / 180;
+            desktopMap = destroyMapIfExists(desktopMap);
+            mobileMap = destroyMapIfExists(mobileMap);
 
-        const a =
-            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(lat1 * Math.PI / 180) *
-            Math.cos(lat2 * Math.PI / 180) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
-
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        return earthRadius * c;
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const cards = document.querySelectorAll('.js-artisan-distance');
-
-        cards.forEach(function (card) {
-            const id = card.dataset.id;
-            const clientLat = parseFloat(card.dataset.clientLat);
-            const clientLng = parseFloat(card.dataset.clientLng);
-            const artisanLat = parseFloat(card.dataset.artisanLat);
-            const artisanLng = parseFloat(card.dataset.artisanLng);
-
-            const distanceElement = document.getElementById('distance-' + id);
-
-            if (
-                !isNaN(clientLat) &&
-                !isNaN(clientLng) &&
-                !isNaN(artisanLat) &&
-                !isNaN(artisanLng)
-            ) {
-                const distance = distanceKm(clientLat, clientLng, artisanLat, artisanLng);
-                distanceElement.textContent = distance.toFixed(1) + ' km';
-            } else {
-                distanceElement.textContent = 'Distance indisponible';
+            if (!data) {
+                return;
             }
-        });
-    });
-</script>
+
+            if (document.getElementById('map')) {
+                desktopMap = buildMap('map', data);
+            }
+
+            const mobileModal = document.getElementById('mobileMapModal');
+
+            if (mobileModal && !mobileModalInitialized) {
+                mobileModal.addEventListener('shown.bs.modal', function () {
+                    const modalData = getMapData();
+
+                    if (!mobileMap && modalData) {
+                        mobileMap = buildMap('mobile-map', modalData);
+                    }
+
+                    setTimeout(() => {
+                        if (mobileMap) {
+                            mobileMap.invalidateSize();
+                        }
+                    }, 200);
+                });
+
+                mobileModalInitialized = true;
+            }
+        }
+
+        function initCategoryPage() {
+            initDistances();
+            initMaps();
+        }
+
+        document.addEventListener('DOMContentLoaded', initCategoryPage);
+        document.addEventListener('turbo:load', initCategoryPage);
+    </script>
 {% endblock %}
