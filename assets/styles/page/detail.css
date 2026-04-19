@@ -1,0 +1,626 @@
+    .hero-banner {
+        position: relative;
+        height: 500px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+        z-index: 1;
+    }
+
+    .hero-banner .container {
+        z-index: 2;
+    }
+
+    .entreprise-cadre-marge {
+        padding: 64px;
+    }
+
+    .hero-banner .entreprise-metier {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 2px;
+        background: #003ec7;
+        color: #fff;
+        font-family: Manrope, sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 15px;
+        text-transform: uppercase;
+    }
+
+    .hero-banner .entreprise-etoile {
+        color: #f59e0b;
+        font-family: Manrope, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+    }
+
+    .hero-banner .entreprise-nombre-avis {
+        color: rgba(255, 255, 255, 0.7);
+        font-family: Manrope, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    .hero-banner .entreprise-nom {
+        color: #fff;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 72px;
+        font-weight: 800;
+        line-height: 72px;
+    }
+
+    .entreprise-infos span:nth-child(1),
+    .entreprise-infos span:nth-child(2) {
+        color: rgba(255, 255, 255, 0.8);
+        font-family: Manrope, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    .entreprise-infos span:nth-child(3) {
+        color: #4ade80;
+        font-family: Manrope, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    .entreprise-titre {
+        display: inline-block;
+        color: #003ec7;
+        font-family: Manrope, sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 15px;
+        text-transform: uppercase;
+    }
+
+    .entreprise-slogan,
+    .entreprise-slogan-realisation,
+    .entreprise-slogan-catalogue {
+        color: #1a1c1c;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 36px;
+    }
+
+    .entreprise-slogan {
+        margin: 12px 0 24px;
+    }
+
+    .entreprise-description {
+        color: #434656;
+        font-family: Manrope, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+    }
+
+    .entreprise-services {
+        margin: 30px 0 64px;
+        padding: 0;
+    }
+
+    .entreprise-services li {
+        display: flex;
+        align-items: center;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        background: #f3f3f4;
+        color: #1a1c1c;
+        font-family: Manrope, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    .entreprise-services li:last-child {
+        color: #15803d;
+    }
+
+    .catalogue-services {
+        margin-top: 64px;
+    }
+
+    .entreprise-image {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .service-table {
+        border: 1px solid #e9ecf5;
+        overflow: hidden;
+    }
+
+    .service-table__cell {
+        height: 100%;
+        padding: 24px;
+    }
+
+    .service-table__head .service-table__cell {
+        background: #F8F7F7;
+        color: #1a1c1c;
+        font-family: Manrope, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .service-table__body .col-6,
+    .service-table__body .col-3 {
+        border-top: 1px solid #e9ecf5;
+    }
+
+    .entreprise-service-titre-h5 {
+        color: #1a1c1c;
+        font-family: Manrope, sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 28px;
+    }
+
+    .entreprise-service-description {
+        color: #434656;
+        font-family: Manrope, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+
+    .service-table__price {
+        color: #003ec7;
+        font-family: Manrope, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .service-table__duration {
+        color: #434656;
+        font-family: Manrope, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .entreprise-specialisation {
+        color: #1a1c1c;
+        font-family: Manrope, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 28px;
+    }
+
+    .entreprise-specialisation-description {
+        margin-top: 8px;
+        color: #434656;
+        font-family: Manrope, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    .padding-specialisation {
+        padding: 24px;
+    }
+
+    .garantie-devenal-ets,
+    .garantie-devenal-eco-responsables {
+        display: inline-flex;
+        align-items: center;
+        color: #1a1c1c;
+        font-family: Manrope, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        margin-right: 32px;
+        margin-bottom: 12px;
+    }
+
+    .garantie-devenal-ets i,
+    .garantie-devenal-eco-responsables i {
+        color: #003ec7;
+        margin-right: 8px;
+    }
+
+    .garantie-eco-responsable-border {
+        border-top: 1px solid #e2e2e2;
+        padding-top: 16px;
+    }
+
+    .entreprise-avis {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 24px;
+        background: #f7f7f8;
+    }
+
+    .entreprise-avis-avatar {
+        flex: 0 0 auto;
+    }
+
+    .entreprise-avis-image {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .entreprise-avis-contenu {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .entreprise-avis-entete {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 8px;
+    }
+
+    .entreprise-avis-identite {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .entreprise-avis-nom {
+        margin: 0;
+        color: #1a1c1c;
+        font-family: Manrope, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+    }
+
+    .entreprise-avis-etoiles {
+        color: #f5a623;
+        font-size: 13px;
+        line-height: 1;
+        letter-spacing: 1px;
+    }
+
+    .entreprise-avis-date {
+        margin: 0;
+        color: #8a8d9f;
+        font-family: Manrope, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        white-space: nowrap;
+    }
+
+    .entreprise-avis-commentaire {
+        margin: 0;
+        max-width: 95%;
+        color: #434656;
+        font-family: Manrope, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+    }
+
+    .entreprise-avis-badge {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        background: rgba(0, 62, 199, 0.05);
+        color: #737688;
+        font-family: Manrope, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        flex-wrap: wrap;
+    }
+
+    .entreprise-avis-badge strong {
+        color: #003ec7;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+    }
+
+    .entreprise-contact-blanc {
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 40px 60px -15px rgba(0, 0, 0, 0.03);
+        padding: 33px;
+    }
+
+    .entreprise-contact-info-devis {
+        display: flex;
+        padding: 16px 22px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+        border-radius: 16px;
+        background: #003EC7;
+        color: #FFF;
+        text-align: center;
+        font-family: Manrope, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        margin-bottom: 16px;
+        text-decoration: none;
+    }
+
+    .entreprise-contact-info-devis-message {
+        display: flex;
+        padding: 16px 22px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+        border-radius: 16px;
+        border: 1px solid #EEE;
+        background: #FFF;
+        color: #1A1C1C;
+        text-align: center;
+        font-family: Manrope, sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        text-decoration: none;
+        margin-bottom: 24px;
+    }
+
+    .entreprise-contact-temps-reponse {
+        border-top: 1px solid #E2E2E2;
+        padding-top: 22px;
+    }
+
+    .entreprise-contact-titre-temps,
+    .entreprise-contact-description-temps {
+        color: #434656;
+        font-family: Manrope, sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    .entreprise-contact-titre-temps i,
+    .entreprise-contact-description-temps i {
+        color: #003EC7;
+    }
+
+    .entreprise-contact-map {
+        min-height: 240px;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 40px 60px -15px rgba(0, 0, 0, 0.03);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+    }
+
+    @media (max-width: 1199.98px) {
+        .hero-banner .entreprise-nom {
+            font-size: 56px;
+            line-height: 60px;
+        }
+
+        .entreprise-cadre-marge {
+            padding: 48px;
+        }
+    }
+
+    @media (max-width: 991.98px) {
+        .hero-banner {
+            height: 420px;
+        }
+
+        .entreprise-cadre-marge {
+            padding: 40px 24px;
+        }
+
+        .hero-banner .entreprise-nom {
+            font-size: 44px;
+            line-height: 48px;
+        }
+
+        .catalogue-services {
+            margin-top: 48px;
+        }
+
+        .entreprise-contact-blanc,
+        .entreprise-contact-map {
+            margin-top: 0;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .hero-banner {
+            height: 360px;
+        }
+
+        .entreprise-cadre-marge {
+            padding: 32px 16px 24px;
+        }
+
+        .hero-banner .entreprise-nom {
+            font-size: 34px;
+            line-height: 40px;
+        }
+
+        .entreprise-infos {
+            gap: 10px !important;
+        }
+
+        .entreprise-infos span:nth-child(1),
+        .entreprise-infos span:nth-child(2),
+        .entreprise-infos span:nth-child(3) {
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .entreprise-slogan,
+        .entreprise-slogan-realisation,
+        .entreprise-slogan-catalogue {
+            font-size: 24px;
+            line-height: 30px;
+        }
+
+        .entreprise-description {
+            font-size: 15px;
+            line-height: 24px;
+        }
+
+        .entreprise-services {
+            margin: 24px 0 40px;
+            gap: 10px !important;
+        }
+
+        .entreprise-image {
+            height: 220px;
+        }
+
+        .service-table__cell {
+            padding: 18px;
+        }
+
+        .padding-specialisation {
+            padding: 18px 12px;
+        }
+
+        .entreprise-avis {
+            padding: 18px;
+        }
+
+        .entreprise-avis-entete {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .entreprise-avis-commentaire {
+            max-width: 100%;
+        }
+
+        .entreprise-contact-blanc {
+            padding: 24px 18px;
+        }
+
+        .entreprise-contact-map {
+            min-height: 200px;
+            padding: 18px;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .hero-banner {
+            height: 320px;
+        }
+
+        .entreprise-cadre-marge {
+            padding: 24px 12px 20px;
+        }
+
+        .hero-banner .entreprise-nom {
+            font-size: 28px;
+            line-height: 34px;
+        }
+
+        .hero-banner .entreprise-etoile,
+        .hero-banner .entreprise-nombre-avis {
+            font-size: 13px;
+            line-height: 18px;
+        }
+
+        .entreprise-titre {
+            font-size: 9px;
+            line-height: 14px;
+        }
+
+        .entreprise-slogan,
+        .entreprise-slogan-realisation,
+        .entreprise-slogan-catalogue {
+            font-size: 22px;
+            line-height: 28px;
+        }
+
+        .entreprise-services li {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .service-table__head .service-table__cell,
+        .service-table__price,
+        .service-table__duration {
+            font-size: 13px;
+        }
+
+        .entreprise-service-titre-h5 {
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .entreprise-specialisation {
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .garantie-devenal-ets,
+        .garantie-devenal-eco-responsables {
+            display: flex;
+            margin-right: 0;
+        }
+
+        .entreprise-avis {
+            flex-direction: column;
+        }
+
+        .entreprise-avis-avatar {
+            margin-bottom: 4px;
+        }
+
+        .entreprise-avis-badge {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .entreprise-contact-info-devis,
+        .entreprise-contact-info-devis-message {
+            padding: 14px 16px;
+            font-size: 15px;
+            line-height: 22px;
+        }
+
+        .entreprise-contact-map {
+            min-height: 180px;
+        }
+    }

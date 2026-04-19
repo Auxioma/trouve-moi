@@ -1,0 +1,250 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de devis{% endblock %}
+
+{% block body %}
+<div class="hero-banner" style="background-image: url('{{ asset('image/entreprise/01.png') }}');">
+    <div class="hero-overlay"></div>
+
+    <div class="container h-100 d-flex flex-column justify-content-end position-relative">
+        <div class="entreprise-cadre-marge text-white">
+            <div class="mb-2">
+                <span class="entreprise-metier me-2">Bâtiment</span>
+                <span class="entreprise-etoile me-2">★ 4.9</span>
+                <span class="entreprise-nombre-avis">(150+ avis)</span>
+            </div>
+
+            <h1 class="entreprise-nom my-2">Atelier du Béton</h1>
+
+            <div class="entreprise-infos d-flex flex-wrap gap-3">
+                <span>
+                    <i class="fa-solid fa-location-dot me-2"></i>Bordeaux, France
+                </span>
+                <span>
+                    <i class="fa-solid fa-calendar-days me-2"></i>Inscrit en 2012
+                </span>
+                <span>
+                    <i class="fa-solid fa-shield me-2"></i>Assurance Professionnelle Certifiée
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <section>
+                <span class="entreprise-titre">LE VISIONNAIRE</span>
+                <h2 class="entreprise-slogan">Redéfinir l'Élégance Brutaliste</h2>
+                <p class="entreprise-description">
+                    Atelier du Béton est une entreprise de construction spécialisée dans les structures en béton.
+                    Fondée en 2012, elle s'est rapidement imposée comme un leader dans le secteur grâce à son expertise
+                    technique et son engagement envers la qualité. Avec une équipe de professionnels passionnés,
+                    l'entreprise offre des services de construction, de rénovation et de design architectural,
+                    mettant l'accent sur l'innovation et la durabilité.
+                </p>
+
+                <ul class="entreprise-services list-unstyled d-flex flex-wrap gap-3">
+                    <li>Béton Poli</li>
+                    <li>Béton Ciré</li>
+                    <li>Design Industriel</li>
+                    <li>Matériaux Éco-certifiés</li>
+                </ul>
+            </section>
+
+            <section class="catalogue-services">
+                <span class="entreprise-titre">LE VISIONNAIRE</span>
+                <h2 class="entreprise-slogan-realisation mb-3">Réalisations Récentes</h2>
+
+                <div class="row g-3">
+                    <div class="col-md-4 col-sm-6">
+                        <img src="{{ asset('image/entreprise/02.png') }}" alt="Réalisation béton 1" class="entreprise-image rounded-2">
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <img src="{{ asset('image/entreprise/03.png') }}" alt="Réalisation béton 2" class="entreprise-image rounded-2">
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <img src="{{ asset('image/entreprise/04.png') }}" alt="Réalisation béton 3" class="entreprise-image rounded-2">
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <img src="{{ asset('image/entreprise/02.png') }}" alt="Réalisation béton 4" class="entreprise-image rounded-2">
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <img src="{{ asset('image/entreprise/03.png') }}" alt="Réalisation béton 5" class="entreprise-image rounded-2">
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <img src="{{ asset('image/entreprise/04.png') }}" alt="Réalisation béton 6" class="entreprise-image rounded-2">
+                    </div>
+                </div>
+            </section>
+
+            <section class="catalogue-services">
+                <span class="entreprise-titre">LE VISIONNAIRE</span>
+                <h2 class="entreprise-slogan-catalogue mb-3">Catalogue de Services</h2>
+
+                <div class="service-table">
+                    <div class="service-table__head row g-0">
+                        <div class="col-6">
+                            <div class="service-table__cell service-table__cell--head">SERVICE</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="service-table__cell service-table__cell--head">À PARTIR DE</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="service-table__cell service-table__cell--head">DURÉE</div>
+                        </div>
+                    </div>
+
+                    <div class="service-table__body row g-0 bg-white">
+                        <div class="col-6">
+                            <div class="service-table__cell">
+                                <h5 class="entreprise-service-titre-h5 mb-1">Sols en Béton Ciré</h5>
+                                <p class="entreprise-service-description mb-0">Zones résidentielles à fort passage</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="service-table__cell service-table__price">120 € / m²</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="service-table__cell service-table__duration">5-7 jours</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="catalogue-services">
+                    <h2 class="entreprise-button">Spécialisations & Savoir-faire</h2>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                           <div class="padding-specialisation bg-white"> 
+                                <span class="entreprise-specialisation">Béton Poli</span>
+                                <p class="entreprise-specialisation-description">Finition lisse et brillante pour sols et murs</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="padding-specialisation bg-white"> 
+                                <span class="entreprise-specialisation">Béton Ciré</span>
+                                <p class="entreprise-specialisation-description">Revêtement contemporain pour espaces intérieurs</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 my-4">
+                            <div class="padding-specialisation bg-white"> 
+                                <span class="entreprise-specialisation">Design Industriel</span>
+                                <p class="entreprise-specialisation-description">Conception d’ambiances modernes et architecturales</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 my-4">
+                            <div class="padding-specialisation bg-white"> 
+                                <span class="entreprise-specialisation">Matériaux Éco-responsables</span>
+                            <p class="entreprise-specialisation-description">Choix durables pour des projets plus respectueux</p>
+                        </div>
+                    </div>
+
+                    <div class="garantie-eco-responsable-border">
+                        <span class="garantie-devenal-ets">
+                            <i class="fa-solid fa-shield"></i>Garantie Décennale
+                        </span>
+                        <span class="garantie-devenal-eco-responsables">
+                            <i class="fa-solid fa-fire"></i>Matériaux Éco-responsables
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="catalogue-services">
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                    <h2 class="entreprise-slogan-catalogue mb-0">Avis Clients</h2>
+
+                    <div class="entreprise-avis-badge">
+                        <strong>4.8/5</strong>
+                        <span>Note globale basée sur 124 avis</span>
+                    </div>
+                </div>
+
+                <div class="entreprise-avis bg-white mb-3">
+                    <div class="entreprise-avis-avatar">
+                        <img src="{{ asset('image/artisan/04.png') }}" alt="Photo de Jean-Marc L." class="entreprise-avis-image">
+                    </div>
+
+                    <div class="entreprise-avis-contenu">
+                        <div class="entreprise-avis-entete">
+                            <div class="entreprise-avis-identite">
+                                <h4 class="entreprise-avis-nom">Jean-Marc L.</h4>
+                                <div class="entreprise-avis-etoiles">★★★★★</div>
+                            </div>
+
+                            <p class="entreprise-avis-date">Il y a 2 semaines</p>
+                        </div>
+
+                        <p class="entreprise-avis-commentaire">
+                            Un travail d’orfèvre sur notre sol de salon en béton ciré.
+                            L’Atelier du Béton a su nous conseiller sur la teinte parfaite.
+                            Résultat impeccable et équipe très ponctuelle.
+                        </p>
+                    </div>
+                </div>
+                                <div class="entreprise-avis bg-white mb-3">
+                    <div class="entreprise-avis-avatar">
+                        <img src="{{ asset('image/artisan/04.png') }}" alt="Photo de Jean-Marc L." class="entreprise-avis-image">
+                    </div>
+
+                    <div class="entreprise-avis-contenu">
+                        <div class="entreprise-avis-entete">
+                            <div class="entreprise-avis-identite">
+                                <h4 class="entreprise-avis-nom">Jean-Marc L.</h4>
+                                <div class="entreprise-avis-etoiles">★★★★★</div>
+                            </div>
+
+                            <p class="entreprise-avis-date">Il y a 2 semaines</p>
+                        </div>
+
+                        <p class="entreprise-avis-commentaire">
+                            Un travail d’orfèvre sur notre sol de salon en béton ciré.
+                            L’Atelier du Béton a su nous conseiller sur la teinte parfaite.
+                            Résultat impeccable et équipe très ponctuelle.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-lg-4">
+            <aside class="d-flex flex-column gap-4">
+                <div class="entreprise-contact-blanc">
+                    <div class="entreprise-contact">
+                        <h3 class="entreprise-contact-titre">Contact Direct</h3>
+                        <a href="tel:+33512345678" class="entreprise-contact-info-devis">
+                            <i class="fa-solid fa-file-invoice me-2"></i> Demander un devis
+                        </a>
+                        <a href="tel:+33512345678" class="entreprise-contact-info-devis-message">
+                            <i class="fa-solid fa-message me-2"></i> Message
+                        </a>
+                    </div>
+
+                    <div class="entreprise-contact-temps-reponse">
+                        <p class="entreprise-contact-titre-temps">
+                            <i class="fa-solid fa-clock me-2"></i> Temps de réponse moyen : ~2 heures
+                        </p>
+                        <p class="entreprise-contact-description-temps">
+                            <i class="fa-solid fa-clipboard-check me-2"></i> Projets réalisés ce mois : 8
+                        </p>
+                    </div>
+                </div>
+
+                <div class="entreprise-contact-map">
+                    Google Map
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block css %}
+<style>
+    body {
+        background: #F8F7F7;
+    }
+</style>
+{% endblock %}

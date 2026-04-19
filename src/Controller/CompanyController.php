@@ -30,8 +30,9 @@ final class CompanyController extends AbstractController
     }
 
     #[Route('/{category}/{city}/{slug}', name: 'deail_entreprise')]
+    #[Route('/nnnnnnnnnnnnnnnnn', name: 'deail_entqsqsqsqsreprise')]
     public function askQuote(): Response
     {
-        return $this->render('entreprise/index.html.twig');
+        return $this->render('entreprise/show.html.twig');
     }
 }

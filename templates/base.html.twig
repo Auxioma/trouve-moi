@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>
-            {% block title %}Welcome!{% endblock %}
-        </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.carousel.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.theme.default.min.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-        <link rel="stylesheet" href="https://use.typekit.net/deo7fww.css"> 
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.carousel.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('plugin/owl/dist/assets/owl.theme.default.min.css') }}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<link rel="stylesheet" href="https://use.typekit.net/deo7fww.css"> 
+		{% block stylesheets %}
+			{{ importmap('app') }}
+		{% endblock %}
         {% block css %}{% endblock %}
+	</head>
+	<body>
+		{{ render(controller('\\App\\Controller\\Api\\NavBarController::NavBar')) }}
 
-        {% block stylesheets %}
-            {{ importmap('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {{ render(controller('\\App\\Controller\\Api\\NavBarController::NavBar')) }}
+		{% block body %}{% endblock %}
 
-        {% block body %}{% endblock %}
+		{{ include('_partials/footer.html.twig') }}
 
-        {{ include('_partials/footer.html.twig') }}
-
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="{{ asset('plugin/owl/dist/owl.carousel.min.js') }}"></script>
-        {% block javascripts %}
-            <script>
-                document.addEventListener('turbo:load', function () {
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<script src="{{ asset('plugin/owl/dist/owl.carousel.min.js') }}"></script>
+		{% block javascripts %}
+			<script>
+				document.addEventListener('turbo:load', function () {
 const haut = $('.haut');
 const bas = $('.bas');
 
@@ -125,168 +125,251 @@ $('.stop-bas').off('click').on('click', function () {
 bas.trigger('stop.owl.autoplay');
 });
 });
-            </script>
+			</script>
 
-            <script>
-                document.addEventListener('turbo:load', function () {
-const input = document.getElementById('search-activity');
-const resultsBox = document.getElementById('activity-results');
+<script>
+document.addEventListener('turbo:load', function () {
+    const form = document.querySelector('.search-wrapper');
 
-if (! input || ! resultsBox) {
-return;
-}
+    const activityInput = document.getElementById('search-activity');
+    const activityResultsBox = document.getElementById('activity-results');
+    const activitySelectedInput = document.getElementById('activity_selected');
+    const activityError = document.getElementById('activity-error');
 
-let debounceTimer;
-
-input.addEventListener('input', function () {
-const query = this.value.trim();
-
-clearTimeout(debounceTimer);
-
-if (query.length < 2) {
-resultsBox.innerHTML = '';
-resultsBox.style.display = 'none';
-return;
-}
-
-debounceTimer = setTimeout(() => {
-fetch (`/ajax/search/activity?q=${
-encodeURIComponent(query)
-}`, {
-headers: {
-'X-Requested-With': 'XMLHttpRequest'
-}
-}).then(response => response.json()).then(data => {
-resultsBox.innerHTML = '';
-
-if (!data.length) {
-resultsBox.style.display = 'none';
-return;
-}
-
-data.forEach(item => {
-const div = document.createElement('div');
-div.classList.add('autocomplete-item');
-div.textContent = item.name;
-
-div.addEventListener('click', function () {
-input.value = item.name;
-resultsBox.innerHTML = '';
-resultsBox.style.display = 'none';
-
-// Si tu veux rediriger vers la page métier :
-// window.location.href = '/activite/' + item.slug;
-});
-
-resultsBox.appendChild(div);
-});
-
-resultsBox.style.display = 'block';
-}).catch(error => {
-console.error('Erreur AJAX :', error);
-resultsBox.innerHTML = '';
-resultsBox.style.display = 'none';
-});
-}, 300);
-});
-
-document.addEventListener('click', function (e) {
-if (! input.contains(e.target) && ! resultsBox.contains(e.target)) {
-resultsBox.innerHTML = '';
-resultsBox.style.display = 'none';
-}
-});
-});
-            </script>
-
- <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const input = document.querySelector('.localisation-input');
-    const resultsBox = document.querySelector('.localisation-results');
+    const locationInput = document.querySelector('.localisation-input');
+    const locationResultsBox = document.querySelector('.localisation-results');
+    const locationSelectedInput = document.getElementById('location_selected');
+    const locationError = document.getElementById('location-error');
     const latInput = document.getElementById('latitude');
     const lngInput = document.getElementById('longitude');
 
-    console.log('input:', input);
-    console.log('resultsBox:', resultsBox);
-
-    if (!input || !resultsBox) {
-        console.error('Champ ou boîte de résultats introuvable.');
+    if (!form) {
         return;
     }
 
-    input.addEventListener('input', async function () {
-        const query = this.value.trim();
-
-        console.log('query:', query);
-
-        if (query.length < 2) {
-            resultsBox.innerHTML = '';
-            resultsBox.style.display = 'none';
-
-            if (latInput) latInput.value = '';
-            if (lngInput) lngInput.value = '';
-
-            return;
+    function showError(input, errorBox, message) {
+        if (input) {
+            input.classList.add('is-invalid');
         }
 
-        try {
-            const response = await fetch(`/api/cities?q=${encodeURIComponent(query)}`);
-            const cities = await response.json();
+        if (errorBox) {
+            errorBox.textContent = message;
+            errorBox.style.display = 'block';
+        }
+    }
 
-            console.log('cities:', cities);
+    function clearError(input, errorBox) {
+        if (input) {
+            input.classList.remove('is-invalid');
+        }
 
-            resultsBox.innerHTML = '';
+        if (errorBox) {
+            errorBox.textContent = '';
+            errorBox.style.display = 'none';
+        }
+    }
 
-            if (!Array.isArray(cities) || cities.length === 0) {
-                resultsBox.style.display = 'none';
+    /*
+    |--------------------------------------------------------------------------
+    | ACTIVITÉ
+    |--------------------------------------------------------------------------
+    */
+    if (activityInput && activityResultsBox && activitySelectedInput) {
+        let activityDebounceTimer;
+
+        activityInput.addEventListener('input', function () {
+            const query = this.value.trim();
+
+            clearTimeout(activityDebounceTimer);
+
+            activitySelectedInput.value = '';
+            clearError(activityInput, activityError);
+
+            if (query.length < 2) {
+                activityResultsBox.innerHTML = '';
+                activityResultsBox.style.display = 'none';
                 return;
             }
 
-            cities.forEach(city => {
-                const item = document.createElement('div');
-                item.classList.add('localisation-item');
+            activityDebounceTimer = setTimeout(() => {
+                fetch(`/ajax/search/activity?q=${encodeURIComponent(query)}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    activityResultsBox.innerHTML = '';
 
-                item.textContent = city.label ?? city.city ?? city.value ?? '';
-
-                item.addEventListener('click', function () {
-                    input.value = city.value ?? city.city ?? city.label ?? '';
-
-                    if (latInput) {
-                        latInput.value = city.latitude ?? city.lat ?? '';
+                    if (!Array.isArray(data) || data.length === 0) {
+                        activityResultsBox.style.display = 'none';
+                        return;
                     }
 
-                    if (lngInput) {
-                        lngInput.value = city.longitude ?? city.lng ?? '';
-                    }
+                    data.forEach(item => {
+                        const div = document.createElement('div');
+                        div.classList.add('autocomplete-item');
+                        div.textContent = item.name;
 
-                    resultsBox.innerHTML = '';
-                    resultsBox.style.display = 'none';
+                        div.addEventListener('click', function () {
+                            activityInput.value = item.name;
+                            activitySelectedInput.value = item.id ?? item.name ?? '1';
 
-                    console.log('Ville sélectionnée :', {
-                        city: input.value,
-                        latitude: latInput ? latInput.value : null,
-                        longitude: lngInput ? lngInput.value : null
+                            clearError(activityInput, activityError);
+
+                            activityResultsBox.innerHTML = '';
+                            activityResultsBox.style.display = 'none';
+                        });
+
+                        activityResultsBox.appendChild(div);
                     });
+
+                    activityResultsBox.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Erreur AJAX activité :', error);
+                    activityResultsBox.innerHTML = '';
+                    activityResultsBox.style.display = 'none';
                 });
+            }, 300);
+        });
 
-                resultsBox.appendChild(item);
-            });
+        document.addEventListener('click', function (e) {
+            if (!activityInput.contains(e.target) && !activityResultsBox.contains(e.target)) {
+                activityResultsBox.innerHTML = '';
+                activityResultsBox.style.display = 'none';
+            }
+        });
+    }
 
-            resultsBox.style.display = 'block';
-        } catch (error) {
-            console.error('Erreur AJAX villes :', error);
+    /*
+    |--------------------------------------------------------------------------
+    | LOCALISATION
+    |--------------------------------------------------------------------------
+    */
+    if (locationInput && locationResultsBox && locationSelectedInput) {
+        let locationDebounceTimer;
+
+        locationInput.addEventListener('input', function () {
+            const query = this.value.trim();
+
+            clearTimeout(locationDebounceTimer);
+
+            locationSelectedInput.value = '';
+            if (latInput) latInput.value = '';
+            if (lngInput) lngInput.value = '';
+
+            clearError(locationInput, locationError);
+
+            if (query.length < 2) {
+                locationResultsBox.innerHTML = '';
+                locationResultsBox.style.display = 'none';
+                return;
+            }
+
+            locationDebounceTimer = setTimeout(async () => {
+                try {
+                    const response = await fetch(`/api/cities?q=${encodeURIComponent(query)}`, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
+
+                    const cities = await response.json();
+
+                    locationResultsBox.innerHTML = '';
+
+                    if (!Array.isArray(cities) || cities.length === 0) {
+                        locationResultsBox.style.display = 'none';
+                        return;
+                    }
+
+                    cities.forEach(city => {
+                        const item = document.createElement('div');
+                        item.classList.add('localisation-item');
+                        item.textContent = city.label ?? city.city ?? city.value ?? '';
+
+                        item.addEventListener('click', function () {
+                            locationInput.value = city.value ?? city.city ?? city.label ?? '';
+                            locationSelectedInput.value = city.id ?? city.value ?? city.city ?? '1';
+
+                            if (latInput) {
+                                latInput.value = city.latitude ?? city.lat ?? '';
+                            }
+
+                            if (lngInput) {
+                                lngInput.value = city.longitude ?? city.lng ?? '';
+                            }
+
+                            clearError(locationInput, locationError);
+
+                            locationResultsBox.innerHTML = '';
+                            locationResultsBox.style.display = 'none';
+                        });
+
+                        locationResultsBox.appendChild(item);
+                    });
+
+                    locationResultsBox.style.display = 'block';
+                } catch (error) {
+                    console.error('Erreur AJAX villes :', error);
+                    locationResultsBox.innerHTML = '';
+                    locationResultsBox.style.display = 'none';
+                }
+            }, 300);
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!locationInput.contains(e.target) && !locationResultsBox.contains(e.target)) {
+                locationResultsBox.innerHTML = '';
+                locationResultsBox.style.display = 'none';
+            }
+        });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | VALIDATION DU FORMULAIRE
+    |--------------------------------------------------------------------------
+    */
+    form.addEventListener('submit', function (e) {
+        let isValid = true;
+
+        const activityValue = activityInput ? activityInput.value.trim() : '';
+        const activitySelected = activitySelectedInput ? activitySelectedInput.value.trim() : '';
+
+        const locationValue = locationInput ? locationInput.value.trim() : '';
+        const locationSelected = locationSelectedInput ? locationSelectedInput.value.trim() : '';
+        const latitude = latInput ? latInput.value.trim() : '';
+        const longitude = lngInput ? lngInput.value.trim() : '';
+
+        clearError(activityInput, activityError);
+        clearError(locationInput, locationError);
+
+        if (!activityValue || !activitySelected) {
+            showError(activityInput, activityError, 'Veuillez choisir un métier dans la liste.');
+            isValid = false;
         }
-    });
 
-    document.addEventListener('click', function (e) {
-        if (!input.contains(e.target) && !resultsBox.contains(e.target)) {
-            resultsBox.innerHTML = '';
-            resultsBox.style.display = 'none';
+        if (!locationValue || !locationSelected || !latitude || !longitude) {
+            showError(locationInput, locationError, 'Veuillez choisir une localisation dans la liste.');
+            isValid = false;
+        }
+
+        if (!isValid) {
+            e.preventDefault();
+
+            const firstInvalid = document.querySelector('.is-invalid');
+            if (firstInvalid) {
+                firstInvalid.focus();
+            }
         }
     });
 });
 </script>
 
-    {% endblock %}
-    </body>
+
+
+		{% endblock %}
+	</body>
 </html>
