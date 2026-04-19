@@ -11,25 +11,31 @@
 
         <div class="container h-100 d-flex flex-column justify-content-end position-relative">
             <div class="entreprise-cadre-marge text-white">
-                <div class="mb-2 {{ isPartial ? 'blur-content' : '' }}">
+                <div class="mb-2">
                     <span class="entreprise-metier me-2">
-                        {{ isPartial ? '************' : 'Bâtiment' }}
+                        {{ item.activity.name }}
                     </span>
-                    <span class="entreprise-etoile me-2">
+                    <span class="entreprise-etoile me-2 {{ isPartial ? 'blur-content' : '' }}">
                         {{ isPartial ? '******' : '★ 4.9' }}
                     </span>
-                    <span class="entreprise-nombre-avis">
+                    <span class="entreprise-nombre-avis  {{ isPartial ? 'blur-content' : '' }}">
                         {{ isPartial ? '*************' : '(150+ avis)' }}
                     </span>
                 </div>
 
                 {# visible #}
-                <h1 class="entreprise-nom my-2">Atelier du Béton</h1>
+                <h1 class="entreprise-nom my-2">
+                    {% if item.compagny is not empty and item.compagny != 'N/A' %}
+                        {{ item.compagny|u.truncate(25, '...') }}
+                    {% else %}
+                        {{ item.firstname }}
+                    {% endif %}
+                </h1>
 
                 <div class="entreprise-infos d-flex flex-wrap gap-3">
                     {# visible #}
                     <span>
-                        <i class="fa-solid fa-location-dot me-2"></i>Bordeaux, France
+                        <i class="fa-solid fa-location-dot me-2"></i>{{ item.city }}, France
                     </span>
 
                     <span class="{{ isPartial ? 'blur-content' : '' }}">
