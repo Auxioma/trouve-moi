@@ -177,95 +177,101 @@
 {% block javascripts %}
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const paris = [48.8566, 2.3522];
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const artisanCards = document.querySelectorAll('.js-artisan-distance');
 
-            const points = [
-                [48.8566, 2.3522],
-                [48.9021, 2.4892],
-                [48.8049, 2.1204],
-                [48.6921, 2.1872],
-                [48.5734, 2.3349],
-                [49.0365, 2.0781],
-                [48.7761, 2.1983],
-                [48.9475, 2.2478],
-                [48.6153, 2.4157],
-                [48.7916, 2.4556],
-                [48.9833, 2.6167],
-                [48.7597, 2.6053],
-                [48.7069, 2.4382],
-                [48.9356, 2.3539],
-                [48.8402, 2.5624],
-                [48.6682, 2.5690],
-                [48.7284, 2.2588],
-                [48.9983, 2.2775],
-                [48.8560, 2.6816],
-                [48.6317, 2.4405],
-                [48.7448, 2.3971],
-                [48.8897, 2.2060],
-                [48.8212, 2.2068],
-                [48.9530, 2.1452],
-                [48.7300, 2.3282],
-                [48.6186, 2.5480],
-                [48.9744, 2.5200],
-                [48.7869, 2.2293],
-                [48.8609, 2.4370],
-                [48.7004, 2.1342]
-            ];
+        if (!artisanCards.length) {
+            return;
+        }
 
-            function buildMap(containerId) {
-                const map = L.map(containerId).setView(paris, 10);
+        const points = [];
+        let clientPosition = null;
 
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; OpenStreetMap contributors'
-                }).addTo(map);
+        artisanCards.forEach((card, index) => {
+            const clientLat = parseFloat(card.dataset.clientLat);
+            const clientLng = parseFloat(card.dataset.clientLng);
+            const artisanLat = parseFloat(card.dataset.artisanLat);
+            const artisanLng = parseFloat(card.dataset.artisanLng);
+            const artisanId = card.dataset.id;
 
-                const bounds = [];
-
-                points.forEach((point, index) => {
-                    L.marker(point)
-                        .addTo(map)
-                        .bindPopup(index === 0 ? 'Paris centre' : 'Artisan #' + index);
-
-                    bounds.push(point);
-                });
-
-                L.circle(paris, {
-                    radius: 50000,
-                    color: '#003EC7',
-                    fillColor: '#003EC7',
-                    fillOpacity: 0.08
-                }).addTo(map);
-
-                map.fitBounds(bounds, {
-                    padding: [50, 50]
-                });
-
-                return map;
+            if (!isNaN(clientLat) && !isNaN(clientLng) && !clientPosition) {
+                clientPosition = [clientLat, clientLng];
             }
 
-            let mobileMap = null;
-
-            if (document.getElementById('map')) {
-                buildMap('map');
-            }
-
-            const mobileModal = document.getElementById('mobileMapModal');
-
-            if (mobileModal) {
-                mobileModal.addEventListener('shown.bs.modal', function () {
-                    if (!mobileMap) {
-                        mobileMap = buildMap('mobile-map');
-                    }
-
-                    setTimeout(() => {
-                        mobileMap.invalidateSize();
-                    }, 200);
+            if (!isNaN(artisanLat) && !isNaN(artisanLng)) {
+                points.push({
+                    id: artisanId,
+                    coords: [artisanLat, artisanLng]
                 });
             }
         });
-    </script>
+
+        if (!clientPosition || !points.length) {
+            return;
+        }
+
+        function buildMap(containerId) {
+            const map = L.map(containerId).setView(clientPosition, 10);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            const bounds = [];
+
+            // Marker client
+            L.marker(clientPosition)
+                .addTo(map)
+                .bindPopup('Votre position');
+
+            bounds.push(clientPosition);
+
+            // Markers artisans
+            points.forEach((point, index) => {
+                L.marker(point.coords)
+                    .addTo(map)
+                    .bindPopup('Artisan #' + point.id);
+
+                bounds.push(point.coords);
+            });
+
+            // Cercle de 50 km autour du client
+            L.circle(clientPosition, {
+                radius: 50000,
+                color: '#003EC7',
+                fillColor: '#003EC7',
+                fillOpacity: 0.08
+            }).addTo(map);
+
+            map.fitBounds(bounds, {
+                padding: [50, 50]
+            });
+
+            return map;
+        }
+
+        let mobileMap = null;
+
+        if (document.getElementById('map')) {
+            buildMap('map');
+        }
+
+        const mobileModal = document.getElementById('mobileMapModal');
+
+        if (mobileModal) {
+            mobileModal.addEventListener('shown.bs.modal', function () {
+                if (!mobileMap) {
+                    mobileMap = buildMap('mobile-map');
+                }
+
+                setTimeout(() => {
+                    mobileMap.invalidateSize();
+                }, 200);
+            });
+        }
+    });
+</script>
 
     <script>
     function distanceKm(lat1, lon1, lat2, lon2) {
