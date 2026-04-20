@@ -119,7 +119,7 @@ class RegistrationController extends AbstractController
                 $companyName = $company['nom_commercial']
                                 ?? $company['nom_raison_sociale']
                                 ?? ($company['liste_enseignes'][0] ?? null);
-                dd($company['nom_commercial']);
+                
                 if ($companyName && method_exists($user, 'setCompagny')) {
                     $user->setCompagny($companyName);
                 }
