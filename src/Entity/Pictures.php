@@ -44,7 +44,7 @@ class Pictures
     #[Vich\UploadableField(mapping: 'pictures', fileNameProperty: 'name')]
     private ?File $imageFile = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: true)] 
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
