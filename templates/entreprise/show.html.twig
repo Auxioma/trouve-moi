@@ -40,7 +40,7 @@
 
                     <span class="{{ isPartial ? 'blur-content' : '' }}">
                         <i class="fa-solid fa-calendar-days me-2"></i>
-                        {{ isPartial ? '***************' : 'Inscrit en 2012' }}
+                        {{ isPartial ? '***************' : 'Inscrit en ' ~ (item.createdAt|format_date(pattern='MMMM yyyy', locale='fr')|capitalize) }}
                     </span>
 
                     <span class="{{ isPartial ? 'blur-content' : '' }}">
