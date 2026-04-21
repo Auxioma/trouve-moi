@@ -89,24 +89,20 @@
                     </h2>
 
                     <div class="row g-3">
+                        {% for image in item.pictures %}
+                            {% set firstPicture = item.pictures %}
+
+
                         <div class="col-md-4 col-sm-6">
-                            <img src="{{ asset('image/entreprise/02.png') }}" alt="Réalisation béton 1" class="entreprise-image rounded-2 {{ isPartial ? 'blur-content' : '' }}">
+                                    <img
+                                        src="{{ firstPicture ? vich_uploader_asset(firstPicture, 'imageFile') : asset('image/artisan/01.png') }}"
+                                        alt="{{ item.name ?? 'Artisan' }}"
+                                        class="img-fluid w-100 rounded-2"
+                                        width="300"
+                                        height="300"
+                                    />
                         </div>
-                        <div class="col-md-4 col-sm-6">
-                            <img src="{{ asset('image/entreprise/03.png') }}" alt="Réalisation béton 2" class="entreprise-image rounded-2 {{ isPartial ? 'blur-content' : '' }}">
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <img src="{{ asset('image/entreprise/04.png') }}" alt="Réalisation béton 3" class="entreprise-image rounded-2 {{ isPartial ? 'blur-content' : '' }}">
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <img src="{{ asset('image/entreprise/02.png') }}" alt="Réalisation béton 4" class="entreprise-image rounded-2 {{ isPartial ? 'blur-content' : '' }}">
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <img src="{{ asset('image/entreprise/03.png') }}" alt="Réalisation béton 5" class="entreprise-image rounded-2 {{ isPartial ? 'blur-content' : '' }}">
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <img src="{{ asset('image/entreprise/04.png') }}" alt="Réalisation béton 6" class="entreprise-image rounded-2 {{ isPartial ? 'blur-content' : '' }}">
-                        </div>
+                        {% endfor %}
                     </div>
                 </section>
 
