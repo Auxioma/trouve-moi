@@ -172,6 +172,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $siret = null;
 
+    /**
+     * @var Collection<int, BlogPost>
+     */
+    #[ORM\OneToMany(targetEntity: BlogPost::class, mappedBy: 'user')]
+    private Collection $blogPosts;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -180,6 +186,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->receivedTestimonials = new ArrayCollection();
         $this->subscriptions = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
+        $this->blogPosts = new ArrayCollection();
     }
 
     public function __serialize(): array
@@ -679,6 +686,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSiret(string $siret): static
     {
         $this->siret = $siret;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BlogPost>
+     */
+    public function getBlogPosts(): Collection
+    {
+        return $this->blogPosts;
+    }
+
+    public function addBlogPost(BlogPost $blogPost): static
+    {
+        if (!$this->blogPosts->contains($blogPost)) {
+            $this->blogPosts->add($blogPost);
+            $blogPost->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlogPost(BlogPost $blogPost): static
+    {
+        if ($this->blogPosts->removeElement($blogPost)) {
+            // set the owning side to null (unless already changed)
+            if ($blogPost->getUser() === $this) {
+                $blogPost->setUser(null);
+            }
+        }
 
         return $this;
     }
