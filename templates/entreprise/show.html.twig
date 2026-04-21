@@ -89,20 +89,17 @@
                     </h2>
 
                     <div class="row g-3">
-                        {% for image in item.pictures %}
-                            {% set firstPicture = item.pictures %}
-
-
-                        <div class="col-md-4 col-sm-6">
-                                    <img
-                                        src="{{ firstPicture ? vich_uploader_asset(firstPicture, 'imageFile') : asset('image/artisan/01.png') }}"
-                                        alt="{{ item.name ?? 'Artisan' }}"
-                                        class="img-fluid w-100 rounded-2"
-                                        width="300"
-                                        height="300"
-                                    />
-                        </div>
-                        {% endfor %}
+{% for image in item.pictures %}
+    <div class="col-md-4 col-sm-6">
+        <img
+            src="{{ vich_uploader_asset(image, 'imageFile') ?: asset('image/artisan/01.png') }}"
+            alt="{{ item.name ?? 'Artisan' }}"
+            class="img-fluid w-100 rounded-2"
+            width="300"
+            height="300"
+        />
+    </div>
+{% endfor %}
                     </div>
                 </section>
 
