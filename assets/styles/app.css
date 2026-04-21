@@ -34,6 +34,8 @@
 @import "./home/accueil.css";
 @import "./category/category.css";
 @import "./page/detail.css";
+@import "./blog/list.css";
+@import "./blog/detail.css";
 
 
 /**

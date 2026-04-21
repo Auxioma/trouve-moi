@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+	<div class="container mt-5">
+		<div class="row align-items-center gy-4">
+			<div class="col-12 col-lg-7">
+				<img
+					src="{{ asset('image/blog/02.png') }}"
+					alt="Image d'article"
+					class="img-fluid w-100 hero-image"
+					width="730"
+					height="650"
+				>
+			</div>
+
+			<div class="col-12 col-lg-5 blog-content-une mt-5 mt-lg-auto">
+				<p class="blog-tag">À LA UNE • ARCHITECTURE</p>
+				<h1>L'avenir du Minimalisme Architectural en 2024</h1>
+				<p class="descriptin-une">
+					Découvrez comment les nouveaux matériaux durables redéfinissent l'esthétique du luxe moderne à travers l'Europe.
+				</p>
+
+				<div class="article-author-meta">
+					<img src="{{ asset('image/blog/03.png') }}" alt="Jean-Marc Valet" class="article-meta__avatar">
+
+					<div class="article-meta__content">
+						<span class="article-meta__author">Jean-Marc Valet</span>
+						<span class="article-meta__reading-time">6 min de lecture</span>
+					</div>
+				</div>
+
+				<a href="" class="hero-link">
+					Lire l'article complet
+					<i class="fa-solid fa-arrow-right ms-2"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-12">
+				<div class="newsletter">
+					<div class="newsletter__content">
+						<div class="newsletter__text">
+							<span class="newsletter__title">Restez à l'avant-garde.</span>
+							<p class="newsletter__description">
+								Recevez chaque semaine notre sélection éditoriale des meilleures innovations de l'artisanat.
+							</p>
+						</div>
+
+						<form action="" class="newsletter__form">
+							<input type="email" placeholder="votre@email.com">
+							<button type="submit">S'inscrire</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mt-5">
+		<div class="row justify-content-center gy-4">
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="article">
+					<div class="thumb">
+						<img src="{{ asset('image/blog/04.png') }}" alt="Transformer un espace industriel en loft luxueux">
+					</div>
+
+					<div class="detail">
+						<span class="card-meta">RÉNOVATION • 14 MAI 2024</span>
+						<h2>Comment transformer un espace industriel en loft luxueux</h2>
+						<p>
+							Les étapes essentielles pour conserver le cachet de l'ancien tout en intégrant des technologies modernes.
+						</p>
+						<a href="#" class="article-link">
+							Lire la suite
+							<i class="fa-solid fa-arrow-right-long"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="article">
+					<div class="thumb">
+						<img src="{{ asset('image/blog/04.png') }}" alt="Transformer un espace industriel en loft luxueux">
+					</div>
+
+					<div class="detail">
+						<span class="card-meta">RÉNOVATION • 14 MAI 2024</span>
+						<h2>Comment transformer un espace industriel en loft luxueux</h2>
+						<p>
+							Les étapes essentielles pour conserver le cachet de l'ancien tout en intégrant des technologies modernes.
+						</p>
+						<a href="#" class="article-link">
+							Lire la suite
+							<i class="fa-solid fa-arrow-right-long"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="article">
+					<div class="thumb">
+						<img src="{{ asset('image/blog/04.png') }}" alt="Transformer un espace industriel en loft luxueux">
+					</div>
+
+					<div class="detail">
+						<span class="card-meta">RÉNOVATION • 14 MAI 2024</span>
+						<h2>Comment transformer un espace industriel en loft luxueux</h2>
+						<p>
+							Les étapes essentielles pour conserver le cachet de l'ancien tout en intégrant des technologies modernes.
+						</p>
+						<a href="#" class="article-link">
+							Lire la suite
+							<i class="fa-solid fa-arrow-right-long"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div class="col-12 text-center">
+				<a href="#" class="load-more">Charger plus d'articles</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid g-0 mt-5">
+		<div class="parallax-section d-flex align-items-center justify-content-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-lg-7 mx-auto">
+						<div class="text-center text-white">
+							<h2>Devenez prestataire sur trouvemoi</h2>
+							<p>Inscrivez-vous et trouvez des nouveaux clients, développez votre notoriété et commencez à optimisez vos revenus dès maintenant.</p>
+							<a href="{{ path('app_register') }}">Commencer</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block css %}
+	<style>
+		body {
+			background: #F8F7F7;
+		}
+	</style>
+{% endblock %}
