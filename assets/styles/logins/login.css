@@ -1,0 +1,23 @@
+.login-art {
+    color: #1A1C1C;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 150% */
+    display: flex;
+    width: 104.47px;
+    height: 18px;
+    flex-direction: column;
+    justify-content: center;
+    margin-top:26px;
+}
+.connection-art-artisanat {
+    color: #1A1C1C;
+    font-family: "Plus Jakarta Sans";
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 60px;
+    margin-top:16px;
+}
