@@ -57,4 +57,16 @@ class GooglePlaceRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findOneByUser(\App\Entity\User $user): ?\App\Entity\GooglePlace
+    {
+        return $this->createQueryBuilder('gp')
+            ->andWhere('gp.user = :user')
+            ->setParameter('user', $user)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
 }

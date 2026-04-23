@@ -5,29 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 /**
-* CSS de la parties des utiliateurs
-*/
-/*@import "./visiteur/navbar.css";
-@import "./visiteur/dashboard.css";
-@import "./visiteur/list-message.css";
-@import "./visiteur/detail-message.css";
-@import "./visiteur/profile.css";*/
-
-/**
-* CSS des artisans
- */
-/*
-@import "./artisan/dashboard.css";
-@import "./artisan/messagerie-list.css";
-@import "./artisan/messagerie-show.css";
-@import "./artisan/billing.css";
-@import "./artisan/pack.css";
-@import "./artisan/profile.css";
-@import "./artisan/quote.css";
-@import "./artisan/calendar.css";
-*/
-
-/**
 * CSS du front
  */
 @import "./header/header.css";
@@ -42,6 +19,3 @@
 * Footer
  */
 @import "./footer/footer.css";
-
-
-

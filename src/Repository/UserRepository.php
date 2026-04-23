@@ -95,10 +95,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         if ($latitude && $longitude) {
             $qb->addSelect(
                 '(6371 * acos(
-                        cos(radians(:lat)) 
-                        * cos(radians(u.latitude)) 
-                        * cos(radians(u.longitude) - radians(:lng)) 
-                        + sin(radians(:lat)) 
+                        cos(radians(:lat))
+                        * cos(radians(u.latitude))
+                        * cos(radians(u.longitude) - radians(:lng))
+                        + sin(radians(:lat))
                         * sin(radians(u.latitude))
                     )) AS HIDDEN distance'
             )
@@ -110,5 +110,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function findAllArtisans(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.roles LIKE :role')
+            ->setParameter('role', '%"ROLE_ARTISAN"%')
+            ->orderBy('u.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 }

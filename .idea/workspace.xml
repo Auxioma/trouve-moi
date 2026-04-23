@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13ea1727-03b4-4b50-b0b5-a5ef85ca1ff5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/styles/logins/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Command/SyncGooglePlacesCommand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/GooglePlaceService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260417112922.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260418052832.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260418090207.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/entreprise/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/entreprise/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/GooglePlaceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/GooglePlaceRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +71,7 @@
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -99,6 +104,9 @@
       <workItem from="1776709538919" duration="1347000" />
       <workItem from="1776712543533" duration="3391000" />
       <workItem from="1776771103007" duration="1265000" />
+      <workItem from="1776836009569" duration="1022000" />
+      <workItem from="1776837073019" duration="3936000" />
+      <workItem from="1776888777963" duration="8020000" />
     </task>
     <servers />
   </component>
