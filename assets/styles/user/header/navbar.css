@@ -1,0 +1,47 @@
+.navbar-nav {
+    padding: 6px;
+    border-radius: 12px;
+    background: rgba(26, 28, 28, 0.06);
+}
+.navbar {
+    padding: 14px 0;
+}
+.nav-item {
+    margin: 0 14px;
+}
+.nav-link {
+
+}
+
+.nav-item.active {
+    border-radius: 6px;
+    background: #003EC7;
+}
+.nav-item.active i {
+    color: #FFF;
+}
+.nav-item.active a {
+    color: #FFF;
+    padding: 10px!important;
+}
+.nav-item:hover {
+    border-radius: 6px;
+    background: #003EC7;
+}
+
+.nav-item:hover i,
+.nav-item:hover a {
+    color: #FFF;
+}
+.btn-connection {
+    background: rgba(26, 28, 28, 0.06);
+    padding: 12px;
+    border-radius: 9999px;
+    text-align: center;
+    margin-right: 24px;
+}
+.btn-connection i {
+    color: #003EC7;
+    height: 20.25px;
+    width: 22.497px;
+}

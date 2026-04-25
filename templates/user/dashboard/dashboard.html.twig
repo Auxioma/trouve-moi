@@ -1,0 +1,279 @@
+{% extends 'user.html.twig' %}
+
+{% block title %}Hello DashboardController!
+{% endblock %}
+
+{% block body %}
+
+<main class="use-dashboard-page">
+    <section class="row align-items-end g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="use-dashboard-eyebrow mb-2">Vue d'ensemble</div>
+            <h1 class="use-dashboard-title mb-2">Bonjour, Jean</h1>
+            <p class="use-dashboard-text-muted mb-0 fs-5">
+                Voici l'état actuel de vos projets et de vos interactions financières.
+            </p>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="d-flex justify-content-lg-end gap-3 flex-wrap">
+                <a href="#" class="use-dashboard-action-btn d-inline-flex align-items-center gap-4 text-decoration-none">
+                    <i class="fa-solid fa-headset"></i>
+                    <span>Support<br>Client</span>
+                </a>
+                <a href="#" class="use-dashboard-action-btn d-inline-flex align-items-center gap-4 text-decoration-none">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <span>Nouveau<br>Projet</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="row g-4 mb-5">
+        <div class="col-lg-4">
+            <div class="use-dashboard-financial-card h-100">
+                <div class="use-dashboard-label">Total Investi</div>
+                <div class="use-dashboard-price mb-3">42.850€</div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="use-dashboard-label  text-white">Paiements dus</div>
+                        <div class="fw-bold fs-5 text-white">2.400€</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="use-dashboard-label text-white">Economies</div>
+                        <div class="fw-bold fs-5 text-success">1.150€</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="use-dashboard-card use-dashboard-stat-card h-100">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <div class="use-dashboard-icon-box d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-ribbon"></i>
+                            </div>
+                            <div>
+                                <div class="use-dashboard-stat-title">Projets en cours</div>
+                                <div class="use-dashboard-stat-subtitle">Actifs</div>
+                            </div>
+                        </div>
+                        <div class="use-dashboard-stat-number">3</div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="use-dashboard-card use-dashboard-stat-card h-100">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <div class="use-dashboard-icon-box d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="use-dashboard-stat-title">Messages non lus</div>
+                                <div class="use-dashboard-stat-subtitle">Urgent</div>
+                            </div>
+                        </div>
+                        <div class="use-dashboard-stat-number">2</div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="use-dashboard-card use-dashboard-stat-card h-100">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <div class="use-dashboard-icon-box d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                            </div>
+                            <div>
+                                <div class="use-dashboard-stat-title">Devis à valider</div>
+                                <div class="use-dashboard-stat-subtitle">Attente</div>
+                            </div>
+                        </div>
+                        <div class="use-dashboard-stat-number">1</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row g-4 mb-5">
+        <div class="col-lg-8">
+            <div class="use-dashboard-card use-dashboard-section-card h-100">
+                <div class="d-flex align-items-center justify-content-between gap-3 mb-4">
+                    <h2 class="use-dashboard-section-title mb-0">
+                        <i class="fa-regular fa-calendar-days me-2 text-primary"></i>
+                        Prochaines Étapes
+                    </h2>
+                    <a href="#" class="use-dashboard-link-small">Calendrier complet</a>
+                </div>
+
+                <div class="d-flex flex-column gap-4">
+                    {% for i in 1..2 %}
+                    <a href="#" class="use-dashboard-step-card d-flex align-items-center gap-4 text-decoration-none text-dark">
+                        <div class="use-dashboard-date-box d-flex flex-column align-items-center justify-content-center">
+                            <span class="use-dashboard-date-month">Mai</span>
+                            <span class="use-dashboard-date-day">12</span>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                                <span class="use-dashboard-badge">Visite</span>
+                                <span class="use-dashboard-text-muted-date">09:30 - 11:00</span>
+                            </div>
+                            <h3 class="use-dashboard-text-muted-h3">Validation de la pose des matériaux naturels</h3>
+                            <p class="use-dashboard-text-muted-p mb-0">Avec Artisan Studio Luxe - Présence requise du client</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-secondary d-none d-sm-inline-block"></i>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="use-dashboard-card use-dashboard-section-card h-100">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h2 class="use-dashboard-section-title mb-0">Artisans</h2>
+                    <button class="btn btn-link text-dark p-0">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                </div>
+
+                <div class="d-flex flex-column gap-3 mb-4">
+                    {% for i in 1..2 %}
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=200&auto=format&fit=crop" alt="Artisan" class="use-dashboard-artisan-avatar">
+                        <div class="flex-grow-1">
+                            <div class="use-dashboard-text-muted-h3">Artisan Studio Luxe</div>
+                            <div class="use-dashboard-text-muted-date">Architecture</div>
+                        </div>
+                        <div class="notation-des-artisant-dashboard">
+                            <i class="fa-solid fa-star me-1"></i>4.9
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="use-dashboard-note">
+                    <div class="use-dashboard-note-title mb-1">Note de conciergerie</div>
+                    <p class="mb-0 small use-dashboard-text-muted-p">Pensez à noter vos artisans après chaque prestation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-dashboard-card use-dashboard-project-card mb-5">
+        <div class="row g-0">
+            <div class="col-lg-6">
+                <div class="use-dashboard-project-image position-relative h-100">
+                    <div class="use-dashboard-project-badge">Projet vedette</div>
+
+                    <div class="use-dashboard-gallery d-flex gap-3">
+                        <div class="use-dashboard-gallery-item">
+                            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=200&auto=format&fit=crop" alt="Galerie projet">
+                        </div>
+                        <div class="use-dashboard-gallery-item">
+                            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=200&auto=format&fit=crop" alt="Galerie projet">
+                        </div>
+                        <div class="use-dashboard-gallery-item position-relative">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=200&auto=format&fit=crop" alt="Galerie projet">
+                            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-50 text-white fw-bold">+8</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="use-dashboard-project-content h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <h2 class="use-dashboard-project-title mb-4">Rénovation de la Villa Cap d'Antibes</h2>
+                        <p class="use-dashboard-text-muted fs-5 mb-5">
+                            Une transformation axée sur la lumière et les matériaux naturels.
+                            En collaboration avec Artisan Studio Luxe.
+                        </p>
+
+                        <div class="mb-5">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="bar-de-progression-global-dashboard">Progression Globale</span>
+                                <span class="use-dashboard-progress-global-bleu">85%</span>
+                            </div>
+                            <div class="progress use-dashboard-progress">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="row g-4 mb-5">
+                            <div class="col-sm-6">
+                                <div class="d-flex justify-content-between small fw-bold text-uppercase mb-1 dashdoard-materiaux-source">
+                                    <span>Matériaux sourcés</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="progress use-dashboard-mini-progress">
+                                    <div class="progress-bar bg-success" style="width: 100%"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="d-flex justify-content-between small fw-bold text-uppercase mb-1 dashdoard-gros-oeuvre">
+                                    <span>Gros œuvre</span>
+                                    <span>92%</span>
+                                </div>
+                                <div class="progress use-dashboard-mini-progress">
+                                    <div class="progress-bar" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="py-3 mb-5">
+                            <div class="row g-4 dashboard-budget-global">
+                                <div class="col-6">
+                                    <div class=" text-uppercase">Budget</div>
+                                    <div class="">42.850€</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-uppercase">Deadline</div>
+                                    <div class="">28 Juin</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#" class="use-dashboard-main-btn flex-grow-1 d-flex align-items-center justify-content-center">
+                            Détails du Projet
+                        </a>
+                        <a href="#" class="use-dashboard-main-btn-message-prive d-flex align-items-center justify-content-center px-4">
+                            <i class="fa-solid fa-message me-2"></i> Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="use-dashboard-footer d-flex align-items-center">
+        <div class="w-100 d-flex align-items-center justify-content-between gap-3 flex-wrap px-4">
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+                <strong>Trouve-moi</strong>
+                <span class="text-secondary">|</span>
+                <span class="use-dashboard-text-muted-p-14">Plateforme de confiance pour artisans d'exception.</span>
+            </div>
+            <div class="d-flex align-items-center gap-4 flex-wrap">
+                <a href="#" class="text-decoration-none text-dark fw-semibold">À propos</a>
+                <a href="#" class="text-decoration-none text-dark fw-semibold">Support</a>
+                <a href="#" class="text-decoration-none text-dark fw-semibold">Mentions Légales</a>
+            </div>
+        </div>
+    </footer>
+</main>
+
+
+{% endblock %}
+{% block css %}
+    <style>
+        body {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 7%, #D0E0FE 100%), #F8F7F7;
+        }
+    </style>
+{% endblock %}

@@ -19,25 +19,15 @@
 
 namespace App\Controller\User;
 
-use App\Entity\Enum\UserProfileStatus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class DashboardController extends AbstractController
 {
     #[Route('/user/dashboard', name: 'app_user_dashboard')]
-    #[IsGranted('ROLE_ARTISAN')]
     public function index(): Response
     {
-        $user = $this->getUser();
-        if (UserProfileStatus::PARTIAL === $user->getProfileStatus()) {
-            return $this->redirectToRoute('app_user_profile');
-        }
-
-        return $this->render('user/dashboard/index.html.twig', [
-            'controller_name' => 'DashboardController',
-        ]);
+        return $this->render('user/dashboard/dashboard.html.twig');
     }
 }
