@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13ea1727-03b4-4b50-b0b5-a5ef85ca1ff5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/styles/logins/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Command/SyncGooglePlacesCommand.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/GooglePlaceService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/user/dashboard/projects.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/GooglePlaceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/GooglePlaceRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/user.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/user.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/user/dashboard/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/user/dashboard/dashboard.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +71,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -107,6 +102,13 @@
       <workItem from="1776836009569" duration="1022000" />
       <workItem from="1776837073019" duration="3936000" />
       <workItem from="1776888777963" duration="8020000" />
+      <workItem from="1777044948965" duration="13877000" />
+      <workItem from="1777106311712" duration="385000" />
+      <workItem from="1777116491969" duration="764000" />
+      <workItem from="1777122899351" duration="19000" />
+      <workItem from="1777236943154" duration="2442000" />
+      <workItem from="1777274109241" duration="783000" />
+      <workItem from="1777526464677" duration="150000" />
     </task>
     <servers />
   </component>

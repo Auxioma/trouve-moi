@@ -1,0 +1,425 @@
+
+.user-projects-page {
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 88px;
+    font-family: Manrope, sans-serif;
+    color: #1A1C1C;
+}
+
+.user-projects-container {
+    max-width: 1152px;
+}
+
+.user-projects-header {
+    margin-bottom: 48px;
+}
+
+.user-projects-eyebrow {
+    color: #0052FF;
+    font-family: Manrope, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.user-projects-title {
+    color: #1A1C1C;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 40px;
+    letter-spacing: -.9px;
+    margin-bottom: 16px;
+}
+
+.user-projects-title-line {
+    width: 80px;
+    height: 4px;
+    border-radius: 999px;
+    background: #0052FF;
+}
+
+.user-projects-stat-card {
+    min-height: 110px;
+    border: 1px solid #C3C5D9;
+    border-radius: 12px;
+    background: #FFFFFF;
+    padding: 29.5px 25px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.user-projects-stat-label {
+    color: #64748B;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.user-projects-stat-value {
+    color: #1A1C1C;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+}
+
+.user-projects-stat-value span {
+    color: #94A3B8;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.user-projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.user-project-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #FFFFFF;
+    padding: 33px;
+}
+
+.user-project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 6px;
+}
+
+.user-project-card-blue::before {
+    background: #0052FF;
+}
+
+.user-project-card-yellow::before {
+    background: #FBBF24;
+}
+
+.user-project-card-green::before {
+    background: #10B981;
+}
+
+.user-project-image {
+    width: 96px;
+    height: 96px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, .1),
+        0 2px 4px -2px rgba(0, 0, 0, .1);
+}
+
+.user-project-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 22px;
+    padding: 3.5px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.user-project-badge-blue {
+    background: #EFF6FF;
+    color: #2563EB;
+}
+
+.user-project-badge-yellow {
+    background: #FFFBEB;
+    color: #B45309;
+}
+
+.user-project-badge-green {
+    background: #ECFDF5;
+    color: #047857;
+}
+
+.user-project-name {
+    color: #1A1C1C;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    margin-bottom: 0;
+}
+
+.user-project-meta {
+    color: #656464;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.user-project-count {
+    color: #1A1C1C;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+.user-project-count-label {
+    color: #94A3B8;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 15px;
+    text-transform: uppercase;
+}
+
+.user-project-primary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 158px;
+    min-height: 44px;
+    border-radius: 8px;
+    background: #0052FF;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    box-shadow:
+        0 10px 15px -3px rgba(59, 130, 246, .1),
+        0 4px 6px -4px rgba(59, 130, 246, .1);
+}
+
+.user-project-primary-btn:hover {
+    color: #FFFFFF;
+    background: #003EC7;
+}
+
+.user-project-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 158px;
+    min-height: 37px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 16.5px;
+    letter-spacing: .55px;
+    text-transform: uppercase;
+}
+
+.user-project-secondary-blue {
+    border: 1px solid rgba(0, 82, 255, .2);
+    color: #0052FF;
+}
+
+.user-project-secondary-yellow {
+    border: 1px solid rgba(251, 191, 36, .3);
+    color: #D97706;
+}
+
+.user-project-secondary-green {
+    border: 1px solid rgba(52, 211, 153, .3);
+    color: #059669;
+}
+
+.user-project-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    padding-top: 25px;
+    margin-top: 32px;
+    border-top: 1px solid #F1F5F9;
+}
+
+.user-project-mini-card {
+    position: relative;
+    min-height: 61px;
+    border: 1px solid #F1F5F9;
+    border-radius: 12px;
+    background: #F8FAFC;
+    padding: 13px 17px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-project-mini-card i {
+    color: #94A3B8;
+    font-size: 16px;
+}
+
+.user-project-mini-title {
+    color: #1A1C1C;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.user-project-mini-label {
+    color: #94A3B8;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 15px;
+    text-transform: uppercase;
+}
+
+.user-project-mini-card-active {
+    background: #EFF6FF;
+    border-color: #DBEAFE;
+}
+
+.user-project-mini-card-active i,
+.user-project-mini-card-active .user-project-mini-title {
+    color: #2563EB;
+}
+
+.user-project-mini-card-active .user-project-mini-label {
+    color: #60A5FA;
+}
+
+.user-project-notification-dot {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #EF4444;
+}
+
+.user-projects-summary {
+    padding-top: 16px;
+    margin-top: 32px;
+}
+
+.user-projects-activity-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 243.75px;
+    border-radius: 16px;
+    background: #003EC7;
+    padding: 32px;
+    color: #FFFFFF;
+}
+
+.user-projects-activity-label {
+    opacity: .8;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.user-projects-activity-number {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: -1.8px;
+    margin-bottom: 14px;
+}
+
+.user-projects-activity-card p {
+    max-width: 230px;
+    opacity: .9;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22.75px;
+    margin-bottom: 0;
+}
+
+.user-projects-cta-card {
+    min-height: 243.75px;
+    border: 1px solid #C3C5D9;
+    border-radius: 16px;
+    background: #FFFFFF;
+    padding: 33px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.user-projects-cta-card h2 {
+    color: #1A1C1C;
+    font-family: Manrope, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 7px;
+}
+
+.user-projects-cta-card p {
+    max-width: 270px;
+    color: #656464;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22.75px;
+    margin-bottom: 0;
+}
+
+.user-projects-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 226px;
+    min-height: 56px;
+    border-radius: 8px;
+    background: #0052FF;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    box-shadow:
+        0 20px 25px -5px rgba(59, 130, 246, .2),
+        0 8px 10px -6px rgba(59, 130, 246, .2);
+}
+
+.user-projects-cta-btn:hover {
+    color: #FFFFFF;
+    background: #003EC7;
+}
+
+.user-projects-footer {
+    margin-top: 40px;
+    border-top: 1px solid rgba(195, 197, 217, .1);
+    border-radius: 24px;
+    background: #FFFFFF;
+    padding: 49px 36px 48px;
+}
+
+.user-projects-footer,
+.user-projects-footer a {
+    color: #5F5E5E;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+    text-decoration: none;
+}
+
+.user-projects-footer span {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.user-projects-footer strong {
+    color: #1A1C1C;
+}
+
+.user-projects-footer-separator {
+    color: #5F5E5E;
+    font-size: 16px !important;
+}

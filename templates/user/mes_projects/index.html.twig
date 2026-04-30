@@ -1,0 +1,281 @@
+{% extends 'user.html.twig' %}
+
+{% block title %}Hello MesProjectsController!{% endblock %}
+
+{% block body %}
+        <main class="user-projects-page">
+
+            <section class="container user-projects-container">
+
+                <div class="row g-4 align-items-start user-projects-header">
+                    <div class="col-lg-6">
+                        <div class="user-projects-eyebrow">Tableau de bord professionnel</div>
+                        <h1 class="user-projects-title">Mes Projets</h1>
+                        <div class="user-projects-title-line"></div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="user-projects-stat-card">
+                            <div class="user-projects-stat-label">Surface totale active</div>
+                            <div class="user-projects-stat-value">
+                                482 <span>m²</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="user-projects-stat-card">
+                            <div class="user-projects-stat-label">Artisans contactés</div>
+                            <div class="user-projects-stat-value">
+                                31 <span>profils</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-projects-list">
+
+                    <article class="user-project-card user-project-card-blue">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-lg">
+                                <div class="d-flex align-items-center gap-4">
+                                    <img
+                                        src="https://www.figma.com/api/mcp/asset/89485127-cc63-4c06-99b3-ea9582725931"
+                                        alt="Rénovation Loft Paris"
+                                        class="user-project-image"
+                                    >
+
+                                    <div>
+                                        <span class="user-project-badge user-project-badge-blue">En recherche</span>
+                                        <h2 class="user-project-name">Rénovation Loft Paris</h2>
+                                        <p class="user-project-meta mb-0">
+                                            14 Rue de Rivoli • Créé le 12 Octobre 2023
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-auto">
+                                <div class="d-flex align-items-center gap-5 user-project-actions-zone">
+                                    <div class="text-center">
+                                        <div class="user-project-count">12</div>
+                                        <div class="user-project-count-label">Artisans</div>
+                                    </div>
+
+                                    <div class="d-flex flex-column gap-2">
+                                        <a href="#" class="user-project-primary-btn">Voir Détails</a>
+                                        <a href="#" class="user-project-secondary-btn user-project-secondary-blue">
+                                            Aperçu rapide
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="user-project-mini-grid">
+                            <div class="user-project-mini-card">
+                                <i class="fa-regular fa-file-lines"></i>
+                                <div>
+                                    <div class="user-project-mini-title">15 Documents</div>
+                                    <div class="user-project-mini-label">Plans & contrats</div>
+                                </div>
+                            </div>
+
+                            <div class="user-project-mini-card">
+                                <i class="fa-regular fa-message"></i>
+                                <div>
+                                    <div class="user-project-mini-title">42 Messages</div>
+                                    <div class="user-project-mini-label">Total échanges</div>
+                                </div>
+                            </div>
+
+                            <div class="user-project-mini-card user-project-mini-card-active">
+                                <i class="fa-regular fa-bell"></i>
+                                <div>
+                                    <div class="user-project-mini-title">3 Notifications</div>
+                                    <div class="user-project-mini-label">Non lues</div>
+                                </div>
+                                <span class="user-project-notification-dot"></span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="user-project-card user-project-card-yellow">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-lg">
+                                <div class="d-flex align-items-center gap-4">
+                                    <img
+                                        src="https://www.figma.com/api/mcp/asset/7a4cf22c-f6a0-44d6-af35-c03c53ab8727"
+                                        alt="Cuisine Sur Mesure - Lyon"
+                                        class="user-project-image"
+                                    >
+
+                                    <div>
+                                        <span class="user-project-badge user-project-badge-yellow">Révision des devis</span>
+                                        <h2 class="user-project-name">Cuisine Sur Mesure - Lyon</h2>
+                                        <p class="user-project-meta mb-0">
+                                            Avenue Foch • Créé le 5 Septembre 2023
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-auto">
+                                <div class="d-flex align-items-center gap-5 user-project-actions-zone">
+                                    <div class="text-center">
+                                        <div class="user-project-count">4</div>
+                                        <div class="user-project-count-label">Artisans</div>
+                                    </div>
+
+                                    <div class="d-flex flex-column gap-2">
+                                        <a href="#" class="user-project-primary-btn">Voir Détails</a>
+                                        <a href="#" class="user-project-secondary-btn user-project-secondary-yellow">
+                                            Aperçu rapide
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="user-project-mini-grid">
+                            <div class="user-project-mini-card">
+                                <i class="fa-regular fa-file-lines"></i>
+                                <div>
+                                    <div class="user-project-mini-title">8 Documents</div>
+                                    <div class="user-project-mini-label">Devis & plans</div>
+                                </div>
+                            </div>
+
+                            <div class="user-project-mini-card">
+                                <i class="fa-regular fa-message"></i>
+                                <div>
+                                    <div class="user-project-mini-title">18 Messages</div>
+                                    <div class="user-project-mini-label">Total échanges</div>
+                                </div>
+                            </div>
+
+                            <div class="user-project-mini-card">
+                                <i class="fa-regular fa-bell"></i>
+                                <div>
+                                    <div class="user-project-mini-title">0 Notification</div>
+                                    <div class="user-project-mini-label">Tout est lu</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="user-project-card user-project-card-green">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-lg">
+                                <div class="d-flex align-items-center gap-4">
+                                    <img
+                                        src="https://www.figma.com/api/mcp/asset/b4155974-c646-4492-95c6-2b5cea891fab"
+                                        alt="Aménagement Jardin"
+                                        class="user-project-image"
+                                    >
+
+                                    <div>
+                                        <span class="user-project-badge user-project-badge-green">En cours</span>
+                                        <h2 class="user-project-name">Aménagement Jardin</h2>
+                                        <p class="user-project-meta mb-0">
+                                            Bordeaux Sud • Créé le 28 Août 2023
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-auto">
+                                <div class="d-flex align-items-center gap-5 user-project-actions-zone">
+                                    <div class="text-center">
+                                        <div class="user-project-count">1</div>
+                                        <div class="user-project-count-label">Artisan</div>
+                                    </div>
+
+                                    <div class="d-flex flex-column gap-2">
+                                        <a href="#" class="user-project-primary-btn">Voir Détails</a>
+                                        <a href="#" class="user-project-secondary-btn user-project-secondary-green">
+                                            Aperçu rapide
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="user-project-mini-grid">
+                            <div class="user-project-mini-card">
+                                <i class="fa-regular fa-file-lines"></i>
+                                <div>
+                                    <div class="user-project-mini-title">24 Documents</div>
+                                    <div class="user-project-mini-label">Rapports & photos</div>
+                                </div>
+                            </div>
+
+                            <div class="user-project-mini-card user-project-mini-card-active">
+                                <i class="fa-regular fa-message"></i>
+                                <div>
+                                    <div class="user-project-mini-title">56 Messages</div>
+                                    <div class="user-project-mini-label">Total échanges</div>
+                                </div>
+                                <span class="user-project-notification-dot"></span>
+                            </div>
+
+                            <div class="user-project-mini-card">
+                                <i class="fa-regular fa-bell"></i>
+                                <div>
+                                    <div class="user-project-mini-title">0 Notification</div>
+                                    <div class="user-project-mini-label">Tout est lu</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <section class="row g-4 user-projects-summary">
+                    <div class="col-lg-4">
+                        <div class="user-projects-activity-card">
+                            <div class="user-projects-activity-label">Activité totale</div>
+                            <div class="user-projects-activity-number">04</div>
+                            <p>
+                                Projets actifs gérés par votre concierge dédié avec excellence opérationnelle.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="user-projects-cta-card">
+                            <div>
+                                <h2>Besoin d'un nouvel artisan ?</h2>
+                                <p>
+                                    Lancez un nouvel appel d'offres en quelques minutes et laissez notre technologie
+                                    certifiée trouver les meilleurs profils pour vos travaux spécifiques.
+                                </p>
+                            </div>
+
+                            <a href="#" class="user-projects-cta-btn">
+                                Démarrer un projet
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="user-projects-footer">
+                    <div class="d-flex align-items-center justify-content-between gap-4 flex-wrap">
+                        <div class="d-flex align-items-center gap-3 flex-wrap">
+                            <strong>TrouveMoi</strong>
+                            <span class="user-projects-footer-separator">|</span>
+                            <span>Plateforme de confiance pour artisans d'exception.</span>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-4 flex-wrap">
+                            <a href="#">À propos</a>
+                            <a href="#">Support</a>
+                            <a href="#">Mentions Légales</a>
+                        </div>
+                    </div>
+                </footer>
+
+            </section>
+
+        </main>
+    {% endblock %}

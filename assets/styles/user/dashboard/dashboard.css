@@ -530,7 +530,7 @@ body {
     line-height: 16px;
 }
 footer a {
-    color: #5F5E5E!*;
+    color: #5F5E5E!important;
     text-align: center;
     font-family: Manrope;
     font-size: 16px;
