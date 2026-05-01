@@ -1,10 +1,131 @@
 {% extends 'user.html.twig' %}
 
+{% block title %}Inscription | Créer votre compte{% endblock %}
+
 {% block body %}
+    <main class="tm-signup-account-page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-xl-10">
+                    <section class="tm-signup-account-wrap">
 
+                        <div class="tm-signup-account-brand text-center">
+                            <a href="{{ path('app_home') }}" class="tm-signup-account-logo-link text-decoration-none">
+                                <img
+                                    src="{{ asset('images/logo/trouve-moi.svg') }}"
+                                    alt="TrouveMoi"
+                                    class="tm-signup-account-logo img-fluid"
+                                >
+                            </a>
+                        </div>
+
+                        <div class="tm-signup-account-step text-center">
+                            <div class="tm-signup-account-step-title">Vos coordonnées</div>
+
+                            <div class="tm-signup-account-progress d-flex align-items-center justify-content-center">
+                                <span class="tm-signup-account-progress-item is-active"></span>
+                                <span class="tm-signup-account-progress-item is-active"></span>
+                                <span class="tm-signup-account-progress-item is-active"></span>
+                                <span class="tm-signup-account-progress-item"></span>
+                            </div>
+                        </div>
+
+                        <div class="tm-signup-account-card">
+                            <div class="tm-signup-account-head">
+                                <div class="tm-signup-account-eyebrow">Étape 3 sur 4</div>
+                                <h1 class="tm-signup-account-title">Créez votre compte</h1>
+                                <p class="tm-signup-account-subtitle">
+                                    On vous mettra en relation avec des artisans dès que votre projet sera publié.
+                                </p>
+                            </div>
+
+                            <form method="post" class="tm-signup-account-form">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <label for="signup_firstname" class="tm-signup-account-label">Prénom</label>
+                                        <input
+                                            id="signup_firstname"
+                                            name="firstname"
+                                            type="text"
+                                            class="tm-signup-account-input form-control"
+                                            value="Camille"
+                                        >
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="signup_lastname" class="tm-signup-account-label">Nom</label>
+                                        <input
+                                            id="signup_lastname"
+                                            name="lastname"
+                                            type="text"
+                                            class="tm-signup-account-input form-control"
+                                            value="Lefebvre"
+                                        >
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="signup_email" class="tm-signup-account-label">Email</label>
+                                        <input
+                                            id="signup_email"
+                                            name="email"
+                                            type="email"
+                                            class="tm-signup-account-input form-control"
+                                            value="camille.lefebvre@email.com"
+                                        >
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="signup_phone" class="tm-signup-account-label">Téléphone</label>
+                                        <input
+                                            id="signup_phone"
+                                            name="phone"
+                                            type="text"
+                                            class="tm-signup-account-input form-control"
+                                            value="+33 6 XX XX XX XX"
+                                        >
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="signup_password" class="tm-signup-account-label">Mot de passe</label>
+                                        <input
+                                            id="signup_password"
+                                            name="plainPassword"
+                                            type="password"
+                                            class="tm-signup-account-input form-control"
+                                            value="password"
+                                        >
+                                        <div class="tm-signup-account-help">
+                                            8 caractères min, une majuscule et un chiffre.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label class="tm-signup-account-consent d-flex align-items-start gap-2">
+                                            <input type="checkbox" class="tm-signup-account-checkbox">
+                                            <span>
+                                            J'accepte les
+                                            <a href="#" class="text-decoration-none">conditions d'utilisation</a>
+                                            et la politique de confidentialité de TrouveMoi.
+                                        </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap tm-signup-account-actions">
+                                    <a href="#" class="tm-signup-account-btn-back text-decoration-none">
+                                        Retour
+                                    </a>
+
+                                    <button type="submit" class="tm-signup-account-btn-next">
+                                        Créer mon compte
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
-
-{% block title %}
-
-{% endblock %}
-

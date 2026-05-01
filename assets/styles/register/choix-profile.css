@@ -1,0 +1,640 @@
+body {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.00) 7%, #D0E0FE 100%),
+        #F8F7F7;
+}
+
+.tm-signup-role-page,
+.tm-signup-project-page,
+.tm-signup-account-page,
+.tm-signup-confirm-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 48px 0 80px;
+}
+
+.tm-signup-role-page::before,
+.tm-signup-project-page::before,
+.tm-signup-account-page::before,
+.tm-signup-confirm-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(224, 231, 255, 0.55) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(224, 231, 255, 0.55) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.tm-signup-role-page > .container,
+.tm-signup-project-page > .container,
+.tm-signup-account-page > .container,
+.tm-signup-confirm-page > .container {
+    position: relative;
+    z-index: 1;
+}
+
+.tm-signup-role-brand,
+.tm-signup-project-brand,
+.tm-signup-account-brand {
+    margin-bottom: 24px;
+}
+
+.tm-signup-confirm-brand {
+    margin-bottom: 0;
+}
+
+.tm-signup-role-logo,
+.tm-signup-project-logo,
+.tm-signup-account-logo,
+.tm-signup-confirm-logo {
+    max-width: 230px;
+    height: auto;
+}
+
+.tm-signup-role-step,
+.tm-signup-project-step,
+.tm-signup-account-step {
+    width: 100%;
+    max-width: 442px;
+    margin: 0 auto 36px;
+}
+
+.tm-signup-confirm-step {
+    width: 100%;
+    max-width: 442px;
+}
+
+.tm-signup-role-step-title,
+.tm-signup-project-step-title,
+.tm-signup-account-step-title,
+.tm-signup-confirm-step-title {
+    color: #1A1C1C;
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 8px;
+}
+
+.tm-signup-role-progress,
+.tm-signup-project-progress,
+.tm-signup-account-progress,
+.tm-signup-confirm-progress {
+    gap: 16px;
+}
+
+.tm-signup-role-progress-item,
+.tm-signup-project-progress-item,
+.tm-signup-account-progress-item,
+.tm-signup-confirm-progress-item {
+    display: block;
+    width: 100%;
+    max-width: 98px;
+    height: 8px;
+    border-radius: 999px;
+    background: #E8E8E8;
+}
+
+.tm-signup-role-progress-item.is-active,
+.tm-signup-project-progress-item.is-active,
+.tm-signup-account-progress-item.is-active,
+.tm-signup-confirm-progress-item.is-active {
+    background: #003EC7;
+}
+
+.tm-signup-project-eyebrow,
+.tm-signup-account-eyebrow {
+    color: #003EC7;
+    font-family: Manrope, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.tm-signup-project-subtitle,
+.tm-signup-account-subtitle {
+    color: #5F5E5E;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    margin: 0;
+}
+
+.tm-signup-project-label,
+.tm-signup-account-label {
+    display: block;
+    opacity: 0.7;
+    color: #1A1C1C;
+    font-family: Manrope, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 8px;
+}
+
+.tm-signup-project-input.form-control,
+.tm-signup-account-input.form-control {
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #E2E2E2;
+    background: #FFF;
+    color: #1A1C1C;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 14px 13px;
+    box-shadow: none;
+}
+
+.tm-signup-project-input.form-control:focus,
+.tm-signup-account-input.form-control:focus {
+    border-color: #003EC7;
+    box-shadow: none;
+}
+
+.tm-signup-project-btn-back,
+.tm-signup-account-btn-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 67px;
+    height: 42px;
+    padding: 10px 22px;
+    border-radius: 12px;
+    border: 1px solid #EEE;
+    background: #FFF;
+    color: #1A1C1C;
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.2px;
+}
+
+.tm-signup-project-btn-next,
+.tm-signup-account-btn-next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 10px 22px;
+    border: 0;
+    border-radius: 12px;
+    background: #003EC7;
+    color: #FFF;
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.2px;
+    transition: .2s ease;
+}
+
+.tm-signup-project-btn-next:hover,
+.tm-signup-account-btn-next:hover {
+    background: #002f98;
+}
+
+.tm-signup-role-wrap {
+    width: 100%;
+    max-width: 814px;
+    margin: 0 auto;
+    padding-top: 96px;
+}
+
+.tm-signup-role-heading {
+    margin-bottom: 36px;
+}
+
+.tm-signup-role-eyebrow {
+    color: #003EC7;
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.tm-signup-role-title {
+    color: #1A1C1C;
+    text-align: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 60px;
+    margin: 0;
+}
+
+.tm-signup-role-cards {
+    margin-bottom: 24px;
+}
+
+.tm-signup-role-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    padding: 36px;
+    border-radius: 32px;
+    background: #FFF;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+    border: 4px solid transparent;
+    box-shadow: none;
+}
+
+.tm-signup-role-card.is-selected {
+    border-color: #003EC7;
+}
+
+.tm-signup-role-card:hover {
+    transform: translateY(-2px);
+}
+
+.tm-signup-role-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tm-signup-role-card-title {
+    display: block;
+    color: #1A1C1C;
+    text-align: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+
+.tm-signup-role-card-text {
+    display: block;
+    color: #5F5E5E;
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    max-width: 280px;
+}
+
+.tm-signup-role-actions {
+    margin-top: 8px;
+}
+
+.tm-signup-role-btn {
+    border: 0;
+    border-radius: 12px;
+    background: #003EC7;
+    color: #FFF;
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.2px;
+    padding: 10px 22px;
+    transition: 0.2s ease;
+}
+
+.tm-signup-role-btn:hover {
+    background: #002f98;
+}
+
+.tm-signup-project-wrap,
+.tm-signup-account-wrap {
+    width: 100%;
+    max-width: 814px;
+    margin: 0 auto;
+    padding-top: 72px;
+}
+
+.tm-signup-project-card,
+.tm-signup-account-card {
+    border-radius: 32px;
+    background: #FFF;
+    padding: 36px;
+    box-shadow: none;
+}
+
+.tm-signup-project-head,
+.tm-signup-account-head {
+    margin-bottom: 16px;
+}
+
+.tm-signup-project-title,
+.tm-signup-account-title {
+    color: #1A1C1C;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 60px;
+    margin: 0 0 8px;
+}
+
+.tm-signup-project-form,
+.tm-signup-account-form {
+    margin-top: 16px;
+}
+
+.tm-signup-project-choice {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #E2E2E2;
+    background: #FFF;
+    color: #1A1C1C;
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 14px 13px;
+    transition: .2s ease;
+}
+
+.tm-signup-project-choice.is-selected {
+    border-color: #003EC7;
+    background: rgba(0, 62, 199, 0.06);
+    color: #003EC7;
+}
+
+.tm-signup-project-choice:hover {
+    border-color: #003EC7;
+}
+
+.tm-signup-project-btn-next {
+    min-width: 83px;
+}
+
+.tm-signup-account-help {
+    margin-top: 8px;
+    opacity: 0.7;
+    color: #5F5E5E;
+    font-family: Manrope, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.tm-signup-account-consent {
+    color: #5F5E5E;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    cursor: pointer;
+}
+
+.tm-signup-account-consent a {
+    color: #003EC7;
+}
+
+.tm-signup-account-checkbox {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-top: 1px;
+    border: 1px solid #E2E2E2;
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #FFF;
+    cursor: pointer;
+    position: relative;
+}
+
+.tm-signup-account-checkbox:checked {
+    background: #003EC7;
+    border-color: #003EC7;
+}
+
+.tm-signup-account-checkbox:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: solid #FFF;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.tm-signup-account-actions {
+    margin-top: 24px;
+}
+
+.tm-signup-account-btn-next {
+    min-width: 126px;
+}
+
+.tm-signup-confirm-wrap {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding-top: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+}
+
+.tm-signup-confirm-check {
+    margin-top: 0;
+}
+
+.tm-signup-confirm-check-icon {
+    width: 150px;
+    height: 150px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tm-signup-confirm-check-icon i {
+    font-size: 132px;
+    color: #003EC7;
+    line-height: 1;
+}
+
+.tm-signup-confirm-content {
+    width: 100%;
+    max-width: 472px;
+    padding: 0 24px;
+}
+
+.tm-signup-confirm-title {
+    color: #1A1C1C;
+    text-align: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 60px;
+    margin: 0 0 8px;
+}
+
+.tm-signup-confirm-subtitle {
+    color: #5F5E5E;
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    margin: 0;
+}
+
+.tm-signup-confirm-actions {
+    width: 100%;
+    max-width: 472px;
+    padding: 0 24px;
+}
+
+.tm-signup-confirm-btn-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 189px;
+    height: 39px;
+    padding: 10px 22px;
+    border-radius: 12px;
+    border: 1px solid #EEE;
+    background: #FFF;
+    color: #1A1C1C;
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.2px;
+}
+
+.tm-signup-confirm-btn-next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 167px;
+    height: 39px;
+    padding: 10px 22px;
+    border-radius: 12px;
+    background: #003EC7;
+    color: #FFF;
+    text-align: center;
+    font-family: Manrope, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.2px;
+}
+
+.tm-signup-confirm-btn-next:hover {
+    background: #002f98;
+    color: #FFF;
+}
+
+@media (max-width: 991.98px) {
+    .tm-signup-role-wrap {
+        padding-top: 72px;
+    }
+
+    .tm-signup-role-title,
+    .tm-signup-project-title,
+    .tm-signup-account-title {
+        font-size: 40px;
+        line-height: 52px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .tm-signup-role-page,
+    .tm-signup-project-page,
+    .tm-signup-account-page,
+    .tm-signup-confirm-page {
+        padding: 32px 0 64px;
+    }
+
+    .tm-signup-role-wrap {
+        padding-top: 40px;
+    }
+
+    .tm-signup-project-wrap,
+    .tm-signup-account-wrap,
+    .tm-signup-confirm-wrap {
+        padding-top: 32px;
+    }
+
+    .tm-signup-role-logo,
+    .tm-signup-project-logo,
+    .tm-signup-account-logo,
+    .tm-signup-confirm-logo {
+        max-width: 190px;
+    }
+
+    .tm-signup-role-title,
+    .tm-signup-project-title,
+    .tm-signup-account-title,
+    .tm-signup-confirm-title {
+        font-size: 32px;
+        line-height: 42px;
+    }
+
+    .tm-signup-role-card {
+        min-height: 120px;
+        padding: 28px 22px;
+        border-radius: 24px;
+    }
+
+    .tm-signup-project-card,
+    .tm-signup-account-card {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .tm-signup-role-card-title {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .tm-signup-role-card-text,
+    .tm-signup-project-subtitle,
+    .tm-signup-account-subtitle,
+    .tm-signup-account-consent,
+    .tm-signup-confirm-subtitle {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .tm-signup-confirm-check-icon {
+        width: 120px;
+        height: 120px;
+    }
+
+    .tm-signup-confirm-check-icon i {
+        font-size: 100px;
+    }
+
+    .tm-signup-confirm-actions {
+        justify-content: center !important;
+    }
+
+    .tm-signup-project-btn-back,
+    .tm-signup-project-btn-next,
+    .tm-signup-account-btn-back,
+    .tm-signup-account-btn-next,
+    .tm-signup-confirm-btn-back,
+    .tm-signup-confirm-btn-next {
+        width: 100%;
+    }
+}

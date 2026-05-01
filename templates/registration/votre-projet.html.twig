@@ -1,10 +1,114 @@
 {% extends 'user.html.twig' %}
 
+{% block title %}Inscription | Votre projet{% endblock %}
+
 {% block body %}
+    <main class="tm-signup-project-page">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-xl-10">
+                    <section class="tm-signup-project-wrap">
 
+                        <div class="tm-signup-project-brand text-center">
+                            <a href="{{ path('app_home') }}" class="tm-signup-project-logo-link text-decoration-none">
+                                <img
+                                    src="{{ asset('images/logo/trouve-moi.svg') }}"
+                                    alt="TrouveMoi"
+                                    class="tm-signup-project-logo img-fluid"
+                                >
+                            </a>
+                        </div>
+
+                        <div class="tm-signup-project-step text-center">
+                            <div class="tm-signup-project-step-title">Votre activité</div>
+
+                            <div class="tm-signup-project-progress d-flex align-items-center justify-content-center">
+                                <span class="tm-signup-project-progress-item is-active"></span>
+                                <span class="tm-signup-project-progress-item is-active"></span>
+                                <span class="tm-signup-project-progress-item"></span>
+                                <span class="tm-signup-project-progress-item"></span>
+                            </div>
+                        </div>
+
+                        <div class="tm-signup-project-card">
+                            <div class="tm-signup-project-head">
+                                <div class="tm-signup-project-eyebrow">Étape 2 sur 4</div>
+                                <h1 class="tm-signup-project-title">Votre projet en quelques mots</h1>
+                                <p class="tm-signup-project-subtitle">
+                                    Cela nous aide à trouver les bons artisans tout de suite.
+                                </p>
+                            </div>
+
+                            <form method="post" class="tm-signup-project-form">
+                                <div class="mb-3">
+                                    <label class="tm-signup-project-label">Type de travaux</label>
+
+                                    <div class="row g-2">
+                                        <div class="col-md-4 col-12">
+                                            <button type="button" class="tm-signup-project-choice">
+                                                Rénovation
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <button type="button" class="tm-signup-project-choice is-selected">
+                                                Cuisine
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <button type="button" class="tm-signup-project-choice">
+                                                Salle de bain
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <button type="button" class="tm-signup-project-choice is-selected">
+                                                Peinture
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <button type="button" class="tm-signup-project-choice">
+                                                Électricité
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-12">
+                                            <button type="button" class="tm-signup-project-choice">
+                                                Autre
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="project_postal_code" class="tm-signup-project-label">Code postal</label>
+                                    <input
+                                        id="project_postal_code"
+                                        name="project_postal_code"
+                                        type="text"
+                                        class="tm-signup-project-input form-control"
+                                        value="75001"
+                                        placeholder="Votre code postal"
+                                    >
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap">
+                                    <a href="#" class="tm-signup-project-btn-back text-decoration-none">
+                                        Retour
+                                    </a>
+
+                                    <button type="submit" class="tm-signup-project-btn-next">
+                                        Continuer
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
-
-{% block title %}
-
-{% endblock %}
-
