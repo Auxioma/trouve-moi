@@ -62,6 +62,18 @@ class UserFixtures extends Fixture
             ->setPassword($this->passwordHasher->hashPassword($artisan, 'artisan'))
             ->setFirstName('Artisan')
             ->setLastName('Artisan')
+            ->setCompagny('Artisan SARL')
+            ->setPhoneNumber('0123456789')
+            ->setSiren('123456789')
+            ->setAddress('123 Rue de l\'Artisanat, 75000 Paris')
+            ->setPostalCode('75000')
+            ->setCity('Paris')
+            ->setLatitude(48.8566)
+            ->setLongitude(2.3522)
+            ->setDescription('Nous sommes une entreprise d\'artisanat spécialisée dans les travaux de rénovation et de construction. Nous offrons des services de qualité pour tous vos projets, du plus petit au plus grand. Notre équipe d\'artisans expérimentés est à votre disposition pour réaliser vos travaux dans les délais et avec le meilleur rapport qualité-prix.')
+            ->setWebsite('https://www.artisan-sarl.fr')
+            ->setGrandeDescription('Nous sommes une entreprise d\'artisanat spécialisée dans les travaux de rénovation et de construction. Nous offrons des services de qualité pour tous vos projets, du plus petit au plus grand. Notre équipe d\'artisans expérimentés est à votre disposition pour réaliser vos travaux dans les délais et avec le meilleur rapport qualité-prix.')
+            ->setImageName('artisan-sarl.png')
         ;
         $manager->persist($artisan);
 

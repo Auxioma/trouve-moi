@@ -22,8 +22,10 @@ namespace App\Controller\Dashboard\Visiteurs;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/user/projects', name: 'dashboard-visiteurs')]
+#[IsGranted('ROLE_ARTISAN')]
 final class MesProjectsController extends AbstractController
 {
     #[Route('/', name: 'liste_projects')]
