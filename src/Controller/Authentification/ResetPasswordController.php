@@ -17,7 +17,7 @@
  * Droit applicable : Monde.
  */
 
-namespace App\Controller;
+namespace App\Command\Authentification;
 
 use App\Entity\User;
 use App\Form\ChangePasswordFormType;

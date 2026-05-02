@@ -1,0 +1,179 @@
+{% extends 'user.html.twig' %}
+
+{% block title %}Mes projets{% endblock %}
+
+{% block body %}
+    <main class="tm-projects-page">
+
+        <section class="tm-projects-header">
+            <div>
+                <span class="tm-projects-eyebrow">Mes projets</span>
+                <h1>Vos chantiers, en un coup d'œil.</h1>
+                <p>3 projets en cours · 12 archivés · 1 action requise</p>
+            </div>
+
+            <div class="tm-projects-header-actions">
+                <div class="tm-projects-stat">
+                    <span>Projet</span>
+                    <strong>482</strong>
+                </div>
+
+                <div class="tm-projects-stat">
+                    <span>Artisans</span>
+                    <strong>31</strong>
+                </div>
+
+                <a href="#" class="tm-projects-primary-btn">
+                    Démarrer un projet
+                </a>
+            </div>
+        </section>
+
+        <section class="tm-projects-filter">
+            <strong>Filtre</strong>
+
+            <div class="tm-projects-filter-list">
+                <button>Projet <i class="fa-solid fa-chevron-down"></i></button>
+                <button>Période <i class="fa-solid fa-chevron-down"></i></button>
+                <button>Emplacement <i class="fa-solid fa-chevron-down"></i></button>
+                <button>Artisan <i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+
+            <button class="tm-projects-filter-submit">
+                Appliquer le filtre
+            </button>
+        </section>
+
+        <section class="tm-projects-grid">
+
+            {% set projects = [
+                {
+                    title: 'Rénovation Loft Paris',
+                    place: '14 Rue de Rivoli',
+                    date: '12 Octobre 2023',
+                    status: 'EN RECHERCHE',
+                    statusClass: 'blue',
+                    image: 'https://www.figma.com/api/mcp/asset/afc09b5a-ce25-4ee4-9ce1-b43cb571dff5',
+                    tags: ['Cuisine', 'Salle de bain'],
+                    step: 'Etape 5/8',
+                    progress: 65,
+                    artisan: true,
+                    alertTitle: 'Action requise',
+                    alertText: 'Plomberie & électricité · à valider',
+                    alertClass: 'warning',
+                    budget: '54 200 €',
+                    cta: 'Valider',
+                    primaryCta: true
+                },
+                {
+                    title: 'Cuisine Sur Mesure - Lyon',
+                    place: 'Avenue Foch',
+                    date: '5 Septembre 2023',
+                    status: 'RÉVISION DES DEVIS',
+                    statusClass: 'orange',
+                    image: 'https://www.figma.com/api/mcp/asset/3054df28-304f-4baa-be2a-291aa27848c4',
+                    tags: ['Cuisine', 'Salle à manger'],
+                    step: 'Etape 2/8',
+                    progress: 22,
+                    artisan: false,
+                    alertTitle: 'Étape actuelle',
+                    alertText: '3 devis à comparer',
+                    alertClass: 'info',
+                    budget: 'En cours',
+                    cta: 'Comparer les devis',
+                    primaryCta: false
+                },
+                {
+                    title: 'Aménagement Jardin',
+                    place: 'Bordeaux Sud',
+                    date: '28 Août 2023',
+                    status: 'EN COURS',
+                    statusClass: 'green',
+                    image: 'https://www.figma.com/api/mcp/asset/4159f8f3-7829-4b99-9abb-b186c53c0cf2',
+                    tags: ['Aménagement extérieur', 'Terrasse'],
+                    step: 'Etape 1/8',
+                    progress: 8,
+                    artisan: false,
+                    alertTitle: 'Étape actuelle',
+                    alertText: 'Photos manquantes pour publier',
+                    alertClass: 'info',
+                    budget: 'En cours',
+                    cta: 'Comparer les devis',
+                    primaryCta: false
+                }
+            ] %}
+
+            {% for i in 1..2 %}
+                {% for project in projects %}
+                    <article class="tm-project-card">
+                        <div class="tm-project-card-cover" style="background-image: url('{{ project.image }}');">
+                        <span class="tm-project-status tm-project-status-{{ project.statusClass }}">
+                            {{ project.status }}
+                        </span>
+
+                            <div>
+                                <h2>{{ project.title }}</h2>
+                                <p>{{ project.place }} · Créé le {{ project.date }}</p>
+                            </div>
+                        </div>
+
+                        <div class="tm-project-card-body">
+                            <div class="tm-project-tags">
+                                {% for tag in project.tags %}
+                                    <span>{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+
+                            <div class="tm-project-progress-head">
+                                <span>{{ project.step }}</span>
+                                <strong>{{ project.progress }}%</strong>
+                            </div>
+
+                            <div class="tm-project-progress">
+                                <span style="width: {{ project.progress }}%;"></span>
+                            </div>
+
+                            {% if project.artisan %}
+                                <div class="tm-project-artisan">
+                                    <img src="https://www.figma.com/api/mcp/asset/891ae479-6da0-46d6-86a9-7ae5eddff784" alt="Artisan">
+                                    <div>
+                                        <strong>Atelier Maréchal & Fils</strong>
+                                        <span>Architecture</span>
+                                    </div>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+                            {% endif %}
+
+                            <div class="tm-project-alert tm-project-alert-{{ project.alertClass }}">
+                                <strong>{{ project.alertTitle }}</strong>
+                                <span>{{ project.alertText }}</span>
+                            </div>
+
+                            <div class="tm-project-card-footer">
+                                <div>
+                                    <span>Budget</span>
+                                    <strong>{{ project.budget }}</strong>
+                                </div>
+
+                                <a href="#" class="{{ project.primaryCta ? 'tm-project-card-btn primary' : 'tm-project-card-btn' }}">
+                                    {{ project.cta }}
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            {% endfor %}
+        </section>
+
+        <nav class="tm-projects-pagination">
+            <a href="#"><i class="fa-solid fa-chevron-left"></i></a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <span>...</span>
+            <a href="#">10</a>
+            <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </nav>
+
+    </main>
+{% endblock %}
