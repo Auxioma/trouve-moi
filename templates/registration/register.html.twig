@@ -38,37 +38,62 @@
                             </h1>
                         </div>
 
-                        <div class="row g-4 justify-content-center tm-signup-role-cards">
+                        <div
+                            class="row g-4 justify-content-center tm-signup-role-cards"
+                            data-controller="signup-role"
+                        >
+
+                            <!-- PARTICULIER -->
                             <div class="col-12 col-md-6">
-                                <label class="tm-signup-role-card is-selected w-100">
+                                <label class="tm-signup-role-card is-selected w-100" data-signup-role-target="card">
+
                                     <input
                                         type="radio"
                                         name="role_type"
                                         value="particulier"
                                         class="tm-signup-role-input"
                                         checked
+                                        data-action="change->signup-role#select"
                                     >
-                                    <span class="tm-signup-role-card-title">Je suis particulier</span>
-                                    <span class="tm-signup-role-card-text">
-                                    Je cherche un artisan de confiance pour mes travaux
-                                </span>
+
+                                    <div class="tm-signup-role-content">
+                                        <span class="tm-signup-role-card-title">
+                                            Je suis particulier
+                                        </span>
+
+                                        <span class="tm-signup-role-card-text">
+                                            Je cherche un artisan de confiance pour mes travaux
+                                        </span>
+                                    </div>
+
                                 </label>
                             </div>
 
+                            <!-- ARTISAN -->
                             <div class="col-12 col-md-6">
-                                <label class="tm-signup-role-card w-100">
+                                <label class="tm-signup-role-card w-100" data-signup-role-target="card">
+
                                     <input
                                         type="radio"
                                         name="role_type"
                                         value="artisan"
                                         class="tm-signup-role-input"
+                                        data-action="change->signup-role#select"
                                     >
-                                    <span class="tm-signup-role-card-title">Je suis artisan</span>
-                                    <span class="tm-signup-role-card-text">
-                                    Je veux développer mon activité et trouver de nouveaux chantiers
-                                </span>
+
+                                    <div class="tm-signup-role-content">
+                                        <span class="tm-signup-role-card-title">
+                                            Je suis artisan
+                                        </span>
+
+                                        <span class="tm-signup-role-card-text">
+                                            Je veux développer mon activité et trouver de nouveaux chantiers
+                                        </span>
+                                    </div>
+
                                 </label>
                             </div>
+
                         </div>
 
                         <div class="tm-signup-role-actions text-center">

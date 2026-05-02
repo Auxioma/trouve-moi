@@ -11,9 +11,7 @@
 
 		<style>
 			body {
-				background:
-					linear-gradient(180deg, rgba(255, 255, 255, 0.00) 7%, #D0E0FE 100%),
-					url("{{ asset('image/cta/Grid.png') }}") center / cover no-repeat fixed;
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 7%, #D0E0FE 100%), url("{{ asset('image/cta/Grid.png') }}") center / cover no-repeat fixed;
 				background-color: #F8F7F7;
 				min-height: 100vh;
 				font-family: Manrope, sans-serif;
@@ -207,7 +205,7 @@
 			}
 
 			/* TABLET */
-			@media (max-width: 991.98px) {
+			@media(max-width: 991.98px) {
 				.full-height {
 					padding: 32px 0;
 					align-items: flex-start;
@@ -235,7 +233,7 @@
 			}
 
 			/* MOBILE */
-			@media (max-width: 767.98px) {
+			@media(max-width: 767.98px) {
 				body {
 					background-attachment: scroll;
 				}
@@ -283,7 +281,7 @@
 			}
 
 			/* PETIT MOBILE */
-			@media (max-width: 480px) {
+			@media(max-width: 480px) {
 				.connection-art-artisanat {
 					font-size: 26px;
 				}
@@ -302,8 +300,9 @@
 	<body>
 		<main class="container-fluid full-height">
 			<div class="container">
-				<div class="row align-items-center g-4">
-					
+				<div
+					class="row align-items-center g-4">
+
 					<!-- COLONNE GAUCHE -->
 					<div class="col-12 col-lg-6 p-3">
 						<div class="colone-gauche">
@@ -336,32 +335,9 @@
 							<p class="form-p">Veuillez vous connecter</p>
 
 							<form method="post">
-													<input
-                                                        type="email"
-                                                        value="{{ last_username }}"
-                                                        name="email"
-                                                        id="inputEmail"
-                                                        class="form-control"
-                                                        autocomplete="email"
-                                                        placeholder="Veuillez entrer votre adresse e-mail"
-                                                        required
-                                                        autofocus
-                                                    >
-                                                    <input
-                                                        type="password"
-                                                        name="password"
-                                                        id="inputPassword"
-                                                        class="form-control"
-                                                        autocomplete="current-password"
-                                                        placeholder="Veuillez entrer votre mot de passe"
-                                                        required
-                                                    >
-													                                                    <input
-                                                        type="hidden"
-                                                        name="_csrf_token"
-                                                        data-controller="csrf-protection"
-                                                        value="{{ csrf_token('authenticate') }}"
-                                                    >
+								<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Veuillez entrer votre adresse e-mail" required autofocus>
+								<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Veuillez entrer votre mot de passe" required>
+								<input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
 								<div class="d-flex justify-content-between align-items-center mb-3">
 									<label class="remember-me">
 										<input type="checkbox">
@@ -391,7 +367,7 @@
 
 							<p class="pas-de-compte">
 								Pas de compte ?
-								<a href="#">Créer</a>
+								<a href="{{ path('app_register') }}">Créer</a>
 							</p>
 						</div>
 					</div>

@@ -28,7 +28,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
-#[Route('/comment-souhaitez-vous-utiliser-trouve-moi')]
+#[Route('/comment-souhaitez-vous-utiliser-trouve-moi', name: 'user_registration_')]
 class RegistrationController extends AbstractController
 {
     public function __construct(private EmailVerifier $emailVerifier)
