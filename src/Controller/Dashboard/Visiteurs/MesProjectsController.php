@@ -17,19 +17,36 @@
  * Droit applicable : Monde.
  */
 
-namespace App\Controller\User;
+namespace App\Controller\Dashboard\Visiteurs;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route('/user/projects', name: 'dashboard-visiteurs')]
 final class MesProjectsController extends AbstractController
 {
-    #[Route('/user/projects', name: 'app_user_mes_projects')]
+    #[Route('/', name: 'liste_projects')]
     public function index(): Response
     {
-        return $this->render('user/mes_projects/index.html.twig', [
-            'controller_name' => 'MesProjectsController',
-        ]);
+        return $this->render('user/mes_projects/liste-des-projects.html.twig');
+    }
+
+    #[Route('/nouveau-projet', name: 'demarre_projects', methods: ['GET'])]
+    public function demarre(): Response
+    {
+        return $this->render('user/mes_projects/demarre-un-projet.html.twig');
+    }
+
+    #[Route('/nouveau-projet/recapitulatif', name: 'recapitulatif', methods: ['GET'])]
+    public function recapitulatif(): Response
+    {
+        return $this->render('user/mes_projects/recapitulatif.html.twig');
+    }
+
+    #[Route("/nouveau-projet/recapitulatif/avis", name: 'avis')]
+    public function avis(): Response
+    {
+        return $this->render('user/mes_projects/avis.html.twig');
     }
 }

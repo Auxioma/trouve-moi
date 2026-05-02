@@ -17,7 +17,7 @@
  * Droit applicable : Monde.
  */
 
-namespace App\Controller;
+namespace App\Controller\Public;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;

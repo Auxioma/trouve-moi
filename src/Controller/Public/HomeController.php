@@ -17,30 +17,39 @@
  * Droit applicable : Monde.
  */
 
-namespace App\Controller;
+namespace App\Controller\Public;
 
 use App\Repository\TestimonialRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 final class HomeController extends AbstractController
 {
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly TestimonialRepository $testimonialRepository,
+        private readonly CacheInterface $cache, // 👈 ajout
     ) {
     }
 
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        /* Je vais prendre les 4 derniers utilisateurs créés pour les afficher sur la page d'accueil */
-        $latestUsers = $this->userRepository->findLatestArtisans(4);
+        $latestUsers = $this->cache->get('home.latest_users', function (ItemInterface $item) {
+            $item->expiresAfter(3600); // 1 heure
 
-        /* Je vais affiché les 20 dernier avis des utilisateurs pour les afficher sur la page d'accueil */
-        $testimonials = $this->testimonialRepository->findBy([], ['createdAt' => 'DESC'], 20);
+            return $this->userRepository->findLatestArtisans(4);
+        });
+
+        $testimonials = $this->cache->get('home.testimonials', function (ItemInterface $item) {
+            $item->expiresAfter(3600); // 1 heure
+
+            return $this->testimonialRepository->findBy([], ['createdAt' => 'DESC'], 20);
+        });
 
         return $this->render('home/home.html.twig', [
             'localisationArtisants' => $latestUsers,

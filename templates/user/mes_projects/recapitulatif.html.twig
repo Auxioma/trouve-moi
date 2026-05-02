@@ -1,10 +1,242 @@
 {% extends 'user.html.twig' %}
 
+{% block title %}Rénovation Loft Paris{% endblock %}
+
 {% block body %}
+    <main class="tm-project-detail-page">
 
+        <nav class="tm-project-breadcrumb">
+            <a href="#">Mes Projets</a>
+            <span>/</span>
+            <strong>Rénovation Loft Paris</strong>
+        </nav>
+
+        <section class="tm-project-detail-hero">
+            <div class="tm-project-detail-cover" style="background-image: url('https://www.figma.com/api/mcp/asset/30a5e832-95e3-4a56-a58b-22fac2d86d23');">
+                <span class="tm-project-status">En recherche</span>
+
+                <div class="tm-project-hero-bottom">
+                    <div>
+                        <h1>Rénovation Loft Paris</h1>
+                        <p>14 Rue de Rivoli · Créé le 12 Octobre 2023</p>
+                    </div>
+
+                    <div class="tm-project-hero-actions">
+                        <a href="#" class="tm-btn-light">Documents</a>
+                        <a href="#" class="tm-btn-primary">Messagerie</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tm-project-summary">
+                <div class="tm-project-progress-head">
+                    <span>Avancement global</span>
+                    <strong>65%</strong>
+                </div>
+
+                <div class="tm-project-progress">
+                    <span style="width: 65%;"></span>
+                </div>
+
+                <div class="tm-project-info-row">
+                    <div class="tm-project-artisan-mini">
+                        <img src="https://www.figma.com/api/mcp/asset/c571044d-cc6b-478b-bdc2-f6806dd0c540" alt="">
+                        <div>
+                            <strong>Atelier Maréchal & Fils</strong>
+                            <span>Architecture</span>
+                        </div>
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Démarré le</span>
+                        <strong>15 nov. 2023</strong>
+                    </div>
+
+                    <div>
+                        <span>Livraison prévue</span>
+                        <strong>8 jan. 2024</strong>
+                    </div>
+
+                    <div>
+                        <span>Budget</span>
+                        <strong>54 200 €</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <nav class="tm-project-tabs">
+            <a href="#" class="active">Timeline</a>
+            <a href="#">Photos, 18</a>
+            <a href="#">Documents, 7</a>
+            <a href="#">Paiements</a>
+        </nav>
+
+        <section class="tm-project-detail-layout">
+
+            <div class="tm-project-timeline">
+
+                {% set steps = [
+                    {
+                        state: 'Terminé',
+                        date: '12 oct. 2023',
+                        title: 'Projet publié',
+                        text: 'Demande de devis envoyée à 5 artisans qualifiés.',
+                        meta: ['Camille L'],
+                        done: true
+                    },
+                    {
+                        state: 'Terminé',
+                        date: '18 oct. 2023',
+                        title: 'Devis reçus & comparés',
+                        text: '3 devis reçus, comparaison effectuée. Atelier Maréchal sélectionné.',
+                        meta: ['Camille L', '54 200 €'],
+                        done: true
+                    },
+                    {
+                        state: 'Terminé',
+                        date: '23 oct. 2023',
+                        title: 'Contrat signé · Acompte versé',
+                        text: 'Acompte de 30% sécurisé en séquestre TrouveMoi.',
+                        meta: ['Camille L', '16 260 €'],
+                        done: true
+                    },
+                    {
+                        state: 'Terminé',
+                        date: '15 nov. 2023',
+                        title: 'Démolition & dépose',
+                        text: 'Cuisine et salle de bain entièrement déposées. Évacuation effectuée.',
+                        meta: ['Atelier Maréchal', '4 photos', '✓ Validé par vous'],
+                        done: true,
+                        photos: true
+                    }
+                ] %}
+
+                {% for step in steps %}
+                    <article class="tm-timeline-card">
+                        <div class="tm-timeline-icon done">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+
+                        <div class="tm-timeline-content">
+                            <div class="tm-timeline-head">
+                                <span>{{ step.state }}</span>
+                                <small>{{ step.date }}</small>
+                            </div>
+
+                            <h2>{{ step.title }}</h2>
+                            <p>{{ step.text }}</p>
+
+                            <div class="tm-timeline-meta">
+                                {% for item in step.meta %}
+                                    <span>{{ item }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        {% if step.photos is defined %}
+                            <div class="tm-timeline-photos">
+                                <img src="https://www.figma.com/api/mcp/asset/7a3e78d2-850b-47e0-ba06-264eb0526a3b" alt="">
+                                <img src="https://www.figma.com/api/mcp/asset/26a34bdc-bfdb-42bc-bf65-8141c9f00b71" alt="">
+                                <img src="https://www.figma.com/api/mcp/asset/435c8022-6039-4861-aa6d-00fc5714c649" alt="">
+                                <img src="https://www.figma.com/api/mcp/asset/805117fc-778c-4868-b602-67b46a2fc515" alt="">
+                            </div>
+                        {% endif %}
+                    </article>
+                {% endfor %}
+
+                <article class="tm-timeline-card active">
+                    <div class="tm-timeline-icon current">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+
+                    <div class="tm-timeline-content">
+                        <div class="tm-timeline-head">
+                            <span>En cours</span>
+                        </div>
+
+                        <h2>Plomberie & électricité</h2>
+                        <p>Mise aux normes électrique terminée. Plomberie cuisine en cours.</p>
+
+                        <div class="tm-timeline-meta">
+                            <span>Atelier Maréchal</span>
+                            <span>6 photos</span>
+                        </div>
+
+                        <div class="tm-step-progress-box">
+                            <div class="tm-project-progress-head">
+                                <span>Progression de l'étape</span>
+                                <strong>63%</strong>
+                            </div>
+
+                            <div class="tm-project-progress">
+                                <span style="width: 63%;"></span>
+                            </div>
+
+                            <a href="#" class="tm-btn-primary">Valider l’avancement</a>
+                        </div>
+                    </div>
+
+                    <div class="tm-timeline-photos">
+                        <img src="https://www.figma.com/api/mcp/asset/7a3e78d2-850b-47e0-ba06-264eb0526a3b" alt="">
+                        <img src="https://www.figma.com/api/mcp/asset/26a34bdc-bfdb-42bc-bf65-8141c9f00b71" alt="">
+                        <img src="https://www.figma.com/api/mcp/asset/435c8022-6039-4861-aa6d-00fc5714c649" alt="">
+                        <img src="https://www.figma.com/api/mcp/asset/805117fc-778c-4868-b602-67b46a2fc515" alt="">
+                    </div>
+                </article>
+
+            </div>
+
+            <aside class="tm-project-sidebar">
+
+                <div class="tm-sidebar-card">
+                    <span class="tm-sidebar-eyebrow">Prochaine action</span>
+                    <h3>Valider la fin de la plomberie</h3>
+                    <p>L'artisan vous demandera votre validation pour libérer le 2ᵉ jalon (16 260 €).</p>
+                    <a href="#" class="tm-btn-primary full">Voir les détails</a>
+                </div>
+
+                <div class="tm-sidebar-note">
+                    <strong>Bon à savoir</strong>
+                    <p>Vous pouvez demander une visite de chantier à tout moment. L'artisan a 48h pour vous répondre.</p>
+                    <a href="#">Demander une visite →</a>
+                </div>
+
+                <div class="tm-sidebar-card">
+                    <h3>Équipe sur place</h3>
+
+                    <div class="tm-team-member">
+                        <img src="https://www.figma.com/api/mcp/asset/f6256053-25fa-4682-adf5-a6c8b2b457d7" alt="">
+                        <div>
+                            <strong>Artisan Studio Luxe</strong>
+                            <span>Architecture</span>
+                        </div>
+                        <em>★ 4.9</em>
+                    </div>
+
+                    <div class="tm-team-member">
+                        <img src="https://www.figma.com/api/mcp/asset/c571044d-cc6b-478b-bdc2-f6806dd0c540" alt="">
+                        <div>
+                            <strong>Marc Lefebvre</strong>
+                            <span>Menuiserie</span>
+                        </div>
+                        <em>★ 5.0</em>
+                    </div>
+
+                    <div class="tm-team-member">
+                        <img src="https://www.figma.com/api/mcp/asset/c571044d-cc6b-478b-bdc2-f6806dd0c540" alt="">
+                        <div>
+                            <strong>Marc Lefebvre</strong>
+                            <span>Menuiserie</span>
+                        </div>
+                        <em>★ 5.0</em>
+                    </div>
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
 {% endblock %}
-
-{% block title %}
-
-{% endblock %}
-

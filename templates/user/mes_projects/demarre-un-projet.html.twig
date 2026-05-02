@@ -1,10 +1,138 @@
 {% extends 'user.html.twig' %}
 
+{% block title %}Démarrer un projet{% endblock %}
+
 {% block body %}
+    <main class="tm-new-project-page">
 
+        <section class="tm-new-project-header">
+            <div>
+                <span class="tm-new-project-eyebrow">Nouveau projet</span>
+                <h1>Démarrer un projet</h1>
+                <p>Décrivez vos travaux, ajoutez quelques photos.</p>
+            </div>
+
+            <div class="tm-new-project-stats">
+                <div><span>Temps moyen</span><strong>3 min</strong></div>
+                <div><span>Devis sous</span><strong>48 h</strong></div>
+                <div><span>Pertinence</span><strong>94 %</strong></div>
+            </div>
+        </section>
+
+        <section class="tm-new-project-layout">
+
+            <form class="tm-new-project-form">
+
+                <div class="tm-new-project-card">
+                    <div class="tm-new-project-card-title">
+                        <span>1</span>
+                        <h2>Type de travaux</h2>
+                    </div>
+
+                    <div class="tm-choice-grid">
+                        <label><input type="radio" name="type"> <span>Rénovation</span></label>
+                        <label class="active"><input type="radio" name="type" checked> <span>Cuisine</span></label>
+                        <label><input type="radio" name="type"> <span>Salle de bain</span></label>
+                        <label><input type="radio" name="type"> <span>Rénovation globale</span></label>
+                        <label><input type="radio" name="type"> <span>Peinture</span></label>
+                        <label><input type="radio" name="type"> <span>Électricité</span></label>
+                        <label><input type="radio" name="type"> <span>Menuiserie</span></label>
+                        <label><input type="radio" name="type"> <span>Autre</span></label>
+                    </div>
+                </div>
+
+                <div class="tm-new-project-card">
+                    <div class="tm-new-project-card-title">
+                        <span>2</span>
+                        <h2>Décrivez votre projet</h2>
+                    </div>
+
+                    <div class="tm-form-group">
+                        <label>Titre</label>
+                        <input type="text" value="Rénovation cuisine 12m² avec îlot central">
+                    </div>
+
+                    <div class="tm-form-group">
+                        <label>Description détaillée</label>
+                        <textarea>Cuisine actuelle des années 90, à refaire entièrement. Souhait d'un îlot central, plan de travail en pierre, hotte aspirante, four à hauteur. Sol et carrelage à refaire. Possibilité d'abattre une cloison non porteuse.</textarea>
+                    </div>
+
+                    <div class="tm-form-row">
+                        <div class="tm-form-group">
+                            <label>Surface</label>
+                            <input type="text" value="12 m²">
+                        </div>
+
+                        <div class="tm-form-group">
+                            <label>Quand commencer ?</label>
+                            <div class="tm-small-choices">
+                                <label><input type="radio" name="date"> <span>ASAP</span></label>
+                                <label class="active"><input type="radio" name="date" checked> <span>&lt; 1 mois</span></label>
+                                <label><input type="radio" name="date"> <span>&lt; 3 mois</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tm-new-project-card">
+                    <div class="tm-new-project-card-title">
+                        <span>3</span>
+                        <h2>Photos & documents</h2>
+                    </div>
+
+                    <div class="tm-upload-grid">
+                        <div class="tm-upload-image" style="background-image:url('https://www.figma.com/api/mcp/asset/04958799-772f-405c-bd3e-4a2aeb275a0f');"></div>
+                        <div class="tm-upload-image" style="background-image:url('https://www.figma.com/api/mcp/asset/dce56520-a48e-4dea-a5a2-f92509c80026');">
+                            <button type="button">×</button>
+                        </div>
+
+                        <label class="tm-upload-add">
+                            <input type="file" hidden multiple>
+                            <i class="fa-solid fa-upload"></i>
+                            <span>Ajouter</span>
+                        </label>
+                    </div>
+                </div>
+
+            </form>
+
+            <aside class="tm-new-project-sidebar">
+                <div class="tm-budget-card">
+                    <h3>Budget envisagé</h3>
+
+                    <strong>28 000 €</strong>
+                    <span>Estimation indicative TTC</span>
+
+                    <div class="tm-budget-range">
+                        <div>
+                            <small>5 k€</small>
+                            <small>80 k€</small>
+                        </div>
+                        <input type="range" min="5000" max="80000" value="28000">
+                    </div>
+
+                    <div class="tm-budget-note">
+                        <strong>À titre indicatif</strong>
+                        <p>Pour une cuisine 12 m² avec îlot, comptez généralement 22 000 € à 35 000 €.</p>
+                    </div>
+                </div>
+
+                <div class="tm-next-card">
+                    <h3>Ce qui se passe ensuite</h3>
+                    <ol>
+                        <li>Nous identifions 3-5 artisans qualifiés</li>
+                        <li>Ils étudient votre projet sous 24-48h</li>
+                        <li>Vous recevez et comparez les devis</li>
+                        <li>Vous choisissez en toute confiance</li>
+                    </ol>
+                </div>
+
+                <button class="tm-submit-project" type="submit">
+                    Publier mon projet
+                </button>
+            </aside>
+
+        </section>
+
+    </main>
 {% endblock %}
-
-{% block title %}
-
-{% endblock %}
-

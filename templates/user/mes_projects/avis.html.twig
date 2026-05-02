@@ -1,10 +1,88 @@
 {% extends 'user.html.twig' %}
 
+{% block title %}Avis chantier{% endblock %}
+
 {% block body %}
+    <main class="tm-review-page">
 
+        <section class="tm-review-heading">
+            <span>Votre avis · Chantier livré le 8 jan. 2024</span>
+            <h1>Comment s'est passé<br>votre chantier ?</h1>
+            <p>
+                Votre retour est précieux : il aide les futurs clients à choisir
+                et permet à l'artisan de s'améliorer. Cela prend 2 minutes.
+            </p>
+        </section>
+
+        <section class="tm-review-card">
+
+            <div class="tm-review-project">
+                <div class="tm-review-artisan">
+                    <img src="https://www.figma.com/api/mcp/asset/cf8cdf22-9bfa-41bc-9d07-121a9a08b3d4" alt="">
+                    <div>
+                        <strong>Atelier Maréchal & Fils</strong>
+                        <span>Rénovation Loft Paris · 14 Rue de Rivoli</span>
+                    </div>
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div class="tm-review-dates">
+                    <span>Démarré : 15 nov. 2023</span>
+                    <strong>Livré : 8 jan. 2024</strong>
+                </div>
+            </div>
+
+            <div class="tm-review-global">
+                <span>Note globale</span>
+
+                <div class="tm-review-stars large">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <strong>5.0 / 5</strong>
+                <p>Excellent</p>
+
+                <div class="tm-review-badges">
+                    <span>Maître artisan</span>
+                    <span>Qualibat</span>
+                </div>
+            </div>
+
+            <div class="tm-review-criteria">
+                <h2>Notez chaque critère</h2>
+
+                {% set criteria = [
+                    { label: 'Qualité du travail', stars: 5 },
+                    { label: 'Respect des délais', stars: 4 },
+                    { label: 'Communication', stars: 5 },
+                    { label: 'Propreté du chantier', stars: 5 },
+                    { label: 'Prix / qualité', stars: 4 }
+                ] %}
+
+                {% for item in criteria %}
+                    <div class="tm-review-criterion">
+                        <strong>{{ item.label }}</strong>
+
+                        <div class="tm-review-stars">
+                            {% for i in 1..5 %}
+                                <i class="fa-solid fa-star {{ i <= item.stars ? 'active' : '' }}"></i>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="tm-review-comment">
+                <label>Votre commentaire (visible publiquement, signé "Camille L.")</label>
+                <textarea placeholder="Écrivez votre avis...">••••••••</textarea>
+                <small>312 / 1000 caractères · ≥ 50 caractères pour publier</small>
+            </div>
+
+        </section>
+
+    </main>
 {% endblock %}
-
-{% block title %}
-
-{% endblock %}
-

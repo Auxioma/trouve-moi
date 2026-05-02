@@ -17,7 +17,7 @@
  * Droit applicable : Monde.
  */
 
-namespace App\Controller\User;
+namespace App\Controller\Dashboard\Visiteurs;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
