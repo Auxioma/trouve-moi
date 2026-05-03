@@ -4,39 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13ea1727-03b4-4b50-b0b5-a5ef85ca1ff5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/Authentification/SecurityController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/mes_projects/avis.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/mes_projects/demarre-un-projet.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/mes_projects/liste-des-projects.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/mes_projects/recapitulatif.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/user/dashboard/projects.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/user/dashboard/projects.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Public/BlogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Public/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Public/CompanyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Public/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Authentification/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Authentification/ResetPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/User/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Dashboard/Visiteurs/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/User/MesProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Dashboard/Visiteurs/MesProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/User/MessagerieController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/User/Offer/PackageController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/User/Offer/StripeController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/User/PictureController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/User/ProfileController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/User/Quote/CreateQuoteController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Visiteurs/DashboardController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Visiteurs/MessageController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Visiteurs/ProfileController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ActivityFixtures.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ConversationFixtures.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/PlanFixture.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TestimonialFixtures.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_partials/navbar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_partials/navbar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/mes_projects/index.html.twig" beforeDir="false" />
-    </list>
+    <list default="true" id="13ea1727-03b4-4b50-b0b5-a5ef85ca1ff5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,6 +109,7 @@
       <workItem from="1777669971432" duration="284000" />
       <workItem from="1777670359541" duration="1431000" />
       <workItem from="1777701058306" duration="3930000" />
+      <workItem from="1777749582892" duration="66000" />
     </task>
     <servers />
   </component>
