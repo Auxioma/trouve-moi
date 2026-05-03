@@ -100,10 +100,10 @@
                         <div class="col-12 col-sm-6 col-lg-3 mb-4">
                             <div class="artisan h-100">
                                 <div class="thumb">
-                                    {% set firstPicture = item.pictures|first %}
+                                    
 
                                     <img
-                                        src="{{ firstPicture ? vich_uploader_asset(firstPicture, 'imageFile') : asset('image/artisan/01.png') }}"
+                                        src="#"
                                         alt="{{ item.name ?? 'Artisan' }}"
                                         class="img-fluid w-100 rounded-2"
                                         width="370"
@@ -111,7 +111,7 @@
                                     />
                                 </div>
                                 <div class="thumb-info">
-                                    <span class="metier">{{ item.activity.name }}</span>
+                                    <span class="metier">{{ item.activity.name ?? 'Default' }}</span>
                                     <span class="service">QUALIBAT RGE</span>
                                     <h2 class="nom-entreprise">
                                         <a href="{{ path('deail_entreprise', {
@@ -120,7 +120,7 @@
                                                             slug: item.slug,
                                                   }) }}"
                                         >
-                                           {{ item.compagny }}
+                                          {{ item.compagny ?? item.firstName ~ ' ' ~ item.lastName ?? 'Artisan' }}
                                         </a>
                                     </h2>
                                     <p class="description-ets">
@@ -356,7 +356,7 @@
                             <div class="text-center text-white">
                                 <h2>Devenez prestataire sur trouvemoi</h2>
                                 <p>Inscrivez-vous et trouvez des nouveaux clients, développez votre notoriété et commencez à optimisez vos revenus dès maintenant.</p>
-                                <a href="{{ path('app_register') }}">Commencer</a>
+                                <a href="{{ path('user_registration_app_register') }}">Commencer</a>
                             </div>
                         </div>
                     </div>

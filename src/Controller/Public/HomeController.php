@@ -32,28 +32,15 @@ final class HomeController extends AbstractController
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly TestimonialRepository $testimonialRepository,
-        private readonly CacheInterface $cache, // 👈 ajout
     ) {
     }
 
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        $latestUsers = $this->cache->get('home.latest_users', function (ItemInterface $item) {
-            $item->expiresAfter(3600); // 1 heure
-
-            return $this->userRepository->findLatestArtisans(4);
-        });
-
-        $testimonials = $this->cache->get('home.testimonials', function (ItemInterface $item) {
-            $item->expiresAfter(3600); // 1 heure
-
-            return $this->testimonialRepository->findBy([], ['createdAt' => 'DESC'], 20);
-        });
-
         return $this->render('home/home.html.twig', [
-            'localisationArtisants' => $latestUsers,
-            'testimonials' => $testimonials,
+            'localisationArtisants' => $this->userRepository->findLatestArtisans(4),
+            'testimonials' => $this->testimonialRepository->findBy([], ['createdAt' => 'DESC'], 20),
         ]);
     }
 }
