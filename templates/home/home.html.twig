@@ -100,10 +100,8 @@
                         <div class="col-12 col-sm-6 col-lg-3 mb-4">
                             <div class="artisan h-100">
                                 <div class="thumb">
-                                    
-
                                     <img
-                                        src="#"
+                                        src="{{ vich_uploader_asset(item.pictures|first, 'imageFile') }}"
                                         alt="{{ item.name ?? 'Artisan' }}"
                                         class="img-fluid w-100 rounded-2"
                                         width="370"

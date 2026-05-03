@@ -57,6 +57,9 @@ class Activity
     #[ORM\OneToMany(targetEntity: Services::class, mappedBy: 'activity')]
     private Collection $Services;
 
+    #[ORM\Column(length: 255)]
+    private ?string $naf = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -148,6 +151,18 @@ class Activity
                 $service->setActivity(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNaf(): ?string
+    {
+        return $this->naf;
+    }
+
+    public function setNaf(string $naf): static
+    {
+        $this->naf = $naf;
 
         return $this;
     }

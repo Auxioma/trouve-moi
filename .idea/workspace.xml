@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13ea1727-03b4-4b50-b0b5-a5ef85ca1ff5" name="Changes" comment="" />
+    <list default="true" id="13ea1727-03b4-4b50-b0b5-a5ef85ca1ff5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/PicturesFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Activity.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Activity.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,6 +116,9 @@
       <workItem from="1777670359541" duration="1431000" />
       <workItem from="1777701058306" duration="3930000" />
       <workItem from="1777749582892" duration="66000" />
+      <workItem from="1777826227785" duration="609000" />
+      <workItem from="1777827291033" duration="21000" />
+      <workItem from="1777830824236" duration="774000" />
     </task>
     <servers />
   </component>
