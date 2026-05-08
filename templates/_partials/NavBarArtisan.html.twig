@@ -1,0 +1,47 @@
+<div class="bg-bleu">
+    <header class="container header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="{{ path('app_home') }}">
+                <img src="{{ asset('image/logo/logo.png') }}" alt="Logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('artisan_dashboard') }}">
+                            <i class="fa-solid fa-house me-2"></i> Tableau de bord
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('artisan_leads') }}">
+                            <i class="fa-regular fa-calendar-days me-2"></i>Leads
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('artisan_devis') }}">
+                            <i class="fa-regular fa-comment me-2"></i> Devis & factures
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa-regular fa-comment me-2"></i> Messages
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="auth d-none d-lg-block">
+                <a href="#" class="btn-connection">
+                    <i class="fa-regular fa-bell"></i>
+                </a>
+                <a href="#" class="btn-commencer">
+                    <img src="{{ asset('image/user/01.svg') }}" alt="">
+                </a>
+            </div>
+        </nav>
+    </header>
+</div>

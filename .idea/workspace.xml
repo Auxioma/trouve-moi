@@ -5,11 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13ea1727-03b4-4b50-b0b5-a5ef85ca1ff5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/PicturesFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/artisan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/artisan.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/artisan/artisan.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/artisan/avis.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/artisan/devis.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/artisan/leads.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/artisan/revenue.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/_partials/NavBarArtisan.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/artisan.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Activity.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Activity.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/artisan/billing.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/artisan/calendar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/artisan/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/artisan/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/artisan/messagerie-list.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/artisan/messagerie-show.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/artisan/pack.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/artisan/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/artisan/profile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/artisan/quote.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/importmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/importmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Calendar/MonthlyController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Public/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Public/BlogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Public/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Public/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Public/CompanyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Public/CompanyController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Public/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Public/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/company/show.html.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +42,24 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true">
     <execution />
+  </component>
+  <component name="CopilotChats">
+    <option name="panelChat">
+      <chat>
+        <option name="activeSessionId" value="a6ac5ff7-309d-41dd-97e8-d3dd3637c16a" />
+        <option name="sessions">
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="a6ac5ff7-309d-41dd-97e8-d3dd3637c16a" />
+            <option name="modeId" value="Agent" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="targetType" value="LOCAL" />
+          </session>
+        </option>
+        <option name="type" value="PANEL" />
+      </chat>
+    </option>
   </component>
   <component name="CopilotPersistence">
     <persistenceIdMap>
@@ -119,6 +158,8 @@
       <workItem from="1777826227785" duration="609000" />
       <workItem from="1777827291033" duration="21000" />
       <workItem from="1777830824236" duration="774000" />
+      <workItem from="1777831833091" duration="10000" />
+      <workItem from="1778243203068" duration="6641000" />
     </task>
     <servers />
   </component>

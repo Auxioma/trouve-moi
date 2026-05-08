@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "./user/header/navbar.css";
+
+@import "./artisan/dashboard.css";
+@import "./artisan/leads.css";
+@import "./artisan/devis.css";
+@import "./artisan/artisan.css";
+@import "./artisan/revenue.css";
+@import "./artisan/avis.css";
+@import "./artisan/profile.css";

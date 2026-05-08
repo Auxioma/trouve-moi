@@ -46,12 +46,7 @@ security:
     # Note: Only the *first* matching rule is applied
     access_control:
         # Pages publiques
-        - { path: ^/$, roles: PUBLIC_ACCESS }
-        - { path: ^/login$, roles: PUBLIC_ACCESS }
-        - { path: ^/register$, roles: PUBLIC_ACCESS }
-
-        # Tout le reste nécessite connexion
-        - { path: ^/user$, roles: ROLE_ARTISAN }
+        - { path: ^/, roles: PUBLIC_ACCESS, requires_channel: https }
 
 
 when@test:

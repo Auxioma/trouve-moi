@@ -1,0 +1,481 @@
+.tm-revenue-page {
+    min-height: 100vh;
+    padding: 111px 0 64px;
+    background: #f8f7f7;
+    font-family: 'Manrope', sans-serif;
+    color: #1a1c1c;
+}
+
+.tm-revenue-container {
+    max-width: 1172px;
+}
+
+.tm-revenue-hero {
+    margin-bottom: 40px;
+}
+
+.tm-revenue-eyebrow {
+    margin-bottom: 8px;
+    color: #003ec7;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+.tm-revenue-title {
+    margin-bottom: 6px;
+    color: #1a1c1c;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 40px;
+}
+
+.tm-revenue-subtitle {
+    color: #5f5e5e;
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.tm-revenue-btn-light,
+.tm-revenue-btn-primary,
+.tm-revenue-btn-pdf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.tm-revenue-btn-light,
+.tm-revenue-btn-primary {
+    padding: 10px 22px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.tm-revenue-btn-light {
+    border: 1px solid #eee;
+    background: #fff;
+    color: #1a1c1c;
+}
+
+.tm-revenue-btn-light.is-danger {
+    color: #f04c4d;
+}
+
+.tm-revenue-btn-primary {
+    background: #003ec7;
+    color: #fff;
+}
+
+.tm-revenue-stats {
+    margin-bottom: 24px;
+}
+
+.tm-revenue-stat-card,
+.tm-revenue-card,
+.tm-revenue-footer-card {
+    background: #fff;
+    border-radius: 12px;
+}
+
+.tm-revenue-stat-card {
+    padding: 25px;
+    height: 100%;
+}
+
+.tm-revenue-stat-label {
+    margin-bottom: 4px;
+    color: #1a1c1c;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.tm-revenue-stat-value {
+    margin-bottom: 4px;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 36px;
+}
+
+.tm-revenue-stat-value.is-green {
+    color: #22c55e;
+}
+
+.tm-revenue-stat-value.is-blue {
+    color: #003ec7;
+}
+
+.tm-revenue-stat-value.is-gold {
+    color: #f59e0b;
+}
+
+.tm-revenue-stat-value.is-red {
+    color: #f04c4d;
+}
+
+.tm-revenue-stat-help {
+    color: #5f5e5e;
+    font-size: 10px;
+    line-height: 1.2;
+}
+
+.tm-revenue-middle {
+    margin-bottom: 24px;
+}
+
+.tm-revenue-card {
+    padding: 32px;
+    height: 100%;
+}
+
+.tm-revenue-card-title {
+    color: #1a1c1c;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: -0.5px;
+}
+
+.tm-revenue-legend {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.tm-revenue-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #1a1c1c;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+.tm-revenue-legend i {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.tm-revenue-legend i.is-blue {
+    background: #003ec7;
+}
+
+.tm-revenue-legend i.is-gray {
+    background: #f8f7f7;
+}
+
+.tm-revenue-bars {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 24px;
+    align-items: end;
+    min-height: 172px;
+}
+
+.tm-revenue-bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.tm-revenue-bar-item strong {
+    color: #1a1c1c;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.tm-revenue-bar-item small {
+    color: #5f5e5e;
+    font-size: 10px;
+    line-height: 1;
+}
+
+.tm-revenue-bar-track {
+    width: 100%;
+    height: 162px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f8f7f7;
+}
+
+.tm-revenue-bar-track span {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+    background: #003ec7;
+}
+
+.tm-revenue-split-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.tm-revenue-split-row span,
+.tm-revenue-split-row strong {
+    color: #5f5e5e;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+}
+
+.tm-revenue-split-row strong {
+    color: #1a1c1c;
+}
+
+.tm-revenue-split-line {
+    height: 4px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e8e8e8;
+}
+
+.tm-revenue-split-line span {
+    display: block;
+    height: 100%;
+}
+
+.tm-revenue-split-line .is-blue {
+    background: #003ec7;
+}
+
+.tm-revenue-split-line .is-purple {
+    background: #9722c5;
+}
+
+.tm-revenue-split-line .is-gold {
+    background: #f59e0b;
+}
+
+.tm-revenue-split-line .is-green {
+    background: #22c55e;
+}
+
+.tm-revenue-table-card {
+    overflow: hidden;
+    padding: 0;
+    margin-bottom: 40px;
+}
+
+.px-32-custom {
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+.pt-32-custom {
+    padding-top: 32px;
+}
+
+.tm-revenue-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tm-revenue-table thead th {
+    padding: 8px 16px;
+    border-bottom: 1px solid #e2e2e2;
+    color: #5f5e5e;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background: #fff;
+}
+
+.tm-revenue-table tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e2e2e2;
+    color: #1a1c1c;
+    font-size: 16px;
+    line-height: 1.2;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.tm-revenue-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 15px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tm-revenue-status.is-green {
+    background: #22c55e;
+    color: #fff;
+}
+
+.tm-revenue-status.is-gold {
+    background: #f59e0b;
+    color: #1a1c1c;
+}
+
+.tm-revenue-status.is-red {
+    background: #f04c4d;
+    color: #fff;
+}
+
+.tm-revenue-btn-pdf {
+    padding: 8px 16px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fff;
+    color: #1a1c1c;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.tm-revenue-pagination-wrap {
+    display: flex;
+    justify-content: flex-end;
+    padding: 24px 32px 32px;
+}
+
+.tm-revenue-pagination {
+    display: flex;
+    gap: 6px;
+}
+
+.tm-revenue-pagination a,
+.tm-revenue-pagination span {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: #fff;
+    color: #1a1c1c;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.tm-revenue-pagination a.active {
+    background: #003ec7;
+    color: #fff;
+}
+
+.tm-revenue-footer-card {
+    padding: 49px 36px 48px;
+    border-top: 1px solid rgba(195, 197, 217, 0.1);
+    border-radius: 24px;
+    background: #fff;
+}
+
+.tm-revenue-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tm-revenue-footer-brand strong {
+    color: #1a1c1c;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.tm-revenue-footer-brand span,
+.tm-revenue-footer-brand p {
+    color: #5f5e5e;
+    font-size: 12px;
+}
+
+.tm-revenue-footer-links {
+    display: flex;
+    gap: 32px;
+}
+
+.tm-revenue-footer-links a {
+    color: #5f5e5e;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+@media (max-width: 1199.98px) {
+    .tm-revenue-bars {
+        gap: 14px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .tm-revenue-page {
+        padding-top: 90px;
+    }
+
+    .tm-revenue-title {
+        font-size: 30px;
+        line-height: 34px;
+    }
+
+    .tm-revenue-subtitle {
+        font-size: 16px;
+    }
+
+    .tm-revenue-hero-actions {
+        width: 100%;
+    }
+
+    .tm-revenue-bars {
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 18px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .tm-revenue-btn-light,
+    .tm-revenue-btn-primary {
+        width: 100%;
+    }
+
+    .tm-revenue-card {
+        padding: 24px;
+    }
+
+    .px-32-custom {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .pt-32-custom {
+        padding-top: 24px;
+    }
+
+    .tm-revenue-pagination-wrap {
+        padding: 20px 24px 24px;
+    }
+
+    .tm-revenue-footer-card {
+        padding: 24px;
+    }
+
+    .tm-revenue-footer-brand,
+    .tm-revenue-footer-links {
+        flex-wrap: wrap;
+    }
+}

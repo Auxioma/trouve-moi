@@ -17,25 +17,19 @@
  * Droit applicable : Monde.
  */
 
-namespace App\Controller\Public;
+namespace App\Security\Public;
 
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class CompanyController extends AbstractController
+final class BlogController extends AbstractController
 {
-    public function __construct(
-        private readonly UserRepository $userRepository,
-    ){}
-
-    #[Route('/{category}/{city}/{slug}', name: 'deail_entreprise')]
-    #[Route('/nnnnnnnnnnnnnnnnn', name: 'deail_entqsqsqsqsreprise')]
-    public function detailCompagny(string $slug): Response
+    #[Route('/blog', name: 'app_blog')]
+    public function index(): Response
     {
-        return $this->render('entreprise/show.html.twig', [
-            'item' => $this->userRepository->findOneBy(['slug' => $slug]),
+        return $this->render('blog/index.html.twig', [
+            'controller_name' => 'BlogController',
         ]);
     }
 }

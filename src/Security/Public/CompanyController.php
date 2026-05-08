@@ -17,30 +17,25 @@
  * Droit applicable : Monde.
  */
 
-namespace App\Controller\Public;
+namespace App\Security\Public;
 
-use App\Repository\TestimonialRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Contracts\Cache\ItemInterface;
 
-final class HomeController extends AbstractController
+final class CompanyController extends AbstractController
 {
     public function __construct(
         private readonly UserRepository $userRepository,
-        private readonly TestimonialRepository $testimonialRepository,
-    ) {
-    }
+    ){}
 
-    #[Route('/', name: 'app_home')]
-    public function index(): Response
+    #[Route('/{category}/{city}/{slug}', name: 'deail_entreprise')]
+    #[Route('/nnnnnnnnnnnnnnnnn', name: 'deail_entqsqsqsqsreprise')]
+    public function detailCompagny(string $slug): Response
     {
-        return $this->render('home/home.html.twig', [
-            'localisationArtisants' => $this->userRepository->findLatestArtisans(4),
-            'testimonials' => $this->testimonialRepository->findBy([], ['createdAt' => 'DESC'], 20),
+        return $this->render('entreprise/show.html.twig', [
+            'item' => $this->userRepository->findOneBy(['slug' => $slug]),
         ]);
     }
 }

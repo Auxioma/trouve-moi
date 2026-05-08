@@ -17,19 +17,28 @@
  * Droit applicable : Monde.
  */
 
-namespace App\Controller\Public;
+namespace App\Security\Public;
 
+use App\Repository\TestimonialRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class BlogController extends AbstractController
+final class HomeController extends AbstractController
 {
-    #[Route('/blog', name: 'app_blog')]
+    public function __construct(
+        private readonly UserRepository $userRepository,
+        private readonly TestimonialRepository $testimonialRepository,
+    ) {
+    }
+
+    #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        return $this->render('blog/index.html.twig', [
-            'controller_name' => 'BlogController',
+        return $this->render('home/home.html.twig', [
+            'localisationArtisants' => $this->userRepository->findLatestArtisans(4),
+            'testimonials' => $this->testimonialRepository->findBy([], ['createdAt' => 'DESC'], 20),
         ]);
     }
 }
