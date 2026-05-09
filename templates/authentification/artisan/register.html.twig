@@ -1,0 +1,291 @@
+{% extends 'user.html.twig' %}
+
+{% block title %}Inscription professionnelle{% endblock %}
+
+{% block body %}
+    <main class="tm-signup-pro-page">
+        <div class="container">
+            <div class="tm-signup-pro-wrap">
+
+                <div class="tm-signup-pro-brand text-center">
+                    <img
+                        src="https://trouvemoi.eu/image/logo/logo.png"
+                        alt="TrouveMoi"
+                        class="tm-signup-pro-logo img-fluid"
+                    >
+                </div>
+
+                <div class="tm-signup-pro-step text-center">
+                    <div class="tm-signup-pro-step-title">
+                        Inscription artisan
+                    </div>
+
+                    <div class="tm-signup-pro-progress d-flex align-items-center justify-content-center">
+                        <span class="tm-signup-pro-progress-item is-active"></span>
+                        <span class="tm-signup-pro-progress-item is-active"></span>
+                        <span class="tm-signup-pro-progress-item"></span>
+                        <span class="tm-signup-pro-progress-item"></span>
+                    </div>
+                </div>
+
+                <section class="tm-signup-pro-card">
+
+                    <div class="tm-signup-pro-head">
+                        <div class="tm-signup-pro-eyebrow">
+                            Étape 2 sur 4
+                        </div>
+
+                        <h1 class="tm-signup-pro-title">
+                            Créez votre profil artisan
+                        </h1>
+
+                        <p class="tm-signup-pro-subtitle">
+                            Présentez votre entreprise, vos compétences et vos réalisations afin d’être visible auprès des particuliers recherchant un artisan de confiance.
+                        </p>
+                    </div>
+
+                    {{ form_start(form, {
+                        attr: {
+                            class: 'tm-signup-pro-form'
+                        }
+                    }) }}
+                    {{ form_errors(form) }}
+
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label class="tm-signup-pro-label">
+                                Nom de l’entreprise*
+                            </label>
+
+                            {{ form_widget(form.compagny, {
+                                attr: {
+                                    class: 'form-control tm-signup-pro-input' ~ (form.compagny.vars.errors|length ? ' is-invalid' : ''),
+                                    placeholder: 'Ex : Bâtiment Dupont',
+                                }
+                            }) }}
+
+                            {{ form_errors(form.compagny) }}
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="tm-signup-pro-label">
+                                SIRET*
+                            </label>
+
+                            {{ form_widget(form.siret, {
+                                attr: {
+                                    class: 'form-control tm-signup-pro-input' ~ (form.siret.vars.errors|length ? ' is-invalid' : ''),
+                                }
+                            }) }}
+
+
+                                    {{ form_errors(form.siret) }}
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="tm-signup-pro-label">
+                                Nom du dirigeant*
+                            </label>
+
+                            {{ form_widget(form.lastName, {
+                                attr: {
+                                    class: 'form-control tm-signup-pro-input' ~ (form.lastName.vars.errors|length ? ' is-invalid' : ''),
+                                }
+                            }) }}
+
+                                    {{ form_errors(form.lastName) }}
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="tm-signup-pro-label">
+                                Téléphone*
+                            </label>
+
+                            {{ form_widget(form.phoneNumber, {
+                                attr: {
+                                    class: 'form-control tm-signup-pro-input' ~ (form.phoneNumber.vars.errors|length ? ' is-invalid' : ''),
+                                }
+                            }) }}
+
+
+                                    {{ form_errors(form.phoneNumber) }}
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="tm-signup-pro-label">
+                                Email professionnel*
+                            </label>
+
+                            {{ form_widget(form.email, {
+                                attr: {
+                                    class: 'form-control tm-signup-pro-input' ~ (form.email.vars.errors|length ? ' is-invalid' : ''),
+                                }
+                            }) }}
+
+
+                                    {{ form_errors(form.email) }}
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="tm-signup-pro-label">
+                                Métier principal*
+                            </label>
+
+                            {{ form_widget(form.activity, {
+                                attr: {
+                                    class: 'form-select tm-signup-pro-input' ~ (form.activity.vars.errors|length ? ' is-invalid' : ''),
+                                }
+                            }) }}
+
+
+                                    {{ form_errors(form.activity) }}
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="tm-signup-pro-label">
+                                Ville*
+                            </label>
+
+                            {{ form_widget(form.city, {
+                                attr: {
+                                    class: 'form-control tm-signup-pro-input' ~ (form.city.vars.errors|length ? ' is-invalid' : ''),
+                                    placeholder: 'Ex : Paris',
+                                }
+                            }) }}
+
+
+                                    {{ form_errors(form.city) }}
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="tm-signup-pro-label">
+                                Site web
+                            </label>
+
+                            {{ form_widget(form.website, {
+                                attr: {
+                                    class: 'form-control tm-signup-pro-input' ~ (form.website.vars.errors|length ? ' is-invalid' : ''),
+                                }
+                            }) }}
+
+
+                                    {{ form_errors(form.website) }}
+
+                        </div>
+
+                        <div class="col-12">
+                            <label class="tm-signup-pro-label">
+                                Présentation de votre activité*
+                            </label>
+
+                            {{ form_widget(form.description, {
+                                attr: {
+                                    class: 'form-control tm-signup-pro-textarea' ~ (form.description.vars.errors|length ? ' is-invalid' : ''),
+                                }
+                            }) }}
+
+
+                                    {{ form_errors(form.description) }}
+
+
+                            <div class="tm-signup-pro-help">
+                                Minimum recommandé : 120 caractères.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="tm-signup-pro-label">
+                                Logo ou photo d’entreprise
+                            </label>
+
+                            <div class="tm-signup-pro-upload">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                                <strong>
+                                    Déposez votre logo
+                                </strong>
+
+                                <p>
+                                    PNG, JPG ou WEBP · max 5MB
+                                </p>
+
+                                {{ form_widget(form.imageFile) }}
+                            </div>
+
+
+                                    {{ form_errors(form.imageFile) }}
+
+                        </div>
+
+                        <div class="col-12">
+                            <label class="tm-signup-pro-label">
+                                Mot de passe*
+                            </label>
+
+                            {{ form_widget(form.plainPassword, {
+                                attr: {
+                                    class: 'form-control tm-signup-pro-input' ~ (form.plainPassword.vars.errors|length ? ' is-invalid' : ''),
+                                }
+                            }) }}
+
+                            {% if form.plainPassword.vars.errors|length %}
+                                <div class="tm-signup-pro-error">
+                                    {{ form_errors(form.plainPassword) }}
+                                </div>
+                            {% endif %}
+
+                            <div class="tm-signup-pro-help">
+                                12 caractères minimum, une majuscule, une minuscule et un chiffre.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="tm-signup-pro-consent d-flex align-items-start gap-3">
+
+                                {{ form_widget(form.agreeTerms, {
+                                    attr: {
+                                        class: form.agreeTerms.vars.errors|length ? 'is-invalid' : '',
+                                    }
+                                }) }}
+
+                                <span>
+                                    J’accepte les
+                                    <a href="#">conditions d’utilisation</a>
+                                    ainsi que la politique de confidentialité de TrouveMoi.
+                                </span>
+                            </label>
+
+
+                                    {{ form_errors(form.agreeTerms) }}
+
+                        </div>
+
+                    </div>
+
+                    <div class="tm-signup-pro-actions d-flex align-items-center justify-content-between gap-3">
+                        <button type="button" class="tm-signup-pro-btn-back">
+                            Retour
+                        </button>
+
+                        <button type="submit" class="tm-signup-pro-btn-submit">
+                            Créer mon profil artisan
+                        </button>
+                    </div>
+
+                    {{ form_end(form) }}
+
+                </section>
+
+            </div>
+        </div>
+    </main>
+{% endblock %}

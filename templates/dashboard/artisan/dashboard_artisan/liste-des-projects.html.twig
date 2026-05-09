@@ -1,0 +1,349 @@
+{% extends 'artisan.html.twig' %}
+
+{% block title %}Tableau de bord artisan{% endblock %}
+
+{% block body %}
+    <main class="tm-artisan-dashboard-page">
+
+        <div class="container tm-artisan-dashboard-container">
+
+            {# Header page #}
+            <section class="tm-artisan-hero d-flex justify-content-between align-items-end flex-wrap gap-4">
+                <div>
+                    <div class="tm-artisan-eyebrow">Espace artisan · Atelier Maréchal & Fils</div>
+                    <h1 class="tm-artisan-title mb-2">Bonjour Pierre 👋</h1>
+                    <p class="tm-artisan-subtitle mb-0">
+                        Vous avez 2 nouveaux leads ce matin et 1 devis en attente de signature.
+                    </p>
+                </div>
+
+                <a href="#" class="tm-artisan-main-action text-decoration-none">
+                    <span class="tm-artisan-main-action-icon">⊕</span>
+                    <span>Nouveau<br>devis</span>
+                </a>
+            </section>
+
+            {# Stats #}
+            <section class="row g-4 tm-artisan-stats-row">
+                <div class="col-12 col-md-6 col-xl-3">
+                    <article class="tm-stat-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="tm-stat-label">Revenus du mois</span>
+                            <span class="tm-stat-badge is-success">+18%</span>
+                        </div>
+                        <div class="tm-stat-value is-green">38 420 €</div>
+                        <div class="tm-stat-help">+18% vs. mois dernier</div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-3">
+                    <article class="tm-stat-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="tm-stat-label">Leads actifs</span>
+                            <span class="tm-stat-badge is-success">04</span>
+                        </div>
+                        <div class="tm-stat-value is-blue">12</div>
+                        <div class="tm-stat-help">4 nouveaux cette semaine</div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-3">
+                    <article class="tm-stat-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="tm-stat-label">Devis envoyés</span>
+                        </div>
+                        <div class="tm-stat-value is-purple">7</div>
+                        <div class="tm-stat-help">Taux de signature 43%</div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-md-6 col-xl-3">
+                    <article class="tm-stat-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="tm-stat-label">Note moyenne</span>
+                            <span class="tm-stat-badge is-success">87</span>
+                        </div>
+                        <div class="tm-stat-value is-gold">4.9 ★</div>
+                        <div class="tm-stat-help">87 avis cumulés</div>
+                    </article>
+                </div>
+            </section>
+
+            {# Graph + agenda #}
+            <section class="row g-4 tm-artisan-middle-row">
+                <div class="col-12 col-xl-8">
+                    <article class="tm-dashboard-card tm-chart-card">
+                        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4">
+                            <div>
+                                <h2 class="tm-card-title mb-1">Revenus mensuels</h2>
+                                <p class="tm-card-subtitle mb-0">8 derniers mois · en milliers d'euros</p>
+                            </div>
+
+                            <nav class="tm-card-tabs">
+                                <a href="#" class="active">Revenus</a>
+                                <a href="#">Devis</a>
+                                <a href="#">Leads</a>
+                            </nav>
+                        </div>
+
+                        <div class="tm-chart-wrapper">
+                            <div class="tm-chart-y-axis">
+                                <span>25K</span>
+                                <span>20K</span>
+                                <span>15K</span>
+                                <span>10K</span>
+                                <span>0</span>
+                            </div>
+
+                            <div class="tm-chart-area">
+                                <div class="tm-chart-grid">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span class="tm-chart-baseline"></span>
+                                </div>
+
+                                <div class="tm-chart-shape"></div>
+
+                                <div class="tm-chart-x-axis">
+                                    <span>Sep</span>
+                                    <span>Oct</span>
+                                    <span>Nov</span>
+                                    <span>Dec</span>
+                                    <span>Jan</span>
+                                    <span>Fev</span>
+                                    <span>Mar</span>
+                                    <span>Avr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-xl-4">
+                    <article class="tm-dashboard-card tm-agenda-card">
+                        <h2 class="tm-card-title mb-4">Agenda · 7 prochains jours</h2>
+
+                        <div class="tm-agenda-list">
+                            <div class="tm-agenda-item">
+                                <div class="tm-agenda-date">
+                                    <span>MER</span>
+                                    <strong>30</strong>
+                                </div>
+                                <div>
+                                    <div class="tm-agenda-title">Métré · Camille L.</div>
+                                    <div class="tm-agenda-subtitle">10:00 · Loft Paris</div>
+                                </div>
+                            </div>
+
+                            <div class="tm-agenda-item">
+                                <div class="tm-agenda-date">
+                                    <span>JEU</span>
+                                    <strong>1</strong>
+                                </div>
+                                <div>
+                                    <div class="tm-agenda-title">Pose cuisine · Loft</div>
+                                    <div class="tm-agenda-subtitle">14:00 · 14 Rue de Rivoli</div>
+                                </div>
+                            </div>
+
+                            <div class="tm-agenda-item">
+                                <div class="tm-agenda-date">
+                                    <span>VEN</span>
+                                    <strong>2</strong>
+                                </div>
+                                <div>
+                                    <div class="tm-agenda-title">Visite client · Lemoine</div>
+                                    <div class="tm-agenda-subtitle">09:30 · Vincennes</div>
+                                </div>
+                            </div>
+
+                            <div class="tm-agenda-item">
+                                <div class="tm-agenda-date">
+                                    <span>LUN</span>
+                                    <strong>5</strong>
+                                </div>
+                                <div>
+                                    <div class="tm-agenda-title">Réception chantier</div>
+                                    <div class="tm-agenda-subtitle">11:00 · Salle de bain Dupont</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            {# Leads table #}
+            <section class="tm-dashboard-card tm-leads-card">
+                <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4">
+                    <div>
+                        <h2 class="tm-card-title mb-1">Nouveaux leads · matchs forts</h2>
+                        <p class="tm-card-subtitle mb-0">
+                            Triés par compatibilité avec votre profil &amp; zone d'intervention
+                        </p>
+                    </div>
+
+                    <a href="#" class="tm-outline-btn text-decoration-none">
+                        Voir tous les leads (12)
+                    </a>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table tm-leads-table align-middle mb-0">
+                        <thead>
+                        <tr>
+                            <th>Client / Projet</th>
+                            <th>Localisation</th>
+                            <th>Budget</th>
+                            <th>Match</th>
+                            <th class="text-end"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="tm-lead-person">
+                                    <div class="tm-lead-avatar is-blue">SO</div>
+                                    <div>
+                                        <div class="tm-lead-name-wrap">
+                                            <strong>Sophie Bernard</strong>
+                                            <span class="tm-lead-tag">Nouveau</span>
+                                        </div>
+                                        <div class="tm-lead-meta">Rénovation cuisine 14m² · Il y a 12 min</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Paris 16ᵉ</td>
+                            <td class="fw-semibold">25 000 - 35 000 €</td>
+                            <td>
+                                <div class="tm-match-cell">
+                                    <div class="tm-match-bar">
+                                        <span class="is-green" style="width: 96%;"></span>
+                                    </div>
+                                    <strong class="is-green">96%</strong>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <div class="tm-lead-actions">
+                                    <a href="#" class="tm-outline-btn-sm text-decoration-none">Passer</a>
+                                    <a href="#" class="tm-primary-btn-sm text-decoration-none">Etudier</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="tm-lead-person">
+                                    <div class="tm-lead-avatar is-pink">MA</div>
+                                    <div>
+                                        <div class="tm-lead-name-wrap">
+                                            <strong>Marc Dupont</strong>
+                                            <span class="tm-lead-tag">Nouveau</span>
+                                        </div>
+                                        <div class="tm-lead-meta">Salle de bain complète · Il y a 1h</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Boulogne</td>
+                            <td class="fw-semibold">12 000 - 18 000 €</td>
+                            <td>
+                                <div class="tm-match-cell">
+                                    <div class="tm-match-bar">
+                                        <span class="is-blue" style="width: 80%;"></span>
+                                    </div>
+                                    <strong class="is-blue">80%</strong>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <div class="tm-lead-actions">
+                                    <a href="#" class="tm-outline-btn-sm text-decoration-none">Passer</a>
+                                    <a href="#" class="tm-primary-btn-sm text-decoration-none">Etudier</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="tm-lead-person">
+                                    <div class="tm-lead-avatar is-gold">SO</div>
+                                    <div>
+                                        <div class="tm-lead-name-wrap">
+                                            <strong>Famille Lemoine</strong>
+                                        </div>
+                                        <div class="tm-lead-meta">Extension 25m² · Il y a 3h</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Vincennes</td>
+                            <td class="fw-semibold">80 000 - 110 000 €</td>
+                            <td>
+                                <div class="tm-match-cell">
+                                    <div class="tm-match-bar">
+                                        <span class="is-gold" style="width: 74%;"></span>
+                                    </div>
+                                    <strong class="is-gold">74%</strong>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <div class="tm-lead-actions">
+                                    <a href="#" class="tm-outline-btn-sm text-decoration-none">Passer</a>
+                                    <a href="#" class="tm-primary-btn-sm text-decoration-none">Etudier</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="tm-lead-person">
+                                    <div class="tm-lead-avatar is-red">IN</div>
+                                    <div>
+                                        <div class="tm-lead-name-wrap">
+                                            <strong>Inès Rahimi</strong>
+                                        </div>
+                                        <div class="tm-lead-meta">Cuisine sur mesure · Il y a 5h</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Saint-Mandé</td>
+                            <td class="fw-semibold">35 000 - 45 000 €</td>
+                            <td>
+                                <div class="tm-match-cell">
+                                    <div class="tm-match-bar">
+                                        <span class="is-green" style="width: 91%;"></span>
+                                    </div>
+                                    <strong class="is-green">91%</strong>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <div class="tm-lead-actions">
+                                    <a href="#" class="tm-outline-btn-sm text-decoration-none">Passer</a>
+                                    <a href="#" class="tm-primary-btn-sm text-decoration-none">Etudier</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            {# Footer bloc visuel #}
+            <section class="tm-dashboard-footer-card">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <div class="tm-dashboard-footer-brand">
+                        <strong>TrouveMoi</strong>
+                        <span>|</span>
+                        <p class="mb-0">Plateforme de confiance pour artisans d'exception.</p>
+                    </div>
+
+                    <div class="tm-dashboard-footer-links">
+                        <a href="#">À propos</a>
+                        <a href="#">Support</a>
+                        <a href="#">Mentions Légales</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+{% endblock %}

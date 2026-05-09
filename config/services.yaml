@@ -10,6 +10,7 @@ parameters:
     stripe_secret_key: '%env(STRIPE_SECRET_KEY)%'
     stripe_public_key: '%env(STRIPE_PUBLIC_KEY)%'
     google_maps_api_key: '%env(GOOGLE_MAPS_API_KEY)%'
+    app.languages: ['fr']
 
 services:
     App\Vich\LogoDirectoryNamer: ~
@@ -29,3 +30,6 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Service\DatabaseTranslator:
+        decorates: 'translator'
+        arguments: ['@.inner', '@App\Repository\TranslationRepository']

@@ -1,0 +1,227 @@
+{% extends 'artisan.html.twig' %}
+
+{% block title %}Mes chantiers{% endblock %}
+
+{% block body %}
+    <main class="tm-project-board-page">
+        <div class="container tm-project-board-container">
+
+            <section class="tm-project-board-hero d-flex justify-content-between align-items-end flex-wrap gap-4">
+                <div>
+                    <div class="tm-project-board-eyebrow">Espace artisan</div>
+                    <h1 class="tm-project-board-title">Mes chantiers</h1>
+                    <p class="tm-project-board-subtitle mb-0">
+                        6 chantiers actifs · 2 actions à mener cette semaine
+                    </p>
+                </div>
+
+                <div class="tm-project-board-actions d-flex flex-wrap gap-3">
+                    <a href="#" class="tm-board-btn-light text-decoration-none">Vue calendrier</a>
+                    <a href="#" class="tm-board-btn-primary text-decoration-none">+ Nouveau chantier</a>
+                </div>
+            </section>
+
+            <section class="tm-project-board-grid">
+
+                {# Colonne 1 #}
+                <div class="tm-project-column">
+                    <div class="tm-project-column-header">
+                        <span class="tm-project-column-dot is-dark"></span>
+                        <strong>À démarrer</strong>
+                        <span class="tm-project-column-count">2</span>
+                    </div>
+
+                    <div class="tm-project-column-body">
+                        <article class="tm-project-mini-card is-dark">
+                            <h2>Cuisine Inès Rahimi</h2>
+                            <p>Saint-Mandé · 12 mai</p>
+
+                            <div class="tm-project-mini-footer">
+                                <div class="tm-project-steps">
+                                    <span class="is-blue">1</span>
+                                    <span class="is-purple">2</span>
+                                </div>
+                                <strong>41800 €</strong>
+                            </div>
+                        </article>
+
+                        <article class="tm-project-mini-card is-dark">
+                            <h2>SDB Marc Dupont</h2>
+                            <p>Boulogne · 20 mai</p>
+
+                            <div class="tm-project-mini-footer">
+                                <div class="tm-project-steps">
+                                    <span class="is-blue">1</span>
+                                </div>
+                                <strong>16400 €</strong>
+                            </div>
+                        </article>
+
+                        <a href="#" class="tm-project-add-card text-decoration-none">+ Ajouter</a>
+                    </div>
+                </div>
+
+                {# Colonne 2 #}
+                <div class="tm-project-column">
+                    <div class="tm-project-column-header">
+                        <span class="tm-project-column-dot is-blue"></span>
+                        <strong>En cours</strong>
+                        <span class="tm-project-column-count">2</span>
+                    </div>
+
+                    <div class="tm-project-column-body">
+                        <article class="tm-project-mini-card is-blue active">
+                            <div class="d-flex justify-content-between align-items-start gap-2">
+                                <div>
+                                    <h2>Loft Camille L.</h2>
+                                    <p>Paris 1ᵉʳ · 15 nov.</p>
+                                </div>
+
+                                <span class="tm-project-alert-badge">!</span>
+                            </div>
+
+                            <div class="tm-project-progress-box">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <small>Avancement</small>
+                                    <strong>65%</strong>
+                                </div>
+
+                                <div class="tm-project-progress-line">
+                                    <span style="width: 65%;"></span>
+                                </div>
+                            </div>
+
+                            <div class="tm-project-warning">
+                                ⚡ Photos jalon 3 à uploader
+                            </div>
+
+                            <div class="tm-project-mini-footer">
+                                <div class="tm-project-steps">
+                                    <span class="is-blue">1</span>
+                                    <span class="is-purple">2</span>
+                                    <span class="is-gold">3</span>
+                                </div>
+                                <strong>54200 €</strong>
+                            </div>
+                        </article>
+
+                        <article class="tm-project-mini-card is-blue">
+                            <h2>Cabinet Marchetti</h2>
+                            <p>Paris 9ᵉ · 02 avr.</p>
+
+                            <div class="tm-project-progress-box">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <small>Avancement</small>
+                                    <strong>38%</strong>
+                                </div>
+
+                                <div class="tm-project-progress-line">
+                                    <span style="width: 38%;"></span>
+                                </div>
+                            </div>
+
+                            <div class="tm-project-mini-footer">
+                                <div class="tm-project-steps">
+                                    <span class="is-blue">1</span>
+                                    <span class="is-purple">2</span>
+                                    <span class="is-gold">3</span>
+                                    <span class="is-green">4</span>
+                                </div>
+                                <strong>67200 €</strong>
+                            </div>
+                        </article>
+
+                        <a href="#" class="tm-project-add-card text-decoration-none">+ Ajouter</a>
+                    </div>
+                </div>
+
+                {# Colonne 3 #}
+                <div class="tm-project-column">
+                    <div class="tm-project-column-header">
+                        <span class="tm-project-column-dot is-gold"></span>
+                        <strong>À livrer</strong>
+                        <span class="tm-project-column-count">1</span>
+                    </div>
+
+                    <div class="tm-project-column-body">
+                        <article class="tm-project-mini-card is-gold">
+                            <h2>Bibliothèque Lemoine</h2>
+                            <p>Vincennes · 08 mars</p>
+
+                            <div class="tm-project-progress-box">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <small>Avancement</small>
+                                    <strong class="is-gold">92%</strong>
+                                </div>
+
+                                <div class="tm-project-progress-line is-gold">
+                                    <span style="width: 92%;"></span>
+                                </div>
+                            </div>
+
+                            <div class="tm-project-note">
+                                Réception le 5 mai
+                            </div>
+
+                            <div class="tm-project-mini-footer">
+                                <div class="tm-project-steps">
+                                    <span class="is-blue">1</span>
+                                    <span class="is-purple">2</span>
+                                </div>
+                                <strong>12400 €</strong>
+                            </div>
+                        </article>
+
+                        <a href="#" class="tm-project-add-card text-decoration-none">+ Ajouter</a>
+                    </div>
+                </div>
+
+                {# Colonne 4 #}
+                <div class="tm-project-column">
+                    <div class="tm-project-column-header">
+                        <span class="tm-project-column-dot is-purple"></span>
+                        <strong>En cours</strong>
+                        <span class="tm-project-column-count">1</span>
+                    </div>
+
+                    <div class="tm-project-column-body">
+                        <article class="tm-project-mini-card is-purple">
+                            <h2>Cuisine Marais (Aug 2024)</h2>
+                            <p>Paris 4ᵉ</p>
+
+                            <div class="tm-project-note">
+                                Charnière à reprendre
+                            </div>
+
+                            <div class="tm-project-mini-footer">
+                                <div class="tm-project-steps">
+                                    <span class="is-blue">1</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <a href="#" class="tm-project-add-card text-decoration-none">+ Ajouter</a>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="tm-project-board-footer-card">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <div class="tm-project-board-footer-brand">
+                        <strong>TrouveMoi</strong>
+                        <span>|</span>
+                        <p class="mb-0">Plateforme de confiance pour artisans d'exception.</p>
+                    </div>
+
+                    <div class="tm-project-board-footer-links">
+                        <a href="#">À propos</a>
+                        <a href="#">Support</a>
+                        <a href="#">Mentions Légales</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+{% endblock %}

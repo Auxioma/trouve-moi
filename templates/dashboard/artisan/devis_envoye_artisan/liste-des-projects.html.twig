@@ -1,0 +1,289 @@
+{% extends 'artisan.html.twig' %}
+
+{% block title %}Mes devis envoyés{% endblock %}
+
+{% block body %}
+    <main class="tm-sent-quotes-page">
+        <div class="container tm-sent-quotes-container">
+
+            <section class="tm-sent-quotes-hero d-flex justify-content-between align-items-end flex-wrap gap-4">
+                <div>
+                    <div class="tm-sent-quotes-eyebrow">Espace artisan</div>
+                    <h1 class="tm-sent-quotes-title">Mes devis envoyés</h1>
+                    <p class="tm-sent-quotes-subtitle mb-0">
+                        6 devis ce mois · taux de conversion 43% · panier moyen 34 050 €
+                    </p>
+                </div>
+
+                <a href="#" class="tm-sent-quotes-main-action text-decoration-none">
+                    <span class="tm-sent-quotes-main-action-icon">⊕</span>
+                    <span>Nouveau<br>devis</span>
+                </a>
+            </section>
+
+            <section class="row g-4 tm-sent-quotes-stats">
+                <div class="col-12 col-sm-6 col-xl">
+                    <article class="tm-sent-stat-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="tm-sent-stat-label">Signés</span>
+                            <span class="tm-sent-stat-badge">16%</span>
+                        </div>
+                        <div class="tm-sent-stat-value is-green">1</div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl">
+                    <article class="tm-sent-stat-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="tm-sent-stat-label">En négociation</span>
+                            <span class="tm-sent-stat-badge">16%</span>
+                        </div>
+                        <div class="tm-sent-stat-value is-blue">1</div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl">
+                    <article class="tm-sent-stat-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="tm-sent-stat-label">Vu / non répondu</span>
+                            <span class="tm-sent-stat-badge">16%</span>
+                        </div>
+                        <div class="tm-sent-stat-value is-purple">1</div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl">
+                    <article class="tm-sent-stat-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="tm-sent-stat-label">En attente</span>
+                            <span class="tm-sent-stat-badge">17%</span>
+                        </div>
+                        <div class="tm-sent-stat-value is-gold">1</div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl">
+                    <article class="tm-sent-stat-card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="tm-sent-stat-label">Refusé / expiré</span>
+                            <span class="tm-sent-stat-badge">35%</span>
+                        </div>
+                        <div class="tm-sent-stat-value is-red">2</div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="tm-sent-quotes-tabs">
+                <a href="#" class="active">Tous · 6</a>
+                <a href="#">À relancer · 2</a>
+                <a href="#">En négo · 1</a>
+                <a href="#">Signés · 1</a>
+                <a href="#">Archivés</a>
+            </section>
+
+            <section class="tm-sent-quotes-table-card">
+                <div class="table-responsive">
+                    <table class="table tm-sent-quotes-table align-middle mb-0">
+                        <thead>
+                        <tr>
+                            <th class="tm-col-check">
+                                <input type="checkbox" class="form-check-input">
+                            </th>
+                            <th>Devis</th>
+                            <th>Client / Projet</th>
+                            <th>Envoyé</th>
+                            <th>Montant TTC</th>
+                            <th>Statut</th>
+                            <th class="text-end"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="form-check-input"></td>
+                            <td>DV-2026-0141</td>
+                            <td>
+                                <div class="tm-sent-client">
+                                    <span class="tm-sent-avatar is-pink">CA</span>
+                                    <div>
+                                        <strong>Camille L.</strong>
+                                        <small>Loft Paris</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>15 oct.</td>
+                            <td class="fw-semibold">54200 €</td>
+                            <td>
+                                <div class="tm-sent-status-wrap">
+                                    <span class="tm-sent-status is-green">Signé</span>
+                                    <small>Chantier en cours</small>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <a href="#" class="tm-sent-btn-light text-decoration-none">Voir →</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="checkbox" class="form-check-input"></td>
+                            <td>DV-2026-0140</td>
+                            <td>
+                                <div class="tm-sent-client">
+                                    <span class="tm-sent-avatar is-cyan">IN</span>
+                                    <div>
+                                        <strong>Inès Rahimi</strong>
+                                        <small>Cuisine sur-mesure</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>22 oct.</td>
+                            <td class="fw-semibold">41800 €</td>
+                            <td>
+                                <div class="tm-sent-status-wrap">
+                                    <span class="tm-sent-status is-orange">Négociation</span>
+                                    <small>2 messages</small>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <div class="tm-sent-table-actions">
+                                    <a href="#" class="tm-sent-btn-primary text-decoration-none">Répondre</a>
+                                    <a href="#" class="tm-sent-btn-light text-decoration-none">Voir →</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="checkbox" class="form-check-input"></td>
+                            <td>DV-2026-0139</td>
+                            <td>
+                                <div class="tm-sent-client">
+                                    <span class="tm-sent-avatar is-orange">MA</span>
+                                    <div>
+                                        <strong>Marc Dupont</strong>
+                                        <small>SDB complète</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>23 oct.</td>
+                            <td class="fw-semibold">16400 €</td>
+                            <td>
+                                <div class="tm-sent-status-wrap">
+                                    <span class="tm-sent-status is-blue">Vu il y a 2j</span>
+                                    <small>Relancer ?</small>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <div class="tm-sent-table-actions">
+                                    <a href="#" class="tm-sent-btn-primary text-decoration-none">Répondre</a>
+                                    <a href="#" class="tm-sent-btn-light text-decoration-none">Voir →</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="checkbox" class="form-check-input"></td>
+                            <td>DV-2026-0138</td>
+                            <td>
+                                <div class="tm-sent-client">
+                                    <span class="tm-sent-avatar is-yellow">CA</span>
+                                    <div>
+                                        <strong>Cabinet Marchetti</strong>
+                                        <small>Bureaux 80m²</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>25 oct.</td>
+                            <td class="fw-semibold">67200 €</td>
+                            <td>
+                                <div class="tm-sent-status-wrap">
+                                    <span class="tm-sent-status is-dark">Envoyé · non vu</span>
+                                    <small>Depuis 5j</small>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <a href="#" class="tm-sent-btn-light text-decoration-none">Voir →</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="checkbox" class="form-check-input"></td>
+                            <td>DV-2026-0137</td>
+                            <td>
+                                <div class="tm-sent-client">
+                                    <span class="tm-sent-avatar is-violet">JU</span>
+                                    <div>
+                                        <strong>Julie Martin</strong>
+                                        <small>Peinture appartement</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>08 oct.</td>
+                            <td class="fw-semibold">5800 €</td>
+                            <td>
+                                <div class="tm-sent-status-wrap">
+                                    <span class="tm-sent-status is-red">Refusé</span>
+                                    <small>Raison : trop cher</small>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <a href="#" class="tm-sent-btn-light text-decoration-none">Voir →</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="checkbox" class="form-check-input"></td>
+                            <td>DV-2026-0136</td>
+                            <td>
+                                <div class="tm-sent-client">
+                                    <span class="tm-sent-avatar is-green">FA</span>
+                                    <div>
+                                        <strong>Famille Petit</strong>
+                                        <small>Cuisine standard</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>05 oct.</td>
+                            <td class="fw-semibold">18900 €</td>
+                            <td>
+                                <div class="tm-sent-status-wrap">
+                                    <span class="tm-sent-status is-dark">Expiré</span>
+                                    <small>Validité dépassée</small>
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <a href="#" class="tm-sent-btn-light text-decoration-none">Voir →</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <nav class="tm-sent-pagination">
+                <a href="#">‹</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <span>...</span>
+                <a href="#">10</a>
+                <a href="#">›</a>
+            </nav>
+
+            <section class="tm-sent-footer-card">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <div class="tm-sent-footer-brand">
+                        <strong>TrouveMoi</strong>
+                        <span>|</span>
+                        <p class="mb-0">Plateforme de confiance pour artisans d'exception.</p>
+                    </div>
+
+                    <div class="tm-sent-footer-links">
+                        <a href="#">À propos</a>
+                        <a href="#">Support</a>
+                        <a href="#">Mentions Légales</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+{% endblock %}

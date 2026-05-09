@@ -1,0 +1,353 @@
+{% extends 'artisan.html.twig' %}
+
+{% block title %}Mes leads{% endblock %}
+
+{% block body %}
+    <main class="tm-artisan-leads-page">
+        <div class="container tm-artisan-leads-container">
+
+            <section class="tm-leads-hero">
+                <div class="tm-leads-eyebrow">Espace artisan</div>
+                <h1 class="tm-leads-title">Mes leads</h1>
+                <p class="tm-leads-subtitle">
+                    12 demandes correspondent à votre profil · taux de match moyen 78%
+                </p>
+            </section>
+
+            <section class="tm-leads-filters">
+                <div class="row g-3 align-items-center">
+                    <div class="col-12 col-xl">
+                        <div class="tm-filter-search">
+                            <input type="text" class="form-control" placeholder="Rechercher">
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 col-xl">
+                        <select class="form-select">
+                            <option>Tous types</option>
+                        </select>
+                    </div>
+
+                    <div class="col-6 col-md-3 col-xl">
+                        <select class="form-select">
+                            <option>Tous budget</option>
+                        </select>
+                    </div>
+
+                    <div class="col-6 col-md-3 col-xl">
+                        <select class="form-select">
+                            <option>≤ 30 km</option>
+                        </select>
+                    </div>
+
+                    <div class="col-6 col-md-3 col-xl">
+                        <select class="form-select">
+                            <option>Match ≥ 70%</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-xl-auto">
+                        <button class="tm-filter-btn">Appliquer le filtre</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tm-leads-list">
+
+                <article class="tm-lead-card">
+                    <div class="tm-lead-card-top">
+                        <div class="tm-lead-main">
+                            <div class="tm-lead-avatar is-blue">SO</div>
+
+                            <div class="tm-lead-content">
+                                <div class="tm-lead-head">
+                                    <h2>Sophie Bernard</h2>
+                                    <span class="tm-tag is-red">Nouveau</span>
+                                    <span class="tm-tag is-orange">Urgent</span>
+                                    <small>· Il y a 12 min</small>
+                                </div>
+
+                                <div class="tm-lead-project">Rénovation cuisine 14m² · Il y a 12 min</div>
+                                <p class="tm-lead-description">
+                                    Cuisine ouverte sur séjour, démolition cloison non porteuse, plomberie à reprendre.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="tm-lead-side">
+                            <div class="tm-match-box">
+                                <span>Match</span>
+                                <div class="tm-match-line">
+                                    <div class="tm-match-line-bar is-green" style="width:96%;"></div>
+                                </div>
+                                <strong class="is-green">96%</strong>
+                            </div>
+
+                            <div class="tm-lead-actions">
+                                <a href="#" class="tm-btn-light">Passer</a>
+                                <a href="#" class="tm-btn-light">Sauver</a>
+                                <a href="#" class="tm-btn-primary">Etudier</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tm-lead-meta">
+                        <span>Paris 16ᵉ · 8 km</span>
+                        <span>25 000 - 35 000 €</span>
+                        <span>Démarrage sous 1 mois</span>
+                        <span>6 photos</span>
+                    </div>
+                </article>
+
+                <article class="tm-lead-card">
+                    <div class="tm-lead-card-top">
+                        <div class="tm-lead-main">
+                            <div class="tm-lead-avatar is-pink">MA</div>
+
+                            <div class="tm-lead-content">
+                                <div class="tm-lead-head">
+                                    <h2>Marc Dupont</h2>
+                                    <span class="tm-tag is-red">Nouveau</span>
+                                    <span class="tm-tag is-blue">Normale</span>
+                                    <small>· Il y a 1 h</small>
+                                </div>
+
+                                <div class="tm-lead-project">Salle de bain complète</div>
+                                <p class="tm-lead-description">
+                                    SDB familiale 7m², carrelage, douche italienne, double vasque.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="tm-lead-side">
+                            <div class="tm-match-box">
+                                <span>Match</span>
+                                <div class="tm-match-line">
+                                    <div class="tm-match-line-bar is-blue" style="width:88%;"></div>
+                                </div>
+                                <strong class="is-blue">88%</strong>
+                            </div>
+
+                            <div class="tm-lead-actions">
+                                <a href="#" class="tm-btn-light">Passer</a>
+                                <a href="#" class="tm-btn-light">Sauver</a>
+                                <a href="#" class="tm-btn-primary">Etudier</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tm-lead-meta">
+                        <span>Boulogne · 4 km</span>
+                        <span>12 000 - 18 000 €</span>
+                        <span>Démarrage sous 2 mois</span>
+                        <span>4 photos</span>
+                    </div>
+                </article>
+
+                <article class="tm-lead-card">
+                    <div class="tm-lead-card-top">
+                        <div class="tm-lead-main">
+                            <div class="tm-lead-avatar is-gold">FL</div>
+
+                            <div class="tm-lead-content">
+                                <div class="tm-lead-head">
+                                    <h2>Famille Lemoine</h2>
+                                    <span class="tm-tag is-gray">Flexible</span>
+                                    <small>· Il y a 3 h</small>
+                                </div>
+
+                                <div class="tm-lead-project">Extension 25m²</div>
+                                <p class="tm-lead-description">
+                                    Extension RDC sur jardin, ossature bois, finitions soignées.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="tm-lead-side">
+                            <div class="tm-match-box">
+                                <span>Match</span>
+                                <div class="tm-match-line">
+                                    <div class="tm-match-line-bar is-gold" style="width:74%;"></div>
+                                </div>
+                                <strong class="is-gold">74%</strong>
+                            </div>
+
+                            <div class="tm-lead-actions">
+                                <a href="#" class="tm-btn-light">Passer</a>
+                                <a href="#" class="tm-btn-light">Sauver</a>
+                                <a href="#" class="tm-btn-primary">Etudier</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tm-lead-meta">
+                        <span>Vincennes · 12 km</span>
+                        <span>80 000 - 110 000 €</span>
+                        <span>Démarrage sous 6 mois</span>
+                        <span>8 photos</span>
+                    </div>
+                </article>
+
+                <article class="tm-lead-card">
+                    <div class="tm-lead-card-top">
+                        <div class="tm-lead-main">
+                            <div class="tm-lead-avatar is-red">IN</div>
+
+                            <div class="tm-lead-content">
+                                <div class="tm-lead-head">
+                                    <h2>Inès Rahimi</h2>
+                                    <span class="tm-tag is-blue">Normale</span>
+                                    <small>· Il y a 5 h</small>
+                                </div>
+
+                                <div class="tm-lead-project">Cuisine sur-mesure</div>
+                                <p class="tm-lead-description">
+                                    Cuisine en U, plan de travail pierre, façades chêne, électroménager intégré.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="tm-lead-side">
+                            <div class="tm-match-box">
+                                <span>Match</span>
+                                <div class="tm-match-line">
+                                    <div class="tm-match-line-bar is-green" style="width:91%;"></div>
+                                </div>
+                                <strong class="is-green">91%</strong>
+                            </div>
+
+                            <div class="tm-lead-actions">
+                                <a href="#" class="tm-btn-light">Passer</a>
+                                <a href="#" class="tm-btn-light">Sauver</a>
+                                <a href="#" class="tm-btn-primary">Etudier</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tm-lead-meta">
+                        <span>Saint-Mandé · 6 km</span>
+                        <span>35 000 - 45 000 €</span>
+                        <span>Démarrage sous 3 mois</span>
+                        <span>5 photos</span>
+                    </div>
+                </article>
+
+                <article class="tm-lead-card">
+                    <div class="tm-lead-card-top">
+                        <div class="tm-lead-main">
+                            <div class="tm-lead-avatar is-lime">CM</div>
+
+                            <div class="tm-lead-content">
+                                <div class="tm-lead-head">
+                                    <h2>Cabinet Marchetti</h2>
+                                    <span class="tm-tag is-orange">Urgent</span>
+                                    <small>Hier</small>
+                                </div>
+
+                                <div class="tm-lead-project">Aménagement bureaux 80m²</div>
+                                <p class="tm-lead-description">
+                                    Cabinet d'avocats, cloisons vitrées, acoustique, rangements sur-mesure.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="tm-lead-side">
+                            <div class="tm-match-box">
+                                <span>Match</span>
+                                <div class="tm-match-line">
+                                    <div class="tm-match-line-bar is-blue" style="width:82%;"></div>
+                                </div>
+                                <strong class="is-blue">82%</strong>
+                            </div>
+
+                            <div class="tm-lead-actions">
+                                <a href="#" class="tm-btn-light">Passer</a>
+                                <a href="#" class="tm-btn-light">Sauver</a>
+                                <a href="#" class="tm-btn-primary">Etudier</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tm-lead-meta">
+                        <span>Paris 9ᵉ · 5 km</span>
+                        <span>60 000 - 75 000 €</span>
+                        <span>Démarrage urgent</span>
+                        <span>12 photos</span>
+                    </div>
+                </article>
+
+                <article class="tm-lead-card">
+                    <div class="tm-lead-card-top">
+                        <div class="tm-lead-main">
+                            <div class="tm-lead-avatar is-cyan">PO</div>
+
+                            <div class="tm-lead-content">
+                                <div class="tm-lead-head">
+                                    <h2>Pierre Olivier</h2>
+                                    <span class="tm-tag is-blue">Normale</span>
+                                    <small>Hier</small>
+                                </div>
+
+                                <div class="tm-lead-project">Réfection toiture + isolation</div>
+                                <p class="tm-lead-description">
+                                    Maison 1930, toiture ardoise, isolation par l'extérieur.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="tm-lead-side">
+                            <div class="tm-match-box">
+                                <span>Match</span>
+                                <div class="tm-match-line">
+                                    <div class="tm-match-line-bar is-red" style="width:45%;"></div>
+                                </div>
+                                <strong class="is-red">45%</strong>
+                            </div>
+
+                            <div class="tm-lead-actions">
+                                <a href="#" class="tm-btn-light">Passer</a>
+                                <a href="#" class="tm-btn-light">Sauver</a>
+                                <a href="#" class="tm-btn-primary">Etudier</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tm-lead-meta">
+                        <span>Montreuil · 9 km</span>
+                        <span>18 000 - 25 000 €</span>
+                        <span>Démarrage sous 3 mois</span>
+                        <span>3 photos</span>
+                    </div>
+                </article>
+
+            </section>
+
+            <nav class="tm-leads-pagination">
+                <a href="#">‹</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <span>...</span>
+                <a href="#">10</a>
+                <a href="#">›</a>
+            </nav>
+
+            <section class="tm-leads-footer-card">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <div class="tm-leads-footer-brand">
+                        <strong>TrouveMoi</strong>
+                        <span>|</span>
+                        <p class="mb-0">Plateforme de confiance pour artisans d'exception.</p>
+                    </div>
+
+                    <div class="tm-leads-footer-links">
+                        <a href="#">À propos</a>
+                        <a href="#">Support</a>
+                        <a href="#">Mentions Légales</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+{% endblock %}

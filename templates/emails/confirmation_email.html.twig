@@ -1,0 +1,142 @@
+{% apply inline_css(source('emails/action_utilisateur.css')) %}
+    <!DOCTYPE html>
+    <html lang="{{ locale|default('fr') }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ subject|default('TrouveMoi.eu') }}</title>
+    </head>
+    <body class="tm-email-body">
+
+    <div class="tm-email-wrapper">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="tm-email-table">
+            <tr>
+                <td align="center">
+
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="tm-email-container">
+
+                        {# HEADER #}
+                        <tr>
+                            <td class="tm-email-header">
+                                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                        <td align="left" class="tm-email-brand-cell">
+                                            <a href="{{ absolute_url(path('app_home')) }}" class="tm-email-brand-link">
+                                                <img
+                                                    src="{{ absolute_url(asset('image/logo/logo.png')) }}"
+                                                    alt="TrouveMoi.eu"
+                                                    class="tm-email-logo"
+                                                >
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        {# HERO / INTRO #}
+                        <tr>
+                            <td class="tm-email-hero">
+                                <p class="tm-email-eyebrow">
+                                    {{ eyebrow|default('AUTHENTIFICATION SÉCURISÉE') }}
+                                </p>
+
+                                <h1 class="tm-email-title">
+                                    {{ title|default('Confirmez votre action') }}
+                                </h1>
+
+                                <p class="tm-email-subtitle">
+                                    {{ intro|default("Nous avons reçu une demande liée à votre compte TrouveMoi.eu. Pour continuer en toute sécurité, veuillez confirmer l'action ci-dessous.") }}
+                                </p>
+                            </td>
+                        </tr>
+
+                        {# CARD #}
+                        <tr>
+                            <td class="tm-email-content-area">
+                                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="tm-email-card">
+                                    <tr>
+                                        <td class="tm-email-card-inner">
+
+                                            <p class="tm-email-text">
+                                                Bonjour
+                                                <strong>{{ first_name|default('') }}</strong>,
+                                            </p>
+
+                                            <p class="tm-email-text">
+                                                {{ message|default("Pour finaliser cette étape, cliquez sur le bouton ci-dessous. Ce lien est personnel, sécurisé et temporaire.") }}
+                                            </p>
+
+                                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="tm-email-button-wrap">
+                                                <tr>
+                                                    <td align="center">
+                                                        <a href="{{ signedUrl|raw }}" class="tm-email-button">
+                                                            {{ action_label|default('Continuer') }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            {% if expires_at is defined and expires_at %}
+                                                <div class="tm-email-info-box">
+                                                    <p class="tm-email-info-label">Information</p>
+                                                    <p class="tm-email-info-text">
+                                                        Ce lien expirera le
+                                                        <strong>{{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}</strong>.
+                                                    </p>
+                                                </div>
+                                            {% endif %}
+
+                                            <div class="tm-email-divider"></div>
+
+                                            <p class="tm-email-muted">
+                                                Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :
+                                            </p>
+
+                                            <p class="tm-email-link-raw">
+                                                <a href="{{ action_url|default('#') }}">
+                                                    {{ action_url|default('#') }}
+                                                </a>
+                                            </p>
+
+                                            <p class="tm-email-muted tm-email-muted-last">
+                                                Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer cet email en toute sécurité.
+                                            </p>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        {# FOOTER #}
+                        <tr>
+                            <td class="tm-email-footer">
+                                <p class="tm-email-footer-brand">
+                                    TrouveMoi.eu
+                                </p>
+
+                                <p class="tm-email-footer-text">
+                                    La plateforme de confiance pour trouver le bon expert.
+                                </p>
+
+                                <p class="tm-email-footer-links">
+                                    <a href="#">Site web</a>
+                                    <span>&nbsp;·&nbsp;</span>
+                                    <a href="#">Contact</a>
+                                    <span>&nbsp;·&nbsp;</span>
+                                    <a href="#">Mentions légales</a>
+                                </p>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    </body>
+    </html>
+{% endapply %}

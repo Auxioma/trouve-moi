@@ -1,0 +1,273 @@
+{% extends 'artisan.html.twig' %}
+
+{% block title %}Revenus & facturation{% endblock %}
+
+{% block body %}
+    <main class="tm-revenue-page">
+        <div class="container tm-revenue-container">
+
+            <section class="tm-revenue-hero d-flex justify-content-between align-items-end flex-wrap gap-4">
+                <div>
+                    <div class="tm-revenue-eyebrow">Espace artisan</div>
+                    <h1 class="tm-revenue-title">Revenus & facturation</h1>
+                    <p class="tm-revenue-subtitle mb-0">
+                        Année 2026 · CA encaissé 184 720 € HT · objectif 240 000 €
+                    </p>
+                </div>
+
+                <div class="tm-revenue-hero-actions d-flex flex-wrap gap-3">
+                    <a href="#" class="tm-revenue-btn-light text-decoration-none">Export comptable (CSV)</a>
+                    <a href="#" class="tm-revenue-btn-primary text-decoration-none">+ Nouvelle facture</a>
+                </div>
+            </section>
+
+            <section class="row g-4 tm-revenue-stats">
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <article class="tm-revenue-stat-card">
+                        <div class="tm-revenue-stat-label">CA mois en cours</div>
+                        <div class="tm-revenue-stat-value is-green">38 420 €</div>
+                        <div class="tm-revenue-stat-help">+18% vs M-1</div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <article class="tm-revenue-stat-card">
+                        <div class="tm-revenue-stat-label">Encours à facturer</div>
+                        <div class="tm-revenue-stat-value is-blue">24 660 €</div>
+                        <div class="tm-revenue-stat-help">3 jalons à venir</div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <article class="tm-revenue-stat-card">
+                        <div class="tm-revenue-stat-label">TVA à reverser</div>
+                        <div class="tm-revenue-stat-value is-gold">8 472 €</div>
+                        <div class="tm-revenue-stat-help">Échéance 15 mai</div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <article class="tm-revenue-stat-card">
+                        <div class="tm-revenue-stat-label">En retard</div>
+                        <div class="tm-revenue-stat-value is-red">380 €</div>
+                        <div class="tm-revenue-stat-help">1 facture · 30j</div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="row g-4 tm-revenue-middle">
+                <div class="col-12 col-xl-8">
+                    <article class="tm-revenue-card tm-revenue-chart-card">
+                        <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4">
+                            <h2 class="tm-revenue-card-title mb-0">Évolution du CA · 8 derniers mois</h2>
+
+                            <div class="tm-revenue-legend">
+                                <span><i class="is-blue"></i> Encaissé</span>
+                                <span><i class="is-gray"></i> Objectif</span>
+                            </div>
+                        </div>
+
+                        <div class="tm-revenue-bars">
+                            <div class="tm-revenue-bar-item">
+                                <strong>12k</strong>
+                                <div class="tm-revenue-bar-track"><span style="height: 43px;"></span></div>
+                                <small>Sep</small>
+                            </div>
+
+                            <div class="tm-revenue-bar-item">
+                                <strong>18k</strong>
+                                <div class="tm-revenue-bar-track"><span style="height: 69px;"></span></div>
+                                <small>Oct</small>
+                            </div>
+
+                            <div class="tm-revenue-bar-item">
+                                <strong>14k</strong>
+                                <div class="tm-revenue-bar-track"><span style="height: 51px;"></span></div>
+                                <small>Nov</small>
+                            </div>
+
+                            <div class="tm-revenue-bar-item">
+                                <strong>22k</strong>
+                                <div class="tm-revenue-bar-track"><span style="height: 91px;"></span></div>
+                                <small>Déc</small>
+                            </div>
+
+                            <div class="tm-revenue-bar-item">
+                                <strong>28k</strong>
+                                <div class="tm-revenue-bar-track"><span style="height: 114px;"></span></div>
+                                <small>Jan</small>
+                            </div>
+
+                            <div class="tm-revenue-bar-item">
+                                <strong>24k</strong>
+                                <div class="tm-revenue-bar-track"><span style="height: 99px;"></span></div>
+                                <small>Fév</small>
+                            </div>
+
+                            <div class="tm-revenue-bar-item">
+                                <strong>32k</strong>
+                                <div class="tm-revenue-bar-track"><span style="height: 144px;"></span></div>
+                                <small>Mar</small>
+                            </div>
+
+                            <div class="tm-revenue-bar-item">
+                                <strong>38k</strong>
+                                <div class="tm-revenue-bar-track"><span style="height: 162px;"></span></div>
+                                <small>Avr</small>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-12 col-xl-4">
+                    <article class="tm-revenue-card tm-revenue-split-card">
+                        <h2 class="tm-revenue-card-title">Répartition CA</h2>
+
+                        <div class="tm-revenue-split-list">
+                            <div class="tm-revenue-split-row">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Cuisines sur-mesure</span>
+                                    <strong>42%</strong>
+                                </div>
+                                <div class="tm-revenue-split-line"><span class="is-blue" style="width: 42%;"></span></div>
+                            </div>
+
+                            <div class="tm-revenue-split-row">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Rénovation globale</span>
+                                    <strong>28%</strong>
+                                </div>
+                                <div class="tm-revenue-split-line"><span class="is-purple" style="width: 28%;"></span></div>
+                            </div>
+
+                            <div class="tm-revenue-split-row">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Salles de bain</span>
+                                    <strong>18%</strong>
+                                </div>
+                                <div class="tm-revenue-split-line"><span class="is-gold" style="width: 18%;"></span></div>
+                            </div>
+
+                            <div class="tm-revenue-split-row">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span>Menuiserie</span>
+                                    <strong>12%</strong>
+                                </div>
+                                <div class="tm-revenue-split-line"><span class="is-green" style="width: 12%;"></span></div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="tm-revenue-card tm-revenue-table-card">
+                <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 px-32-custom pt-32-custom mb-4">
+                    <h2 class="tm-revenue-card-title mb-0">Factures récentes</h2>
+
+                    <div class="tm-revenue-filters">
+                        <a href="#" class="tm-revenue-btn-light text-decoration-none">Toutes</a>
+                        <a href="#" class="tm-revenue-btn-light text-decoration-none">Payées</a>
+                        <a href="#" class="tm-revenue-btn-light text-decoration-none">En attente</a>
+                        <a href="#" class="tm-revenue-btn-light is-danger text-decoration-none">En retard · 1</a>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table tm-revenue-table align-middle mb-0">
+                        <thead>
+                        <tr>
+                            <th>N° facture</th>
+                            <th>Client</th>
+                            <th>Projet</th>
+                            <th>Date</th>
+                            <th class="text-end">HT</th>
+                            <th>Statut</th>
+                            <th class="text-end"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>F-2026-042</td>
+                            <td class="fw-bold">Camille L.</td>
+                            <td>Loft Paris · Jalon 2</td>
+                            <td>15 mars</td>
+                            <td class="text-end fw-semibold">8 130 €</td>
+                            <td><span class="tm-revenue-status is-green">Payée</span></td>
+                            <td class="text-end"><a href="#" class="tm-revenue-btn-pdf text-decoration-none">PDF</a></td>
+                        </tr>
+
+                        <tr>
+                            <td>F-2026-041</td>
+                            <td class="fw-bold">Camille L.</td>
+                            <td>Loft Paris · Jalon 1</td>
+                            <td>23 oct. 23</td>
+                            <td class="text-end fw-semibold">16 260 €</td>
+                            <td><span class="tm-revenue-status is-green">Payée</span></td>
+                            <td class="text-end"><a href="#" class="tm-revenue-btn-pdf text-decoration-none">PDF</a></td>
+                        </tr>
+
+                        <tr>
+                            <td>F-2026-040</td>
+                            <td class="fw-bold">Lemoine</td>
+                            <td>Bibliothèque · Acompte</td>
+                            <td>01 mars</td>
+                            <td class="text-end fw-semibold">3 720 €</td>
+                            <td><span class="tm-revenue-status is-green">Payée</span></td>
+                            <td class="text-end"><a href="#" class="tm-revenue-btn-pdf text-decoration-none">PDF</a></td>
+                        </tr>
+
+                        <tr>
+                            <td>F-2026-043</td>
+                            <td class="fw-bold">Marchetti</td>
+                            <td>Bureaux · Jalon 1</td>
+                            <td>20 avr.</td>
+                            <td class="text-end fw-semibold">20 160 €</td>
+                            <td><span class="tm-revenue-status is-gold">À émettre</span></td>
+                            <td class="text-end"><a href="#" class="tm-revenue-btn-pdf text-decoration-none">PDF</a></td>
+                        </tr>
+
+                        <tr>
+                            <td>F-2025-128</td>
+                            <td class="fw-bold">Atelier Marais</td>
+                            <td>SAV cuisine</td>
+                            <td>12 sept. 25</td>
+                            <td class="text-end fw-semibold">380 €</td>
+                            <td><span class="tm-revenue-status is-red">En retard 30j</span></td>
+                            <td class="text-end"><a href="#" class="tm-revenue-btn-pdf text-decoration-none">PDF</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tm-revenue-pagination-wrap">
+                    <nav class="tm-revenue-pagination">
+                        <a href="#">‹</a>
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <span>...</span>
+                        <a href="#">10</a>
+                        <a href="#">›</a>
+                    </nav>
+                </div>
+            </section>
+
+            <section class="tm-revenue-footer-card">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <div class="tm-revenue-footer-brand">
+                        <strong>TrouveMoi</strong>
+                        <span>|</span>
+                        <p class="mb-0">Plateforme de confiance pour artisans d'exception.</p>
+                    </div>
+
+                    <div class="tm-revenue-footer-links">
+                        <a href="#">À propos</a>
+                        <a href="#">Support</a>
+                        <a href="#">Mentions Légales</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+{% endblock %}

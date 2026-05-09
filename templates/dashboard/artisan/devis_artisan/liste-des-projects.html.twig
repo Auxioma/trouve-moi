@@ -1,0 +1,269 @@
+{% extends 'artisan.html.twig' %}
+
+{% block title %}Devis #DV-2026-0142{% endblock %}
+
+{% block body %}
+    <main class="tm-quote-page">
+        <div class="container tm-quote-container">
+
+            <section class="tm-quote-hero d-flex justify-content-between align-items-end flex-wrap gap-4">
+                <div>
+                    <div class="tm-quote-eyebrow">Création de devis · Brouillon</div>
+                    <h1 class="tm-quote-title">Devis #DV-2026-0142</h1>
+                    <p class="tm-quote-subtitle mb-0">
+                        Pour Sophie Bernard · Rénovation cuisine 14m² · Paris 16ᵉ · enregistré il y a 2 min
+                    </p>
+                </div>
+
+                <div class="tm-quote-hero-actions d-flex flex-wrap gap-3">
+                    <a href="#" class="tm-btn-light text-decoration-none">Enregistrer brouillon</a>
+                    <a href="#" class="tm-btn-light text-decoration-none">Aperçu PDF</a>
+                    <a href="#" class="tm-btn-primary text-decoration-none">Envoyer le devis →</a>
+                </div>
+            </section>
+
+            <div class="row g-4">
+                <div class="col-12 col-xl-8">
+
+                    <section class="tm-quote-card tm-quote-top-card">
+                        <div class="row g-4">
+                            <div class="col-12 col-md-6">
+                                <label class="tm-quote-label">Intitulé du devis</label>
+                                <input type="text" class="form-control tm-quote-input" value="Rénovation cuisine ouverte 14m²">
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="tm-quote-label">Date d'émission</label>
+                                <input type="text" class="form-control tm-quote-input" value="30 avril 2026">
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="tm-quote-label">Validité</label>
+                                <select class="form-select tm-quote-input">
+                                    <option selected>60 jours</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="tm-quote-label">Durée prévue</label>
+                                <input type="text" class="form-control tm-quote-input" value="6 semaines">
+                            </div>
+                        </div>
+
+                        <div class="text-end mt-4">
+                            <a href="#" class="tm-btn-primary text-decoration-none">Ajouter un lot</a>
+                        </div>
+                    </section>
+
+                    {# Lot 1 ouvert #}
+                    <section class="tm-quote-lot-card">
+                        <div class="tm-quote-lot-header">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="tm-quote-lot-number">1</span>
+
+                                <div>
+                                    <h2>Lot 1 · Démolition & dépose</h2>
+                                    <p>4 lignes</p>
+                                </div>
+                            </div>
+
+                            <div class="tm-quote-lot-total">
+                                4250 €
+                                <span>⌄</span>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table tm-quote-table mb-0">
+                                <thead>
+                                <tr>
+                                    <th>Désignation</th>
+                                    <th class="text-end">Quantité</th>
+                                    <th>Unité</th>
+                                    <th>Total HT</th>
+                                    <th class="text-end">Total HT</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Dépose cuisine existante</td>
+                                    <td class="text-end">1</td>
+                                    <td>Forfait</td>
+                                    <td>850 €</td>
+                                    <td class="text-end fw-semibold">850 €</td>
+                                    <td class="text-end">×</td>
+                                </tr>
+                                <tr>
+                                    <td>Démolition cloison non porteuse</td>
+                                    <td class="text-end">6.5</td>
+                                    <td>m²</td>
+                                    <td>280 €</td>
+                                    <td class="text-end fw-semibold">1820 €</td>
+                                    <td class="text-end">×</td>
+                                </tr>
+                                <tr>
+                                    <td>Évacuation gravats benne 6m³</td>
+                                    <td class="text-end">2</td>
+                                    <td>u</td>
+                                    <td>580 €</td>
+                                    <td class="text-end fw-semibold">1160 €</td>
+                                    <td class="text-end">×</td>
+                                </tr>
+                                <tr>
+                                    <td>Protection sols et accès</td>
+                                    <td class="text-end">1</td>
+                                    <td>Forfait</td>
+                                    <td>420 €</td>
+                                    <td class="text-end fw-semibold">420 €</td>
+                                    <td class="text-end">×</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="tm-quote-lot-actions">
+                            <a href="#" class="tm-btn-light-sm text-decoration-none">+ Ligne</a>
+                            <a href="#" class="tm-btn-light-sm text-decoration-none">+ Sous-total</a>
+                            <a href="#" class="tm-btn-light-sm text-decoration-none">+ Note</a>
+                            <a href="#" class="tm-btn-light-sm text-decoration-none">Depuis bibliothèque</a>
+                        </div>
+                    </section>
+
+                    {# Lots fermés #}
+                    <section class="tm-quote-lot-collapsed">
+                        <div class="tm-quote-lot-header">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="tm-quote-lot-number">2</span>
+                                <div>
+                                    <h2>Lot 2 · Plomberie & électricité</h2>
+                                    <p>3 lignes</p>
+                                </div>
+                            </div>
+
+                            <div class="tm-quote-lot-total">
+                                13550 €
+                                <span>⌄</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="tm-quote-lot-collapsed">
+                        <div class="tm-quote-lot-header">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="tm-quote-lot-number">3</span>
+                                <div>
+                                    <h2>Lot 3 · Cuisine sur-mesure</h2>
+                                    <p>0 ligne · à compléter</p>
+                                </div>
+                            </div>
+
+                            <div class="tm-quote-lot-total">
+                                24800 €
+                                <span>⌄</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="tm-quote-lot-collapsed">
+                        <div class="tm-quote-lot-header">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="tm-quote-lot-number">4</span>
+                                <div>
+                                    <h2>Lot 4 · Salle de bain</h2>
+                                    <p>0 ligne · à compléter</p>
+                                </div>
+                            </div>
+
+                            <div class="tm-quote-lot-total">
+                                11600 €
+                                <span>⌄</span>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="col-12 col-xl-4">
+
+                    <aside class="tm-quote-sidebar">
+
+                        <section class="tm-quote-side-card">
+                            <h3>Récapitulatif</h3>
+
+                            <div class="tm-quote-summary-list">
+                                <div><span>Lot 1</span><strong>4250 €</strong></div>
+                                <div><span>Lot 2</span><strong>13550 €</strong></div>
+                                <div><span>Lot 3</span><strong>24800 €</strong></div>
+                                <div><span>Lot 4</span><strong>11600 €</strong></div>
+
+                                <hr>
+
+                                <div><span>Total HT</span><strong>54200 €</strong></div>
+                                <div><span>TVA 10%</span><strong>5420 €</strong></div>
+
+                                <hr>
+
+                                <div class="is-total">
+                                    <span>Total TTC</span>
+                                    <strong>59620 €</strong>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="tm-quote-side-card">
+                            <h3>Conditions</h3>
+
+                            <div class="mb-3">
+                                <label class="tm-quote-label">Acompte</label>
+                                <select class="form-select tm-quote-input">
+                                    <option selected>30%</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="tm-quote-label">Plan de jalons</label>
+                                <select class="form-select tm-quote-input">
+                                    <option selected>3 jalons</option>
+                                </select>
+                            </div>
+
+                            <div class="form-check tm-quote-check">
+                                <input class="form-check-input" type="checkbox" id="escrow">
+                                <label class="form-check-label" for="escrow">
+                                    Paiement via séquestre TrouveMoi
+                                </label>
+                            </div>
+                        </section>
+
+                        <section class="tm-quote-tip-card">
+                            <span>Suggestion IA</span>
+                            <p class="mb-0">
+                                Vos devis pour ce type de cuisine se signent à 52% entre 38 000 € et 44 000 € TTC.
+                            </p>
+                        </section>
+
+                    </aside>
+
+                </div>
+            </div>
+
+            <section class="tm-quote-footer-card">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <div class="tm-quote-footer-brand">
+                        <strong>TrouveMoi</strong>
+                        <span>|</span>
+                        <p class="mb-0">Plateforme de confiance pour artisans d'exception.</p>
+                    </div>
+
+                    <div class="tm-quote-footer-links">
+                        <a href="#">À propos</a>
+                        <a href="#">Support</a>
+                        <a href="#">Mentions Légales</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+{% endblock %}

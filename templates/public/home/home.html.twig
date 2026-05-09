@@ -10,31 +10,31 @@
             <div class="container procedure">
                 <div class="row">
                     <div class="col-12 mb-64">
-                        <h2>PROCESSUS SIMPLIFIÉ</h2>
-                        <h3>3 étapes pour trouver votre expert</h3>
+                        <h2>{{ 'home.process.title'|trans }}</h2>
+                        <h3>{{ 'home.process.subtitle'|trans }}</h3>
                     </div>
 
                     <div class="col-12 col-md-4 cadre-procedure-padding pb-3 pb-md-0">
                         <div class="cadre-procedure h-100">
                             <img src="{{ asset('image/icone/marteau.svg') }}" alt="" class="img-fluid">
-                            <h4>Réalisation</h4>
-                            <p>Travaillez avec un pro sereinement, protégé par nos garanties et notre suivi personnalisé.</p>
+                            <h4>{{ 'home.process.step_realisation.title'|trans }}</h4>
+                            <p>{{ 'home.process.step_realisation.text'|trans }}</p>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-4 cadre-procedure-padding pb-3 pb-md-0">
                         <div class="cadre-procedure h-100">
                             <img src="{{ asset('image/icone/loupe.svg') }}" alt="" class="img-fluid">
-                            <h4>Recherchez</h4>
-                            <p>Utilisez notre moteur intelligent pour cibler les artisans spécialisés selon vos besoins précis.</p>
+                            <h4>{{ 'home.process.step_search.title'|trans }}</h4>
+                            <p>{{ 'home.process.step_search.text'|trans }}</p>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-4 cadre-procedure-padding">
                         <div class="cadre-procedure h-100">
                             <img src="{{ asset('image/icone/devis.svg') }}" alt="" class="img-fluid">
-                            <h4>Comparez les Devis</h4>
-                            <p>Recevez des propositions détaillées et transparentes en moins de 48 heures pour votre projet.</p>
+                            <h4>{{ 'home.process.step_quote.title'|trans }}</h4>
+                            <p>{{ 'home.process.step_quote.text'|trans }}</p>
                         </div>
                     </div>
                 </div>
@@ -50,37 +50,57 @@
                             <img src="{{ asset('image/home/01.png') }}" alt="" class="img-fluid w-100 rounded-4" width="512" height="512">
                             <div class="centpourcent">
                                 <span class="clt100">100%</span>
-                                <p class="satisfaction-client mb-0">Satisfaction Client</p>
+                                <p class="satisfaction-client mb-0">
+                                    {{ 'home.satisfaction.client'|trans }}
+                                </p>
                             </div>
                         </div>
+
                         <div class="col-6">
                             <div class="garantie-decenal mb-3">
                                 <img src="{{ asset('image/icone/choisir.svg') }}" alt="" class="img-fluid">
-                                <span class="decenal">Assurance Décennale</span>
-                                <p class="decenal-p">Tous nos partenaires sont couverts.</p>
+
+                                <span class="decenal">
+                                    {{ 'home.satisfaction.insurance_title'|trans }}
+                                </span>
+
+                                <p class="decenal-p">
+                                    {{ 'home.satisfaction.insurance_text'|trans }}
+                                </p>
                             </div>
+
                             <img src="{{ asset('image/home/02.png') }}" alt="" class="img-fluid w-100 rounded-4" width="512" height="512">
                         </div>
                     </div>
                 </div>
 
                 <div class="col-12 col-lg-6 pourquoi-nous-choisir">
-                    <h2>POURQUOI NOUS CHOISIR ?</h2>
-                    <h3>Plus qu'un simple annuaire, un gage de confiance</h3>
+                    <h2>{{ 'home.why.title'|trans }}</h2>
+                    <h3>{{ 'home.why.subtitle'|trans }}</h3>
+
                     <ul>
                         <li>
-                            Vérification des diplômes
-                            <p>Chaque artisan passe un entretien rigoureux et voit ses diplômes authentifiés par nos experts.</p>
+                            {{ 'home.why.diploma_title'|trans }}
+
+                            <p>
+                                {{ 'home.why.diploma_text'|trans }}
+                            </p>
                         </li>
+
                         <li>
-                            Assurance décennale à jour
-                            <p>Nous vérifions mensuellement la validité des assurances
-                                professionnelles de nos membres.</p>
+                            {{ 'home.why.insurance_title'|trans }}
+
+                            <p>
+                                {{ 'home.why.insurance_text'|trans }}
+                            </p>
                         </li>
+
                         <li>
-                            Suivi personnalisé
-                            <p>Un conseiller dédié vous accompagne de la signature du devis à la
-                                réception de chantier.</p>
+                            {{ 'home.why.follow_title'|trans }}
+
+                            <p>
+                                {{ 'home.why.follow_text'|trans }}
+                            </p>
                         </li>
                     </ul>
                 </div>
@@ -92,8 +112,8 @@
             <div class="container notre-selection">
                 <div class="row">
                     <div class="col-12">
-                        <h2>NOTRE SÉLECTION</h2>
-                        <h3>Artisans de confiance</h3>
+                        <h2>{{ 'home.selection.title'|trans }}</h2>
+                        <h3>{{ 'home.selection.subtitle'|trans }}</h3>
                     </div>
 
                     {% for item in localisationArtisants %}
@@ -102,28 +122,36 @@
                                 <div class="thumb">
                                     <img
                                         src="{{ vich_uploader_asset(item.pictures|first, 'imageFile') }}"
-                                        alt="{{ item.name ?? 'Artisan' }}"
+                                        alt="{{ item.name ?? 'home.selection.default_artisan'|trans }}"
                                         class="img-fluid w-100 rounded-2"
                                         width="370"
                                         height="470"
                                     />
                                 </div>
+
                                 <div class="thumb-info">
-                                    <span class="metier">{{ item.activity.name ?? 'Default' }}</span>
-                                    <span class="service">QUALIBAT RGE</span>
+                                    <span class="metier">
+                                        {{ item.activity.name ?? 'home.selection.default_activity'|trans }}
+                                    </span>
+
+                                    <span class="service">
+                                        {{ 'home.selection.badge'|trans }}
+                                    </span>
+
                                     <h2 class="nom-entreprise">
                                         <a href="{{ path('deail_entreprise', {
-                                                            category: item.activity.slug,
-                                                            city: item.city|slug|lower,
-                                                            slug: item.slug,
-                                                  }) }}"
-                                        >
-                                          {{ item.compagny ?? item.firstName ~ ' ' ~ item.lastName ?? 'Artisan' }}
+                                            category: item.activity.slug,
+                                            city: item.city|slug|lower,
+                                            slug: item.slug,
+                                        }) }}">
+                                            {{ item.compagny ?? item.firstName ~ ' ' ~ item.lastName ?? 'home.selection.default_artisan'|trans }}
                                         </a>
                                     </h2>
+
                                     <p class="description-ets">
                                         {{ item.description|u.truncate(100) }} ...
                                     </p>
+
                                     <span class="localisation-ets">
                                         <i class="fas fa-map-marker-alt me-2"></i>
                                         {{ item.city }}
@@ -140,20 +168,22 @@
         <div class="container experiance">
             <div class="row">
                 <div class="col-12">
-                    <h2>EXPÉRIENCES</h2>
-                    <h3>Ce qu'en disent nos clients</h3>
+                    <h2>{{ 'home.experiences.title'|trans }}</h2>
+                    <h3>{{ 'home.experiences.subtitle'|trans }}</h3>
                 </div>
             </div>
         </div>
 
         <div class="container-fluid px-0">
             <div class="row g-0">
+
                 <div class="col-12">
                     <div class="owl-carousel haut owl-theme trouve-moi">
 
                         {% for item in testimonials|slice(0, 10) %}
                             <div class="item">
                                 {% set note = item.review ?? 0 %}
+
                                 <h5>
                                     {% for i in 1..5 %}
                                         <span class="star {{ i <= note ? 'filled' : '' }}">
@@ -161,18 +191,28 @@
                                         </span>
                                     {% endfor %}
                                 </h5>
+
                                 <p>
                                     "{{ item.description }}"
                                 </p>
+
                                 <div class="d-flex align-items-center mt-3">
-                                    <img src="{{ vich_uploader_asset(item.artisan, 'imageFile') ?: asset('image/artisan/01.png') }}"
-                                         alt="{{ item.user.name ?? 'Client' }}"
-                                         class="rounded-circle w-auto"
-                                         width="50" height="50">
+                                    <img
+                                        src="{{ vich_uploader_asset(item.artisan, 'imageFile') ?: asset('image/artisan/01.png') }}"
+                                        alt="{{ item.user.name ?? 'home.experiences.default_client'|trans }}"
+                                        class="rounded-circle w-auto"
+                                        width="50"
+                                        height="50"
+                                    >
 
                                     <div>
-                                        <h4 class="mb-0">{{ item.artisan.compagny }}</h4>
-                                        <p class="mb-0 text-muted trouve-moi-p">{{ item.artisan.activity.name ?? '' }}</p>
+                                        <h4 class="mb-0">
+                                            {{ item.artisan.compagny }}
+                                        </h4>
+
+                                        <p class="mb-0 text-muted trouve-moi-p">
+                                            {{ item.artisan.activity.name ?? '' }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -182,9 +222,11 @@
 
                 <div class="col-12">
                     <div class="owl-carousel bas owl-theme trouve-moi mt-48">
+
                         {% for item in testimonials|slice(11, 20) %}
                             <div class="item">
                                 {% set note = item.review ?? 0 %}
+
                                 <h5>
                                     {% for i in 1..5 %}
                                         <span class="star {{ i <= note ? 'filled' : '' }}">
@@ -192,78 +234,88 @@
                                         </span>
                                     {% endfor %}
                                 </h5>
+
                                 <p>
                                     "{{ item.description }}"
                                 </p>
+
                                 <div class="d-flex align-items-center mt-3">
-                                    <img src="{{ vich_uploader_asset(item.artisan, 'imageFile') ?: asset('image/artisan/01.png') }}"
-                                         alt="{{ item.user.name ?? 'Client' }}"
-                                         class="rounded-circle w-auto"
-                                         width="50" height="50">
+                                    <img
+                                        src="{{ vich_uploader_asset(item.artisan, 'imageFile') ?: asset('image/artisan/01.png') }}"
+                                        alt="{{ item.user.name ?? 'home.experiences.default_client'|trans }}"
+                                        class="rounded-circle w-auto"
+                                        width="50"
+                                        height="50"
+                                    >
 
                                     <div>
-                                        <h4 class="mb-0">{{ item.artisan.compagny }}</h4>
-                                        <p class="mb-0 text-muted trouve-moi-p">{{ item.artisan.activity.name ?? '' }}</p>
+                                        <h4 class="mb-0">
+                                            {{ item.artisan.compagny }}
+                                        </h4>
+
+                                        <p class="mb-0 text-muted trouve-moi-p">
+                                            {{ item.artisan.activity.name ?? '' }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
+
                     </div>
                 </div>
             </div>
         </div>
 
-        {# La FAQ #}
+        {# FAQ #}
         <div class="degrade-bleu">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h2>Questions Fréquentes</h2>
+                        <h2>{{ 'home.faq.title'|trans }}</h2>
                     </div>
 
                     <div class="col-12 col-lg-8 col-xl-6 mx-auto mt-48">
+
                         <div class="accordion" id="faqAccordion">
 
-                            <!-- Question 1 -->
                             <div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                        Comment vérifiez-vous les artisans ?
+                                        {{ 'home.faq.question_1'|trans }}
                                     </button>
                                 </h2>
+
                                 <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        Chaque artisan est soigneusement vérifié : identité, qualifications, assurances et avis clients.
-                                        Nous sélectionnons uniquement des professionnels fiables pour garantir la qualité des prestations.
+                                        {{ 'home.faq.answer_1'|trans }}
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Question 2 -->
                             <div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                        Y a-t-il des frais de mise en relation ?
+                                        {{ 'home.faq.question_2'|trans }}
                                     </button>
                                 </h2>
+
                                 <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        {{ 'home.faq.answer_2'|trans }}
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Question 3 -->
                             <div class="accordion-item border-0 mb-3 shadow-sm rounded-3">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                        Que couvre l’assurance décennale ?
+                                        {{ 'home.faq.question_3'|trans }}
                                     </button>
                                 </h2>
+
                                 <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                     <div class="accordion-body text-muted">
-                                        L’assurance décennale couvre les dommages pouvant affecter la solidité de l’ouvrage ou le rendre impropre à son usage pendant 10 ans après réception des travaux.
+                                        {{ 'home.faq.answer_3'|trans }}
                                     </div>
                                 </div>
                             </div>
@@ -274,91 +326,87 @@
             </div>
         </div>
 
+        {# blog #}
         <div class="bg-gris">
             <div class="container pt-74 pb-74 blog">
                 <div class="row">
+
                     <div class="col-12">
-                        <h2>ACTUALITÉS</h2>
-                        <h3 class="mb-64">Le Journal de l'Artisanat</h3>
+                        <h2>{{ 'home.blog.title'|trans }}</h2>
+                        <h3 class="mb-64">{{ 'home.blog.subtitle'|trans }}</h3>
                     </div>
 
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <div class="actu h-100">
-                            <div class="thumb">
-                                <img src="{{ asset('image/blog/01.png') }}" alt="" class="img-fluid w-100">
-                            </div>
-                            <div class="txt">
-                                <span class="metiers">ARCHITECTURE</span>
-                                <span class="temps-lecture">5 MIN READ</span>
-                                <h2>Les tendances architecturales qui vont dominer 2025</h2>
-                                <p>Découvrez comment les nouveaux matériaux
-                                    durables transforment le paysage urbain…</p>
-                                <a href="#">lire la suite
-                                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.07404 4.81247H0V3.93749H7.07404L3.75128 0.614729L4.37498 0L8.74996 4.37498L4.37498 8.74996L3.75128 8.13523L7.07404 4.81247Z" fill="#003EC7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    {% for i in 1..3 %}
+                        <div class="col-12 col-md-6 col-lg-4 mb-4">
+                            <div class="actu h-100">
 
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <div class="actu h-100">
-                            <div class="thumb">
-                                <img src="{{ asset('image/blog/01.png') }}" alt="" class="img-fluid w-100">
-                            </div>
-                            <div class="txt">
-                                <span class="metiers">ARCHITECTURE</span>
-                                <span class="temps-lecture">5 MIN READ</span>
-                                <h2>Les tendances architecturales qui vont dominer 2025</h2>
-                                <p>Découvrez comment les nouveaux matériaux
-                                    durables transforment le paysage urbain…</p>
-                                <a href="#">lire la suite
-                                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.07404 4.81247H0V3.93749H7.07404L3.75128 0.614729L4.37498 0L8.74996 4.37498L4.37498 8.74996L3.75128 8.13523L7.07404 4.81247Z" fill="#003EC7"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="thumb">
+                                    <img src="{{ asset('image/blog/01.png') }}" alt="" class="img-fluid w-100">
+                                </div>
 
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <div class="actu h-100">
-                            <div class="thumb">
-                                <img src="{{ asset('image/blog/01.png') }}" alt="" class="img-fluid w-100">
-                            </div>
-                            <div class="txt">
-                                <span class="metiers">ARCHITECTURE</span>
-                                <span class="temps-lecture">5 MIN READ</span>
-                                <h2>Les tendances architecturales qui vont dominer 2025</h2>
-                                <p>Découvrez comment les nouveaux matériaux
-                                    durables transforment le paysage urbain…</p>
-                                <a href="#">lire la suite
-                                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.07404 4.81247H0V3.93749H7.07404L3.75128 0.614729L4.37498 0L8.74996 4.37498L4.37498 8.74996L3.75128 8.13523L7.07404 4.81247Z" fill="#003EC7"/>
-                                    </svg>
-                                </a>
+                                <div class="txt">
+
+                                    <span class="metiers">
+                                        {{ 'home.blog.category'|trans }}
+                                    </span>
+
+                                    <span class="temps-lecture">
+                                        {{ 'home.blog.read_time'|trans }}
+                                    </span>
+
+                                    <h2>
+                                        {{ 'home.blog.article_title'|trans }}
+                                    </h2>
+
+                                    <p>
+                                        {{ 'home.blog.article_text'|trans }}
+                                    </p>
+
+                                    <a href="#">
+                                        {{ 'home.blog.read_more'|trans }}
+
+                                        <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.07404 4.81247H0V3.93749H7.07404L3.75128 0.614729L4.37498 0L8.74996 4.37498L4.37498 8.74996L3.75128 8.13523L7.07404 4.81247Z" fill="#003EC7"/>
+                                        </svg>
+                                    </a>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
         </div>
 
-        {# redirection vers le login #}
+        {# redirection login #}
         <div class="container-fluid g-0">
             <div class="parallax-section d-flex align-items-center justify-content-center">
+
                 <div class="container">
                     <div class="row">
+
                         <div class="col-12 col-lg-7 mx-auto">
                             <div class="text-center text-white">
-                                <h2>Devenez prestataire sur trouvemoi</h2>
-                                <p>Inscrivez-vous et trouvez des nouveaux clients, développez votre notoriété et commencez à optimisez vos revenus dès maintenant.</p>
-                                <a href="{{ path('user_registration_app_register') }}">Commencer</a>
+
+                                <h2>
+                                    {{ 'home.provider.title'|trans }}
+                                </h2>
+
+                                <p>
+                                    {{ 'home.provider.text'|trans }}
+                                </p>
+
+                                <a href="{{ path('user_registration_app_register') }}">
+                                    {{ 'home.provider.button'|trans }}
+                                </a>
+
                             </div>
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </main>

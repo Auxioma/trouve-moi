@@ -1,0 +1,248 @@
+body.tm-email-body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f7;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1a1c1c;
+}
+
+.tm-email-wrapper {
+    width: 100%;
+    background: #f5f5f7;
+    padding: 32px 0;
+}
+
+.tm-email-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #f5f5f7;
+}
+
+.tm-email-container {
+    width: 100%;
+    max-width: 640px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.tm-email-header {
+    padding: 32px 32px 16px 32px;
+    background: #ffffff;
+}
+
+.tm-email-brand-cell {
+    text-align: left;
+}
+
+.tm-email-brand-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.tm-email-logo {
+    display: block;
+    width: 170px;
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}
+
+.tm-email-hero {
+    padding: 8px 32px 24px 32px;
+    background: #ffffff;
+}
+
+.tm-email-eyebrow {
+    margin: 0 0 12px 0;
+    color: #003ec7;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.tm-email-title {
+    margin: 0 0 12px 0;
+    color: #1a1c1c;
+    font-size: 34px;
+    line-height: 40px;
+    font-weight: 800;
+}
+
+.tm-email-subtitle {
+    margin: 0;
+    color: #5f5e5e;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.tm-email-content-area {
+    padding: 0 32px 32px 32px;
+    background: #ffffff;
+}
+
+.tm-email-card {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fafafa;
+    border: 1px solid #ececec;
+    border-radius: 20px;
+}
+
+.tm-email-card-inner {
+    padding: 32px;
+}
+
+.tm-email-text {
+    margin: 0 0 18px 0;
+    color: #1a1c1c;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.tm-email-button-wrap {
+    margin-top: 28px;
+    margin-bottom: 28px;
+}
+
+.tm-email-button {
+    display: inline-block;
+    padding: 16px 28px;
+    background: #003ec7;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    border-radius: 12px;
+}
+
+.tm-email-info-box {
+    margin: 0 0 24px 0;
+    padding: 18px 20px;
+    background: rgba(0, 62, 199, 0.06);
+    border: 1px solid rgba(0, 62, 199, 0.12);
+    border-radius: 14px;
+}
+
+.tm-email-info-label {
+    margin: 0 0 6px 0;
+    color: #003ec7;
+    font-size: 11px;
+    line-height: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.tm-email-info-text {
+    margin: 0;
+    color: #1a1c1c;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.tm-email-divider {
+    height: 1px;
+    margin: 28px 0;
+    background: #e6e6e6;
+}
+
+.tm-email-muted {
+    margin: 0 0 12px 0;
+    color: #5f5e5e;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.tm-email-muted-last {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.tm-email-link-raw {
+    margin: 0;
+    word-break: break-word;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.tm-email-link-raw a {
+    color: #003ec7;
+    text-decoration: underline;
+}
+
+.tm-email-footer {
+    padding: 28px 32px 32px 32px;
+    text-align: center;
+    background: #ffffff;
+}
+
+.tm-email-footer-brand {
+    margin: 0 0 6px 0;
+    color: #1a1c1c;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+.tm-email-footer-text {
+    margin: 0 0 10px 0;
+    color: #5f5e5e;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.tm-email-footer-links {
+    margin: 0;
+    color: #5f5e5e;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.tm-email-footer-links a {
+    color: #5f5e5e;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 640px) {
+    .tm-email-wrapper {
+        padding: 16px 12px;
+    }
+
+    .tm-email-header,
+    .tm-email-hero,
+    .tm-email-content-area,
+    .tm-email-footer {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .tm-email-card-inner {
+        padding: 20px !important;
+    }
+
+    .tm-email-title {
+        font-size: 28px !important;
+        line-height: 34px !important;
+    }
+
+    .tm-email-subtitle,
+    .tm-email-text {
+        font-size: 15px !important;
+        line-height: 24px !important;
+    }
+
+    .tm-email-button {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+}

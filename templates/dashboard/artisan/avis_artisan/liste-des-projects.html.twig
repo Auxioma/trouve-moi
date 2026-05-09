@@ -1,0 +1,279 @@
+{% extends 'artisan.html.twig' %}
+
+{% block title %}Avis reçus{% endblock %}
+
+{% block body %}
+    <main class="tm-reviews-page">
+        <div class="container tm-reviews-container">
+
+            <section class="tm-reviews-hero">
+                <div class="tm-reviews-eyebrow">Espace artisan</div>
+                <h1 class="tm-reviews-title">Avis reçus</h1>
+                <p class="tm-reviews-subtitle">Note moyenne 4.9 / 5</p>
+            </section>
+
+            <section class="tm-reviews-layout">
+                <aside class="tm-reviews-sidebar">
+
+                    <article class="tm-reviews-card tm-reviews-score-card">
+                        <div class="tm-reviews-score-value">4.9</div>
+
+                        <div class="tm-reviews-stars">
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                        </div>
+
+                        <p class="tm-reviews-score-text">87 avis vérifiés</p>
+
+                        <div class="tm-reviews-distribution">
+                            <div class="tm-reviews-distribution-row">
+                                <span>5★</span>
+                                <div class="tm-reviews-line"><span style="width: 78%;"></span></div>
+                                <strong>78%</strong>
+                            </div>
+
+                            <div class="tm-reviews-distribution-row">
+                                <span>4★</span>
+                                <div class="tm-reviews-line"><span style="width: 15%;"></span></div>
+                                <strong>15%</strong>
+                            </div>
+
+                            <div class="tm-reviews-distribution-row">
+                                <span>3★</span>
+                                <div class="tm-reviews-line"><span style="width: 5%;"></span></div>
+                                <strong>5%</strong>
+                            </div>
+
+                            <div class="tm-reviews-distribution-row">
+                                <span>2★</span>
+                                <div class="tm-reviews-line"><span style="width: 1%;"></span></div>
+                                <strong>1%</strong>
+                            </div>
+
+                            <div class="tm-reviews-distribution-row">
+                                <span>1★</span>
+                                <div class="tm-reviews-line"><span style="width: 1%;"></span></div>
+                                <strong>1%</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tm-reviews-card">
+                        <h2 class="tm-reviews-card-title">Détail par critère</h2>
+
+                        <div class="tm-reviews-criteria">
+                            <div class="tm-reviews-criteria-row">
+                                <span>Qualité</span>
+                                <div class="tm-reviews-line"><span style="width: 99%;"></span></div>
+                                <strong>4.95</strong>
+                            </div>
+
+                            <div class="tm-reviews-criteria-row">
+                                <span>Délais</span>
+                                <div class="tm-reviews-line"><span style="width: 92%;"></span></div>
+                                <strong>4.6</strong>
+                            </div>
+
+                            <div class="tm-reviews-criteria-row">
+                                <span>Communication</span>
+                                <div class="tm-reviews-line"><span style="width: 97%;"></span></div>
+                                <strong>4.85</strong>
+                            </div>
+
+                            <div class="tm-reviews-criteria-row">
+                                <span>Propreté</span>
+                                <div class="tm-reviews-line"><span style="width: 98%;"></span></div>
+                                <strong>4.9</strong>
+                            </div>
+
+                            <div class="tm-reviews-criteria-row">
+                                <span>Prix/qualité</span>
+                                <div class="tm-reviews-line"><span style="width: 94%;"></span></div>
+                                <strong>4.7</strong>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tm-reviews-tip-card">
+                        <span>Conseil</span>
+                        <p class="mb-0">
+                            Répondre aux avis &lt; 4★ augmente votre taux de signature de +12%.
+                        </p>
+                    </article>
+                </aside>
+
+                <section class="tm-reviews-main">
+                    <div class="tm-reviews-filters">
+                        <a href="#" class="active">Tous · 87</a>
+                        <a href="#">Sans réponse · 24</a>
+                        <a href="#" class="is-danger">≤ 3★ · 1</a>
+                        <a href="#">Récents</a>
+                    </div>
+
+                    <article class="tm-review-item">
+                        <div class="tm-review-item-head">
+                            <div class="tm-review-user">
+                                <span class="tm-review-avatar is-blue">SO</span>
+
+                                <div class="tm-review-user-meta">
+                                    <div class="tm-review-user-top">
+                                        <strong>Camille L.</strong>
+                                        <span>Loft Paris · 54 200 €</span>
+                                    </div>
+
+                                    <div class="tm-review-stars-sm">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <small>15 jan. 2024</small>
+                        </div>
+
+                        <p class="tm-review-text">
+                            Travail impeccable du début à la fin. Pierre et son équipe ont été à l'écoute,
+                            ponctuels, et le chantier est resté propre tout au long. Je recommande les yeux fermés.
+                        </p>
+
+                        <div class="tm-review-tags">
+                            <span>Ponctuel</span>
+                            <span>Soigneux</span>
+                            <span>Conseil avisé</span>
+                        </div>
+
+                        <div class="tm-review-actions">
+                            <a href="#" class="tm-review-btn-primary text-decoration-none">Répondre publiquement</a>
+                            <a href="#" class="tm-review-btn-light text-decoration-none">Signaler</a>
+                        </div>
+                    </article>
+
+                    <article class="tm-review-item">
+                        <div class="tm-review-item-head">
+                            <div class="tm-review-user">
+                                <span class="tm-review-avatar is-cyan">IN</span>
+
+                                <div class="tm-review-user-meta">
+                                    <div class="tm-review-user-top">
+                                        <strong>Inès Rahimi</strong>
+                                        <span>Cuisine sur-mesure · 41 800 €</span>
+                                    </div>
+
+                                    <div class="tm-review-stars-sm">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span class="is-muted">★</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <small>22 nov. 2023</small>
+                        </div>
+
+                        <p class="tm-review-text">
+                            Très bon travail sur la cuisine. Petit dépassement d'une semaine mais bien anticipé.
+                            Je recommande.
+                        </p>
+
+                        <div class="tm-review-tags">
+                            <span>À l'écoute</span>
+                            <span>Bon rapport q/p</span>
+                        </div>
+
+                        <div class="tm-review-response">
+                            <span>Votre réponse</span>
+                            <p class="mb-0">
+                                Merci Inès pour votre confiance. Le retard était dû à un fournisseur de pierre,
+                                on s'est adaptés.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="tm-review-item">
+                        <div class="tm-review-item-head">
+                            <div class="tm-review-user">
+                                <span class="tm-review-avatar is-purple">TH</span>
+
+                                <div class="tm-review-user-meta">
+                                    <div class="tm-review-user-top">
+                                        <strong>Thomas B.</strong>
+                                        <span>Rénovation globale · 89 400 €</span>
+                                    </div>
+
+                                    <div class="tm-review-stars-sm">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <small>8 déc. 2023</small>
+                        </div>
+
+                        <p class="tm-review-text">
+                            Une rénovation parfaitement menée. L'atelier a respecté le budget et le délai à la lettre.
+                        </p>
+
+                        <div class="tm-review-tags">
+                            <span>Ponctuel</span>
+                            <span>Pédagogue</span>
+                        </div>
+
+                        <div class="tm-review-actions">
+                            <a href="#" class="tm-review-btn-primary text-decoration-none">Répondre publiquement</a>
+                            <a href="#" class="tm-review-btn-light text-decoration-none">Signaler</a>
+                        </div>
+                    </article>
+
+                    <article class="tm-review-item">
+                        <div class="tm-review-item-head">
+                            <div class="tm-review-user">
+                                <span class="tm-review-avatar is-purple">TH</span>
+
+                                <div class="tm-review-user-meta">
+                                    <div class="tm-review-user-top">
+                                        <strong>Famille Chen</strong>
+                                        <span>SDB · 14 800 €</span>
+                                    </div>
+
+                                    <div class="tm-review-stars-sm">
+                                        <span>★</span><span>★</span><span>★</span><span class="is-muted">★</span><span class="is-muted">★</span>
+                                        <em class="tm-review-moderation">À modérer</em>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <small>4 oct. 2023</small>
+                        </div>
+
+                        <p class="tm-review-text">
+                            Travail correct mais communication à améliorer pendant le chantier.
+                            Quelques jours sans nouvelles.
+                        </p>
+
+                        <div class="tm-review-actions">
+                            <a href="#" class="tm-review-btn-primary text-decoration-none">Répondre publiquement</a>
+                            <a href="#" class="tm-review-btn-light text-decoration-none">Signaler</a>
+                        </div>
+                    </article>
+                </section>
+            </section>
+
+            <section class="tm-reviews-footer-card">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <div class="tm-reviews-footer-brand">
+                        <strong>TrouveMoi</strong>
+                        <span>|</span>
+                        <p class="mb-0">Plateforme de confiance pour artisans d'exception.</p>
+                    </div>
+
+                    <div class="tm-reviews-footer-links">
+                        <a href="#">À propos</a>
+                        <a href="#">Support</a>
+                        <a href="#">Mentions Légales</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+{% endblock %}

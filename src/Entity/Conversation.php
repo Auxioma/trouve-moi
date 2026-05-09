@@ -1,0 +1,169 @@
+<?php
+
+/**
+ * Copyright (c) 2026 Auxioma Web Agency
+ * https://trouvemoi.eu
+ *
+ * Ce fichier fait partie du projet Trouvemoi.eu développé par Auxioma Web Agency.
+ * Tous droits réservés.
+ *
+ * Ce code source, son architecture, sa structure, ses scripts et ses composants
+ * sont la propriété exclusive de Auxioma Web Agency et de ses partenaires.
+ *
+ * Toute reproduction, modification, distribution, publication ou utilisation,
+ * totale ou partielle, sans autorisation écrite préalable est strictement interdite.
+ *
+ * Ce code est confidentiel et propriétaire.
+ * Droit applicable : Monde.
+ */
+
+namespace App\Entity;
+
+use App\Repository\ConversationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: ConversationRepository::class)]
+class Conversation
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column]
+    private \DateTimeImmutable $createdAt;
+
+    #[ORM\Column]
+    private \DateTimeImmutable $updatedAt;
+
+    #[ORM\OneToMany(mappedBy: 'conversation', targetEntity: ConversationParticipant::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $participants;
+
+    #[ORM\OneToMany(mappedBy: 'conversation', targetEntity: Message::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OrderBy(['createdAt' => 'ASC'])]
+    private Collection $messages;
+
+    #[ORM\OneToMany(mappedBy: 'conversation', targetEntity: Quote::class)]
+    private Collection $quotes;
+
+    public function __construct()
+    {
+        $this->participants = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
+        $this->quotes = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): \DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(ConversationParticipant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants->add($participant);
+            $participant->setConversation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(ConversationParticipant $participant): self
+    {
+        if ($this->participants->removeElement($participant)) {
+            if ($participant->getConversation() === $this) {
+                $participant->setConversation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setConversation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            if ($message->getConversation() === $this) {
+                $message->setConversation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Quote>
+     */
+    public function getQuotes(): Collection
+    {
+        return $this->quotes;
+    }
+
+    public function addQuote(Quote $quote): static
+    {
+        if (!$this->quotes->contains($quote)) {
+            $this->quotes->add($quote);
+            $quote->setConversation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuote(Quote $quote): static
+    {
+        if ($this->quotes->removeElement($quote)) {
+            if ($quote->getConversation() === $this) {
+                $quote->setConversation(null);
+            }
+        }
+
+        return $this;
+    }
+}

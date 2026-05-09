@@ -12,37 +12,56 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+						<a class="nav-link" href="{{ path('app_home') }}">
+							{{ 'header.menu.home'|trans }}
+						</a>
 					</li>
+
 					<li class="nav-item">
-						<a class="nav-link" href="#">Features</a>
+						<a class="nav-link" href="#">
+							{{ 'header.menu.features'|trans }}
+						</a>
 					</li>
+
 					<li class="nav-item">
-						<a class="nav-link" href="#">Pricing</a>
+						<a class="nav-link" href="#">
+							{{ 'header.menu.pricing'|trans }}
+						</a>
 					</li>
+
 					<li class="nav-item">
-						<a class="nav-link disabled" href="#">Disabled</a>
+						<a class="nav-link disabled" href="#">
+							{{ 'header.menu.disabled'|trans }}
+						</a>
 					</li>
 				</ul>
 			</div>
 
 			<div class="auth d-none d-lg-block">
-				<a href="{{ path('app_login') }}" class="btn-connection">Connexion</a>
-				<a href="{{ path('user_registration_app_register') }}" class="btn-commencer">Commencer</a>
+				<a href="{{ path('app_login') }}" class="btn-connection">
+					{{ 'header.auth.login'|trans }}
+				</a>
+
+				<a href="{{ path('user_registration_app_register') }}" class="btn-commencer">
+					{{ 'header.auth.start'|trans }}
+				</a>
 			</div>
 		</nav>
 
-		{% if isHome is defined and isHome %} 
+		{% if isHome is defined and isHome %}
 			<div class="container cta">
 				<div class="row">
 					<div class="col-12 col-lg-9 col-xl-7 mx-auto mb-24">
-						<h1>L'excellence artisanale
-							<span>à votre portée</span>
+
+						<h1>
+							{{ 'header.hero.title'|trans }}
+							<span>{{ 'header.hero.title_span'|trans }}</span>
 						</h1>
+
 						<p>
-							Trouvez les meilleurs experts certifiés pour vos projets d'architecture et de rénovation.
-							Une sélection rigoureuse pour une tranquillité d'esprit totale.
+							{{ 'header.hero.description'|trans }}
 						</p>
+
 					</div>
 				</div>
 			</div>
@@ -61,12 +80,13 @@
 										type="text"
 										id="search-activity"
 										name="activity"
-										placeholder="Quel artisan cherchez-vous ?"
+										placeholder="{{ 'header.search.activity_placeholder'|trans }}"
 										class="recherche"
 										autocomplete="off"
 									>
 
 									<input type="hidden" name="activity_selected" id="activity_selected" value="">
+
 									<div id="activity-results" class="autocomplete-results"></div>
 								</div>
 
@@ -75,13 +95,14 @@
 
 							<div class="search-group search-group-location">
 								<div class="localisation position-relative">
+
 									<i class="fas fa-map-marker-alt icon"></i>
 
 									<input
 										type="text"
 										class="localisation-input"
 										name="location"
-										placeholder="Localisation"
+										placeholder="{{ 'header.search.location_placeholder'|trans }}"
 										autocomplete="off"
 									>
 
@@ -93,8 +114,10 @@
 
 									<button type="submit" class="localisation-btn">
 										<i class="bi bi-search"></i>
-										Rechercher
+
+										{{ 'header.search.button'|trans }}
 									</button>
+
 								</div>
 
 								<div id="location-error" class="search-error-message"></div>
@@ -108,28 +131,35 @@
 
 			<div class="container pb-5">
 				<div class="row">
+
 					<div class="col-12 col-md-4 pb-3 pb-md-0">
 						<img src="{{ asset('image/cta/01.png') }}" alt="" class="img-fluid w-100">
 					</div>
+
 					<div class="col-12 col-md-4 pb-3 pb-md-0">
 						<img src="{{ asset('image/cta/02.png') }}" alt="" class="img-fluid w-100">
 					</div>
+
 					<div class="col-12 col-md-4 pb-3 pb-md-0">
 						<img src="{{ asset('image/cta/03.png') }}" alt="" class="img-fluid w-100">
 					</div>
+
 				</div>
 			</div>
 
 			<div class="col-md-6 col-lg-5 col-xl-4 mx-auto pb-5">
 				<div class="d-flex align-items-center justify-content-center flex-nowrap text-center">
+
 					<div class="d-flex flex-shrink-0">
 						<img src="{{ asset('image/cta/10.png') }}" class="rounded-circle border border-white" style="width:40px;" alt="">
 						<img src="{{ asset('image/cta/11.png') }}" class="rounded-circle border border-white" style="width:40px; margin-left:-20px;" alt="">
 						<img src="{{ asset('image/cta/11.png') }}" class="rounded-circle border border-white" style="width:40px; margin-left:-20px;" alt="">
 					</div>
+
 					<span class="ms-2">
-						1,200+ artisans vérifiés ce mois-ci
+						{{ 'header.stats.artisans'|trans }}
 					</span>
+
 				</div>
 			</div>
 		{% endif %}
