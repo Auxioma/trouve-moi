@@ -30,7 +30,7 @@ final class CompanyController extends AbstractController
         private readonly UserRepository $userRepository,
     ){}
 
-    #[Route('/{category}/{city}/{slug}', name: 'deail_entreprise')]
+    #[Route('/{search}/{city}/{slug}', name: 'detail_entreprise')]
     #[Route('/nnnnnnnnnnnnnnnnn', name: 'deail_entqsqsqsqsreprise')]
     public function detailCompagny(string $slug): Response
     {

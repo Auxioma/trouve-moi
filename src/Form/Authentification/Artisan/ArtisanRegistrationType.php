@@ -178,14 +178,12 @@ class ArtisanRegistrationType extends AbstractType
                 'choice_label' => 'name',
                 'placeholder' => 'Choisir un métier',
                 'required' => true,
-                'autocomplete' => true,
                 'attr' => [
                     'class' => 'tm-signup-pro-select',
                 ],
                 'query_builder' => static fn (ActivityRepository $activityRepository) => $activityRepository
                     ->createQueryBuilder('a')
                     ->orderBy('a.name', 'ASC'),
-
                 'constraints' => [
                     new NotBlank(
                         message: 'Veuillez sélectionner votre activité.',

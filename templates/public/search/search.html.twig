@@ -41,7 +41,7 @@
                                              data-artisan-lng="{{ item.longitude|default('') }}"
                                              data-company="{% if item.compagny is not empty and item.compagny != 'N/A' %}{{ item.compagny|e('html_attr') }}{% else %}{{ item.firstname|trim|e('html_attr') }}{% endif %}">
                                             <h3>
-                                                <a href="{{ path('deail_entreprise', {
+                                                <a href="{{ path('detail_entreprise', {
                                                     category: item.activity.slug,
                                                     city: item.city|slug|lower,
                                                     slug: item.slug

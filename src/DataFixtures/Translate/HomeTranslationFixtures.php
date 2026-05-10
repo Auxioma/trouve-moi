@@ -176,7 +176,7 @@ final class HomeTranslationFixtures extends Fixture implements FixtureGroupInter
                 'translation' => 'Le Journal de l\'Artisanat',
             ],
             [
-                'key' => 'home.blog.category',
+                'key' => 'home.blog.search',
                 'translation' => 'ARCHITECTURE',
             ],
             [

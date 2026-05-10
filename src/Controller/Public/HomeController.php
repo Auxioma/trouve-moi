@@ -19,6 +19,7 @@
 
 namespace App\Controller\Public;
 
+use App\Repository\BlogPostRepository;
 use App\Repository\TestimonialRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,15 +31,19 @@ final class HomeController extends AbstractController
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly TestimonialRepository $testimonialRepository,
+        private readonly BlogPostRepository $blogPostRepository,
     ) {
     }
 
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
+        $blogPosts = $this->blogPostRepository->findBy([], ['id' => 'DESC'], 3);
+
         return $this->render('public/home/home.html.twig', [
             'localisationArtisants' => $this->userRepository->findLatestArtisans(4),
             'testimonials' => $this->testimonialRepository->findBy([], ['createdAt' => 'DESC'], 20),
+            'blogPosts' => $blogPosts,
         ]);
     }
 }

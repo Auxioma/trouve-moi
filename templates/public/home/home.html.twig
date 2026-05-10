@@ -139,7 +139,7 @@
                                     </span>
 
                                     <h2 class="nom-entreprise">
-                                        <a href="{{ path('deail_entreprise', {
+                                        <a href="{{ path('detail_entreprise', {
                                             category: item.activity.slug,
                                             city: item.city|slug|lower,
                                             slug: item.slug,
@@ -336,7 +336,7 @@
                         <h3 class="mb-64">{{ 'home.blog.subtitle'|trans }}</h3>
                     </div>
 
-                    {% for i in 1..3 %}
+                    {% for item in blogPosts %}
                         <div class="col-12 col-md-6 col-lg-4 mb-4">
                             <div class="actu h-100">
 
@@ -347,7 +347,7 @@
                                 <div class="txt">
 
                                     <span class="metiers">
-                                        {{ 'home.blog.category'|trans }}
+                                        {{ 'home.blog.search'|trans }}
                                     </span>
 
                                     <span class="temps-lecture">

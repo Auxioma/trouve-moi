@@ -9,7 +9,7 @@
 
                 <div class="tm-signup-pro-brand text-center">
                     <img
-                        src="https://trouvemoi.eu/image/logo/logo.png"
+                        src="{{ asset('image/logo/logo.png') }}"
                         alt="TrouveMoi"
                         class="tm-signup-pro-logo img-fluid"
                     >
@@ -24,7 +24,6 @@
                         <span class="tm-signup-pro-progress-item is-active"></span>
                         <span class="tm-signup-pro-progress-item is-active"></span>
                         <span class="tm-signup-pro-progress-item"></span>
-                        <span class="tm-signup-pro-progress-item"></span>
                     </div>
                 </div>
 
@@ -32,7 +31,7 @@
 
                     <div class="tm-signup-pro-head">
                         <div class="tm-signup-pro-eyebrow">
-                            Étape 2 sur 4
+                            Étape 2 sur 3
                         </div>
 
                         <h1 class="tm-signup-pro-title">
@@ -46,11 +45,11 @@
 
                     {{ form_start(form, {
                         attr: {
-                            class: 'tm-signup-pro-form'
+                            class: 'tm-signup-pro-form',
+                            novalidate: 'novalidate',
+                            'data-turbo': 'false'
                         }
                     }) }}
-                    {{ form_errors(form) }}
-
 
                     <div class="row">
 
@@ -66,8 +65,9 @@
                                 }
                             }) }}
 
-                            {{ form_errors(form.compagny) }}
-
+                            <p class="text-danger">
+                                {{ form.compagny.vars.errors|first.message ?? '' }}
+                            </p>
                         </div>
 
                         <div class="col-md-6">
@@ -81,9 +81,9 @@
                                 }
                             }) }}
 
-
-                                    {{ form_errors(form.siret) }}
-
+                            <p class="text-danger">
+                                {{ form.siret.vars.errors|first.message ?? '' }}
+                            </p>
                         </div>
 
                         <div class="col-md-6">
@@ -97,8 +97,9 @@
                                 }
                             }) }}
 
-                                    {{ form_errors(form.lastName) }}
-
+                            <p class="text-danger">
+                                {{ form.lastName.vars.errors|first.message ?? '' }}
+                            </p>
                         </div>
 
                         <div class="col-md-6">
@@ -112,9 +113,9 @@
                                 }
                             }) }}
 
-
-                                    {{ form_errors(form.phoneNumber) }}
-
+                            <p class="text-danger">
+                                {{ form.phoneNumber.vars.errors|first.message ?? '' }}
+                            </p>
                         </div>
 
                         <div class="col-md-6">
@@ -128,9 +129,9 @@
                                 }
                             }) }}
 
-
-                                    {{ form_errors(form.email) }}
-
+                            <p class="text-danger">
+                                {{ form.email.vars.errors|first.message ?? '' }}
+                            </p>
                         </div>
 
                         <div class="col-md-6">
@@ -140,13 +141,13 @@
 
                             {{ form_widget(form.activity, {
                                 attr: {
-                                    class: 'form-select tm-signup-pro-input' ~ (form.activity.vars.errors|length ? ' is-invalid' : ''),
+                                    class: 'form-select tm-signup-pro-select' ~ (form.activity.vars.errors|length ? ' is-invalid' : '')
                                 }
                             }) }}
 
-
-                                    {{ form_errors(form.activity) }}
-
+                            <p class="text-danger">
+                                {{ form.activity.vars.errors|first.message ?? '' }}
+                            </p>
                         </div>
 
                         <div class="col-md-6">
@@ -156,14 +157,14 @@
 
                             {{ form_widget(form.city, {
                                 attr: {
-                                    class: 'form-control tm-signup-pro-input' ~ (form.city.vars.errors|length ? ' is-invalid' : ''),
+                                    class: 'tm-signup-pro-input' ~ (form.city.vars.errors|length ? ' is-invalid' : ''),
                                     placeholder: 'Ex : Paris',
                                 }
                             }) }}
 
-
-                                    {{ form_errors(form.city) }}
-
+                            <p class="text-danger">
+                                {{ form.city.vars.errors|first.message ?? '' }}
+                            </p>
                         </div>
 
                         <div class="col-md-6">
@@ -177,9 +178,9 @@
                                 }
                             }) }}
 
-
-                                    {{ form_errors(form.website) }}
-
+                            <p class="text-danger">
+                                {{ form.website.vars.errors|first.message ?? '' }}
+                            </p>
                         </div>
 
                         <div class="col-12">
@@ -190,15 +191,34 @@
                             {{ form_widget(form.description, {
                                 attr: {
                                     class: 'form-control tm-signup-pro-textarea' ~ (form.description.vars.errors|length ? ' is-invalid' : ''),
+                                    minlength: 500,
+                                    oninput: '
+                                            const count = this.value.length;
+                                            const counter = document.getElementById("description-count");
+                                            const help = document.getElementById("description-help");
+                                            const remaining = document.getElementById("description-remaining");
+
+                                            counter.innerText = count;
+                                            remaining.innerText = Math.max(500 - count, 0);
+
+                                            if (count >= 500) {
+                                                help.classList.remove("text-danger");
+                                                help.classList.add("text-success");
+                                            } else {
+                                                help.classList.remove("text-success");
+                                                help.classList.add("text-danger");
+                                            }
+        '
                                 }
                             }) }}
 
+                            <p class="text-danger">
+                                {{ form.description.vars.errors|first.message ?? '' }}
+                            </p>
 
-                                    {{ form_errors(form.description) }}
-
-
-                            <div class="tm-signup-pro-help">
-                                Minimum recommandé : 120 caractères.
+                            <div id="description-help" class="tm-signup-pro-help text-danger">
+                                <span id="description-count">0</span>/500 caractères —
+                                il reste <span id="description-remaining">500</span> caractères minimum.
                             </div>
                         </div>
 
@@ -208,6 +228,7 @@
                             </label>
 
                             <div class="tm-signup-pro-upload">
+
                                 <i class="fa-solid fa-cloud-arrow-up"></i>
 
                                 <strong>
@@ -218,12 +239,40 @@
                                     PNG, JPG ou WEBP · max 5MB
                                 </p>
 
-                                {{ form_widget(form.imageFile) }}
+                                {{ form_widget(form.imageFile, {
+                                    attr: {
+                                        accept: 'image/png,image/jpeg,image/webp',
+                                        onchange: '
+                                                    const file = this.files[0];
+
+                                                    if (file) {
+                                                        const reader = new FileReader();
+
+                                                        reader.onload = function(e) {
+                                                            const preview = document.getElementById("image-preview");
+
+                                                            preview.src = e.target.result;
+                                                            preview.classList.remove("d-none");
+                                                        };
+
+                                                        reader.readAsDataURL(file);
+                                                    }
+                                                '
+                                    }
+                                }) }}
+
+                                <img
+                                    id="image-preview"
+                                    class="d-none mt-3 rounded-4 img-fluid"
+                                    style="max-width: 200px; max-height: 200px; object-fit: cover;"
+                                    alt="Prévisualisation du logo"
+                                >
+
                             </div>
 
-
-                                    {{ form_errors(form.imageFile) }}
-
+                            <p class="text-danger">
+                                {{ form.imageFile.vars.errors|first.message ?? '' }}
+                            </p>
                         </div>
 
                         <div class="col-12">
@@ -237,11 +286,9 @@
                                 }
                             }) }}
 
-                            {% if form.plainPassword.vars.errors|length %}
-                                <div class="tm-signup-pro-error">
-                                    {{ form_errors(form.plainPassword) }}
-                                </div>
-                            {% endif %}
+                            <p class="text-danger">
+                                {{ form.plainPassword.vars.errors|first.message ?? '' }}
+                            </p>
 
                             <div class="tm-signup-pro-help">
                                 12 caractères minimum, une majuscule, une minuscule et un chiffre.
@@ -264,8 +311,9 @@
                                 </span>
                             </label>
 
-
-                                    {{ form_errors(form.agreeTerms) }}
+                            <p class="text-danger">
+                                {{ form.agreeTerms.vars.errors|first.message ?? '' }}
+                            </p>
 
                         </div>
 

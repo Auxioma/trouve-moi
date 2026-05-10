@@ -15,14 +15,15 @@ class TranslationCrudController extends AbstractCrudController
         return Translation::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('translationKey')->hideOnIndex(),
+            TextField::new('locale')->hideOnIndex(),
+            TextField::new('translation'),
+            TextField::new('page')->hideOnIndex(),
         ];
     }
-    */
+
 }

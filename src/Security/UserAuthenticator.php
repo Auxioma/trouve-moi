@@ -79,12 +79,12 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
         // ARTISAN
         if (\in_array('ROLE_ARTISAN', $roles, true)) {
-            return new RedirectResponse($this->urlGenerator->generate('app_user_dashboard'));
+            return new RedirectResponse($this->urlGenerator->generate('artisan_dashboard'));
         }
 
         // USER / CLIENT
         if (\in_array('ROLE_USER', $roles, true)) {
-            return new RedirectResponse($this->urlGenerator->generate('app_visiteurs_dashboard'));
+            return new RedirectResponse($this->urlGenerator->generate('app_user_dashboard'));
         }
 
         // Par défaut

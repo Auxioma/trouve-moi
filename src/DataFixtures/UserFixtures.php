@@ -65,11 +65,11 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $artisan->setImageName('artisan.png');
 
         $artisan->setActivity(
-            $this->getReference(ActivityFixtures::ACTIVITY_MACON, Activity::class)
+            $this->getReference('activity_macon', Activity::class)
         );
 
         $manager->persist($artisan);
-        $this->addReference(self::USER_ARTISAN, $artisan);
+        $this->setReference(self::USER_ARTISAN, $artisan);
 
         $manager->flush();
     }
