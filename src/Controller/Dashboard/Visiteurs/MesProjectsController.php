@@ -25,7 +25,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/user/projects', name: 'dashboard-visiteurs_')]
-#[IsGranted('ROLE_ARTISAN')]
+#[IsGranted('ROLE_USER')]
 final class MesProjectsController extends AbstractController
 {
     #[Route('/', name: 'liste_projects')]
