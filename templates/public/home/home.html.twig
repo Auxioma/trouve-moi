@@ -120,8 +120,10 @@
                         <div class="col-12 col-sm-6 col-lg-3 mb-4">
                             <div class="artisan h-100">
                                 <div class="thumb">
+                                    {% set firstPicture = item.pictures is not empty ? item.pictures|first : null %}
+
                                     <img
-                                        src="{{ vich_uploader_asset(item.pictures|first, 'imageFile') }}"
+                                        src="{{ firstPicture ? vich_uploader_asset(firstPicture, 'imageFile') ?? asset('images/artisan-default.png') }}"
                                         alt="{{ item.name ?? 'home.selection.default_artisan'|trans }}"
                                         class="img-fluid w-100 rounded-2"
                                         width="370"
@@ -140,7 +142,7 @@
 
                                     <h2 class="nom-entreprise">
                                         <a href="{{ path('detail_entreprise', {
-                                            category: item.activity.slug,
+                                            search: item.activity.slug,
                                             city: item.city|slug|lower,
                                             slug: item.slug,
                                         }) }}">
@@ -149,7 +151,7 @@
                                     </h2>
 
                                     <p class="description-ets">
-                                        {{ item.description|u.truncate(100) }} ...
+                                        {{ item.description|u.truncate(90) }} ...
                                     </p>
 
                                     <span class="localisation-ets">

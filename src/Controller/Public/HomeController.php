@@ -38,12 +38,10 @@ final class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
-        $blogPosts = $this->blogPostRepository->findBy([], ['id' => 'DESC'], 3);
-
         return $this->render('public/home/home.html.twig', [
             'localisationArtisants' => $this->userRepository->findLatestArtisans(4),
             'testimonials' => $this->testimonialRepository->findBy([], ['createdAt' => 'DESC'], 20),
-            'blogPosts' => $blogPosts,
+            'blogPosts' => $this->blogPostRepository->findBy([], ['id' => 'DESC'], 3),
         ]);
     }
 }

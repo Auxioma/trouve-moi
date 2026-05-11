@@ -31,10 +31,9 @@ final class CompanyController extends AbstractController
     ){}
 
     #[Route('/{search}/{city}/{slug}', name: 'detail_entreprise')]
-    #[Route('/nnnnnnnnnnnnnnnnn', name: 'deail_entqsqsqsqsreprise')]
     public function detailCompagny(string $slug): Response
     {
-        return $this->render('entreprise/show.html.twig', [
+        return $this->render('public/entreprise/show.html.twig', [
             'item' => $this->userRepository->findOneBy(['slug' => $slug]),
         ]);
     }

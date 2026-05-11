@@ -28,6 +28,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ActivityFixtures extends Fixture
 {
     public const ACTIVITY_MACON = 'activity_macon';
+    public const ACTIVITY_ELECTRICIEN = 'activity_electricien';
+    public const ACTIVITY_PLOMBIER = 'activity_plombier';
 
     public function __construct(
         private readonly SluggerInterface $slugger,
@@ -62,7 +64,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Maçon VRD', 'naf' => '43.99C'],
             ['name' => 'Maçon en rénovation', 'naf' => '43.99C'],
             ['name' => 'Maçon piscinier', 'naf' => '43.99C'],
-            ['name' => 'Chef d’équipe maçonnerie', 'naf' => '43.99C'],
+            ['name' => 'Chef d\'équipe maçonnerie', 'naf' => '43.99C'],
 
             ['name' => 'Terrassier', 'naf' => '43.12A'],
             ['name' => 'Terrassier VRD', 'naf' => '43.12A'],
@@ -112,7 +114,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Monteur structures métalliques', 'naf' => '43.99B'],
             ['name' => 'Assembleur charpente métallique', 'naf' => '43.99B'],
             ['name' => 'Poseur de connecteurs bois', 'naf' => '43.91A'],
-            ['name' => 'Chef d’équipe charpente', 'naf' => '43.91A'],
+            ['name' => 'Chef d\'équipe charpente', 'naf' => '43.91A'],
             ['name' => 'Technicien charpente', 'naf' => '43.91A'],
             ['name' => 'Entreprise de charpente', 'naf' => '43.91A'],
 
@@ -122,7 +124,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Ardoisier', 'naf' => '43.91B'],
             ['name' => 'Tuilier', 'naf' => '43.91B'],
             ['name' => 'Poseur de tuiles', 'naf' => '43.91B'],
-            ['name' => 'Poseur d’ardoises', 'naf' => '43.91B'],
+            ['name' => 'Poseur d\'ardoises', 'naf' => '43.91B'],
             ['name' => 'Poseur de bac acier', 'naf' => '43.91B'],
             ['name' => 'Poseur de toiture zinc', 'naf' => '43.91B'],
             ['name' => 'Poseur de toiture cuivre', 'naf' => '43.91B'],
@@ -140,12 +142,12 @@ class ActivityFixtures extends Fixture
             ['name' => 'Poseur membrane EPDM', 'naf' => '43.99A'],
             ['name' => 'Poseur membrane bitume', 'naf' => '43.99A'],
             ['name' => 'Bardeur toiture', 'naf' => '43.91B'],
-            ['name' => 'Chef d’équipe couverture', 'naf' => '43.91B'],
+            ['name' => 'Chef d\'équipe couverture', 'naf' => '43.91B'],
 
             ['name' => 'Façadier', 'naf' => '43.34Z'],
             ['name' => 'Ravaleur de façade', 'naf' => '43.34Z'],
             ['name' => 'Enduiseur façade', 'naf' => '43.34Z'],
-            ['name' => 'Projeteur d’enduit', 'naf' => '43.34Z'],
+            ['name' => 'Projeteur d\'enduit', 'naf' => '43.34Z'],
             ['name' => 'Iteiste', 'naf' => '43.29A'],
             ['name' => 'Poseur isolation thermique extérieure', 'naf' => '43.29A'],
             ['name' => 'Bardeur façade', 'naf' => '43.99B'],
@@ -166,7 +168,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Applicateur enduit à la chaux', 'naf' => '43.34Z'],
             ['name' => 'Poseur modénatures façade', 'naf' => '43.99C'],
             ['name' => 'Cordiste façade', 'naf' => '43.99D'],
-            ['name' => 'Chef d’équipe façade', 'naf' => '43.34Z'],
+            ['name' => 'Chef d\'équipe façade', 'naf' => '43.34Z'],
 
             ['name' => 'Étancheur', 'naf' => '43.99A'],
             ['name' => 'Étancheur bitume', 'naf' => '43.99A'],
@@ -177,7 +179,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Étancheur terrasse', 'naf' => '43.99A'],
             ['name' => 'Étancheur sous-sol', 'naf' => '43.99A'],
             ['name' => 'Applicateur cuvelage', 'naf' => '43.99A'],
-            ['name' => 'Applicateur résine d’étanchéité', 'naf' => '43.99A'],
+            ['name' => 'Applicateur résine d\'étanchéité', 'naf' => '43.99A'],
             ['name' => 'Isolateur thermique', 'naf' => '43.29A'],
             ['name' => 'Isolateur combles', 'naf' => '43.29A'],
             ['name' => 'Isolateur toiture', 'naf' => '43.29A'],
@@ -188,18 +190,18 @@ class ActivityFixtures extends Fixture
             ['name' => 'Calorifugeur', 'naf' => '43.29A'],
             ['name' => 'Poseur pare-vapeur', 'naf' => '43.29A'],
             ['name' => 'Poseur écran sous-toiture', 'naf' => '43.91B'],
-            ['name' => 'Technicien étanchéité à l’air', 'naf' => '43.29A'],
+            ['name' => 'Technicien étanchéité à l\'air', 'naf' => '43.29A'],
             ['name' => 'Installateur VMC', 'naf' => '43.22B'],
             ['name' => 'Technicien ventilation', 'naf' => '43.22B'],
             ['name' => 'Nettoyeur réseaux VMC', 'naf' => '81.22Z'],
-            ['name' => 'Chef d’équipe isolation', 'naf' => '43.29A'],
+            ['name' => 'Chef d\'équipe isolation', 'naf' => '43.29A'],
 
             ['name' => 'Menuisier extérieur', 'naf' => '43.32A'],
             ['name' => 'Menuisier bois extérieur', 'naf' => '43.32A'],
             ['name' => 'Menuisier PVC', 'naf' => '43.32A'],
             ['name' => 'Menuisier aluminium', 'naf' => '43.32B'],
             ['name' => 'Poseur de fenêtres', 'naf' => '43.32A'],
-            ['name' => 'Poseur de portes d’entrée', 'naf' => '43.32A'],
+            ['name' => 'Poseur de portes d\'entrée', 'naf' => '43.32A'],
             ['name' => 'Poseur de baies vitrées', 'naf' => '43.32A'],
             ['name' => 'Poseur de vérandas', 'naf' => '43.32A'],
             ['name' => 'Vérandaliste', 'naf' => '43.32A'],
@@ -218,7 +220,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Réparateur menuiseries extérieures', 'naf' => '43.32A'],
             ['name' => 'Dépanneur volet roulant', 'naf' => '43.32A'],
             ['name' => 'Motorisation portail', 'naf' => '43.21A'],
-            ['name' => 'Chef d’équipe menuiserie extérieure', 'naf' => '43.32A'],
+            ['name' => 'Chef d\'équipe menuiserie extérieure', 'naf' => '43.32A'],
 
             ['name' => 'Menuisier intérieur', 'naf' => '43.32A'],
             ['name' => 'Menuisier agenceur', 'naf' => '43.32A'],
@@ -226,7 +228,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Poseur de portes intérieures', 'naf' => '43.32A'],
             ['name' => 'Poseur de placards', 'naf' => '43.32A'],
             ['name' => 'Poseur de dressings', 'naf' => '43.32A'],
-            ['name' => 'Poseur d’escaliers bois', 'naf' => '43.32A'],
+            ['name' => 'Poseur d\'escaliers bois', 'naf' => '43.32A'],
             ['name' => 'Escaliéteur', 'naf' => '43.32A'],
             ['name' => 'Poseur de plinthes', 'naf' => '43.32A'],
             ['name' => 'Poseur de moulures', 'naf' => '43.32A'],
@@ -244,7 +246,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Vernisseur bois', 'naf' => '43.32A'],
             ['name' => 'Laqueur bois', 'naf' => '43.32A'],
             ['name' => 'Restaurateur bois intérieur', 'naf' => '43.32A'],
-            ['name' => 'Chef d’équipe agencement', 'naf' => '43.32A'],
+            ['name' => 'Chef d\'équipe agencement', 'naf' => '43.32A'],
 
             ['name' => 'Serrurier', 'naf' => '43.32B'],
             ['name' => 'Serrurier dépanneur', 'naf' => '43.32B'],
@@ -258,7 +260,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Poseur de rideaux métalliques', 'naf' => '43.32B'],
             ['name' => 'Poseur de grilles métalliques', 'naf' => '43.32B'],
             ['name' => 'Poseur de garde-corps métal', 'naf' => '43.32B'],
-            ['name' => 'Poseur d’escaliers métal', 'naf' => '43.32B'],
+            ['name' => 'Poseur d\'escaliers métal', 'naf' => '43.32B'],
             ['name' => 'Poseur de verrières', 'naf' => '43.32B'],
             ['name' => 'Poseur de cloisons vitrées', 'naf' => '43.32B'],
             ['name' => 'Vitrier', 'naf' => '43.34Z'],
@@ -267,10 +269,11 @@ class ActivityFixtures extends Fixture
             ['name' => 'Réparateur vitrage', 'naf' => '43.34Z'],
             ['name' => 'Poseur miroirs', 'naf' => '43.34Z'],
             ['name' => 'Poseur vitrines magasin', 'naf' => '43.34Z'],
-            ['name' => 'Installateur contrôle d’accès', 'naf' => '43.21A'],
+            ['name' => 'Installateur contrôle d\'accès', 'naf' => '43.21A'],
             ['name' => 'Motorisation rideau métallique', 'naf' => '43.21A'],
             ['name' => 'Technicien fermeture bâtiment', 'naf' => '43.32B'],
-            ['name' => 'Chef d’équipe serrurerie', 'naf' => '43.32B'],
+            ['name' => 'Chef d\'équipe serrurerie', 'naf' => '43.32B'],
+
             ['name' => 'Plombier', 'naf' => '43.22A'],
             ['name' => 'Plombier sanitaire', 'naf' => '43.22A'],
             ['name' => 'Plombier dépanneur', 'naf' => '43.22A'],
@@ -281,12 +284,12 @@ class ActivityFixtures extends Fixture
             ['name' => 'Poseur de baignoire', 'naf' => '43.22A'],
             ['name' => 'Poseur de receveur', 'naf' => '43.22A'],
             ['name' => 'Poseur de lavabo', 'naf' => '43.22A'],
-            ['name' => 'Installateur salle d’eau', 'naf' => '43.22A'],
-            ['name' => 'Réparateur fuite d’eau', 'naf' => '43.22A'],
+            ['name' => 'Installateur salle d\'eau', 'naf' => '43.22A'],
+            ['name' => 'Réparateur fuite d\'eau', 'naf' => '43.22A'],
             ['name' => 'Déboucheur canalisation', 'naf' => '43.22A'],
             ['name' => 'Hydrocureur', 'naf' => '43.22A'],
             ['name' => 'Caméra inspection canalisation', 'naf' => '43.22A'],
-            ['name' => 'Poseur adoucisseur d’eau', 'naf' => '43.22A'],
+            ['name' => 'Poseur adoucisseur d\'eau', 'naf' => '43.22A'],
             ['name' => 'Poseur chauffe-eau électrique', 'naf' => '43.22A'],
             ['name' => 'Poseur ballon thermodynamique', 'naf' => '43.22A'],
             ['name' => 'Poseur réseaux PER', 'naf' => '43.22A'],
@@ -294,8 +297,8 @@ class ActivityFixtures extends Fixture
             ['name' => 'Poseur réseaux multicouche', 'naf' => '43.22A'],
             ['name' => 'Poseur évacuation PVC', 'naf' => '43.22A'],
             ['name' => 'Installateur surpresseur', 'naf' => '43.22A'],
-            ['name' => 'Technicien traitement de l’eau', 'naf' => '43.22A'],
-            ['name' => 'Chef d’équipe plomberie', 'naf' => '43.22A'],
+            ['name' => 'Technicien traitement de l\'eau', 'naf' => '43.22A'],
+            ['name' => 'Chef d\'équipe plomberie', 'naf' => '43.22A'],
 
             ['name' => 'Chauffagiste', 'naf' => '43.22B'],
             ['name' => 'Technicien chauffage', 'naf' => '43.22B'],
@@ -321,7 +324,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Tuyauteur chauffage', 'naf' => '43.22B'],
             ['name' => 'Calorifugeur réseau chauffage', 'naf' => '43.22B'],
             ['name' => 'Metteur au point CVC', 'naf' => '43.22B'],
-            ['name' => 'Chef d’équipe CVC', 'naf' => '43.22B'],
+            ['name' => 'Chef d\'équipe CVC', 'naf' => '43.22B'],
 
             ['name' => 'Électricien', 'naf' => '43.21A'],
             ['name' => 'Électricien bâtiment', 'naf' => '43.21A'],
@@ -347,14 +350,14 @@ class ActivityFixtures extends Fixture
             ['name' => 'Installateur groupe électrogène', 'naf' => '43.21A'],
             ['name' => 'Installateur parafoudre', 'naf' => '43.21A'],
             ['name' => 'Diagnostiqueur installation électrique', 'naf' => '43.21A'],
-            ['name' => 'Chef d’équipe électricité', 'naf' => '43.21A'],
+            ['name' => 'Chef d\'équipe électricité', 'naf' => '43.21A'],
             ['name' => 'Domoticien', 'naf' => '43.21A'],
             ['name' => 'Intégrateur domotique', 'naf' => '43.21A'],
             ['name' => 'Installateur alarme', 'naf' => '43.21A'],
             ['name' => 'Installateur vidéosurveillance', 'naf' => '43.21A'],
             ['name' => 'Installateur interphone', 'naf' => '43.21A'],
             ['name' => 'Installateur visiophone', 'naf' => '43.21A'],
-            ['name' => 'Installateur contrôle d’accès', 'naf' => '43.21A'],
+            ['name' => 'Installateur contrôle d\'accès', 'naf' => '43.21A'],
             ['name' => 'Installateur réseau informatique', 'naf' => '43.21A'],
             ['name' => 'Câbleur RJ45', 'naf' => '43.21A'],
             ['name' => 'Technicien fibre optique', 'naf' => '42.22Z'],
@@ -372,7 +375,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Installateur détecteurs fumée', 'naf' => '43.21A'],
             ['name' => 'Installateur éclairage connecté', 'naf' => '43.21A'],
             ['name' => 'Installateur serrure connectée', 'naf' => '43.21A'],
-            ['name' => 'Chef d’équipe courant faible', 'naf' => '43.21A'],
+            ['name' => 'Chef d\'équipe courant faible', 'naf' => '43.21A'],
             ['name' => 'Installateur panneaux solaires', 'naf' => '43.21A'],
             ['name' => 'Installateur photovoltaïque', 'naf' => '43.21A'],
             ['name' => 'Installateur solaire thermique', 'naf' => '43.22B'],
@@ -423,7 +426,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Poseur cloison coupe-feu', 'naf' => '43.31Z'],
             ['name' => 'Technicien isolation acoustique', 'naf' => '43.31Z'],
             ['name' => 'Correcteur acoustique intérieur', 'naf' => '43.31Z'],
-            ['name' => 'Chef d’équipe plâtrerie', 'naf' => '43.31Z'],
+            ['name' => 'Chef d\'équipe plâtrerie', 'naf' => '43.31Z'],
 
             ['name' => 'Peintre en bâtiment', 'naf' => '43.34Z'],
             ['name' => 'Peintre intérieur', 'naf' => '43.34Z'],
@@ -449,7 +452,8 @@ class ActivityFixtures extends Fixture
             ['name' => 'Peintre après sinistre', 'naf' => '43.34Z'],
             ['name' => 'Restaurateur peinture ancienne', 'naf' => '43.34Z'],
             ['name' => 'Nettoyeur murs plafonds', 'naf' => '81.21Z'],
-            ['name' => 'Chef d’équipe peinture', 'naf' => '43.34Z'],
+            ['name' => 'Chef d\'équipe peinture', 'naf' => '43.34Z'],
+
             ['name' => 'Carreleur', 'naf' => '43.33Z'],
             ['name' => 'Mosaïste', 'naf' => '43.33Z'],
             ['name' => 'Poseur faïence', 'naf' => '43.33Z'],
@@ -474,7 +478,8 @@ class ActivityFixtures extends Fixture
             ['name' => 'Applicateur sol industriel', 'naf' => '43.33Z'],
             ['name' => 'Poseur dalle sur plots', 'naf' => '43.33Z'],
             ['name' => 'Poseur terrasse carrelée', 'naf' => '43.33Z'],
-            ['name' => 'Chef d’équipe revêtements', 'naf' => '43.33Z'],
+            ['name' => 'Chef d\'équipe revêtements', 'naf' => '43.33Z'],
+
             ['name' => 'Paysagiste', 'naf' => '81.30Z'],
             ['name' => 'Jardinier paysagiste', 'naf' => '81.30Z'],
             ['name' => 'Maçon paysager', 'naf' => '43.99C'],
@@ -487,7 +492,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Poseur clôtures', 'naf' => '43.29B'],
             ['name' => 'Poseur grillage', 'naf' => '43.29B'],
             ['name' => 'Poseur portail extérieur', 'naf' => '43.29B'],
-            ['name' => 'Pisciniste', 'naf' => '43.99C'],
+            ['name' => 'Piscinier', 'naf' => '43.99C'],
             ['name' => 'Constructeur piscine béton', 'naf' => '43.99C'],
             ['name' => 'Poseur coque piscine', 'naf' => '43.99C'],
             ['name' => 'Technicien piscine', 'naf' => '43.22B'],
@@ -499,11 +504,11 @@ class ActivityFixtures extends Fixture
             ['name' => 'Poseur assainissement individuel', 'naf' => '37.00Z'],
             ['name' => 'Installateur fosse septique', 'naf' => '37.00Z'],
             ['name' => 'Poseur micro-station', 'naf' => '37.00Z'],
-            ['name' => 'Chef d’équipe aménagement extérieur', 'naf' => '81.30Z'],
+            ['name' => 'Chef d\'équipe aménagement extérieur', 'naf' => '81.30Z'],
 
             ['name' => 'Architecte', 'naf' => '71.11Z'],
-            ['name' => 'Architecte d’intérieur', 'naf' => '74.10Z'],
-            ['name' => 'Maître d’œuvre', 'naf' => '71.11Z'],
+            ['name' => 'Architecte d\'intérieur', 'naf' => '74.10Z'],
+            ['name' => 'Maître d\'œuvre', 'naf' => '71.11Z'],
             ['name' => 'Conducteur de travaux', 'naf' => '43.99C'],
             ['name' => 'Chef de chantier', 'naf' => '43.99C'],
             ['name' => 'Coordinateur travaux', 'naf' => '43.99C'],
@@ -515,17 +520,17 @@ class ActivityFixtures extends Fixture
             ['name' => 'BIM modeleur', 'naf' => '71.12B'],
             ['name' => 'BIM coordinateur', 'naf' => '71.12B'],
             ['name' => 'Ingénieur structure', 'naf' => '71.12B'],
-            ['name' => 'Bureau d’études structure', 'naf' => '71.12B'],
-            ['name' => 'Bureau d’études thermique', 'naf' => '71.12B'],
-            ['name' => 'Bureau d’études fluides', 'naf' => '71.12B'],
-            ['name' => 'Bureau d’études électricité', 'naf' => '71.12B'],
+            ['name' => 'Bureau d\'études structure', 'naf' => '71.12B'],
+            ['name' => 'Bureau d\'études thermique', 'naf' => '71.12B'],
+            ['name' => 'Bureau d\'études fluides', 'naf' => '71.12B'],
+            ['name' => 'Bureau d\'études électricité', 'naf' => '71.12B'],
             ['name' => 'Thermicien', 'naf' => '71.12B'],
             ['name' => 'Acousticien bâtiment', 'naf' => '71.12B'],
             ['name' => 'Géomètre-topographe', 'naf' => '71.12A'],
             ['name' => 'Diagnostiqueur immobilier', 'naf' => '71.20B'],
             ['name' => 'Coordinateur SPS', 'naf' => '74.90B'],
             ['name' => 'OPC chantier', 'naf' => '74.90B'],
-            ['name' => 'Assistant maîtrise d’ouvrage', 'naf' => '74.90B'],
+            ['name' => 'Assistant maîtrise d\'ouvrage', 'naf' => '74.90B'],
             ['name' => 'Agent de maintenance bâtiment', 'naf' => '81.10Z'],
             ['name' => 'Technicien multitechnique', 'naf' => '81.10Z'],
             ['name' => 'Technicien multiservices', 'naf' => '81.10Z'],
@@ -550,7 +555,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Technicien désenfumage', 'naf' => '43.22B'],
             ['name' => 'Mainteneur portes automatiques', 'naf' => '43.29B'],
             ['name' => 'Mainteneur ascenseur', 'naf' => '43.29B'],
-            ['name' => 'Chef d’équipe maintenance bâtiment', 'naf' => '81.10Z'],
+            ['name' => 'Chef d\'équipe maintenance bâtiment', 'naf' => '81.10Z'],
             ['name' => 'Monteur échafaudage roulant', 'naf' => '43.99D'],
             ['name' => 'Monteur échafaudage fixe', 'naf' => '43.99D'],
             ['name' => 'Cordiste industriel', 'naf' => '43.99D'],
@@ -594,7 +599,7 @@ class ActivityFixtures extends Fixture
             ['name' => 'Poseur pergola bioclimatique', 'naf' => '43.32A'],
             ['name' => 'Poseur véranda aluminium', 'naf' => '43.32A'],
             ['name' => 'Poseur véranda bois', 'naf' => '43.32A'],
-            ['name' => 'Poseur sas d’entrée', 'naf' => '43.32A'],
+            ['name' => 'Poseur sas d\'entrée', 'naf' => '43.32A'],
             ['name' => 'Installateur fermeture industrielle', 'naf' => '43.29B'],
             ['name' => 'Poseur quai de chargement', 'naf' => '43.29B'],
             ['name' => 'Installateur porte sectionnelle', 'naf' => '43.29B'],
@@ -635,33 +640,24 @@ class ActivityFixtures extends Fixture
                 ->lower()
                 ->toString();
 
-            $reference = 'activity_'.$slug;
+            $reference = 'activity_' . $slug;
 
             $existingActivity = $this->activityRepository->findOneBy([
                 'name' => $data['name'],
             ]);
 
             if ($existingActivity) {
-                $this->setReference(
-                    $reference,
-                    $existingActivity
-                );
-
+                $this->setReference($reference, $existingActivity);
                 continue;
             }
 
             $activity = new Activity();
-
             $activity->setName($data['name']);
             $activity->setNaf($data['naf']);
             $activity->setSlug($slug);
 
             $manager->persist($activity);
-
-            $this->setReference(
-                $reference,
-                $activity
-            );
+            $this->setReference($reference, $activity);
         }
 
         $manager->flush();
