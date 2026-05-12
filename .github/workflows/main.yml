@@ -38,9 +38,9 @@ jobs:
           git pull &&   # Récupère les dernières modifications du dépôt
           php composer.phar dump-env dev
           php composer.phar install  # Installe les dépendances PHP définies dans le projet
+          php bin/console doctrine:schema:drop --force --full-database  # Supprime la base de données existante (attention, cela efface toutes les données)
           php bin/console d:s:u --force  # Met à jour la base de données
-          php bin/console doctrine:fixtures:load --group=home_translation -n
-          php bin/console doctrine:fixtures:load --group=header_translation --append -n
+          php bin/console doctrine:fixtures:load -n  # Charge les données de test dans la base de données
           php bin/console importmap:install
           php bin/console asset-map:compile
           php bin/console cache:clear  # Vide le cache de l'application
