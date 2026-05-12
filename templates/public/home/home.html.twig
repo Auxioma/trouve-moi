@@ -123,7 +123,7 @@
                                     {% set firstPicture = item.pictures is not empty ? item.pictures|first : null %}
 
                                     <img
-                                        src="{{ firstPicture ? vich_uploader_asset(firstPicture, 'imageFile') ?? asset('images/artisan-default.png') }}"
+                                        src="{{ firstPicture ? vich_uploader_asset(firstPicture, 'imageFile') ?? asset('image/artisan.png') }}"
                                         alt="{{ item.name ?? 'home.selection.default_artisan'|trans }}"
                                         class="img-fluid w-100 rounded-2"
                                         width="370"
