@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoriesController!{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="couleur-gris">
+            <div class="container notre-selection">
+                <div class="row">
+                    {% for item in localisationArtisants %}
+                        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+                            <div class="artisan h-100">
+                                <div class="thumb"> 
+                                    {% set firstPicture = item.pictures is not empty ? item.pictures|first : null %}
+
+                                    <img
+                                        src="{{ firstPicture ? vich_uploader_asset(firstPicture, 'imageFile') ?? asset('image/artisan.png') }}"
+                                        alt="{{ item.name ?? 'home.selection.default_artisan'|trans }}"
+                                        class="img-fluid w-100 rounded-2"
+                                        width="370"
+                                        height="470"
+                                    />
+                                </div>
+
+                                <div class="thumb-info">
+                                    <span class="metier">
+                                        {{ item.activity.name ?? 'home.selection.default_activity'|trans }}
+                                    </span>
+
+                                    <span class="service">
+                                        {{ 'home.selection.badge'|trans }}
+                                    </span>
+
+                                    <h2 class="nom-entreprise">
+                                        <a href="#">
+                                            {{ item.compagny ?? item.firstName ~ ' ' ~ item.lastName ?? 'home.selection.default_artisan'|trans }}
+                                        </a>
+                                    </h2>
+
+                                    <p class="description-ets">
+                                        {{ item.description|u.truncate(80) }} ...
+                                    </p>
+
+                                    <span class="localisation-ets">
+                                        <i class="fas fa-map-marker-alt me-2"></i>
+                                        {{ item.city }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="navigation">
+                        {{ knp_pagination_render(localisationArtisants) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -19,6 +19,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Enum\UserProfileStatus;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -55,12 +56,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $this->createQueryBuilder('u')
             ->andWhere('u.isVerified = :verified')
             ->andWhere('u.roles LIKE :role')
+            ->andWhere('u.profileStatus = :profileStatus')
             ->setParameter('verified', true)
             ->setParameter('role', '%ROLE_ARTISAN%')
+            ->setParameter('profileStatus', UserProfileStatus::VALIDATED)
             ->orderBy('u.id', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
     }
 
     public function findDistinctCitiesByTerm(string $term): array
@@ -121,5 +125,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function findByCategory($category): array
+    {
+        return $this->createQueryBuilder('u')
+            ->leftJoin('u.activity', 'a')
+            ->andWhere('LOWER(a.slug) = LOWER(:category)')
+            ->setParameter('category', mb_trim($category))
+            ->orderBy('u.id', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 }

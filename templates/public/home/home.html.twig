@@ -133,7 +133,9 @@
 
                                 <div class="thumb-info">
                                     <span class="metier">
-                                        {{ item.activity.name ?? 'home.selection.default_activity'|trans }}
+                                        <a href="{{ path('app_categories', { category: item.activity.slug }) }}">
+                                            {{ item.activity.name ?? 'home.selection.default_activity'|trans }}
+                                        </a>
                                     </span>
 
                                     <span class="service">
@@ -151,7 +153,7 @@
                                     </h2>
 
                                     <p class="description-ets">
-                                        {{ item.description|u.truncate(90) }} ...
+                                        {{ item.description|u.truncate(80) }} ...
                                     </p>
 
                                     <span class="localisation-ets">
