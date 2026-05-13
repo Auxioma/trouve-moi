@@ -20,6 +20,7 @@
 namespace App\Entity;
 
 use App\Entity\Enum\UserProfileStatus;
+use App\Entity\Pictures;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -118,12 +119,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeImmutable $updatedAt = null;
 
     /**
-     * @var Collection<int, Services>
-     */
-    #[ORM\ManyToMany(targetEntity: Services::class, inversedBy: 'users')]
-    private Collection $services;
-
-    /**
      * @var Collection<int, Pictures>
      */
     #[ORM\OneToMany(
@@ -160,12 +155,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $lastLogin = null;
 
-    /**
-     * @var Collection<int, Subscription>
-     */
-    #[ORM\OneToMany(targetEntity: Subscription::class, mappedBy: 'user')]
-    private Collection $subscriptions;
-
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -178,6 +167,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: BlogPost::class, mappedBy: 'user')]
     private Collection $blogPosts;
 
+    /**
+     * @var Collection<int, Devis>
+     */
+    #[ORM\OneToMany(targetEntity: Devis::class, mappedBy: 'visiteur')]
+    private Collection $devis;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -187,6 +182,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->subscriptions = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->blogPosts = new ArrayCollection();
+        $this->devis = new ArrayCollection();
     }
 
     public function __serialize(): array
@@ -714,6 +710,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($blogPost->getUser() === $this) {
                 $blogPost->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Devis>
+     */
+    public function getDevis(): Collection
+    {
+        return $this->devis;
+    }
+
+    public function addDevi(Devis $devi): static
+    {
+        if (!$this->devis->contains($devi)) {
+            $this->devis->add($devi);
+            $devi->setVisiteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevi(Devis $devi): static
+    {
+        if ($this->devis->removeElement($devi)) {
+            // set the owning side to null (unless already changed)
+            if ($devi->getVisiteur() === $this) {
+                $devi->setVisiteur(null);
             }
         }
 

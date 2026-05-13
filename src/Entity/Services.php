@@ -19,20 +19,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ActivityRepository;
+use App\Repository\ServicesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-#[ORM\Entity(repositoryClass: ActivityRepository::class)]
-class Activity
+#[ORM\Entity(repositoryClass: ServicesRepository::class)]
+class Services
 {
-    public function __toString()
-    {
-        return $this->getName() ?? '';
-    }
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -41,29 +36,22 @@ class Activity
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    #[Gedmo\Slug(fields: ['name'], unique: true)]
-    private ?string $slug = null;
+    #[ORM\ManyToOne(inversedBy: 'Services')]
+    private ?Activity $activity = null;
 
     /**
      * @var Collection<int, User>
      */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'activity')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'services')]
     private Collection $users;
 
-    /**
-     * @var Collection<int, Services>
-     */
-    #[ORM\OneToMany(targetEntity: Services::class, mappedBy: 'activity')]
-    private Collection $Services;
-
     #[ORM\Column(length: 255)]
-    private ?string $naf = null;
+    #[Gedmo\Slug(fields: ['name'], unique: true)]
+    private ?string $slug = null;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
-        $this->Services = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -83,14 +71,14 @@ class Activity
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getActivity(): ?Activity
     {
-        return $this->slug;
+        return $this->activity;
     }
 
-    public function setSlug(string $slug): static
+    public function setActivity(?Activity $activity): static
     {
-        $this->slug = $slug;
+        $this->activity = $activity;
 
         return $this;
     }
@@ -107,6 +95,7 @@ class Activity
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
+            $user->addService($this);
         }
 
         return $this;
@@ -115,23 +104,20 @@ class Activity
     public function removeUser(User $user): static
     {
         if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getActivity() === $this) {
-                $user->setActivity(null);
-            }
+            $user->removeService($this);
         }
 
         return $this;
     }
 
-    public function getNaf(): ?string
+    public function getSlug(): ?string
     {
-        return $this->naf;
+        return $this->slug;
     }
 
-    public function setNaf(string $naf): static
+    public function setSlug(string $slug): static
     {
-        $this->naf = $naf;
+        $this->slug = $slug;
 
         return $this;
     }
