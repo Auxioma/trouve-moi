@@ -20,7 +20,6 @@
 namespace App\Entity;
 
 use App\Entity\Enum\UserProfileStatus;
-use App\Entity\Pictures;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -34,7 +33,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Vich\UploaderBundle\Mapping\Attribute as Vich;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: 'user')]
+#[ORM\Table(name: 'app_user')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 #[UniqueEntity(fields: ['siren'], message: 'There is already an account with this siren')]
@@ -106,6 +105,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $website = null;
 
+    /**
+     * @var Collection<int, Services>
+     */
+    #[ORM\ManyToMany(targetEntity: Services::class, inversedBy: 'users')]
+    #[ORM\JoinTable(name: 'user_service')]
+    private Collection $services;
+
+    /**
+     * @var Collection<int, Subscription>
+     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Subscription::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $subscriptions;
+
     #[Vich\UploadableField(mapping: 'logo', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
@@ -123,7 +135,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(
         targetEntity: Pictures::class,
-        mappedBy: 'User',
+        mappedBy: 'user',
         cascade: ['persist', 'remove'],
         orphanRemoval: true
     )]
@@ -173,6 +185,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Devis::class, mappedBy: 'visiteur')]
     private Collection $devis;
 
+    /**
+     * @var Collection<int, DevisArtisan>
+     */
+    #[ORM\OneToMany(targetEntity: DevisArtisan::class, mappedBy: 'artisan')]
+    private Collection $devisArtisans;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -183,6 +201,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->createdAt = new \DateTimeImmutable();
         $this->blogPosts = new ArrayCollection();
         $this->devis = new ArrayCollection();
+        $this->devisArtisans = new ArrayCollection();
     }
 
     public function __serialize(): array
@@ -740,6 +759,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($devi->getVisiteur() === $this) {
                 $devi->setVisiteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DevisArtisan>
+     */
+    public function getDevisArtisans(): Collection
+    {
+        return $this->devisArtisans;
+    }
+
+    public function addDevisArtisan(DevisArtisan $devisArtisan): static
+    {
+        if (!$this->devisArtisans->contains($devisArtisan)) {
+            $this->devisArtisans->add($devisArtisan);
+            $devisArtisan->setArtisan($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevisArtisan(DevisArtisan $devisArtisan): static
+    {
+        if ($this->devisArtisans->removeElement($devisArtisan)) {
+            // set the owning side to null (unless already changed)
+            if ($devisArtisan->getArtisan() === $this) {
+                $devisArtisan->setArtisan(null);
             }
         }
 

@@ -20,8 +20,12 @@
 namespace App\Entity;
 
 use App\Repository\DevisRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Enum\DebutChantierEnum;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: DevisRepository::class)]
 class Devis
@@ -31,7 +35,8 @@ class Devis
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'devis')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'devis')]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?User $visiteur = null;
 
     #[ORM\Column(length: 255)]
@@ -47,10 +52,36 @@ class Devis
     private ?string $budget = null;
 
     #[ORM\Column]
+    #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column(enumType: DebutChantierEnum::class)]
+    private ?DebutChantierEnum $debutChantier = null;
+
+    /**
+     * @var Collection<int, DevisImage>
+     */
+    #[ORM\OneToMany(targetEntity: DevisImage::class, mappedBy: 'devis')]
+    private Collection $devisImages;
+
+    #[ORM\ManyToOne(inversedBy: 'devis')]
+    private ?Activity $metier = null;
+
+    /**
+     * @var Collection<int, DevisArtisan>
+     */
+    #[ORM\OneToMany(targetEntity: DevisArtisan::class, mappedBy: 'devis')]
+    private Collection $devisArtisans;
+
+    public function __construct()
+    {
+        $this->devisImages = new ArrayCollection();
+        $this->devisArtisans = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +168,90 @@ class Devis
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getDebutChantier(): ?DebutChantierEnum
+    {
+        return $this->debutChantier;
+    }
+
+    public function setDebutChantier(?DebutChantierEnum $debutChantier): static
+    {
+        $this->debutChantier = $debutChantier;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DevisImage>
+     */
+    public function getDevisImages(): Collection
+    {
+        return $this->devisImages;
+    }
+
+    public function addDevisImage(DevisImage $devisImage): static
+    {
+        if (!$this->devisImages->contains($devisImage)) {
+            $this->devisImages->add($devisImage);
+            $devisImage->setDevis($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevisImage(DevisImage $devisImage): static
+    {
+        if ($this->devisImages->removeElement($devisImage)) {
+            // set the owning side to null (unless already changed)
+            if ($devisImage->getDevis() === $this) {
+                $devisImage->setDevis(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMetier(): ?Activity
+    {
+        return $this->metier;
+    }
+
+    public function setMetier(?Activity $metier): static
+    {
+        $this->metier = $metier;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DevisArtisan>
+     */
+    public function getDevisArtisans(): Collection
+    {
+        return $this->devisArtisans;
+    }
+
+    public function addDevisArtisan(DevisArtisan $devisArtisan): static
+    {
+        if (!$this->devisArtisans->contains($devisArtisan)) {
+            $this->devisArtisans->add($devisArtisan);
+            $devisArtisan->setDevis($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevisArtisan(DevisArtisan $devisArtisan): static
+    {
+        if ($this->devisArtisans->removeElement($devisArtisan)) {
+            // set the owning side to null (unless already changed)
+            if ($devisArtisan->getDevis() === $this) {
+                $devisArtisan->setDevis(null);
+            }
+        }
 
         return $this;
     }

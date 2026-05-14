@@ -35,10 +35,12 @@ class BlogPost
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'blogPosts')]
+    #[ORM\ManyToOne(targetEntity: BlogCategory::class, inversedBy: 'blogPosts')]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?BlogCategory $category = null;
 
-    #[ORM\ManyToOne(inversedBy: 'blogPosts')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'blogPosts')]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?User $user = null;
 
     public function getId(): ?int

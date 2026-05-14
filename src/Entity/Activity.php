@@ -54,16 +54,23 @@ class Activity
     /**
      * @var Collection<int, Services>
      */
-    #[ORM\OneToMany(targetEntity: Services::class, mappedBy: 'activity')]
-    private Collection $Services;
+    #[ORM\OneToMany(targetEntity: Services::class, mappedBy: 'activity', cascade: ['persist'])]
+    private Collection $services;
 
     #[ORM\Column(length: 255)]
     private ?string $naf = null;
 
+    /**
+     * @var Collection<int, Devis>
+     */
+    #[ORM\OneToMany(targetEntity: Devis::class, mappedBy: 'metier')]
+    private Collection $devis;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
-        $this->Services = new ArrayCollection();
+        $this->services = new ArrayCollection();
+        $this->devis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,6 +131,36 @@ class Activity
         return $this;
     }
 
+
+    /**
+     * @return Collection<int, Services>
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    public function addService(Services $service): static
+    {
+        if (!$this->services->contains($service)) {
+            $this->services->add($service);
+            $service->setActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeService(Services $service): static
+    {
+        if ($this->services->removeElement($service)) {
+            if ($service->getActivity() === $this) {
+                $service->setActivity(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function getNaf(): ?string
     {
         return $this->naf;
@@ -132,6 +169,36 @@ class Activity
     public function setNaf(string $naf): static
     {
         $this->naf = $naf;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Devis>
+     */
+    public function getDevis(): Collection
+    {
+        return $this->devis;
+    }
+
+    public function addDevi(Devis $devi): static
+    {
+        if (!$this->devis->contains($devi)) {
+            $this->devis->add($devi);
+            $devi->setMetier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevi(Devis $devi): static
+    {
+        if ($this->devis->removeElement($devi)) {
+            // set the owning side to null (unless already changed)
+            if ($devi->getMetier() === $this) {
+                $devi->setMetier(null);
+            }
+        }
 
         return $this;
     }

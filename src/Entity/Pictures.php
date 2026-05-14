@@ -22,7 +22,7 @@ namespace App\Entity;
 use App\Repository\PicturesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Attribute as Vich;
 
 #[ORM\Entity(repositoryClass: PicturesRepository::class)]
 #[Vich\Uploadable]
@@ -33,18 +33,17 @@ class Pictures
     #[ORM\Column]
     private ?int $id = null;
 
-    // Cette propriété garde le nom du fichier en base
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'pictures')]
-    private ?User $User = null;
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'pictures')]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    private ?User $user = null;
 
-    // Propriété non persistée, utilisée par VichUploader
     #[Vich\UploadableField(mapping: 'pictures', fileNameProperty: 'name')]
     private ?File $imageFile = null;
 
-    #[ORM\Column(nullable: true)] 
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
@@ -66,12 +65,12 @@ class Pictures
 
     public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function setUser(?User $User): static
+    public function setUser(?User $user): static
     {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }

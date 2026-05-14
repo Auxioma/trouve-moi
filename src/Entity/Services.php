@@ -36,7 +36,7 @@ class Services
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Services')]
+    #[ORM\ManyToOne(targetEntity: Activity::class, inversedBy: 'services')]
     private ?Activity $activity = null;
 
     /**

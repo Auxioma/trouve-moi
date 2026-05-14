@@ -30,6 +30,6 @@ final class DashboardController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function index(): Response
     {
-        return $this->render('user/dashboard/dashboard.html.twig');
+        return $this->render('dashboard/user/dashboard/dashboard.html.twig');
     }
 }

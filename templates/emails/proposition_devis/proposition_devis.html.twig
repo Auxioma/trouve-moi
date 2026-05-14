@@ -1,0 +1,127 @@
+{% apply inline_css(source('emails/action_utilisateur.css')) %}
+
+    <body class="tm-email-body">
+    <div class="tm-email-wrapper">
+
+        ```
+        <table role="presentation" class="tm-email-table">
+            <tr>
+                <td align="center">
+
+                    <table role="presentation" class="tm-email-container">
+
+                        <tr>
+                            <td class="tm-email-header">
+                                <table role="presentation" width="100%">
+                                    <tr>
+                                        <td class="tm-email-brand-cell">
+
+                                            <a href="{{ absolute_url(path('app_home')) }}" class="tm-email-brand-link">
+                                                <img
+                                                    src="{{ absolute_url(asset('image/logo/logo.png')) }}"
+                                                    alt="Trouvemoi"
+                                                    class="tm-email-logo"
+                                                >
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="tm-email-hero">
+
+                                <p class="tm-email-eyebrow">
+                                    Nouveau devis reçu
+                                </p>
+
+                                <h1 class="tm-email-title">
+                                    Un client souhaite réaliser un projet avec vous
+                                </h1>
+
+                                <p class="tm-email-subtitle">
+                                    Un nouveau devis vient d’être envoyé à votre entreprise.
+                                    Connectez-vous à votre espace professionnel pour consulter les détails
+                                    du projet et répondre directement au client.
+                                </p>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="tm-email-content-area">
+
+                                <table role="presentation" class="tm-email-card">
+                                    <tr>
+                                        <td class="tm-email-card-inner">
+
+
+                                            <p class="tm-email-text">
+                                                Le client attend actuellement une réponse de votre part.
+                                                Plus vous répondez rapidement, plus vous augmentez vos chances
+                                                d’échanger avec lui et d’obtenir le projet.
+                                            </p>
+
+                                            <div class="tm-email-button-wrap">
+
+                                                <a
+                                                    href="{{ absolute_url(path('app_login')) }}"
+                                                    class="tm-email-button"
+                                                >
+                                                    Voir le devis
+                                                </a>
+
+                                            </div>
+
+                                            <div class="tm-email-divider"></div>
+
+                                            <p class="tm-email-muted">
+                                                Si vous n’êtes pas encore connecté à votre compte professionnel,
+                                                utilisez le bouton ci-dessus pour accéder directement à votre espace.
+                                            </p>
+
+                                            <p class="tm-email-muted tm-email-muted-last">
+                                                Merci de votre confiance,<br>
+                                                L’équipe Trouvemoi
+                                            </p>
+
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="tm-email-footer">
+
+                                <p class="tm-email-footer-brand">
+                                    Trouvemoi
+                                </p>
+
+                                <p class="tm-email-footer-text">
+                                    Plateforme de mise en relation entre particuliers et professionnels.
+                                </p>
+
+                                <p class="tm-email-footer-links">
+                                    <a href="{{ absolute_url(path('app_home')) }}">
+                                        Accéder au site
+                                    </a>
+                                </p>
+
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
+        </table>
+        ```
+
+    </div>
+    </body>
+
+{% endapply %}
