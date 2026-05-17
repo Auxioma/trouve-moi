@@ -23,4 +23,16 @@ final class EmailPropositionDevisService
 
         $this->mailer->send($email);
     }
+
+    public function multipleArtisat($artisan): void
+    {
+        $email = (new TemplatedEmail())
+            ->from(new Address($artisan))
+            ->to('devis@trouvemoi.eu')
+            ->subject('Un nouveau devis a été proposé')
+            ->htmlTemplate('emails/proposition_devis/proposition_devis.html.twig')
+            ->context([]);
+
+        $this->mailer->send($email);
+    }
 }

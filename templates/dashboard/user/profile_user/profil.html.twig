@@ -1,0 +1,805 @@
+{% extends 'user.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+    <main class="tm-projects-page">
+        <section class="profile-page-premium p-100">
+            <div class="container">
+
+                {{ form_start(form, {
+                    attr: {
+                        class: 'profile-form'
+                    }
+                }) }}
+
+                <div class="profile-hero-card mb-4">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-8">
+                        <span class="profile-mini-title">
+                            ESPACE UTILISATEUR
+                        </span>
+
+                            <h1>
+                                Complétez votre profil
+                            </h1>
+
+                            <p>
+                                Gérez vos informations personnelles, votre adresse et vos
+                                coordonnées pour améliorer vos échanges et le suivi de vos projets.
+                            </p>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="profile-completion-box">
+                                <div class="profile-avatar-xl">
+                                    G
+                                </div>
+
+                                <div class="w-100">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Profil complété</span>
+                                        <strong>65%</strong>
+                                    </div>
+
+                                    <div class="profile-progress">
+                                        <span style="width: 65%;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 align-items-start">
+
+                    <div class="col-xl-3">
+                        <aside class="profile-sidebar">
+                            <a href="#photo" class="profile-nav-link active">
+                                <i class="fa-solid fa-image"></i>
+                                Photo / Logo
+                            </a>
+
+                            <a href="#personal" class="profile-nav-link">
+                                <i class="fa-solid fa-user"></i>
+                                Informations
+                            </a>
+
+                            <a href="#address" class="profile-nav-link">
+                                <i class="fa-solid fa-location-dot"></i>
+                                Adresse
+                            </a>
+
+                            <a href="#contact" class="profile-nav-link">
+                                <i class="fa-solid fa-envelope"></i>
+                                Contact
+                            </a>
+
+                            <a href="#description" class="profile-nav-link">
+                                <i class="fa-solid fa-pen"></i>
+                                Présentation
+                            </a>
+                        </aside>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="profile-form-stack">
+
+                            <div class="profile-card" id="photo">
+                                <div class="profile-card-head">
+                                    <div>
+                                        <span>00</span>
+                                        <h2>Photo de profil</h2>
+                                    </div>
+
+                                    <p>
+                                        Ajoutez une photo.
+                                    </p>
+                                </div>
+
+                                <div class="profile-upload-wrapper">
+                                    <div class="profile-upload-avatar js-profile-preview">
+                                        {% if app.user.picture is defined and app.user.picture %}
+                                            <img
+                                                src="{{ vich_uploader_asset(app.user, 'imageFile') }}"
+                                                alt="Photo de profil"
+                                            >
+                                        {% else %}
+                                            <i class="fa-solid fa-image"></i>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="profile-upload-content">
+                                        <h3>Importer une image</h3>
+
+                                        <p>PNG, JPG ou WEBP · recommandé 500x500px</p>
+
+                                        <label class="profile-upload-btn" for="{{ form.imageFile.vars.id }}_file">
+                                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                                            Sélectionner une image
+                                        </label>
+
+                                        {{ form_widget(form.imageFile, {
+                                            attr: {
+                                                class: 'profile-upload-input',
+                                                accept: 'image/png, image/jpeg, image/webp'
+                                            }
+                                        }) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profile-card" id="personal">
+                                <div class="profile-card-head">
+                                    <div>
+                                        <span>01</span>
+                                        <h2>Informations personnelles</h2>
+                                    </div>
+                                    <p>
+                                        Votre identité principale.
+                                    </p>
+                                </div>
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <label class="profile-label">
+                                            Prénom
+                                        </label>
+                                        {{ form_widget(form.firstName, {
+                                            attr: {
+                                                class: 'form-control profile-input',
+                                                placeholder: 'Guillaume'
+                                            }
+                                        }) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="profile-label">
+                                            Nom
+                                        </label>
+
+                                        {{ form_widget(form.lastName, {
+                                            attr: {
+                                                class: 'form-control profile-input',
+                                                placeholder: 'Devaux'
+                                            }
+                                        }) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-card" id="address">
+                                <div class="profile-card-head">
+                                    <div>
+                                        <span>02</span>
+                                        <h2>Adresse principale</h2>
+                                    </div>
+                                    <p>
+                                        Utilisée pour vos projets et devis.
+                                    </p>
+                                </div>
+                                <div class="row g-4">
+                                    <div class="col-12">
+                                        <label class="profile-label">
+                                            Adresse
+                                        </label>
+
+                                        {{ form_widget(form.address, {
+                                            attr: {
+                                                class: 'form-control profile-input',
+                                                placeholder: '12 rue de Rivoli'
+                                            }
+                                        }) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="profile-label">
+                                            Complément
+                                        </label>
+
+                                        {{ form_widget(form.addressComplement, {
+                                            attr: {
+                                                class: 'form-control profile-input',
+                                                placeholder: 'Appartement, étage...'
+                                            }
+                                        }) }}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="profile-label">
+                                            Code postal
+                                        </label>
+
+                                        {{ form_widget(form.postalCode, {
+                                            attr: {
+                                                class: 'form-control profile-input',
+                                                placeholder: '75001'
+                                            }
+                                        }) }}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="profile-label">
+                                            Ville
+                                        </label>
+
+                                        {{ form_widget(form.city, {
+                                            attr: {
+                                                class: 'form-control profile-input',
+                                                placeholder: 'Paris'
+                                            }
+                                        }) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-card" id="contact">
+                                <div class="profile-card-head">
+                                    <div>
+                                        <span>03</span>
+                                        <h2>Coordonnées</h2>
+                                    </div>
+                                    <p>
+                                        Vos moyens de communication.
+                                    </p>
+                                </div>
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <label class="profile-label">
+                                            Adresse email
+                                        </label>
+
+                                        {{ form_widget(form.email, {
+                                            attr: {
+                                                class: 'form-control profile-input',
+                                                placeholder: 'Adresse e-mail'
+                                            }
+                                        }) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="profile-label">
+                                            Téléphone
+                                        </label>
+
+                                        {{ form_widget(form.phoneNumber, {
+                                            attr: {
+                                                class: 'form-control profile-input',
+                                                placeholder: '+33 6 00 00 00 00'
+                                            }
+                                        }) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-card" id="description">
+                                <div class="profile-card-head">
+                                    <div>
+                                        <span>04</span>
+                                        <h2>Présentation</h2>
+                                    </div>
+                                    <p>
+                                        Décrivez votre profil en quelques lignes.
+                                    </p>
+                                </div>
+                                <label class="profile-label">
+                                    Description
+                                </label>
+                                {{ form_widget(form.description, {
+                                    attr: {
+                                        class: 'form-control profile-input profile-textarea',
+                                        placeholder: 'Présentez-vous...'
+                                    }
+                                }) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3">
+                        <aside class="profile-right-panel">
+                            <div class="profile-preview-card">
+                                <div class="profile-avatar-lg">
+                                    {% if app.user.picture is defined and app.user.picture %}
+                                        <img
+                                            src="{{ vich_uploader_asset(app.user, 'imageFile') }}"
+                                            alt="Photo de profil"
+                                        >
+                                    {% else %}
+                                        G
+                                    {% endif %}
+                                </div>
+                                <h3>
+                                    Guillaume Devaux
+                                </h3>
+                                <p>
+                                    Profil utilisateur
+                                </p>
+                                <div class="profile-preview-line">
+                                    <span>Email</span>
+                                    <strong>À compléter</strong>
+                                </div>
+                                <div class="profile-preview-line">
+                                    <span>Téléphone</span>
+                                    <strong>À compléter</strong>
+                                </div>
+                                <div class="profile-preview-line">
+                                    <span>Adresse</span>
+                                    <strong>À compléter</strong>
+                                </div>
+                            </div>
+                            <div class="profile-tip-card">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <h4>
+                                    Conseil
+                                </h4>
+                                <p>
+                                    Un profil complet améliore l’expérience utilisateur
+                                    et accélère les échanges.
+                                </p>
+                            </div>
+                            <button type="submit" class="btn profile-save-btn">
+                                Enregistrer les modifications
+                            </button>
+                        </aside>
+                    </div>
+
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </section>
+    </main>
+
+    <style>
+        body {
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.00) 7%, #D0E0FE 100%),
+                #F8F7F7;
+        }
+
+        .profile-page-premium {
+            position: relative;
+        }
+
+        .profile-hero-card,
+        .profile-card,
+        .profile-sidebar,
+        .profile-preview-card,
+        .profile-tip-card {
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(210, 220, 238, 0.85);
+            border-radius: 32px;
+            box-shadow: 0 24px 60px rgba(36, 72, 120, .10);
+            backdrop-filter: blur(12px);
+        }
+
+        .profile-hero-card {
+            padding: 42px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .profile-hero-card::before {
+            content: "";
+            position: absolute;
+            top: -120px;
+            right: -120px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(93, 0, 255, .14) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .profile-mini-title {
+            display: inline-block;
+            margin-bottom: 14px;
+            color: #5D00FF;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .profile-hero-card h1 {
+            margin: 0;
+            color: #161616;
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -.04em;
+        }
+
+        .profile-hero-card p {
+            max-width: 620px;
+            margin: 18px 0 0;
+            color: #5F6472;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .profile-completion-box {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, #5D00FF 0%, #7B38FF 100%);
+            color: #fff;
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: 0 22px 45px rgba(93, 0, 255, .24);
+        }
+
+        .profile-avatar-xl,
+        .profile-avatar-lg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 900;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .profile-avatar-xl {
+            width: 74px;
+            height: 74px;
+            background: rgba(255,255,255,.18);
+            backdrop-filter: blur(8px);
+            font-size: 30px;
+        }
+
+        .profile-avatar-lg {
+            width: 82px;
+            height: 82px;
+            background: linear-gradient(135deg, #5D00FF 0%, #7B38FF 100%);
+            color: #fff;
+            font-size: 32px;
+            margin-bottom: 20px;
+            box-shadow: 0 18px 40px rgba(93, 0, 255, .24);
+        }
+
+        .profile-avatar-lg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-progress {
+            width: 100%;
+            height: 10px;
+            border-radius: 999px;
+            overflow: hidden;
+            background: rgba(255,255,255,.18);
+        }
+
+        .profile-progress span {
+            display: block;
+            height: 100%;
+            border-radius: 999px;
+            background: #fff;
+        }
+
+        .profile-sidebar,
+        .profile-right-panel {
+            position: sticky;
+            top: 24px;
+        }
+
+        .profile-sidebar {
+            padding: 14px;
+        }
+
+        .profile-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: #5F6472;
+            font-weight: 800;
+            transition: .2s ease;
+        }
+
+        .profile-nav-link i {
+            color: #5D00FF;
+            width: 20px;
+        }
+
+        .profile-nav-link:hover,
+        .profile-nav-link.active {
+            background: rgba(93, 0, 255, .08);
+            color: #161616;
+        }
+
+        .profile-form-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .profile-card {
+            padding: 36px;
+        }
+
+        .profile-card-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 30px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid #EDF1F7;
+        }
+
+        .profile-card-head span {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #5D00FF;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: .08em;
+        }
+
+        .profile-card-head h2 {
+            margin: 0;
+            color: #161616;
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: -.03em;
+        }
+
+        .profile-card-head p {
+            margin: 0;
+            color: #6E7483;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .profile-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #161616;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .profile-input {
+            height: 58px;
+            border-radius: 20px;
+            border: 1px solid #DCE3EF;
+            background: rgba(255,255,255,.75);
+            padding: 14px 18px;
+            color: #161616;
+            font-size: 15px;
+            box-shadow: none;
+            transition: .2s ease;
+        }
+
+        .profile-input:focus {
+            background: #fff;
+            border-color: #5D00FF;
+            box-shadow: 0 0 0 5px rgba(93, 0, 255, .12);
+        }
+
+        .profile-textarea {
+            min-height: 170px;
+            height: auto;
+            resize: vertical;
+        }
+
+        .profile-upload-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            padding: 10px 0;
+        }
+
+        .profile-upload-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 32px;
+            background: linear-gradient(135deg, #F4F7FD 0%, #E7EEFC 100%);
+            border: 1px solid #DCE3EF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 18px 40px rgba(36, 72, 120, .08);
+        }
+
+        .profile-upload-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-upload-avatar i {
+            font-size: 42px;
+            color: #5D00FF;
+        }
+
+        .profile-upload-content h3 {
+            margin: 0;
+            color: #161616;
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .profile-upload-content p {
+            margin: 12px 0 24px;
+            color: #6E7483;
+            font-size: 15px;
+        }
+
+        .profile-upload-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #5D00FF 0%, #7B38FF 100%);
+            color: #fff;
+            border-radius: 999px;
+            padding: 16px 26px;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            overflow: hidden;
+            transition: .2s ease;
+            box-shadow: 0 18px 40px rgba(93, 0, 255, .22);
+        }
+
+        .profile-upload-btn:hover {
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        .profile-right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-preview-card,
+        .profile-tip-card {
+            padding: 30px;
+        }
+
+        .profile-preview-card h3 {
+            margin: 0;
+            color: #161616;
+            font-size: 26px;
+            font-weight: 900;
+        }
+
+        .profile-preview-card p {
+            margin: 8px 0 22px;
+            color: #6E7483;
+        }
+
+        .profile-preview-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 14px 0;
+            border-top: 1px solid #EDF1F7;
+        }
+
+        .profile-preview-line span {
+            color: #6E7483;
+            font-size: 13px;
+        }
+
+        .profile-preview-line strong {
+            color: #161616;
+            font-size: 13px;
+        }
+
+        .profile-tip-card {
+            background: linear-gradient(135deg, #161A25 0%, #242D44 100%);
+            color: #fff;
+        }
+
+        .profile-tip-card i {
+            width: 46px;
+            height: 46px;
+            border-radius: 16px;
+            background: rgba(255,255,255,.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .profile-tip-card h4 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .profile-tip-card p {
+            margin: 10px 0 0;
+            color: rgba(255,255,255,.72);
+            line-height: 1.7;
+        }
+
+        .profile-save-btn {
+            width: 100%;
+            border: 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #5D00FF 0%, #7B38FF 100%);
+            color: #fff;
+            padding: 18px 24px;
+            font-weight: 900;
+            box-shadow: 0 22px 45px rgba(93, 0, 255, .24);
+        }
+
+        .profile-save-btn:hover {
+            color: #fff;
+            background: linear-gradient(135deg, #4B00D1 0%, #6927F5 100%);
+        }
+
+        @media (max-width: 1199px) {
+            .profile-sidebar,
+            .profile-right-panel {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-hero-card,
+            .profile-card,
+            .profile-preview-card,
+            .profile-tip-card {
+                padding: 24px;
+                border-radius: 24px;
+            }
+
+            .profile-hero-card h1 {
+                font-size: 36px;
+            }
+
+            .profile-card-head {
+                flex-direction: column;
+            }
+
+            .profile-card-head p {
+                text-align: left;
+            }
+
+            .profile-completion-box,
+            .profile-upload-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        .profile-upload-input input[type="file"],
+        .profile-upload-input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            overflow: hidden;
+        }
+    </style>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const fileInput = document.querySelector('.profile-upload-content input[type="file"]');
+            const preview = document.querySelector('.js-profile-preview');
+
+            if (!fileInput || !preview) {
+                return;
+            }
+
+            fileInput.addEventListener('change', function () {
+                const file = this.files[0];
+
+                if (!file || !file.type.startsWith('image/')) {
+                    return;
+                }
+
+                const imageUrl = URL.createObjectURL(file);
+
+                preview.innerHTML = `
+                <img src="${imageUrl}" alt="Aperçu de l'image">
+            `;
+            });
+        });
+    </script>
+
+
+
+
+{% endblock %}

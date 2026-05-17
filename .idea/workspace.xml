@@ -5,54 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13ea1727-03b4-4b50-b0b5-a5ef85ca1ff5" name="Changes" comment="fixture">
-      <change afterPath="$PROJECT_DIR$/templates/dashboard/user/offer/package/paiement.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/dashboard/user/offer/package/success.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/emails/proposition_devis/proposition_devis.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/controllers.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/controllers.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/stof_doctrine_extensions.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260421065654.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260421070255.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260421182743.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260503153602.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260513124343.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260513124559.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260513124734.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20260513124810.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Authentification/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Authentification/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Dashboard/Visiteurs/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Dashboard/Visiteurs/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slider/images/slider/artisan-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slider/images/slider/artisan-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slider/images/slider/artisan-03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slider/images/slider/artisan-04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slider/images/slider/artisan-05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Calendar/MonthlyController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Dashboard/Visiteurs/MesProjectsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Dashboard/Visiteurs/MesProjectsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Activity.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Activity.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/BlogPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/BlogPost.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Devis.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Devis.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Pictures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Pictures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Services.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Services.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/DevisArtisan.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/DevisArtisan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Testimonial.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Testimonial.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Quote/QuotePdfType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Visiteurs/ProfileVisiteursType.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/emails/creation_devis.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/emails/quote_request.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/assets/controllers/metier_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/public/entreprise/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/public/entreprise/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/dashboard/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/dashboard/dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/mes_projects/avis.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/mes_projects/avis.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/mes_projects/demarre-un-projet.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/mes_projects/demarre-un-projet.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/mes_projects/liste-des-projects.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/mes_projects/liste-des-projects.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/mes_projects/recapitulatif.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/mes_projects/recapitulatif.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/messagerie/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/messagerie/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/messagerie/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/messagerie/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/offer/package/billing.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/offer/package/billing.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/offer/package/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/offer/package/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/offer/package/paiement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Enum/DebutChantierEnum.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/offer/package/success.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Email/EmailPropositionDevisService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/picture/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/picture/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/profile/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/quote/create_quote/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/quote/create_quote/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/quote/create_quote/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/quote/create_quote/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TestimonialRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TestimonialRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Email/EmailPropositionDevisService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Email/EmailPropositionDevisService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_partials/NavBarUser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_partials/NavBarUser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/calendar/monthly/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/company/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/mes_projects/liste-des-projects.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard/user/mes_projects/liste-des-projects.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/messagerie/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/messagerie/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/offer/package/billing.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/offer/package/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/offer/package/paiement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/DevisFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/offer/package/success.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TestimonialFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/picture/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/profile/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/quote/create_quote/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard/user/quote/create_quote/list.html.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +192,10 @@
       <workItem from="1778692870203" duration="3370000" />
       <workItem from="1778698151589" duration="1257000" />
       <workItem from="1778733935809" duration="2502000" />
-      <workItem from="1778774824499" duration="11542000" />
+      <workItem from="1778774824499" duration="13741000" />
+      <workItem from="1778826094610" duration="42000" />
+      <workItem from="1778925986661" duration="9881000" />
+      <workItem from="1778954382205" duration="17312000" />
     </task>
     <task id="LOCAL-00001" summary="Admin Artisan">
       <option name="closed" value="true" />
@@ -237,7 +221,23 @@
       <option name="project" value="LOCAL" />
       <updated>1778566018782</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fixture">
+      <option name="closed" value="true" />
+      <created>1778786502208</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778786502208</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fixture">
+      <option name="closed" value="true" />
+      <created>1778786546940</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778786546940</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,9 +245,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Admin Artisan" />
-    <MESSAGE value="fixture" />
     <MESSAGE value="fixture database" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixture database" />
+    <MESSAGE value="fixture" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixture" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

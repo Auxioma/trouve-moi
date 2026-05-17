@@ -33,8 +33,8 @@ class Testimonial
     #[ORM\Column(type: 'text')]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $review = null;
+    #[ORM\Column(type: 'float')]
+    private ?float $review = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -69,12 +69,12 @@ class Testimonial
         return $this;
     }
 
-    public function getReview(): ?string
+    public function getReview(): ?float
     {
         return $this->review;
     }
 
-    public function setReview(string $review): static
+    public function setReview(float $review): static
     {
         $this->review = $review;
 

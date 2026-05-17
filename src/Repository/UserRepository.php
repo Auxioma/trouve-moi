@@ -137,4 +137,33 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * Retourne les 4 artisans les mieux notés d'une activité donnée,
+     * triés par nombre d'avis décroissant, puis par note moyenne décroissante.
+     *
+     * @return User[]
+     */
+    /**
+     * Retourne les 4 artisans les mieux notés d'une activité donnée,
+     * triés par nombre d'avis décroissant, puis par note moyenne décroissante.
+     *
+     * @return User[]
+     */
+    public function findTopArtisansByActivity($activity): array
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u.id', 'u.email')
+            ->leftJoin('u.receivedTestimonials', 't')
+            ->addSelect('COUNT(t.id)  AS HIDDEN testimonialCount')
+            ->addSelect('AVG(t.review) AS HIDDEN avgReview')
+            ->where('u.activity = :activity')
+            ->setParameter('activity', $activity)
+            ->groupBy('u.id')
+            ->orderBy('testimonialCount', 'DESC')
+            ->addOrderBy('avgReview', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
 }

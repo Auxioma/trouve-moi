@@ -25,6 +25,7 @@ use App\Entity\DevisImage;
 use App\Entity\Enum\DebutChantierEnum;
 use App\Form\Visiteurs\Devis\CreationDevisType;
 use App\Repository\ActivityRepository;
+use App\Repository\DevisRepository;
 use App\Repository\UserRepository;
 use App\Service\Email\EmailPropositionDevisService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -48,7 +49,11 @@ final class MesProjectsController extends AbstractController
     #[Route('/', name: 'liste_projects')]
     public function index(): Response
     {
-        return $this->render('dashboard/user/mes_projects/liste-des-projects.html.twig');
+        $listDevis = $this->userRepository->findOneBy(['id' => $this->getUser()], ['createdAt' => 'DESC'])->getDevis();
+
+        return $this->render('dashboard/user/mes_projects/liste-des-projects.html.twig', [
+            'listDevis' => $listDevis,
+        ]);
     }
 
     #[Route('/nouveau-projet', name: 'demarre_projects', methods: ['GET', 'POST'])]
@@ -90,7 +95,7 @@ final class MesProjectsController extends AbstractController
             $devis->setDebutChantier(DebutChantierEnum::from($creationDevis['debutChantier']));
             $devis->setMetier($findMetier);
 
-            $photos = $request->files->all('creation_devis')['photos'] ?? null;
+            $photos = $form->get('photos')->getData();
             foreach ($photos as $key => $photo) {
                 $imageDevis = new DevisImage();
                 $imageDevis->setImageFile($photo);
@@ -98,7 +103,6 @@ final class MesProjectsController extends AbstractController
                 $entityManeger->persist($imageDevis);
             }
             $entityManeger->persist($devis);
-            $entityManeger->flush();
 
             if ($request->query->get('slug')) {
                 $findArtisan = $this->userRepository->findOneBy(['slug' => $request->query->get('slug')]);
@@ -109,11 +113,34 @@ final class MesProjectsController extends AbstractController
                 $sendDevis->setSendAt(new \DateTimeImmutable());
                 $entityManeger->persist($sendDevis);
 
+                $entityManeger->flush();
+
                 $this->EmailPropositionDevisService->send($findArtisan);
 
+                $this->addFlash('success', 'Votre projet a été créé et envoyé à l\'artisan sélectionné.');
+
                 return $this->redirectToRoute('dashboard-visiteurs_liste_projects');
-            } else {
-                dd('recherche pour 5 artisant en fonction des etoiles et de la distance');
+            }
+            /* je vais faire une requete pour avoir les 4 meilleurs notes et max avis */
+            $trouve4artisantparAvis = $this->userRepository->findTopArtisansByActivity($metier);
+            foreach ($trouve4artisantparAvis as $artisan) {
+                $findArtisan = $this->userRepository->find($artisan['id']);
+                $sendDevis = new DevisArtisan();
+                $sendDevis->setDevis($devis);
+                $sendDevis->setArtisan($findArtisan);
+                $sendDevis->setStatus('envoye');
+                $sendDevis->setSendAt(new \DateTimeImmutable());
+                $entityManeger->persist($sendDevis);
+
+                $entityManeger->flush();
+
+                $this->EmailPropositionDevisService->multipleArtisat(
+                    $findArtisan->getEmail()
+                );
+
+                $this->addFlash('success', 'Votre projet a été créé et envoyé aux meilleurs artisans.');
+
+                return $this->redirectToRoute('dashboard-visiteurs_liste_projects');
             }
         }
 

@@ -32,7 +32,6 @@ class TestimonialRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Testimonial::class);
     }
-
     //    /**
     //     * @return Testimonial[] Returns an array of Testimonial objects
     //     */

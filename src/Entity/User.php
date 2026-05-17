@@ -191,6 +191,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: DevisArtisan::class, mappedBy: 'artisan')]
     private Collection $devisArtisans;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $addressComplement = null;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -791,6 +794,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $devisArtisan->setArtisan(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAddressComplement(): ?string
+    {
+        return $this->addressComplement;
+    }
+
+    public function setAddressComplement(?string $addressComplement): static
+    {
+        $this->addressComplement = $addressComplement;
 
         return $this;
     }

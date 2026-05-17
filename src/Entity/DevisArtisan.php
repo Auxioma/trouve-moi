@@ -40,10 +40,10 @@ class DevisArtisan
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $sendAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $viewAt = null;
 
     #[ORM\Column]
