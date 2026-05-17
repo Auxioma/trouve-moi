@@ -72,7 +72,7 @@ class RegistrationController extends AbstractController
                 'user_registration_app_verify_email',
                 $particulier,
                 (new TemplatedEmail())
-                    ->from(new Address('noreply@justfocus.info', 'Trouvemoi.eu'))
+                    ->from(new Address('hello@trouvemoi.eu', 'Trouvemoi.eu'))
                     ->to((string) $particulier->getEmail())
                     ->subject('Confirmez votre adresse email')
                     ->htmlTemplate('emails/confirmation_email.html.twig')
